@@ -13,6 +13,15 @@ app.use(bodyParser.json());
 
 const port = process.env.SERVER_PORT || 8000;
 
-app.listen(port,() => {
-    console.log(`Listening on port ${port}`)
-});
+
+// massive(process.env.CONNECTION_STRING)
+//     .then(db => {
+//         app.set('db',db);
+        app.listen(port,() => {
+            console.log(`Listening on port ${port}`)
+        });
+    // })
+    // .catch(err => {
+    //     console.log(`Error connecting to database.`, err.message);
+    // })
+    
