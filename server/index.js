@@ -15,7 +15,4 @@ const port = process.env.SERVER_PORT || 8000;
 
 app.listen(port,() => {
     console.log(`Listening on port ${port}`)
-})
-.catch(err, ()=>{
-    console.log('Error connecting to server',err.message)
-})
+});
