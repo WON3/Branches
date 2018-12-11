@@ -5,6 +5,7 @@
   "main": "server/server.js",
   "proxy": "https://localhost:8080",
   "dependencies": {
+    "@material-ui/core": "^3.6.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
