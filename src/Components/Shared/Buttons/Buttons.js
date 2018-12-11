@@ -1,10 +1,10 @@
 import React from 'react';
 import './Buttons.css';
-import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
-import { ButtonBase } from '@material-ui/core';
+/*import { createMuiTheme } from '@material-ui/core/styles';*/
 
-function App() {
+
+function Buttons() {
   return (
     <Button variant="contained" color="primary">
       Hello World
@@ -12,9 +12,28 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+
+
+/*const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: '#ff4400',
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#0044ff',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    // error: will use the default color
+  },
+}); */
 
 export default Buttons;
+
 
 
 
