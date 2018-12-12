@@ -1,13 +1,31 @@
-.modeButt{
-    background-color: #EAFBF7;
-    width: 20%;
-    height:20%;
+/* .modeButt{
+    
+    width: 33%;
+    height:25%;
     top:20%;
     position: absolute;
     margin:auto;
-    box-shadow: 2px 4px 4px 2px rgb(92, 86, 86);
+    box-shadow: 10px 40px  10px -6px  rgb(255, 255, 255);
+    padding:20px;
 }
-div{
-    width:100%;
-    height:100%;
+.modeContent {
+    background-color: white;
+    padding:10px;
+    height:95%;
+} */
+
+.openMode  {
+    z-index:0 !important;
+}
+.buttonBox {
+    display:flex;
+    justify-content: center;
+    align-items: space-between;
+}
+.buttonBox Button {
+    margin:4px;
+}
+form {
+    display:flex;
+    flex-direction: column;
 }
