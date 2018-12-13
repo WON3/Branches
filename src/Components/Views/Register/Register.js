@@ -29,10 +29,12 @@ const styles = theme => ({
         super();
         this.state = {
             open: false,
-            name:'',
+            username:'',
             email:'',
             password:''
         }
+        this.cancel = this.cancel.bind(this);
+        this.registerUser = this.registerUser.bind(this);
     }    
     
     handleOpen = () => {
@@ -47,15 +49,17 @@ const styles = theme => ({
         });
     };
 
-    handleName = name => event => {
+    handleName = username => event => {
+        
         this.setState({
-          [name]: event.target.value,
+          [username]: event.target.value,
         });
     };
 
     handleEmail = email => event => {
+        console.log(event.target.value);
         this.setState({ 
-            [email]: event.target.email
+            [email]: event.target.value
         });
     };
 
@@ -64,7 +68,10 @@ const styles = theme => ({
     };
 
     registerUser(){
-        axios.put('/api/register',(username,email,password)).then((res) => {
+        let {email, username, password} = this.state;
+        debugger
+        axios.post('/api/register',(email,username,password)).then((res) => {
+            debugger
             if(res.data){
                 alert('Registered. Now, login.')
             } else{
@@ -72,7 +79,15 @@ const styles = theme => ({
             }
         });
     }
-    
+
+    cancel(){
+        this.setState({
+            username:'',
+            email:'',
+            password:'',
+            open:false
+        })
+    }
 
     render() {
         const { classes } = this.props;
@@ -87,7 +102,6 @@ const styles = theme => ({
                     Register
                 </Button>
                 <Modal
-                    
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
@@ -104,8 +118,8 @@ const styles = theme => ({
                                     id="standard-name"
                                     label="username"
                                     className={classes.textField}
-                                    value={this.state.name}
-                                    onChange={this.handleName('name')}
+                                    value={this.state.username}
+                                    onChange={this.handleName('username')}
                                     margin="normal"
                                 />
                                 <TextField
@@ -127,26 +141,25 @@ const styles = theme => ({
                                     margin="normal"
                                 />
                             </form>
-                        </Typography>
-                        <RegisterWrapped/>
+                        </Typography> 
                         <div className='buttonBox'>
                             <Button 
                                 variant="contained"
                                 color="primary"
+                                onClick={this.registerUser}
                             >
                                 Register
                             </Button>
                             <Button 
                                 variant="contained"
                                 color="secondary"
+                                onClick={this.cancel}
                             >
                                 Cancel
                             </Button>
                         </div>
                     </div>
-
-                </Modal>
-                
+                </Modal>   
             </div>
         )
     }
@@ -155,5 +168,5 @@ const styles = theme => ({
 Register.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-const RegisterWrapped = withStyles(styles)(Register);
-export default RegisterWrapped;
+
+export default withStyles(styles)(Register);
