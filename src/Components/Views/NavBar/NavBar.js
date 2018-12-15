@@ -18,8 +18,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
- const drawerWidth = 240;
- const styles = theme => ({
+
+const drawerWidth = 240;
+
+const styles = theme => ({
   root: {
     display: 'flex',
   },
@@ -75,20 +77,25 @@ import MailIcon from '@material-ui/icons/Mail';
     marginLeft: 0,
   },
 });
- class PersistentDrawerLeft extends React.Component {
+
+class PersistentDrawerLeft extends React.Component {
   state = {
     open: false,
   };
-   handleDrawerOpen = () => {
+
+  handleDrawerOpen = () => {
     this.setState({ open: true });
   };
-   handleDrawerClose = () => {
+
+  handleDrawerClose = () => {
     this.setState({ open: false });
   };
-   render() {
+
+  render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
-     return (
+
+    return (
       <div className={classes.root}>
         <CssBaseline />
       
@@ -121,8 +128,10 @@ import MailIcon from '@material-ui/icons/Mail';
     );
   }
 }
- PersistentDrawerLeft.propTypes = {
+
+PersistentDrawerLeft.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
- export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft); 
+
+export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft);
