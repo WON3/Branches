@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import Register from './Components/Views/Register/Register';
 
 class App extends Component {
   render() {
@@ -8,6 +8,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <h1>Branches</h1>
+        
         </header>
         
       </div>
