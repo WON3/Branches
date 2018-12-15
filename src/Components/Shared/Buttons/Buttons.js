@@ -4,10 +4,11 @@ import Button from '@material-ui/core/Button';
 /*import { createMuiTheme } from '@material-ui/core/styles';*/
 
 
-function Buttons() {
+function Buttons(props) {
+  
   return (
     <Button variant="contained" color="primary">
-      Hello World
+      
     </Button>
   );
 }
