@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 function Buttons() {
   return (
     <Button variant="contained" color="primary">
-      Hello World
+      LOGIN
     </Button>
   );
 }
