@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './Components/Shared/Buttons/Buttons';
-import Contribute from './Components/Views/Contribute/Contribute'
-
+import Register from './Components/Views/Register/Register';
 
 class App extends Component {
   render() {
@@ -10,11 +8,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <h1>Branches</h1>
+        
         </header>
-          <Button/>
-          HELLO FOO PEOPLE
-          <Button/>
-        <Contribute/>
+        
       </div>
     );
   }

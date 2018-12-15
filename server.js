@@ -65,3 +65,9 @@ const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
 })
+
+app.post('/api/register', (req,res) => {
+    const db = req.app.get('db');
+    const {uername,email,password} = req.body;
+    db.
+})
