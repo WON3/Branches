@@ -96,10 +96,6 @@ app.get("/*", (req, res) => {
   });
 });
 
-const port = process.env.SERVER_PORT || 8080;
-app.listen(port, () => {
-  console.log(`branchin' on port ${port}`);
-});
 /////////////////// API ROUTES ///////////////////////////
 
 app.get('/api/contributions/:story_id', contribution.get_contribution)
