@@ -1,3 +1,4 @@
+/// Serving static files.
 const express = require("express"),
   cors = require("cors"),
   bodyParser = require("body-parser"),
@@ -8,12 +9,14 @@ const express = require("express"),
   passport = require("passport");
   LocalStrategy = require("passport-local").Strategy;
   bcrypt = require("bcrypt");
+  contribution = require('./server/controllers/contributionController'),
+    story = require('./server/controllers/storyController'),
+    user = require('./server/controllers/userController'),
+    admin = require('./server/controllers/adminController')
 
 require("dotenv").config();
 
 /// Serving static files.
-app.use(express.static(path.join(__dirname, "/build")));
-
 massive(process.env.DATABASE_URL)
   .then(db => {
     app.set("db", db);
@@ -23,6 +26,8 @@ massive(process.env.DATABASE_URL)
     console.log("Oh snap, things did not go as planned.", err.message);
   });
 
+//////////////////// MIDDLEWARE ///////////////////////
+app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -95,3 +100,15 @@ const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
   console.log(`branchin' on port ${port}`);
 });
+/////////////////// API ROUTES ///////////////////////////
+
+app.get('/api/contributions/:story_id', contribution.get_contribution)
+app.post('/api/register', user.register);
+
+///////////////// ADMIN ROUTES ///////////////////////////
+app.get('/*', admin.publicRouteCatchAll);
+
+const port = process.env.SERVER_PORT || 8080;
+app.listen(port, () => {
+    console.log(`branchin' on port ${port}`)
+})

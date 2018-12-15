@@ -49,7 +49,7 @@ class Login extends Component {
           <input className="userBox2" 
             value={this.state.password}
             onChange={this.handleChange}
-            type="text"
+            type="password"
             name="password"
             placeholder="PASSWORD"
           />
