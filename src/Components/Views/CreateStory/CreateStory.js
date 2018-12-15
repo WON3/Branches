@@ -2,23 +2,31 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 
-export default class Create_Story extends Component {
+export default class CreateStory extends Component {
     constructor(props){
-        super()
+        super(props)
 
         this.state = {
             is_Complete: false, //defaults to false
             user_id: 2 , //from props,
-            title: "Loving Life", //user Input
-            description: "description here",
+            title: "", //user Input
+            description: "",
             point_of_view: "third person",
             is_public: false, //defaults to false
             allows_fork: true, //user Input
             Moderator_accepts: true //user Input
         }
-        //handleChange() for all input fields update state.. later will also update redux??
-        //addNewStory() Bind method ... when user clicks on submit button 
+        this.handleChange = this.handleChange.bind(this)
+    }
 
+          //handleChange() for all input fields update state.. later will also update redux??
+        handleChange(e){
+            this.setState({
+            [e.target.name]: e.target.value
+            })
+
+        //addNewStory() Bind method ... when user clicks on submit button 
+            //working on endpoints
     }
 render(){
 
@@ -26,9 +34,9 @@ render(){
         <div>
             <div>
                 Title
-                <Input></Input>
+                <input name= "title" onChange={e => {this.handleChange(e)}}></input>
                 Description
-                <Input></Input>
+                <input name= "description" onChange={e => {this.handleChange(e)}}></input>
                 Point of View (select one)
                 <button>First Person</button>
                 <button>Second Person</button>
