@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import "./Login.css";
 /*import axios from 'axios';*/
@@ -65,3 +66,16 @@ class Login extends Component {
 }
 
 export default Login;
+=======
+import React, {Component} from 'react';
+
+class Login extends Component{
+    render(){
+        return(
+            <div>Login</div>
+        )
+    }
+}
+
+export default Login;
+>>>>>>> c50423a71320c403afc6e757c41027a52eed6e04
