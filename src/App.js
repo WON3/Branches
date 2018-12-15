@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import CreateStory from './Components/Views/CreateStory/CreateStory';
 
 
 class App extends Component {
@@ -10,8 +9,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <h1>Branches</h1>
+        
         </header>
-        <CreateStory />
+      
       </div>
     );
   }
