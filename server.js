@@ -3,13 +3,13 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     massive = require('massive'),
     path = require('path'),
-    app = express()
+    app = express(),
+    contribution = require('./server/controllers/contributionController'),
+    story = require('./server/controllers/storyController'),
+    user = require('./server/controllers/userController'),
+    admin = require('./server/controllers/adminController')
 
 require('dotenv').config();
-
-
-/// Serving static files. 
-app.use(express.static(path.join(__dirname, '/build')));
 
 massive(process.env.DATABASE_URL)
     .then(db => {
@@ -19,55 +19,20 @@ massive(process.env.DATABASE_URL)
         console.log('Oh snap, things did not go as planned.', err.message)
     })
 
+//////////////////// MIDDLEWARE ///////////////////////
+app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/api/contributions/:story_id', (req, res) => {
-    const db = req.app.get('db');
-    const { story_id } = req.params
-    const data = {}
-    db.get_contributions({
-        story_id
-    })
-    .then(result => {
-        data.contributions = result
-            // Using findOne() get story title and description
-            return db.stories.findOne({
-                story_id
-            })   // return promise
+/////////////////// API ROUTES ///////////////////////////
 
-        })
-        .then(result => {
-            data.story = {
-                title: result.title,
-                description: result.description
-            }
-            res.send(data)
-        })
-    // .then() will contain story title and description
-    // assign data.storyDetails = result from .then() 
-    // send data back. res.send
-    .catch(error=>{
-        console.error("error getting story.")
-        res.status(500)
-    })
-})
+app.get('/api/contributions/:story_id', contribution.get_contribution)
+app.post('/api/register', user.register);
 
-
-/// Catch all for routing
-app.get('/*', (req, res) => {
-    res.sendFile('index.html', {
-        root: path.join(__dirname, "build")
-    })
-});
+///////////////// ADMIN ROUTES ///////////////////////////
+app.get('/*', admin.publicRouteCatchAll);
 
 const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
-})
-
-app.post('/api/register', (req,res) => {
-    const db = req.app.get('db');
-    const {uername,email,password} = req.body;
-    db.
 })
