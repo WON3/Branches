@@ -68,10 +68,10 @@ const styles = theme => ({
     };
 
     registerUser(){
-        let {email, username, password} = this.state;
-        debugger
-        axios.post('/api/register',(email,username,password)).then((res) => {
-            debugger
+        let {username, email,  password} = this.state;
+        
+        axios.post('/api/register',{username, email, password}).then((res) => {
+            
             if(res.data){
                 alert('Registered. Now, login.')
             } else{

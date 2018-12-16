@@ -30,42 +30,36 @@ app.use(session({
 app.use( passport.initialize() );
 app.use( passport.session() );
 
-let attempts = 0;
 
-passport.use('login', new LocalStrategy({
+
+passport.use('register', new LocalStrategy({
     usernameField: 'email',
     passReqToCallback: true,
-}, (req, username, email, password, done) => {
-        if(attempt >= 3){
-            done('Too many failed login attempts.')
-        } else {
-          const db = req.app.get('db');
-          db.users.findOne({email:email})
-            .then(user => {
-                if(!user){
-                    db.users.insert({username,email})
-                    .then(userid => {
-                        return bcrypt.hash(password,10)
-                    })
-                    .then(pass => {
-                        return db.user_login.insert(userid, pass)
-                    })
-                    .then(user => {
-                        delete user.password;
-                        done(null, user);
-                    })
-                } else if(!bcrypt.compareSync(password, user.password)){
-                    attempes ++
-                    return done('Invalid email or password');
-                } else {
-                    delete user.password;
-                    done(null, user);
-                } 
-            })
-            .catch(err => {
-                done(err);
-            });
-        }                 
+}, (req,email, username, done) => {
+        const db = req.app.get('db');
+        let locUser =null;
+        db.users.findOne({email:email})
+        .then(user => {
+            if(!user){
+                db.users.insert({username: req.body.username,email:req.body.email})
+                .then(userid => {
+                    locUser = userid;
+                    return bcrypt.hash(req.body.password,10)
+                })
+                .then(pass => {
+                    return db.user_login.insert({user_id:locUser.id, login_token:pass})
+                })
+                .then(user => {
+                    done(null, locUser);
+                })
+            } else {
+                done('User with this email already exists');
+            } 
+        })
+        .catch(err => {
+            done(err);
+        });
+                        
     }
 ));
 
@@ -94,7 +88,9 @@ app.use(bodyParser.json());
 /////////////////// API ROUTES ///////////////////////////
 
 app.get('/api/contributions/:story_id', contribution.get_contribution)
-app.post('/api/register', user.register);
+app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
+    res.send('Successful Login!')
+})
 
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
