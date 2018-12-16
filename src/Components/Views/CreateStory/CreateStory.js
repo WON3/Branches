@@ -16,7 +16,8 @@ export default class CreateStory extends Component {
             allows_fork: true, //user Input
             Moderator_accepts: true //user Input
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.addNewStory = this.addNewStory.bind(this);
     }
 
           //handleChange() for all input fields update state.. later will also update redux??
@@ -24,10 +25,29 @@ export default class CreateStory extends Component {
             this.setState({
             [e.target.name]: e.target.value
             })
+        }
 
         //addNewStory() Bind method ... when user clicks on submit button 
             //working on endpoints
-    }
+        addNewStory(){
+            const newStory= {
+                is_complete: false,
+                user_id: this.state.user_id,
+                title: this.state.title,
+                description: this.state.description,
+                point_of_view: this.state.point_of_view,
+                is_public: false,
+                allows_fork: this.state.allows_fork,
+                moderator_accepts: this.state.moderator_accepts
+            }
+
+            axios.post(`/api/newStory`, newStory)
+                .then( res => {
+                    console.log("new story added");
+                    this.props.history.push('/')
+                })
+        }
+    
 render(){
 
     return (

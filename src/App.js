@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
-import './App.css';
-
+import React, { Component } from "react";
+import "./App.css";
+import NavBar from "./Components/Views/NavBar/NavBar";
+import { BrowserRouter } from "react-router-dom";
+import routes from "./routes";
+import Header from "./Components/Shared/Header/Header";
 
 class App extends Component {
   render() {
-    //just inserted CreateStory temporarily until routes are completed
+
     return (
       <div className="App">
-        <header className="App-header">
-        <h1>Branches</h1>
-        
-        </header>
-      
+        <Header />
+
+        <BrowserRouter>
+          {routes}
+
+        </BrowserRouter>
       </div>
     );
   }
