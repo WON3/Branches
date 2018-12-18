@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Contribute from './Components/Views/Contribute/Contribute'
 import Register from './Components/Views/Register/Register';
 
 class App extends Component {
@@ -10,7 +11,7 @@ class App extends Component {
         <h1>Branches</h1>
         
         </header>
-        
+        <Contribute/>
       </div>
     );
   }
