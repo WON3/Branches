@@ -159,6 +159,7 @@ app.get("/*", (req, res) => {
 /////////////////// API ROUTES ///////////////////////////
 
 app.get('/api/contributions/:story_id', contribution.get_contribution)
+app.post('/api/newStory', story.addStory);
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
     res.send('Successful Login!')
 })
