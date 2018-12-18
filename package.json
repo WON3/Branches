@@ -2,10 +2,12 @@
   "name": "branches",
   "version": "0.1.0",
   "private": true,
-  "main": "server.js",
+  "main": "server/server.js",
   "proxy": "http://localhost:8080",
   "dependencies": {
     "@material-ui/core": "^3.6.1",
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.2",
     "@material-ui/icons": "^3.0.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
@@ -24,7 +26,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "reactstrap": "^6.5.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "session": "^0.1.0"
   },
   "scripts": {
     "start": "node server.js",

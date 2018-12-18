@@ -8,6 +8,7 @@ function Buttons(props) {
   
   return (
     <Button variant="contained" color="primary">
+      LOGIN
       
     </Button>
   );
