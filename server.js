@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 app.get('/api/contributions/:story_id', contribution.get_contribution)
 app.post('/api/register', user.register);
-app.post('/api/newStory', storyController.addStory);
+app.post('/api/newStory', story.addStory);
 
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);

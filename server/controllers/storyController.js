@@ -2,11 +2,25 @@ module.exports = {
 
     addStory: (req, res, next) =>{
         const dbInstance = req.app.get('db');
-        
+        const {is_complete,
+            user_id,
+            title,
+            description,
+            point_of_view,
+            is_public,
+            allows_fork,
+            moderator_accepts} = req.body;
 
-        dbInstance.addNewStory()
-        .then( res => {
-            res.status(200).send()
+        dbInstance.addNewStory(is_complete,
+            user_id,
+            title,
+            description,
+            point_of_view,
+            is_public,
+            allows_fork,
+            moderator_accepts)
+        .then( response => {
+            res.status(200).send(response.data)
         }).catch( err => {
             res.status(500).send( {errorMessage: "Failed to add new story"});
             console.log(err);
