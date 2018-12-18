@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import "./Login.css";
 /*import axios from 'axios';*/
 import Button from "@material-ui/core/Button";
+/*import {Register} from '../Register/Register';*/
 
 /*format login code for username and password as well as css for Login view*/
 
@@ -39,26 +39,30 @@ class Login extends Component {
     return (
       <div className="LoginBox">
         <form className="LoginForm">
-          <input className="userBox1"
+          <input
+            className="userBox1"
             value={this.state.username}
             onChange={this.handleChange}
             type="text"
             name="username"
             placeholder="USERNAME"
           />
-          <br/>
-          <input className="userBox2" 
+          <br />
+          <input
+            className="userBox2"
             value={this.state.password}
             onChange={this.handleChange}
             type="password"
             name="password"
             placeholder="PASSWORD"
           />
-          <br/>
+          <br />
           <Button variant="contained" color="primary">
             LOGIN
           </Button>
-          <Button variant="contained" color="primary">Register</Button>
+          <Button variant="contained" color="primary">
+            Register
+          </Button>
         </form>
       </div>
     );
@@ -66,16 +70,3 @@ class Login extends Component {
 }
 
 export default Login;
-=======
-import React, {Component} from 'react';
-
-class Login extends Component{
-    render(){
-        return(
-            <div>Login</div>
-        )
-    }
-}
-
-export default Login;
->>>>>>> c50423a71320c403afc6e757c41027a52eed6e04
