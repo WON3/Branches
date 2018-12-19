@@ -2,6 +2,8 @@ const initialState = {
     //user
     userName:'',
     userId:'',
+    userProfilePic:'',
+
     
     //story
     storyId:'',
@@ -13,6 +15,7 @@ const initialState = {
 const GET_USER = 'GET_USER';
 const GET_STORY = 'GET_STORY';
 const STORY_ADDITION = 'STORY_ADDITION';
+
 
 function reducer (state = initialState, action) {
     let {payload} = action;
