@@ -158,11 +158,12 @@ app.get("/*", (req, res) => {
 
 /////////////////// API ROUTES ///////////////////////////
 
-app.get('/api/contributions/:story_id', contribution.get_contribution)
+app.get('/api/contributions/:story_id', contribution.get_contribution);
+app.post('/api/newStory', story.addStory);
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
     res.send('Successful Login!')
-})
-
+});
+app.get('/api/profile/:userId', user.getProfile);
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
@@ -170,3 +171,4 @@ const port = process.env.SERVER_PORT || 8080;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
 })
+

@@ -1,12 +1,16 @@
+
 import React, { Component } from "react";
 import "./Login.css";
 import axios from 'axios';
 import Register from "../Register/Register";
 import TextField from "@material-ui/core/TextField";
-import Axios from "axios";
+import axios from "axios";
 import Buttons from "../../Shared/Buttons/Buttons";
 
 /*format login code for username and password as well as css for Login view*/
+
+import {connect} from 'react-redux';
+import {getUser} from '../../../ducks/reducer';
 
 class Login extends Component {
   constructor(props) {
@@ -64,9 +68,18 @@ class Login extends Component {
             variant="outlined"
           />
           <br />
+<<<<<<< HEAD
 
           <Buttons/>
           <br />
+=======
+          <Button variant="contained" color="primary">
+            LOGIN
+          </Button>
+          <Button variant="contained" color="primary">
+            Register
+          </Button>
+>>>>>>> db0411040f50408854a6c841a423dd824017f4be
           <Register />
         </form>
       </div>
@@ -75,4 +88,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null, {getUser})(Login);
+
+
+
+
+
+
+
+
