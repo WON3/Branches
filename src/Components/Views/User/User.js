@@ -5,7 +5,7 @@ import { FormHelperText } from '@material-ui/core';
 import {connect} from 'react-redux';
 import {updateProfilePic} from '../../../ducks/reducer';
 
-import axios from 'axios';
+
 
 //Need Redux initialState for username, user Badge, profile pic, stories in work
 
@@ -14,18 +14,14 @@ class User extends Component{
         super(props)
         this.state = {
             userId:'',
-            profilePic:'',
             userName:''
         }
     }
     
     componentDidMount(){
-        const {userId} = this.props;
-        axios.get(`/api/profile/${userId}`).then(res=>{
-            console.log(res.data)
-            let {profilePic} = res.data[0];
-            this.setState({profilePic})
-        })
+        const {userId, userName} = this.props;
+        this.setState({userId:userId, userName:userName})
+        
     }
 
     changePic(val){

@@ -8,7 +8,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
@@ -16,7 +15,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ImageAvatars from './Avatar';
+import ImageAvatars from './ImageAvatars';
+import axios from 'axios';
+import {connect} from 'react-redux';
 
 const styles = theme => ({
     card: {
@@ -51,8 +52,20 @@ const styles = theme => ({
   });
   
   class UserCard extends React.Component {
-    state = { expanded: false };
-  
+    state = { 
+      expanded: false,
+      profilePic:'https://i.pinimg.com/236x/33/fe/73/33fe73c8629b599c835c9d76e360f8bc--daffy-duck-duck-duck.jpg'
+    };
+
+    componentDidMount(){
+      const {userId} = this.props;
+      axios.get(`/api/profile/${userId}`).then(res=>{
+        console.log(res.data)
+        let {profilePic} = res.data[0];
+        this.setState({profilePic})
+      })
+    }
+    
     handleExpandClick = () => {
       this.setState(state => ({ expanded: !state.expanded }));
     };
@@ -62,12 +75,17 @@ const styles = theme => ({
   
       return (
         <Card className={classes.card}>
-        <ImageAvatars />
+        <ImageAvatars
+        profilePic={this.state.profilePic} />
           <CardHeader
             avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
+              <ImageAvatars 
+                aria-label="Recipe" 
+                className={classes.avatar}
+                profilePic={this.state.profilePic}
+                >
                 {this.props.name}
-              </Avatar>
+              </ImageAvatars>
               
             }
             action={
@@ -124,5 +142,12 @@ const styles = theme => ({
   UserCard.propTypes = {
     classes: PropTypes.object.isRequired,
   };
-  
-  export default withStyles(styles)(UserCard);
+  function mapStateToProps(state){
+    const {userId, profilePic} = state;
+    return {
+      userId,
+      profilePic      
+    }
+  }
+
+  export default connect(mapStateToProps,{})(withStyles(styles)(UserCard));
