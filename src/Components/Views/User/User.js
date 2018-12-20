@@ -12,22 +12,27 @@ class User extends Component{
     constructor(props){
         super(props)
         this.state = {
-            userId:''
+            userId:'',
+            profilePic:'',
+            userName:''
         }
     }
     
     componentDidMount(){
-        //axios.get('/api/profile')
-        //on login redux state should have the user id and get teh 
-        //profile pic and add to state. Then here we can access it by getting 
-        //initial state.
+        const {userId} = this.props;
+        axios.get(`/api/profile/${userId}`).then(res=>{
+            console.log(res.data)
+            let {profilePic} = res.data[0];
+            this.setState({profilePic})
+        })
     }
     
     render(){
         return(
             <div style={{display:'flex',justifyContent:'space-around', alignItems:'center'}}>
                 <ProfileCard 
-                    name='Ry'
+                    name={this.state.userName}
+                    profilePic={this.state.profilePic}
                 />
                 <ProfileCard 
                     name='Tris'
