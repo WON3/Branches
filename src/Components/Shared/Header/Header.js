@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
+import * as actions from '../../../ducks/reducer';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -72,20 +72,19 @@ class Header extends Component{
     
     render(){
         const { classes, theme } = this.props;
-        const { open } = this.props;
         return(
             <div>  <AppBar
             position="fixed"
             className={classNames(classes.appBar, {
-              [classes.appBarShift]: open,
+              [classes.appBarShift]: this.props.openClose,
             })}
           >
-            <Toolbar disableGutters={!open}>
+            <Toolbar disableGutters={!this.props.openClose}>
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
+                onClick={()=>{this.props.makeOpenClose(this.props.openClose)}}
+                className={classNames(classes.menuButton, this.props.openClose && classes.hide)}
               >
                 <MenuIcon />
               </IconButton>
@@ -99,5 +98,5 @@ Header.propTypes = {
     theme: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles, { withTheme: true })(Header);
+  export default connect(state=>state, actions)(withStyles(styles, { withTheme: true })(Header));
 

@@ -18,6 +18,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import {connect} from 'react-redux';
+import {makeOpenClose} from '../../../ducks/reducer';
+import { Link } from "react-router-dom";
+
  const drawerWidth = 240;
  const styles = theme => ({
   root: {
@@ -75,19 +79,20 @@ import MailIcon from '@material-ui/icons/Mail';
     marginLeft: 0,
   },
 });
- class PersistentDrawerLeft extends React.Component {
-  state = {
-    open: false,
-  };
-   handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-   handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+ class NavBar extends React.Component {
    render() {
-    const { classes, theme } = this.props;
-    const { open } = this.state;
+    const authenticatedList = [
+        {name: "Dashboard", path: "/", shouldShow: true},
+        {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
+        {name: "Login", path: "/Login",shouldShow: !this.props.userId ? true : false}
+    ];   
+    
+        
+    const { classes, theme, openClose } = this.props;
+    console.log(this.props.makeOpenClose);
+    const authenticatedListComponents = authenticatedList.filter(e=>e.shouldShow).map((item)=>{
+        return <Link to={item.path} key={item.name}><ListItem>{item.name}</ListItem></Link>
+    })
      return (
       <div className={classes.root}>
         <CssBaseline />
@@ -96,24 +101,19 @@ import MailIcon from '@material-ui/icons/Mail';
           className={classes.drawer}
           variant="persistent"
           anchor="left"
-          open={open}
+          open={openClose}
           classes={{
             paper: classes.drawerPaper,
           }}
         >
           <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
+            <IconButton onClick= {()=>this.props.makeOpenClose(this.props.openClose)}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
           <Divider />
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+          {authenticatedListComponents}
           </List>
           <Divider />
         </Drawer>
@@ -121,8 +121,19 @@ import MailIcon from '@material-ui/icons/Mail';
     );
   }
 }
- PersistentDrawerLeft.propTypes = {
+ NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
- export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft); 
+const mapStateToProps = state=>{return {openClose: state.openClose, userId: state.userId}};
+
+ const StyleComp = withStyles(styles, { withTheme: true })(NavBar);
+
+ const ConnectedComponent = connect(mapStateToProps, {makeOpenClose})(StyleComp);
+
+  export default ConnectedComponent;
+//  {['All', 'Links', 'Go', 'Here'].map((text, index) => (
+//     <ListItem button key={text}>
+//       <ListItemText primary={text} />
+//     </ListItem>
+//   ))}

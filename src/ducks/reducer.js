@@ -6,13 +6,18 @@ const initialState = {
     //story
     storyId:'',
     storyBody:'',
-    storyAddition:''
+    storyAddition:'',
+
+  //nav drawer
+  openClose:false
 
 }
 
 const GET_USER = 'GET_USER';
 const GET_STORY = 'GET_STORY';
 const STORY_ADDITION = 'STORY_ADDITION';
+const OPEN_CLOSE = 'OPEN_CLOSE';
+
 
 function reducer (state = initialState, action) {
     let {payload} = action;
@@ -28,6 +33,10 @@ function reducer (state = initialState, action) {
                 storyId: payload.storyId,
                 storyBody: payload.storyBody
             });
+            case OPEN_CLOSE:
+            return Object.assign({}, state, {
+                openClose: payload.open,
+            })
         default:
             return state;
     }
@@ -62,6 +71,16 @@ export function storyAddition (storyAddition) {
             storyAddition
         }
     }
+}
+
+export function makeOpenClose(open){
+    return{
+        type: OPEN_CLOSE,
+        payload: {
+            open:!open
+        }
+    }
+
 }
 
 export default reducer;
