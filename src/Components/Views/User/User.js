@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import ProfileCard from './ProfileCard';
 import { FormHelperText } from '@material-ui/core';
 import {connect} from 'react-redux';
-// import {} from '../../ducks/reducer';
+import {updateProfilePic} from '../../../ducks/reducer';
+
 import axios from 'axios';
 
 //Need Redux initialState for username, user Badge, profile pic, stories in work
@@ -26,6 +27,11 @@ class User extends Component{
             this.setState({profilePic})
         })
     }
+
+    changePic(val){
+        this.setState({profilePic:val})
+        this.props.updateProfilePic(val)
+    }
     
     render(){
         return(
@@ -33,6 +39,7 @@ class User extends Component{
                 <ProfileCard 
                     name={this.state.userName}
                     profilePic={this.state.profilePic}
+                    changePic ={this.changePic}
                 />
                 <ProfileCard 
                     name='Tris'
@@ -45,6 +52,11 @@ class User extends Component{
     }
 }
 
-
-//map state to props.
-export default User;
+function mapStateToProps (state) {
+    const {userId, userName } = state;
+    return {
+        userId,
+        userName
+    }
+}
+export default connect(mapStateToProps, {updateProfilePic})(User);
