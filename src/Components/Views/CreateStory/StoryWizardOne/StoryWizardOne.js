@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './CreateStory.css';
+import '../../CreateStory/CreateStory.css';
 
-
-
-export default class CreateStory extends Component {
+export default class StoryWizardOne extends Component {
     constructor(props){
         super(props)
 
@@ -29,8 +27,6 @@ export default class CreateStory extends Component {
             })
         }
 
-        //addNewStory() Bind method ... when user clicks on submit button 
-            //working on endpoints
         addNewStory(){
             const newStory= {
                 is_complete: false,
@@ -60,7 +56,7 @@ render(){
             </div>
             <div>
             Description
-            <input name= "description" onChange={e => {this.handleChange(e)}}></input>
+            <input className="descripton" name= "description" onChange={e => {this.handleChange(e)}}></input>
             </div>
             <div>
             Point of View (select one)
@@ -87,9 +83,7 @@ render(){
                 </div>
                 <div>
             <button onClick= {() => {this.addNewStory()}}>Submit New Story</button>
-        </div>
-
-
+          </div>
 
         </div>
     )
