@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import '../../CreateStory/CreateStory.css';
+import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default class StoryWizardOne extends Component {
+class StoryWizardOne extends Component {
     constructor(props){
         super(props)
 
         this.state = {
             is_Complete: false, //defaults to false
-            user_id: 2 , //from props,
+            user_id: 1 , //from props,
             title: "", //user Input
             description: "",
             point_of_view: "First Person",
@@ -43,6 +46,12 @@ export default class StoryWizardOne extends Component {
                 .then( res => {
                     console.log("new story added");
                     // this.props.history.push('/')
+                    addTitle(this.state.title);
+                    addDescripton(this.state.description); 
+                    addPOV(this.state.point_of_view); 
+                    addForkRestriction(this.state.allows_fork); 
+                    addModerator(this.state.moderator_accepts);
+                    console.log(this.props)
                 })
         }
     
@@ -82,7 +91,7 @@ render(){
                 </select>
                 </div>
                 <div>
-            <button onClick= {() => {this.addNewStory()}}>Submit New Story</button>
+           <Link to= '/create_two'><button onClick= {() => {this.addNewStory()}}>Next</button></Link>
           </div>
 
         </div>
@@ -90,3 +99,23 @@ render(){
 }
 
 }
+
+function mapStateToProps(state){
+    const {
+        storyGuideTitle,
+        storyGuideDescripton,
+        storyGuidePOV,
+        storyGuideFork,
+        storyGuideMod
+            } = state;
+
+    return {
+        storyGuideTitle,
+        storyGuideDescripton,
+        storyGuidePOV,
+        storyGuideFork,
+        storyGuideMod
+    };
+}
+
+export default connect(mapStateToProps, {addTitle, addDescripton, addPOV, addForkRestriction, addModerator })(StoryWizardOne);
