@@ -1,0 +1,42 @@
+.LoginBox{
+    background-color: #378674;
+    width: 500px;
+    height: 500px;
+    margin:auto;
+    position: relative;
+    top:200px;
+    text-align: center;
+
+
+
+}
+
+.LoginForm{
+    font-size: 20pt;
+    text-align: center;
+    position: relative;
+    top: 25%;
+    
+
+}
+.userBox1{
+    height:50px;
+    width:300px;
+    font-size:28pt;
+    text-align: center;
+    color:black;
+    background-color: #EAFBF7;
+    border-color:black;
+    border-style: solid;
+
+}
+.userBox2{
+    height:50px;
+    width:300px;
+    font-size:28pt;
+    text-align: center;
+    color:black;
+    background-color: #EAFBF7;
+    border-color:black;
+    border-style: solid;
+}
