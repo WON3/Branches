@@ -58,16 +58,18 @@ render(props){
     return (
         <div className="createStory">
             <div>
-            Please Review the Story Guidelines You've Selected
-            {storyGuideTitle}
-            {storyGuideDescripton}
-            {storyGuidePOV}
-            {storyGuideFork}
-            {storyGuideMod}
-                </div>
-                <div>
-            <button onClick= {() => {this.addNewStory()}}>Submit New Story</button>
-          </div>
+            Please Review the Story Guidelines You've Selected:
+            </div>
+            <div>
+                <div>Title:{storyGuideTitle}</div>
+                <div>Description:{storyGuideDescripton}</div>
+                <div>Point of View:{storyGuidePOV}</div>
+                <div>Allows Story to Fork:{storyGuideFork}</div>
+                <div>You are Controlling All Submissions:{storyGuideMod}</div>
+            </div>
+            <div>
+                <button onClick= {() => {this.addNewStory()}}>Submit New Story</button>
+            </div>
 
         </div>
     )
