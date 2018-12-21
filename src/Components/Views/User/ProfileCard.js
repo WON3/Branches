@@ -82,11 +82,9 @@ const styles = theme => ({
               <ImageAvatars 
                 aria-label="Recipe" 
                 className={classes.avatar}
-                profilePic={this.state.profilePic}
                 >
                 {this.props.name}
-              </ImageAvatars>
-              
+              </ImageAvatars>  
             }
             action={
               <IconButton>
