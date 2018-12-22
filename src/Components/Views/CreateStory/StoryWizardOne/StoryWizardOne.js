@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import '../../CreateStory/CreateStory.css';
-import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
+import { addTitle } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -29,67 +28,36 @@ class StoryWizardOne extends Component {
             [e.target.name]: e.target.value
             })
         }
-
-        // addNewStory(){
-        //     const newStory= {
-        //         is_complete: false,
-        //         user_id: this.state.user_id,
-        //         title: this.state.title,
-        //         description: this.state.description,
-        //         point_of_view: this.state.point_of_view,
-        //         is_public: false,
-        //         allows_fork: this.state.allows_fork,
-        //         moderator_accepts: this.state.moderator_accepts
-        //     }
-
-        //     axios.post(`/api/newStory`, newStory)
-        //         .then( res => {
-        //             console.log("new story added");
-        //             // this.props.history.push('/')
-        //             addTitle(this.state.title);
-        //             addDescripton(this.state.description); 
-        //             addPOV(this.state.point_of_view); 
-        //             addForkRestriction(this.state.allows_fork); 
-        //             addModerator(this.state.moderator_accepts);
-        //             console.log(this.props)
-        //         })
-        // }
     
 render(props){
     const {storyGuideTitle, addTitle} = this.props
     return (
         <div className="createStory">
-            <div>
-            Title
-            <input name= "title" onChange={e => {addTitle(e.target.value)}}></input>
-            {console.log(storyGuideTitle)}
+            <div className="title-box">
+                <h1>Create Story Wizard</h1>
+                <p>We'll walk you through all of guidelines for creating your new story here</p>
             </div>
-                <div>
-           <Link to= '/create_two'>Next</Link>
-          </div>
+            <div className="wizard-box">
+            <h2>Title</h2>
+            <input className="title" name= "title" onChange={e => {addTitle(e.target.value)}}></input>
+            {console.log(storyGuideTitle)}
+         
+          <div> <Link to= '/create_two'><button>Next</button></Link></div>
+        
+            </div>
+          
 
         </div>
-    )
-}
-
+        )
+    }
 }
 
 function mapStateToProps(state){
-    const {
-        storyGuideTitle,
-        storyGuideDescripton,
-        storyGuidePOV,
-        storyGuideFork,
-        storyGuideMod
-            } = state;
+    const {storyGuideTitle} = state;
 
     return {
-        storyGuideTitle,
-        storyGuideDescripton,
-        storyGuidePOV,
-        storyGuideFork,
-        storyGuideMod
+        storyGuideTitle
     };
 }
 
-export default connect(mapStateToProps, {addTitle, addDescripton, addPOV, addForkRestriction, addModerator })(StoryWizardOne);
+export default connect(mapStateToProps, {addTitle})(StoryWizardOne);

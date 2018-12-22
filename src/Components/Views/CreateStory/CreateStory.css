@@ -1,18 +1,51 @@
 .createStory div{
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #378674ff;
     padding: 10px;
+    margin-top: 60px;
 }
 
-input{
-    width: 400px;
+
+.title-box{
+    margin-top: 20px;
 }
 
-.description{
+.title{
+    height: 30px;
     width: 500px;
+    background-color:#EAFBF7;
+    color: black;
+    font-size: 24px;
+}
+
+.wizard-box{
+    background-color: #378674ff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.descripton{
+    width: 600px;
     height: 300px;
+}
+
+select{
+    background-color: #EAFBF7;
+}
+
+h2{
+    font-size: 20px;
+}
+
+#POV-Fork-Mod{
+    background-color: #378674ff;
+}
+
+.submit-story-bttn{
+    width: 150px;
+    border-radius: 5%;
 }

@@ -54,7 +54,28 @@ function reducer (state = initialState, action) {
         case UPDATE_PROFILEPIC:
             return Object.assign({}, state, {
                 userProfilePic: payload.profilePic
+            });
+        case ADD_TITILE:
+            return Object.assign({}, state, {
+                storyGuideTitle: action.payload
             })
+        case ADD_DESCRIPTION:
+            return Object.assign({}, state, {
+                storyGuideDescripton: action.payload
+            })
+        case ADD_POV:
+            return Object.assign({}, state, {
+                storyGuidePOV: action.payload
+            })
+        case ADD_FORK_RESTRICTION:
+            return Object.assign({}, state, {
+                storyGuideFork: action.payload
+            })
+        case ADD_MODERATOR_RESTRICTION:
+            return Object.assign({}, state, {
+                storyGuideMod: action.payload
+            })
+        
         default:
             return state;
     }
