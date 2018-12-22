@@ -10,19 +10,9 @@ const express = require("express"),
   LocalStrategy = require("passport-local").Strategy,
   bcrypt = require("bcrypt"),
   contribution = require('./server/controllers/contributionController'),
-<<<<<<< HEAD
-  story = require('./server/controllers/storyController'),
-  user = require('./server/controllers/userController'),
-  admin = require('./server/controllers/adminController'),
-  passport = require('passport');
-  LocalStrategy = require('passport-local').Strategy;
-  bcrypt = require('bcrypt'),
-  session = require('express-session');
-=======
     story = require('./server/controllers/storyController'),
     user = require('./server/controllers/userController'),
     admin = require('./server/controllers/adminController');
->>>>>>> ac968e2ec824d0b9160d8c0c05019f4f26203159
 
 require("dotenv").config();
 
