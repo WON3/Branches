@@ -87,7 +87,7 @@ class Register extends Component{
                 this.setState({open:false})
             } else{
                 alert('Email already exists in database.');
-                this.cancel();
+                this.setState({password:''});
             }
         });
     }
@@ -143,8 +143,9 @@ class Register extends Component{
                                     onChange={this.handleEmail('email')}
                                     margin="normal"
                                 />
+                                
                                 <FormControl className={classNames(classes.margin, classes.textField)}>
-                                    <InputLabel htmlFor="adornment-password">Password</InputLabel>
+                                    <InputLabel htmlFor="adornment-password">password</InputLabel>
                                     <Input
                                         required
                                         id="adornment-password"
@@ -166,6 +167,7 @@ class Register extends Component{
                                         }
                                     />
                                 </FormControl>
+                                
                             </form>
                         </Typography> 
                         <div className='buttonBox'>
