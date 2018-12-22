@@ -13,8 +13,11 @@ class User extends Component{
         this.state = {
             userId:'',
             userName:'RyGuy',
-            bio:'dtidnfd'
+            bio:'dtidnfd',
+            profilePic:'https://i.pinimg.com/236x/33/fe/73/33fe73c8629b599c835c9d76e360f8bc--daffy-duck-duck-duck.jpg',
+            
         }
+        this.changePic = this.changePic.bind(this);
     }
     
     // componentDidMount(){
@@ -24,6 +27,7 @@ class User extends Component{
     // }
 
     changePic(val){
+        debugger
         this.setState({profilePic:val})
         this.props.updateProfilePic(val)
     }
@@ -33,9 +37,9 @@ class User extends Component{
             <div>
                 <ProfileCard 
                     userName={this.state.userName}
-                    profilePic={this.state.profilePic}
                     changePic ={this.changePic}
                     bio={this.state.bio}
+                    profilePic={this.state.proPic}
                 />
             </div>
         )

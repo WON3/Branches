@@ -45,6 +45,7 @@ class Register extends Component{
         }
         this.cancel = this.cancel.bind(this);
         this.registerUser = this.registerUser.bind(this);
+        
     }    
 
     handleOpen = () => {
