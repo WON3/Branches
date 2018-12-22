@@ -66,6 +66,7 @@ const styles = theme => ({
       this.handleOpen = this.handleOpen.bind(this);
       this.handleClose = this.handleClose.bind(this);
       this.handlePicture = this.handlePicture.bind(this);
+      this.handlePictureURL = this.handlePictureURL.bind(this);
 
     }
     
@@ -79,33 +80,28 @@ const styles = theme => ({
       //   this.setState({profilePic})
       // })
     }
+
     componentDidUpdate(){
         let {profilePic} = this.props;
         this.setState=({profilePicture: profilePic});
-    }
+    };
     
-  
     handlePicture(){
       debugger
       let {tempPro} = this.state;
       this.props.changePic(tempPro);
       this.setState({open:false});
-    }
+    };
 
     handlePictureURL(val){
       this.setState({tempPro:val})
-    }
-
-    handleOpen(){
-          this.setState({ 
-          open: true 
-        });
-    };
+    };  
 
     handleClose(){
-        this.setState({ 
-            open: false 
-        });
+        this.setState({open: false});
+    };
+    handleOpen(){
+      this.setState({open:true});
     };
     
     render() {

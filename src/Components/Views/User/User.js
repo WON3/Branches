@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ProfileCard from './ProfileCard';
 import {connect} from 'react-redux';
 import {updateProfilePic} from '../../../ducks/reducer';
+import axios from 'axios';
 
 
 
@@ -20,11 +21,13 @@ class User extends Component{
         this.changePic = this.changePic.bind(this);
     }
     
-    // componentDidMount(){
-    //     const {userId, userName} = this.props;
-    //     this.setState({userId:userId, userName:userName})
+    componentDidMount(){
+        const {userId, userName} = this.props;
+        this.setState({userId:userId, userName:userName})
+        axios.get(`/api/profile/${userId}`).then(res=>
+            consolel.log(res.data))
         
-    // }
+    }
     
 
     changePic(val){

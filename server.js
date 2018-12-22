@@ -26,7 +26,7 @@ massive(process.env.DATABASE_URL)
     })
 ////////////////////Passport authenticate///////////////////////////
 app.use(session({
-    secret: process.env.SESSION_SECERET
+    secret: process.env.SECRET
 }))
 
 app.use( passport.initialize() );

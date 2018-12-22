@@ -82,7 +82,9 @@ class Register extends Component{
 
     registerUser(){
         let {username, email,  password} = this.state;
+        debugger
         axios.post('/api/register',{username, email, password}).then((res) => {
+            debugger
             if(res.data){
                 alert('Registered. Now, login.')
                 this.setState({open:false})
