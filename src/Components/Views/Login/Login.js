@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import "./Login.css";
 /*import axios from 'axios';*/
 import Button from "@material-ui/core/Button";
-/*import {Register} from '../Register/Register';*/
+import Register from '../Register/Register';
 
 /*format login code for username and password as well as css for Login view*/
+
+import {connect} from 'react-redux';
+import {getUser} from '../../../ducks/reducer';
 
 class Login extends Component {
   constructor(props) {
@@ -24,6 +27,7 @@ class Login extends Component {
   };
 
   /*post() {
+      let userId;
         axios.post(`/api/list`, {
             username: this.state.username,
             password: this.state.password,
@@ -31,9 +35,11 @@ class Login extends Component {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
-
+                userId=res.data.userId;
+                this.props.getUser({userId,username})
+                this.props.history.push(`/user/${this.state.userId}`)
             });
-
+        
     }*/
   render() {
     return (
@@ -63,10 +69,19 @@ class Login extends Component {
           <Button variant="contained" color="primary">
             Register
           </Button>
+          <Register />
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default connect(null, {getUser})(Login);
+
+
+
+
+
+
+
+
