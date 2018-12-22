@@ -4,12 +4,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 
 .title-box{
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .title{
@@ -23,7 +23,6 @@
 .wizard-box{
     background-color: #378674ff;
     height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,4 +31,21 @@
 .descripton{
     width: 600px;
     height: 300px;
+}
+
+select{
+    background-color: #EAFBF7;
+}
+
+h2{
+    font-size: 20px;
+}
+
+#POV-Fork-Mod{
+    background-color: #378674ff;
+}
+
+.submit-story-bttn{
+    width: 150px;
+    border-radius: 5%;
 }

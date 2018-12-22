@@ -41,10 +41,11 @@ render(props){
             <h2>Title</h2>
             <input className="title" name= "title" onChange={e => {addTitle(e.target.value)}}></input>
             {console.log(storyGuideTitle)}
+         
+          <div> <Link to= '/create_two'><button>Next</button></Link></div>
+        
             </div>
-                <div>
-           <Link to= '/create_two'><button>Next</button></Link>
-          </div>
+          
 
         </div>
         )
