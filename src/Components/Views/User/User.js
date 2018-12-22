@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-
 import ProfileCard from './ProfileCard';
-import { FormHelperText } from '@material-ui/core';
 import {connect} from 'react-redux';
 import {updateProfilePic} from '../../../ducks/reducer';
 
@@ -14,15 +12,16 @@ class User extends Component{
         super(props)
         this.state = {
             userId:'',
-            userName:''
+            userName:'RyGuy',
+            bio:'dtidnfd'
         }
     }
     
-    componentDidMount(){
-        const {userId, userName} = this.props;
-        this.setState({userId:userId, userName:userName})
+    // componentDidMount(){
+    //     const {userId, userName} = this.props;
+    //     this.setState({userId:userId, userName:userName})
         
-    }
+    // }
 
     changePic(val){
         this.setState({profilePic:val})
@@ -31,17 +30,12 @@ class User extends Component{
     
     render(){
         return(
-            <div style={{display:'flex',justifyContent:'space-around', alignItems:'center'}}>
+            <div>
                 <ProfileCard 
-                    name={this.state.userName}
+                    userName={this.state.userName}
                     profilePic={this.state.profilePic}
                     changePic ={this.changePic}
-                />
-                <ProfileCard 
-                    name='Tris'
-                />
-                <ProfileCard 
-                    name='Pais'
+                    bio={this.state.bio}
                 />
             </div>
         )
