@@ -163,7 +163,7 @@ app.get('/api/profile/:userId', user.getProfile);
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
-const port = process.env.SERVER_PORT || 8080;
+const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
 })
