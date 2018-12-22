@@ -26,7 +26,7 @@ massive(process.env.DATABASE_URL)
     })
 ////////////////////Passport authenticate///////////////////////////
 app.use(session({
-    secret: process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECERET
 }))
 
 app.use( passport.initialize() );
@@ -144,13 +144,6 @@ done(null, user);
 app.post('/login', passport.authenticate(['login']), (req, res, next)=>{
 res.send('Successful Login!')
 })
-
-/// Catch all for routing
-app.get("/*", (req, res) => {
-  res.sendFile("index.html", {
-    root: path.join(__dirname, "build")
-  });
-});
 
 /////////////////// API ROUTES ///////////////////////////
 
