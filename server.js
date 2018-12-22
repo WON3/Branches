@@ -4,12 +4,13 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   massive = require("massive"),
   path = require("path"),
-  app = express();
-  session = require("express-session");
-  passport = require("passport");
-  LocalStrategy = require("passport-local").Strategy;
-  bcrypt = require("bcrypt");
+  app = express(),
+  session = require("express-session"),
+  passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy,
+  bcrypt = require("bcrypt"),
   contribution = require('./server/controllers/contributionController'),
+<<<<<<< HEAD
   story = require('./server/controllers/storyController'),
   user = require('./server/controllers/userController'),
   admin = require('./server/controllers/adminController'),
@@ -17,6 +18,11 @@ const express = require("express"),
   LocalStrategy = require('passport-local').Strategy;
   bcrypt = require('bcrypt'),
   session = require('express-session');
+=======
+    story = require('./server/controllers/storyController'),
+    user = require('./server/controllers/userController'),
+    admin = require('./server/controllers/adminController');
+>>>>>>> ac968e2ec824d0b9160d8c0c05019f4f26203159
 
 require("dotenv").config();
 
@@ -100,7 +106,7 @@ passport.use('login', new LocalStrategy({
     usernameField:'email',
     passReqToCallback:true,
 }, (req, email, password, done) => {
-    if(attempt >= 3){
+    if(attempts >= 3){
         done('Sorry this account is locked. Please update password to unlock')
     }else{
         const db =req.app.get('db')

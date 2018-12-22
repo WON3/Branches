@@ -9,16 +9,25 @@ const initialState = {
     storyId:'',
     storyBody:'',
     storyAddition:'',
+<<<<<<< HEAD
+
+  //nav drawer
+  openClose:false
+
+=======
     storyGuideTitle: '',
     storyGuideDescripton: '',
     storyGuidePOV: '',
     storyGuideFork: '',
     storyGuideMod: ''
+>>>>>>> a9289bfe04b5ce84f403d1179cd258eac142b704
 }
 
 const GET_USER = 'GET_USER';
 const GET_STORY = 'GET_STORY';
 const STORY_ADDITION = 'STORY_ADDITION';
+const OPEN_CLOSE = 'OPEN_CLOSE';
+
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
 
 const ADD_TITILE = 'ADD_TITLE';
@@ -40,6 +49,10 @@ function reducer (state = initialState, action) {
             return Object.assign({}, state, {
                 storyId: payload.storyId,
                 storyBody: payload.storyBody
+            });
+            case OPEN_CLOSE:
+            return Object.assign({}, state, {
+                openClose: payload.open,
             });
         case UPDATE_PROFILEPIC:
             return Object.assign({}, state, {
@@ -85,6 +98,14 @@ export function storyAddition (storyAddition) {
         }
     }
 }
+
+export function makeOpenClose(open){
+    return{
+        type: OPEN_CLOSE,
+        payload: {
+            open:!open
+        }
+    }
 
 export function addTitle(storyGuideTitle){
     return {
