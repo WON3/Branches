@@ -4,7 +4,6 @@ import "./Login.css";
 import axios from 'axios';
 import Register from "../Register/Register";
 import TextField from "@material-ui/core/TextField";
-import axios from "axios";
 import Buttons from "../../Shared/Buttons/Buttons";
 
 /*format login code for username and password as well as css for Login view*/
@@ -68,18 +67,8 @@ class Login extends Component {
             variant="outlined"
           />
           <br />
-<<<<<<< HEAD
-
           <Buttons/>
           <br />
-=======
-          <Button variant="contained" color="primary">
-            LOGIN
-          </Button>
-          <Button variant="contained" color="primary">
-            Register
-          </Button>
->>>>>>> db0411040f50408854a6c841a423dd824017f4be
           <Register />
         </form>
       </div>
