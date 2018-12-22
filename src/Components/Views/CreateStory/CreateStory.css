@@ -1,5 +1,4 @@
 .createStory div{
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,9 +7,19 @@
     padding: 10px;
 }
 
-input{
-    width: 400px;
+.title-box{
+    margin-top: 40px;
 }
+
+.title{
+    height: 30px;
+    width: 500px;
+    background-color:#EAFBF7;
+    color: black;
+    font-size: 24px;
+}
+
+
 
 .description{
     width: 500px;
