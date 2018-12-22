@@ -14,7 +14,7 @@ class User extends Component{
             userId:'',
             userName:'RyGuy',
             bio:'dtidnfd',
-            profilePic:'https://i.pinimg.com/236x/33/fe/73/33fe73c8629b599c835c9d76e360f8bc--daffy-duck-duck-duck.jpg',
+            proPic:''
             
         }
         this.changePic = this.changePic.bind(this);
@@ -25,10 +25,11 @@ class User extends Component{
     //     this.setState({userId:userId, userName:userName})
         
     // }
+    
 
     changePic(val){
         debugger
-        this.setState({profilePic:val})
+        this.setState({proPic:val})
         this.props.updateProfilePic(val)
     }
     
