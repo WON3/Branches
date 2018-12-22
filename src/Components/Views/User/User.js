@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-
 import ProfileCard from './ProfileCard';
-import { FormHelperText } from '@material-ui/core';
 import {connect} from 'react-redux';
 import {updateProfilePic} from '../../../ducks/reducer';
 
-import axios from 'axios';
+
 
 //Need Redux initialState for username, user Badge, profile pic, stories in work
 
@@ -14,38 +12,34 @@ class User extends Component{
         super(props)
         this.state = {
             userId:'',
-            profilePic:'',
-            userName:''
+            userName:'RyGuy',
+            bio:'dtidnfd',
+            profilePic:'https://i.pinimg.com/236x/33/fe/73/33fe73c8629b599c835c9d76e360f8bc--daffy-duck-duck-duck.jpg',
+            
         }
+        this.changePic = this.changePic.bind(this);
     }
     
-    componentDidMount(){
-        const {userId} = this.props;
-        axios.get(`/api/profile/${userId}`).then(res=>{
-            console.log(res.data)
-            let {profilePic} = res.data[0];
-            this.setState({profilePic})
-        })
-    }
+    // componentDidMount(){
+    //     const {userId, userName} = this.props;
+    //     this.setState({userId:userId, userName:userName})
+        
+    // }
 
     changePic(val){
+        debugger
         this.setState({profilePic:val})
         this.props.updateProfilePic(val)
     }
     
     render(){
         return(
-            <div style={{display:'flex',justifyContent:'space-around', alignItems:'center'}}>
+            <div>
                 <ProfileCard 
-                    name={this.state.userName}
-                    profilePic={this.state.profilePic}
+                    userName={this.state.userName}
                     changePic ={this.changePic}
-                />
-                <ProfileCard 
-                    name='Tris'
-                />
-                <ProfileCard 
-                    name='Pais'
+                    bio={this.state.bio}
+                    profilePic={this.state.proPic}
                 />
             </div>
         )
