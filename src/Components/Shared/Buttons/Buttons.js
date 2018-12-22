@@ -1,20 +1,17 @@
-import React from 'react';
-import './Buttons.css';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import "./Buttons.css";
+import Button from "@material-ui/core/Button";
 /*import { createMuiTheme } from '@material-ui/core/styles';*/
 
-
 function Buttons(props) {
-  
   return (
+    <div className="button">
     <Button variant="contained" color="primary">
       LOGIN
-      
     </Button>
+    </div>
   );
 }
-
-
 
 /*const theme = createMuiTheme({
   palette: {
@@ -35,10 +32,5 @@ function Buttons(props) {
 }); */
 
 export default Buttons;
-
-
-
-
-
 
 /*submit buttons, logout buttons, home button shared, */

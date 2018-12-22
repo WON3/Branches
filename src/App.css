@@ -1,16 +1,16 @@
 .App {
-  text-align: center;
-  background-color: #EAFBF7;
+  position: fixed;
+  background-color: #eafbf7;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Slabo 27px', serif;
 }
 
 button {
   height: 26px;
   width: 50px;
   background-color: #5d5147ff;
-  color: white;
+  color: #eafbf7;
   border-radius: 10%;
 }
-
-
-
 
