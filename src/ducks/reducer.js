@@ -2,6 +2,8 @@ const initialState = {
     //user
     userName:'',
     userId:'',
+    userProfilePic:'',
+
     
     //story
     storyId:'',
@@ -17,6 +19,7 @@ const initialState = {
 const GET_USER = 'GET_USER';
 const GET_STORY = 'GET_STORY';
 const STORY_ADDITION = 'STORY_ADDITION';
+const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
 
 const ADD_TITILE = 'ADD_TITLE';
 const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
@@ -38,16 +41,10 @@ function reducer (state = initialState, action) {
                 storyId: payload.storyId,
                 storyBody: payload.storyBody
             });
-        case ADD_TITILE:
-            return Object.assign({}, state, {storyGuideTitle: action.payload} );
-        case ADD_DESCRIPTION:
-            return Object.assign({}, state, {storyGuideDescripton: action.payload});
-        case ADD_POV:
-            return Object.assign({}, state, {storyGuidePOV: action.payload});
-        case ADD_FORK_RESTRICTION:
-            return Object.assign({}, state, {storyGuideFork: action.payload});
-        case ADD_MODERATOR_RESTRICTION:
-            return Object.assign({}, state, {storyGuideMod: action.payload});
+        case UPDATE_PROFILEPIC:
+            return Object.assign({}, state, {
+                userProfilePic: payload.profilePic
+            })
         default:
             return state;
     }
@@ -63,7 +60,12 @@ export function getUser (userId, userName) {
         }
     }
 }
-
+export function updateProfilePic(profilePic){
+    return {
+        type: UPDATE_PROFILEPIC,
+        payload: {profilePic}
+    }
+}
 
 ///////////////Story//////////////////////
 export function getStory (storyId, storyBody) {

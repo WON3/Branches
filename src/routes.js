@@ -8,7 +8,6 @@ import StoryWizardOne from "./Components/Views/CreateStory/StoryWizardOne/StoryW
 import StoryWizardTwo from "./Components/Views/CreateStory/StoryWizardTwo/StoryWizardTwo";
 import StoryWizardThree from "./Components/Views/CreateStory/StoryWizardThree/StoryWizardThree";
 import StoryWizardFour from "./Components/Views/CreateStory/StoryWizardFour/StoryWizardFour";
-import StoryWizardFive from "./Components/Views/CreateStory/StoryWizardFive/StoryWizardFive";
 import Dashboard from "./Components/Views/Dashboard/Dashboard";
 import Write_Contribution from "./Components/Views/Write_Contribution/Write_Contribution";
 
@@ -23,7 +22,6 @@ export default (
   <Route path="/create_two" component={StoryWizardTwo} />
   <Route path="/create_three" component={StoryWizardThree} />
   <Route path="/create_four" component={StoryWizardFour} />
-  <Route path="/create_five" component={StoryWizardFive} />
   <Route path="/login" component={Login} />
   <Route path="/" component={Dashboard} />
   </Switch>
