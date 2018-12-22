@@ -3,10 +3,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #378674ff;
     padding: 10px;
     margin-top: 80px;
 }
+
 
 .title-box{
     margin-top: 40px;
@@ -20,9 +20,16 @@
     font-size: 24px;
 }
 
+.wizard-box{
+    background-color: #378674ff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-
-.description{
-    width: 500px;
+.descripton{
+    width: 600px;
     height: 300px;
 }

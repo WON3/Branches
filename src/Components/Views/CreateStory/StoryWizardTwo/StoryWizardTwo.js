@@ -33,13 +33,13 @@ render(props){
     const {storyGuideDescripton, addDescripton} = this.props
     return (
         <div className="createStory">
-            <div>
-            Description
+            <div className="wizard-box">
+            <h2>Description</h2>
             <input className="descripton" name= "description" onChange={e => {addDescripton(e.target.value)}}></input>
             {console.log(storyGuideDescripton)}
             </div>
                 <div>
-           <Link to= '/create_three'>Next</Link>
+           <Link to= '/create_three'><button>Next</button></Link>
           </div>
 
         </div>

@@ -34,7 +34,7 @@ function StoryWizardThree(props){
                 </select>
                 </div>
                 {console.log(storyGuideMod)}
-        <Link to= '/create_four'>Next</Link>
+        <Link to= '/create_four'><button>Next</button></Link>
         </div>
         )
     }

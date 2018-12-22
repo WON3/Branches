@@ -37,7 +37,7 @@ render(props){
                 <h1>Create Story Wizard</h1>
                 <p>We'll walk you through all of guidelines for creating your new story here</p>
             </div>
-            <div>
+            <div className="wizard-box">
             <h2>Title</h2>
             <input className="title" name= "title" onChange={e => {addTitle(e.target.value)}}></input>
             {console.log(storyGuideTitle)}
