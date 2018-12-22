@@ -22,6 +22,7 @@ class ViewStory extends Component {
         this.setState({ open: true });
     };
     componentDidMount() {
+        debugger
         const { story_id } = this.props.match.params
         axios.get(`/api/contributions/${story_id}`)
             .then((res) =>
