@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import '../../CreateStory/CreateStory.css';
-import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
+import { addDescripton } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -29,45 +28,20 @@ class StoryWizardTwo extends Component {
             [e.target.name]: e.target.value
             })
         }
-
-        // addNewStory(){
-        //     const newStory= {
-        //         is_complete: false,
-        //         user_id: this.state.user_id,
-        //         title: this.state.title,
-        //         description: this.state.description,
-        //         point_of_view: this.state.point_of_view,
-        //         is_public: false,
-        //         allows_fork: this.state.allows_fork,
-        //         moderator_accepts: this.state.moderator_accepts
-        //     }
-
-        //     axios.post(`/api/newStory`, newStory)
-        //         .then( res => {
-        //             console.log("new story added");
-        //             // this.props.history.push('/')
-        //             addTitle(this.state.title);
-        //             addDescripton(this.state.description); 
-        //             addPOV(this.state.point_of_view); 
-        //             addForkRestriction(this.state.allows_fork); 
-        //             addModerator(this.state.moderator_accepts);
-        //             console.log(this.props)
-        //         })
-        // }
     
 render(props){
     const {storyGuideDescripton, addDescripton} = this.props
     return (
         <div className="createStory">
-            <div>
-            Description
+             <div className="title-box">
+                <h1>Create Story Wizard</h1>
+            </div>
+            <div className="wizard-box">
+            <h2>Description</h2>
             <input className="descripton" name= "description" onChange={e => {addDescripton(e.target.value)}}></input>
             {console.log(storyGuideDescripton)}
-            </div>
-                <div>
-           <Link to= '/create_three'>Next</Link>
-          </div>
-
+            <Link to= '/create_three'><button>Next</button></Link>
+            </div>   
         </div>
     )
 }
@@ -75,21 +49,11 @@ render(props){
 }
 
 function mapStateToProps(state){
-    const {
-        storyGuideTitle,
-        storyGuideDescripton,
-        storyGuidePOV,
-        storyGuideFork,
-        storyGuideMod
-            } = state;
+    const {storyGuideDescripton} = state;
 
     return {
-        storyGuideTitle,
-        storyGuideDescripton,
-        storyGuidePOV,
-        storyGuideFork,
-        storyGuideMod
+        storyGuideDescripton
     };
 }
 
-export default connect(mapStateToProps, {addTitle, addDescripton, addPOV, addForkRestriction, addModerator })(StoryWizardTwo);
+export default connect(mapStateToProps, {addDescripton})(StoryWizardTwo);
