@@ -7,5 +7,4 @@ class ViewStory extends Component{
         )
     }
 }
-
-export default ViewStory;
+ export default ViewStory;

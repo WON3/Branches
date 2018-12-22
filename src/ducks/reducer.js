@@ -9,18 +9,15 @@ const initialState = {
     storyId:'',
     storyBody:'',
     storyAddition:'',
-<<<<<<< HEAD
 
   //nav drawer
-  openClose:false
+  openClose:false,
 
-=======
     storyGuideTitle: '',
     storyGuideDescripton: '',
     storyGuidePOV: '',
     storyGuideFork: '',
     storyGuideMod: ''
->>>>>>> a9289bfe04b5ce84f403d1179cd258eac142b704
 }
 
 const GET_USER = 'GET_USER';
@@ -106,7 +103,7 @@ export function makeOpenClose(open){
             open:!open
         }
     }
-
+}
 export function addTitle(storyGuideTitle){
     return {
         type: ADD_TITILE,
