@@ -8,14 +8,24 @@ const initialState = {
     //story
     storyId:'',
     storyBody:'',
-    storyAddition:''
-
+    storyAddition:'',
+    storyGuideTitle: '',
+    storyGuideDescripton: '',
+    storyGuidePOV: '',
+    storyGuideFork: '',
+    storyGuideMod: ''
 }
 
 const GET_USER = 'GET_USER';
 const GET_STORY = 'GET_STORY';
 const STORY_ADDITION = 'STORY_ADDITION';
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
+
+const ADD_TITILE = 'ADD_TITLE';
+const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
+const ADD_POV = 'ADD_POV';
+const ADD_FORK_RESTRICTION = 'ADD_FORK_RESTRICTION';
+const ADD_MODERATOR_RESTRICTION = 'ADD_MODERATOR_RESTRICTION';
 
 function reducer (state = initialState, action) {
     let {payload} = action;
@@ -73,6 +83,37 @@ export function storyAddition (storyAddition) {
         payload: {
             storyAddition
         }
+    }
+}
+
+export function addTitle(storyGuideTitle){
+    return {
+        type: ADD_TITILE,
+        payload: storyGuideTitle
+    }
+}
+export function addDescripton(storyGuideDescripton){
+    return {
+        type: ADD_DESCRIPTION,
+        payload: storyGuideDescripton
+    }
+}
+export function addPOV(storyGuidePOV){
+    return {
+        type: ADD_POV, 
+        payload: storyGuidePOV
+    }
+}
+export function addForkRestriction(storyGuideFork){
+    return {
+        type: ADD_FORK_RESTRICTION,
+        payload: storyGuideFork
+    }
+}
+export function addModerator(storyGuideMod){
+    return {
+        type: ADD_MODERATOR_RESTRICTION,
+        payload: storyGuideMod
     }
 }
 
