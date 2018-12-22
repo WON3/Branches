@@ -1,9 +1,18 @@
-.createStory {
-    margin-top: 100px;
+.createStory div{
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: #378674ff;
+    padding: 10px;
+}
 
+input{
+    width: 400px;
+}
 
+.description{
+    width: 500px;
+    height: 300px;
 }
