@@ -20,6 +20,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+import {Link} from "react-router-dom";
+
 
 const styles = theme => ({
     paper: {
@@ -171,6 +173,7 @@ class Register extends Component{
                             </form>
                         </Typography> 
                         <div className='buttonBox'>
+                        <Link to="/">
                             <Button 
                                 variant="contained"
                                 color="primary"
@@ -178,6 +181,7 @@ class Register extends Component{
                             >
                                 Register
                             </Button>
+                            </Link>
                             <Button 
                                 variant="contained"
                                 color="secondary"
