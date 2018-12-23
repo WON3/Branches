@@ -4,19 +4,15 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   massive = require("massive"),
   path = require("path"),
-  app = express();
-  session = require("express-session");
-  passport = require("passport");
-  LocalStrategy = require("passport-local").Strategy;
-  bcrypt = require("bcrypt");
+  app = express(),
+  session = require("express-session"),
+  passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy,
+  bcrypt = require("bcrypt"),
   contribution = require('./server/controllers/contributionController'),
     story = require('./server/controllers/storyController'),
     user = require('./server/controllers/userController'),
-    admin = require('./server/controllers/adminController'),
-    passport = require('passport');
-    LocalStrategy = require('passport-local').Strategy;
-    bcrypt = require('bcrypt'),
-    session = require('express-session');
+    admin = require('./server/controllers/adminController');
 
 require("dotenv").config();
 
@@ -30,7 +26,7 @@ massive(process.env.DATABASE_URL)
     })
 ////////////////////Passport authenticate///////////////////////////
 app.use(session({
-    secret:process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECERET
 }))
 
 app.use( passport.initialize() );
@@ -100,7 +96,7 @@ passport.use('login', new LocalStrategy({
     usernameField:'email',
     passReqToCallback:true,
 }, (req, email, password, done) => {
-    if(attempt >= 3){
+    if(attempts >= 3){
         done('Sorry this account is locked. Please update password to unlock')
     }else{
         const db =req.app.get('db')
@@ -149,13 +145,6 @@ app.post('/login', passport.authenticate(['login']), (req, res, next)=>{
 res.send('Successful Login!')
 })
 
-/// Catch all for routing
-app.get("/*", (req, res) => {
-  res.sendFile("index.html", {
-    root: path.join(__dirname, "build")
-  });
-});
-
 /////////////////// API ROUTES ///////////////////////////
 
 app.get('/api/contributions/:story_id', contribution.get_contribution);
@@ -167,7 +156,7 @@ app.get('/api/profile/:userId', user.getProfile);
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
-const port = process.env.SERVER_PORT || 8080;
+const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
 })

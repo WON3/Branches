@@ -5,3 +5,12 @@
   height: 100vh;
   font-family: 'Slabo 27px', serif;
 }
+
+button {
+  height: 26px;
+  width: 50px;
+  background-color: #5d5147ff;
+  color: #eafbf7;
+  border-radius: 10%;
+}
+
