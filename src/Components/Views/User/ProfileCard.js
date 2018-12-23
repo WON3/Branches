@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -31,7 +31,7 @@ const styles = theme => ({
       width: '82vw'
   },
   card: {
-      maxWidth: 1200,
+      maxWidth: 1100,
       width: 'auto',
       height: '95%',
       marginTop:10,
@@ -54,37 +54,32 @@ const styles = theme => ({
     },
   });
   
-  class UserCard extends React.Component {
+  class UserCard extends Component {
     constructor(props){
-      super(props);
-      this.state = { 
-        open: false,
-        tempPro:'',
-        profilePicture:''
-      };
+        super(props);
+        this.state = {
+          tempPro:'',
+          open: false,
+          profilePicture:''
+        }
+        this.modalOpen = this.modalOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handlePicture = this.handlePicture.bind(this);
+        this.handlePictureURL = this.handlePictureURL.bind(this);
+      }
       
-      this.handleOpen = this.handleOpen.bind(this);
-      this.handleClose = this.handleClose.bind(this);
-      this.handlePicture = this.handlePicture.bind(this);
-      this.handlePictureURL = this.handlePictureURL.bind(this);
-
-    }
     
 
-    componentDidMount(){
-      const {userId, profilePic} = this.props;
-      this.setState({profilePicture:profilePic});
-      // axios.get(`/api/profile/${userId}`).then(res=>{
+    // componentDidMount(){
+    //   const {userId, profilePic} = this.props;
+    //   this.setState({profilePicture:profilePic});
+    //   // axios.get(`/api/profile/${userId}`).then(res=>{
         
-      //   let {profilePic} = res.data[0];
-      //   this.setState({profilePic})
-      // })
-    }
+    //   //   let {profilePic} = res.data[0];
+    //   //   this.setState({profilePic})
+    //   // })
+    // }
 
-    componentDidUpdate(){
-        let {profilePic} = this.props;
-        this.setState=({profilePicture: profilePic});
-    };
     
     handlePicture(){
       debugger
@@ -94,19 +89,18 @@ const styles = theme => ({
     };
 
     handlePictureURL(val){
-      this.setState({tempPro:val})
+       this.setState({tempPro:val})
     };  
 
     handleClose(){
         this.setState({open: false});
     };
-    handleOpen(){
+    modalOpen(){
       this.setState({open:true});
     };
     
     render() {
       const { classes } = this.props;
-      let url = this.state.profilePicture ? this.state.profilePicture : 'https://upload.wikimedia.org/wikipedia/en/e/e2/Angelamarveluniverse.jpg'; 
       return (  
       <div className={classes.rootD}>
         <Grid container>
@@ -114,13 +108,13 @@ const styles = theme => ({
           <Card className={classes.card}>
            <CardMedia
             className={classes.media}
-            image={url}
+            image={this.props.proPic}
             title={this.props.userName}
             />
             <div>
               <Button 
                 className={classes.button}
-                onClick={this.handleOpen}
+                onClick={this.modalOpen}
                 >Change pic
               </Button>
               <Modal
