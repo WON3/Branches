@@ -23,18 +23,16 @@ class User extends Component{
     componentDidMount(){
         // const {userId, userName} = this.props;
         // this.setState({userId:userId, userName:userName})
-        debugger
         let {userId} = this.state;
         axios.get(`/api/profile/${userId}`)
             .then(res=>{
-            debugger
-            console.log(res.data)})
-        
+            const {username, bio, url } = res.data;
+            this.setState({userName:username, bio:bio, url:url})   
+        } );   
     }
     
 
     changePic(val){
-        debugger
         this.setState({proPic:val})
         this.props.updateProfilePic(val)
     }
