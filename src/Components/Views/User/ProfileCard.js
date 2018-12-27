@@ -101,6 +101,17 @@ const styles = theme => ({
     
     render() {
       const { classes } = this.props;
+      const {stories} = this.props;
+      let storyShow = stories.map((story,id) => {
+        return(
+          <div value={story.story_id}>
+              <h3>{story.title}</h3>
+              <li>{story.description}</li>
+              <li>{story.is_complete}</li>
+          </div>
+        )
+      });
+
       return (  
       <div className={classes.rootD}>
         <Grid container>
@@ -156,7 +167,9 @@ const styles = theme => ({
             <CardContent>
                 <CardHeader title='Works'/>
                 <Typography paragraph>
-                  current works go here
+                  <ul>
+                    {storyShow}
+                  </ul>
                 </Typography>
               </CardContent>
             </Card>
