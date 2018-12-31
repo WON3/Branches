@@ -3,7 +3,6 @@ const initialState = {
     userName:'',
     userId:'',
     userProfilePic:'',
-
     
     //story
     storyId:'',

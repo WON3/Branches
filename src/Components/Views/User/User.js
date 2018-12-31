@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ProfileCard from './ProfileCard';
 import {connect} from 'react-redux';
-import {updateProfilePic} from '../../../ducks/reducer';
+import {updateProfilePic, updateBio} from '../../../ducks/reducer';
 import axios from 'axios';
 
 
@@ -33,15 +33,17 @@ class User extends Component{
         } );   
     };
     
-
     changePic (val) {
         this.setState({proPic:val});
         this.props.updateProfilePic(val);
     };
 
     changeBio (val) {
+        const userId = this.state.userId;
         this.setState({ bio:val });
-        this.props.updateBio(val);
+        axios.put(`/api/bio/${userId}`, {val}).then(res=>{
+            console.log(res.data)
+        })
     };
     
     render(){

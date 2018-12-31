@@ -6,13 +6,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
-import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
@@ -36,7 +31,6 @@ const styles = theme => ({
     background:'#378674',
     marginTop: 5,
     marginLeft: '62.3%',
-    
   }, 
   itemFix: {
     height:'80vh',
@@ -52,9 +46,7 @@ const styles = theme => ({
       marginTop:25,
       margin: '4%',
       marginLeft: 30,
-      padding:theme.spacing.unit*2,
-     
-      
+      padding:theme.spacing.unit*2,      
     },
     media: {
       width: 'fill',
@@ -74,7 +66,6 @@ const styles = theme => ({
       alignSelf: 'center',
       fontFamily: 'Slabo'
     }
-
   });
   
   class UserCard extends Component {
@@ -104,17 +95,14 @@ const styles = theme => ({
     //   //   this.setState({profilePic})
     //   // })
     // }
-    handleChange(val){
-      console.log(val)
-    }
-    
+        
     handlePicture(val){
       this.props.changePic(val);
       this.setState({open:false});
     };
 
     handleBio(val){
-      // this.props.changeBio(val) NEED TO CODE THIS STILL ON BE AND PARENT
+      this.props.changeBio(val)
       this.setState({open:false});
     };
 
