@@ -11,7 +11,9 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
+import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
+import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
   rootD: {
@@ -21,22 +23,37 @@ const styles = theme => ({
   },
   container: {
     height: 'fill',
+  },
+  background: {
+    background: '#EAFBF7',
+  },
+  bio: {
+    height: 140,
+    boxSizing: 'border-box',
+    textAlign:'jusitify'
+  },
+  button: {
+    background:'#378674',
+    marginTop: 5,
+    marginLeft: '62.3%',
     
   }, 
-    itemFix: {
-      height:'80vh',
-    },
-    itemFixT:{
-      height:'80vh',
-      width: '82vw'
+  itemFix: {
+    height:'80vh',
+  },
+  itemFixT:{
+    height:'80vh',
+    width: '82vw'
   },
   card: {
       maxWidth: 1100,
       width: 'auto',
-      height: '95%',
-      marginTop:10,
+      height: '98%',
+      marginTop:25,
       margin: '4%',
+      marginLeft: 30,
       padding:theme.spacing.unit*2,
+     
       
     },
     media: {
@@ -52,6 +69,12 @@ const styles = theme => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing.unit * 4,
     },
+    titles: {
+      textAlign: 'center',
+      alignSelf: 'center',
+      fontFamily: 'Slabo'
+    }
+
   });
   
   class UserCard extends Component {
@@ -60,12 +83,14 @@ const styles = theme => ({
         this.state = {
           tempPro:'',
           open: false,
+          openTwo: false,
           profilePicture:''
         }
-        this.modalOpen = this.modalOpen.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleOpenTwo = this.handleOpenTwo.bind(this);
+        this.handleCloseTwo = this.handleCloseTwo.bind(this);
         this.handlePicture = this.handlePicture.bind(this);
-        this.handlePictureURL = this.handlePictureURL.bind(this);
       }
       
     
@@ -79,24 +104,32 @@ const styles = theme => ({
     //   //   this.setState({profilePic})
     //   // })
     // }
-
+    handleChange(val){
+      console.log(val)
+    }
     
-    handlePicture(){
-      debugger
-      let {tempPro} = this.state;
-      this.props.changePic(tempPro);
+    handlePicture(val){
+      this.props.changePic(val);
       this.setState({open:false});
     };
 
-    handlePictureURL(val){
-       this.setState({tempPro:val})
-    };  
+    handleBio(val){
+      // this.props.changeBio(val) NEED TO CODE THIS STILL ON BE AND PARENT
+      this.setState({open:false});
+    };
 
     handleClose(){
         this.setState({open: false});
     };
-    modalOpen(){
+    handleOpen(){
       this.setState({open:true});
+    };
+
+    handleCloseTwo(){
+      this.setState({openTwo: false});
+    };
+    handleOpenTwo(){
+      this.setState({openTwo:true});
     };
     
     render() {
@@ -106,66 +139,61 @@ const styles = theme => ({
         return(
           <div value={story.story_id}>
               <h3>{story.title}</h3>
-              <li>{story.description}</li>
-              <li>{story.is_complete}</li>
+              <ul className={classes.background}>
+                <li>{story.description}</li>
+                <li>{story.is_complete}</li>
+              </ul>  
           </div>
         )
       });
 
       return (  
       <div className={classes.rootD}>
+     
         <Grid container>
           <Grid className={classes.itemFix} >
-          <Card className={classes.card}>
-           <CardMedia
-            className={classes.media}
-            image={this.props.proPic}
-            title={this.props.userName}
-            />
-            <div>
-              <Button 
-                className={classes.button}
-                onClick={this.modalOpen}
-                >Change pic
-              </Button>
-              <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={this.state.open}
-                onClose={this.handleClose}
-                >
-                  <div className={classes.paper}>
-                    <Input
-                      onChange={(e)=>{this.handlePictureURL(e.target.value)}}
-                      placeholder="New picture url"
-                      className={classes.input}
-                      inputProps={{
-                        'aria-label': 'Description',
-                      }}></Input>
-                      <Button 
-                        onClick={this.handlePicture}
-                        className={classes.button} 
-                        color="secondary">Submit</Button>                  
-                  </div>
-              </Modal>
-            </div>       
-          <CardHeader
-            title={this.props.userName}
-            subheader="Somewhere,somestate"
-            />
-
-            <CardHeader title='Bio' />
-              <CardContent>
-                <Typography paragraph>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.media}
+                image={this.props.proPic}
+                title={this.props.userName}
+                />
+              <div>
+                <ButtonMode 
+                  label='URL'
+                  placeHolder='Picture URL'
+                  change={this.handlePicture}
+                  rows='1'
+                />
+            </div>
+              <CardHeader
+                className={classes.titles}
+                title={this.props.userName}
+                subheader="Somewhere"
+                />
+              <CardHeader className={classes.titles} title='Bio' />
+              <CardContent className={classes.background}>
+                <Typography className={classes.bio} paragraph>
                   {this.props.bio}
                 </Typography>
-              </CardContent>
-          </Card>
+              </CardContent> 
+              <div>
+                <ButtonMode 
+                    label='Bio'
+                    placeHolder='Tell us about you.'
+                    change={this.handleBio}
+                    rows='4'
+                  />
+               
+            </div>
+            </Card>
           </Grid>
           <Grid className={classes.itemFixT}>
             <Card className={classes.card}>
             <CardContent>
-                <CardHeader title='Works'/>
+                <CardHeader 
+                  className={classes.titles}
+                  title='Works'/>
                 <Typography paragraph>
                   <ul>
                     {storyShow}

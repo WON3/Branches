@@ -19,6 +19,7 @@ class User extends Component{
             stories: []
         }
         this.changePic = this.changePic.bind(this);
+        this.changeBio = this.changeBio.bind(this);
     }
     
     componentDidMount(){
@@ -30,13 +31,18 @@ class User extends Component{
             const {username, bio, url, stories } = res.data;
             this.setState({userName:username, bio:bio, url:url, stories:stories})   
         } );   
-    }
+    };
     
 
-    changePic(val){
-        this.setState({proPic:val})
-        this.props.updateProfilePic(val)
-    }
+    changePic (val) {
+        this.setState({proPic:val});
+        this.props.updateProfilePic(val);
+    };
+
+    changeBio (val) {
+        this.setState({ bio:val });
+        this.props.updateBio(val);
+    };
     
     render(){
         return(
@@ -45,6 +51,7 @@ class User extends Component{
                     userName={this.state.userName}
                     changePic ={this.changePic}
                     bio={this.state.bio}
+                    changeBio={this.changeBio}
                     proPic={this.state.proPic}
                     stories={this.state.stories}
                 />
