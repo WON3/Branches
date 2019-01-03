@@ -1,6 +1,9 @@
 .App {
-  text-align: center;
-  background-color: #EAFBF7;
+  position: fixed;
+  background-color: #eafbf7;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Slabo 27px', serif;
 }
 
 button {
@@ -10,7 +13,4 @@ button {
   color: #EAFBF7;
   border-radius: 10%;
 }
-
-
-
 

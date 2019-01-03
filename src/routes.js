@@ -16,6 +16,7 @@ import Write_Contribution from "./Components/Views/Write_Contribution/Write_Cont
 export default (
   <Switch>
   <Route path="/user/:user_id" component={User}/>
+  <Route path="/user" component={User}/>
   <Route path="/contribute/:story_id" component={Write_Contribution} />
   <Route path="/view_story/:story_id" component={View_Story} />
   <Route path="/create_one" component={StoryWizardOne} />
