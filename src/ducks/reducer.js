@@ -3,7 +3,7 @@ const initialState = {
     userName:'',
     userId:'',
     userProfilePic:'',
-    
+    bio:'',    
     //story
     storyId:'',
     storyBody:'',
@@ -22,7 +22,7 @@ const GET_USER = 'GET_USER';
 const GET_STORY = 'GET_STORY';
 const STORY_ADDITION = 'STORY_ADDITION';
 const OPEN_CLOSE = 'OPEN_CLOSE';
-
+const UPDATE_BIO = 'UPDATE_BIO';
 const UPDATE_PROFILEPIC = 'UPDATE_PROFILEPIC';
 
 const ADD_TITILE = 'ADD_TITLE';
@@ -44,6 +44,13 @@ export function updateProfilePic(profilePic){
     return {
         type: UPDATE_PROFILEPIC,
         payload: {profilePic}
+    }
+}
+
+export function updateBio(bio){
+    return{
+        type: UPDATE_BIO,
+        payload: {bio}
     }
 }
 
@@ -148,7 +155,10 @@ function reducer (state = initialState, action) {
             return Object.assign({}, state, {
                 storyGuideMod: action.payload
             })
-        
+        case UPDATE_BIO:
+            return Object.assign({},state, {
+                bio: action.payload
+            })
         default:
             return state;
     }

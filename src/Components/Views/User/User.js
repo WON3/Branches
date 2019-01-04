@@ -4,10 +4,6 @@ import {connect} from 'react-redux';
 import {updateProfilePic, updateBio} from '../../../ducks/reducer';
 import axios from 'axios';
 
-
-
-//Need Redux initialState for username, user Badge, profile pic, stories in work
-
 class User extends Component{
     constructor(props){
         super(props)
@@ -41,6 +37,7 @@ class User extends Component{
     changeBio (val) {
         const userId = this.state.userId;
         this.setState({ bio:val });
+        this.props.updateBio(val);
         axios.put(`/api/bio/${userId}`, {val}).then(res=>{
             console.log(res.data)
         })
@@ -69,4 +66,4 @@ function mapStateToProps (state) {
         userName
     }
 }
-export default connect(mapStateToProps, {updateProfilePic})(User);
+export default connect(mapStateToProps, {updateProfilePic, updateBio})(User);

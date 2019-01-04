@@ -35,10 +35,6 @@ const styles = theme => ({
   itemFix: {
     height:'80vh',
   },
-  itemFixT:{
-    height:'80vh',
-    width: '82vw'
-  },
   card: {
       maxWidth: 1100,
       width: 'auto',
@@ -85,16 +81,6 @@ const styles = theme => ({
       }
       
     
-
-    // componentDidMount(){
-    //   const {userId, profilePic} = this.props;
-    //   this.setState({profilePicture:profilePic});
-    //   // axios.get(`/api/profile/${userId}`).then(res=>{
-        
-    //   //   let {profilePic} = res.data[0];
-    //   //   this.setState({profilePic})
-    //   // })
-    // }
         
     handlePicture(val){
       this.props.changePic(val);
@@ -137,7 +123,6 @@ const styles = theme => ({
 
       return (  
       <div className={classes.rootD}>
-     
         <Grid container>
           <Grid className={classes.itemFix} >
             <Card className={classes.card}>
@@ -153,7 +138,7 @@ const styles = theme => ({
                   change={this.handlePicture}
                   rows='1'
                 />
-            </div>
+              </div>
               <CardHeader
                 className={classes.titles}
                 title={this.props.userName}
