@@ -40,7 +40,8 @@ class StoryWizardOne extends Component {
     const { storyGuideTitle, addTitle } = this.props;
     return (
       <div className="createStory">
-      <Snackbar
+        <div className="title-box">
+        <Snackbar
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "center"
@@ -60,7 +61,6 @@ class StoryWizardOne extends Component {
               </IconButton>
             ]}
           />
-        <div className="title-box">
           <h1>Create Story Wizard</h1>
           <p>
             We'll walk you through all of guidelines for creating your new story
