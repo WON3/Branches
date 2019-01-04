@@ -155,6 +155,8 @@ app.post('/api/register', passport.authenticate(['register']), (req, res, next)=
     res.send('Successful Login!')
 });
 app.get('/api/profile/:userId', user.getProfile);
+app.put('/api/bio/:userId', user.updateBio);
+
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
