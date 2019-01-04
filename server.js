@@ -10,9 +10,10 @@ const express = require("express"),
   LocalStrategy = require("passport-local").Strategy,
   bcrypt = require("bcrypt"),
   contribution = require('./server/controllers/contributionController'),
-    story = require('./server/controllers/storyController'),
-    user = require('./server/controllers/userController'),
-    admin = require('./server/controllers/adminController');
+  contribute = require('./server/controllers/createContribution'),
+  story = require('./server/controllers/storyController'),
+  user = require('./server/controllers/userController'),
+  admin = require('./server/controllers/adminController');
 
 require("dotenv").config();
 
@@ -93,38 +94,36 @@ app.use(passport.session());
 let attempts=0;
 
 passport.use('login', new LocalStrategy({
-    usernameField:'email',
+    usernameField:'username',
     passReqToCallback:true,
-}, (req, email, password, done) => {
-    if(attempts >= 3){
-        done('Sorry this account is locked. Please update password to unlock')
-    }else{
+}, (req, username, password, done) => {
         const db =req.app.get('db')
-        db.user_usertable.findOne({email:email})
+        let locUser = null
+        db.users.findOne({username:username})
         .then(user => {
             if(!user) {
-                bcrypt.hash(password, 10)
-                .then((password)=>{
-                    return db.user_table.insert({email, password})
-                })
-                .then((user)=>{
-                    delete user.password;
-                    done(null, user);
-                })
-            }else if(!bcrypt.compareSync(password, user.password)){
-                attempts++
-
-                return done('Invalid email or password');
+                done("User does not exist.")
+            }else {
+                locUser = user
+                return db.user_login.find({user_id:user.id})
+            }
+        })
+        .then((passwords)=>{
+            const isCorrectPassword = passwords.reduce((bool, pass) => {
+                if(bcrypt.compareSync(password, pass.login_token)){
+                    bool = true;
+                }
+                return bool
+            }, false)
+            if(isCorrectPassword){
+                done(null, locUser)
             }else{
-                delete user.password;
-                done(null, user);
+                done("Incorrect password")
             }
         })
         .catch(err => {
             done(err);
         });
-}
-
 }));
 
 passport.serializeUser((user, done) => {
@@ -137,18 +136,19 @@ done(null, user);
 );
 
 passport.deserializeUser((user, done) => {
-done(null, user);
+    done(null, user);
 });
 
 
-app.post('/login', passport.authenticate(['login']), (req, res, next)=>{
-res.send('Successful Login!')
-})
 
 /////////////////// API ROUTES ///////////////////////////
 
 app.get('/api/contributions/:story_id', contribution.get_contribution);
 app.post('/api/newStory', story.addStory);
+app.post('/api/contribution', contribute.create_contribution);
+app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
+    res.send('Successful Login!')
+})
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
     res.send('Successful Login!')
 });

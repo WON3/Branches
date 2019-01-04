@@ -40,8 +40,9 @@ class ViewStory extends Component {
 
         return (
             <div className="body">
-                <div className="head">
-                    <h1>"{this.state.contribution.story.title}"</h1>
+                <div style={{textAlign:"center", padding:"10px"}} className="head">
+                    <h1>{this.state.contribution.story.title}</h1>
+                    <p>~~~~~Preface~~~~~</p>
                     <h3>{this.state.contribution.story.description}</h3>
                 </div>
                 <div>{contributions}</div>
