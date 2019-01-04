@@ -23,7 +23,7 @@ class Login extends Component {
       open: true
     };
     this.handleChange = this.handleChange.bind(this);
-    this.post = this.post.bind(this);
+    this.login = this.login.bind(this);
   }
 
   handleChange = e => {
@@ -40,16 +40,18 @@ class Login extends Component {
     this.setState({ open: false });
   };
 
-  post() {
-    axios
-      .post(`/api/list`, {
+  
+
+  login() {
+    debugger
+    axios.post(`/api/login`, {
         username: this.state.username,
         password: this.state.password
       })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
+        this.props.loginUser(res.data)
+        this.props.history.push('/')
+      })
   }
   render() {
     return (
@@ -79,12 +81,13 @@ class Login extends Component {
               variant="outlined"
             />
             <br />
-            <Link to="/">
-              <Buttons />
-            </Link>
+   
             <br />
             <Register />
           </form>
+          <button onClick={this.login}>
+          login
+        </button>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
