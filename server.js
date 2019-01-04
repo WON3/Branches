@@ -26,7 +26,7 @@ massive(process.env.DATABASE_URL)
     })
 ////////////////////Passport authenticate///////////////////////////
 app.use(session({
-    secret: process.env.SESSION_SECERET
+    secret: process.env.SESSION_SECRET
 }))
 
 app.use( passport.initialize() );
@@ -153,6 +153,8 @@ app.post('/api/register', passport.authenticate(['register']), (req, res, next)=
     res.send('Successful Login!')
 });
 app.get('/api/profile/:userId', user.getProfile);
+app.put('/api/bio/:userId', user.updateBio);
+
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
