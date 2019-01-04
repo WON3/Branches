@@ -4,7 +4,7 @@ module.exports = {
         const { story_id } = req.params
         const data = {}
         db.get_contributions({
-            story_id
+            story_id,
         })
             .then(result => {
                 data.contributions = result
@@ -15,7 +15,7 @@ module.exports = {
             .then(result => {
                 data.story = {
                     title: result.title,
-                    description: result.description
+                    description: result.description,
                 }
                 res.send(data)
             })

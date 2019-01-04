@@ -10,9 +10,10 @@ const express = require("express"),
   LocalStrategy = require("passport-local").Strategy,
   bcrypt = require("bcrypt"),
   contribution = require('./server/controllers/contributionController'),
-    story = require('./server/controllers/storyController'),
-    user = require('./server/controllers/userController'),
-    admin = require('./server/controllers/adminController');
+  contribute = require('./server/controllers/createContribution'),
+  story = require('./server/controllers/storyController'),
+  user = require('./server/controllers/userController'),
+  admin = require('./server/controllers/adminController');
 
 require("dotenv").config();
 
@@ -26,7 +27,7 @@ massive(process.env.DATABASE_URL)
     })
 ////////////////////Passport authenticate///////////////////////////
 app.use(session({
-    secret: process.env.SESSION_SECERET
+    secret: process.env.SESSION_SECRET
 }))
 
 app.use( passport.initialize() );
@@ -149,6 +150,7 @@ res.send('Successful Login!')
 
 app.get('/api/contributions/:story_id', contribution.get_contribution);
 app.post('/api/newStory', story.addStory);
+app.post('/api/contribution', contribute.create_contribution);
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
     res.send('Successful Login!')
 });
