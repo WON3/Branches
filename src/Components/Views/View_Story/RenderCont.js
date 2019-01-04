@@ -20,7 +20,7 @@ function RenderCont(props) {
   return (
     <div>
       <Grid align="center" container spacing={16}>
-        <Grid style={{margin: 'auto'}} item xs={10}>
+        <Grid style={{margin: 'auto'}} item xs={12}>
           <Tooltip title={contribution.username} interactive>
             <Paper  className={classes.root} elevation={1}>
               <Typography align="left" variant="h5" component="h3">
