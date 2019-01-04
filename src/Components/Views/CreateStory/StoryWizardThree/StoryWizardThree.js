@@ -3,6 +3,7 @@ import '../../CreateStory/CreateStory.css';
 import {addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Button from "@material-ui/core/Button";
 
 function StoryWizardThree(props){
     const {storyGuidePOV, addPOV, storyGuideFork, addForkRestriction, storyGuideMod, addModerator } = props;
@@ -38,7 +39,11 @@ function StoryWizardThree(props){
                 </select>
                 </div>
                 {console.log(storyGuideMod)}
-        <div><Link to= '/create_four'><button>Next</button></Link></div>
+        <div><Link to= '/create_four'>
+                <Button variant="contained" color="primary">
+                NEXT
+                </Button>
+        </Link></div>
         </div>
         </div>
         )

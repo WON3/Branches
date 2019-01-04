@@ -3,3 +3,7 @@ SECONDARY COLOR= #5d5147
 ACCENT COLOR = #378674
 FONT = Slabo 27px
 NAME = Branched */
+html, body{
+height: 100%;
+overflow: scroll;
+}

@@ -3,6 +3,11 @@ import '../../CreateStory/CreateStory.css';
 import { addTitle } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
+
+
 
 class StoryWizardOne extends Component {
     constructor(props){
@@ -38,11 +43,20 @@ render(props){
                 <p>We'll walk you through all of guidelines for creating your new story here</p>
             </div>
             <div className="wizard-box">
-            <h2>Title</h2>
-            <input className="title" name= "title" onChange={e => {addTitle(e.target.value)}}></input>
-            {console.log(storyGuideTitle)}
+            <TextField 
+            className="title" 
+            name= "title" 
+            label= "Title" 
+            onChange={e => {addTitle(e.target.value)}} 
+            margin="normal"
+            variant="outlined"
+            />
          
-          <div> <Link to= '/create_two'><button>Next</button></Link></div>
+          <div className='button'> <Link to= '/create_two'>
+
+          <Button variant="contained" color="primary">
+            NEXT
+          </Button></Link></div>
         
             </div>
           
