@@ -14,7 +14,8 @@ const styles = theme => ({
   rootD: {
       flexGrow:1,
       marginTop:75,
-      height: '87vh'
+      height: '87vh',
+      overflow:'scroll',
   },
   container: {
     height: 'fill',
@@ -34,6 +35,10 @@ const styles = theme => ({
   }, 
   itemFix: {
     height:'80vh',
+    height: '-webkit-fill-available',
+    margin: 'auto',
+    width: '-webkit-fill-available',
+    maxWidth: '40%'
   },
   card: {
       maxWidth: 1100,
@@ -73,11 +78,9 @@ const styles = theme => ({
           openTwo: false,
           profilePicture:''
         }
-        this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleOpenTwo = this.handleOpenTwo.bind(this);
-        this.handleCloseTwo = this.handleCloseTwo.bind(this);
+       
         this.handlePicture = this.handlePicture.bind(this);
+        this.handleBio = this.handleBio.bind(this);
       }
       
     
@@ -89,29 +92,17 @@ const styles = theme => ({
 
     handleBio(val){
       this.props.changeBio(val)
-      this.setState({open:false});
+      this.setState({openTwo:false});
     };
 
-    handleClose(){
-        this.setState({open: false});
-    };
-    handleOpen(){
-      this.setState({open:true});
-    };
-
-    handleCloseTwo(){
-      this.setState({openTwo: false});
-    };
-    handleOpenTwo(){
-      this.setState({openTwo:true});
-    };
+    
     
     render() {
       const { classes } = this.props;
       const {stories} = this.props;
       let storyShow = stories.map((story,id) => {
         return(
-          <div value={story.story_id}>
+          <div key={story.story_id}>
               <h3>{story.title}</h3>
               <ul className={classes.background}>
                 <li>{story.description}</li>
@@ -183,7 +174,13 @@ const styles = theme => ({
   
   UserCard.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+    changePic: PropTypes.string,
+    bio: PropTypes.string,
+    changeBio: PropTypes.func,
+    proPic: PropTypes.string,
+    stories: PropTypes.array
+  }
+  
   function mapStateToProps(state){
     const {userId, profilePic} = state;
     return {
