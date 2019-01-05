@@ -12,13 +12,15 @@ import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
   rootD: {
-      flexGrow:1,
       marginTop:75,
       height: '87vh',
       overflow:'scroll',
   },
-  container: {
+  containerCustom: {
     height: 'fill',
+    dispaly: 'flex',
+    boxSizing: 'border-box',
+    flexDirection:'row',
   },
   background: {
     background: '#EAFBF7',
@@ -33,19 +35,30 @@ const styles = theme => ({
     marginTop: 5,
     marginLeft: '62.3%',
   }, 
-  itemFix: {
-    height:'80vh',
-    height: '-webkit-fill-available',
-    margin: 'auto',
+  buttonHolder: {
+    padding:3,
+    marginLeft:'35%'
+  },
+  itemFixD: {
+    height:'85vh',
     width: '-webkit-fill-available',
-    maxWidth: '40%'
+    maxWidth: '20%',
+    flexGrow: '1',
+    flexShrink: '1',
+    display:'inline-block'
+  },
+  itemBio: {
+    height: '85vh',
+    flexGrow: '2',
+    flexShrink:'1',
+    width: '79%',
+    display: 'inline-block'
   },
   card: {
       maxWidth: 1100,
       width: 'auto',
-      height: '98%',
-      marginTop:25,
-      margin: '4%',
+      height: '102%',
+      marginTop:20,
       marginLeft: 30,
       padding:theme.spacing.unit*2,      
     },
@@ -114,15 +127,15 @@ const styles = theme => ({
 
       return (  
       <div className={classes.rootD}>
-        <Grid container>
-          <Grid className={classes.itemFix} >
+        <Grid containerCustom>
+          <Grid className={classes.itemFixD} >
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
                 title={this.props.userName}
                 />
-              <div>
+              <div className={classes.buttonHolder}>
                 <ButtonMode 
                   label='URL'
                   placeHolder='Picture URL'
@@ -141,7 +154,7 @@ const styles = theme => ({
                   {this.props.bio}
                 </Typography>
               </CardContent> 
-              <div>
+              <div className={classes.buttonHolder}>
                 <ButtonMode 
                     label='Bio'
                     placeHolder='Tell us about you.'
@@ -152,7 +165,7 @@ const styles = theme => ({
             </div>
             </Card>
           </Grid>
-          <Grid className={classes.itemFixT}>
+          <Grid className={classes.itemBio}>
             <Card className={classes.card}>
             <CardContent>
                 <CardHeader 

@@ -25,9 +25,8 @@ module.exports = {
     updateBio: (req,res) => {
         const db =req.app.get('db');
         const {userId} = req.params;
-        const {bio} = req.body.val;
-        db.updateBio({bio, userId}).then(response=>{
-            res.status(200).send('Update successful.');
+        db.updateBio(req.query, userId).then(res=>{
+            res.send('Update successful.');
         });
     }
 

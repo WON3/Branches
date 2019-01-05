@@ -47,11 +47,11 @@ class Login extends Component {
       })
       .then(res => {
         const {username, id} =res.data;
-        this.props.getUser(username, id);
+        this.props.getUser(id, username);
         this.props.history.push('/');       
       });
   }
-  
+
   render() {
     return (
       <div>
