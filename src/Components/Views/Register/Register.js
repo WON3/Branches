@@ -5,21 +5,20 @@ import axios from 'axios';
 import classNames from 'classnames';
 
 import Modal from '@material-ui/core/Modal';
-//import Buttons from '../../Shared/Buttons/Buttons';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+import {Link} from "react-router-dom";
+
 
 const styles = theme => ({
     paper: {
@@ -45,6 +44,7 @@ class Register extends Component{
         }
         this.cancel = this.cancel.bind(this);
         this.registerUser = this.registerUser.bind(this);
+        
     }    
 
     handleOpen = () => {
@@ -81,7 +81,9 @@ class Register extends Component{
 
     registerUser(){
         let {username, email,  password} = this.state;
+        debugger
         axios.post('/api/register',{username, email, password}).then((res) => {
+            debugger
             if(res.data){
                 alert('Registered. Now, login.')
                 this.setState({open:false})
@@ -172,6 +174,7 @@ class Register extends Component{
                             </form>
                         </Typography> 
                         <div className='buttonBox'>
+                        <Link to="/">
                             <Button 
                                 variant="contained"
                                 color="primary"
@@ -180,6 +183,7 @@ class Register extends Component{
                             >
                                 Register
                             </Button>
+                            </Link>
                             <Button 
                                 variant="contained"
                                 color="secondary"
