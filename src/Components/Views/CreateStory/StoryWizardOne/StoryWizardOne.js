@@ -96,7 +96,7 @@ class StoryWizardOne extends Component {
           </div>
           
         </div>
-      </div>
+      
     );
   }
 }
