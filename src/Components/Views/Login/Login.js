@@ -40,8 +40,6 @@ class Login extends Component {
     this.setState({ open: false });
   };
 
-  
-
   login() {
     axios.post(`/api/login`, {
         username: this.state.username,
@@ -53,6 +51,7 @@ class Login extends Component {
         this.props.history.push('/');       
       });
   }
+  
   render() {
     return (
       <div>
