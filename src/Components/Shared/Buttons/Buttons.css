@@ -5,6 +5,7 @@
 }
 .button Button {
     margin:4px;
+    width:300px;
 }
 form {
     display:flex;

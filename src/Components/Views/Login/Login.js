@@ -42,7 +42,7 @@ class Login extends Component {
 
   post() {
     axios
-      .post(`/api/list`, {
+      .post(`/api/login`, {
         username: this.state.username,
         password: this.state.password
       })
@@ -55,7 +55,7 @@ class Login extends Component {
     return (
       <div>
         <div className="LoginBox">
-          <header>Welcome Story Teller</header>
+          <div className="header">Login</div>
           <form className="LoginForm">
             <TextField
               id="outlined-name"
@@ -91,9 +91,9 @@ class Login extends Component {
               horizontal: "left"
             }}
             open={this.state.open}
-            autoHideDuration={6000}
+            autoHideDuration={5000}
             onClose={this.handleClose}
-            message={<p>Welcome to Branches</p>}
+            message={<p>Welcome Story Teller</p>}
             action={[
               <IconButton
                 key="close"

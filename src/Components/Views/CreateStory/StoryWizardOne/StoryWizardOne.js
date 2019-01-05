@@ -47,7 +47,7 @@ class StoryWizardOne extends Component {
               horizontal: "center"
             }}
             open={this.state.open}
-            autoHideDuration={6000}
+            autoHideDuration={5000}
             onClose={this.handleClose}
             message={<p>THE TALE STARTS HERE!</p>}
             action={[
