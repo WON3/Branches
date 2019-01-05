@@ -52,9 +52,9 @@ render(props){
             variant="outlined"
             />
          
-          <div className='button'> <Link to= '/create_two'>
+          <div className='button'> <Link to= '/create_two' style={{textDecoration: "none"}}>
 
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none"}}>
             NEXT
           </Button></Link></div>
         

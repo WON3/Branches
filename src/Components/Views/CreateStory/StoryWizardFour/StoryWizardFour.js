@@ -71,6 +71,7 @@ render(props){
                 <Button 
                 variant="contained" 
                 color="primary" 
+                style={{backgroundColor: "#5d5147", textDecoration: "none"}}
                 onClick= {() => {this.addNewStory()}}>
                 Submit New Story
                 </Button>
