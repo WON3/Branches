@@ -10,6 +10,7 @@ const initialState = {
     storyAddition:'',
 
   //nav drawer
+
     openClose:false,
     storyGuideTitle: '',
     storyGuideDescripton: '',
@@ -73,7 +74,9 @@ export function makeOpenClose(open){
             open:!open
         }
     }
+
 }
+
 
 
 export function addTitle(storyGuideTitle){

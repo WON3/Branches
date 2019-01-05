@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../../CreateStory/CreateStory.css';
 import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
+import Button from "@material-ui/core/Button";
 
 
 class StoryWizardFour extends Component {
@@ -61,14 +62,20 @@ render(props){
             <h2>Please Review the Story Guidelines You've Selected </h2>
             </div>
             <div className="wizard-box">
-                <div>Title:{storyGuideTitle}</div>
-                <div>Description:{storyGuideDescripton}</div>
-                <div>Point of View:{storyGuidePOV}</div>
-                <div>Allows Story to Fork:{storyGuideFork}</div>
-                <div>You are Controlling All Submissions:{storyGuideMod}</div>
-                <div>
-                <button className="submit-story-bttn" onClick= {() => {this.addNewStory()}}>Submit New Story</button>
-            </div>
+                <p>Title:{storyGuideTitle}</p>
+                <p>Description:{storyGuideDescripton}</p>
+                <p>Point of View:{storyGuidePOV}</p>
+                <p>Allows Story to Fork:{storyGuideFork}</p>
+                <p>You are Controlling All Submissions:{storyGuideMod}</p>
+                <div className="button">
+                <Button 
+                variant="contained" 
+                color="primary" 
+                onClick= {() => {this.addNewStory()}}>
+                Submit New Story
+                </Button>
+                
+                </div>
             </div>
 
         </div>
