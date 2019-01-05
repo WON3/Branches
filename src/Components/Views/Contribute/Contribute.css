@@ -1,9 +1,9 @@
 .contribute {
-    /* margin-top: 150px; */
+    margin-top: 150px;
     height: 50vh;
 }
 
-h1 {
+.add {
     font-size: 100px;
     text-align: center
 }
