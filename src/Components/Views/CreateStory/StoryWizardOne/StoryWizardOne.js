@@ -86,17 +86,7 @@ class StoryWizardOne extends Component {
           </Button></Link></div>
         
             </div>
-   
-
-          <div>
-            {" "}
-            <Link to="/create_two">
-              <button>Next</button>
-            </Link>
-          </div>
-          
         </div>
-      </div>
     );
   }
 }

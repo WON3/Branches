@@ -23,7 +23,8 @@ function StoryWizardThree(props){
             </select>
             </div>
             <div id="POV-Fork-Mod">
-            <h2 id="questions">Would you like to allow approved contributors to create an alternate branch (story path)? (?) .. pop up.. if a large percentage of contributors are unhappy with the direction of the story, they may branch off and create an alternate story direction.)</h2>
+            <h2 id="questions">Would you like to allow approved contributors to create an alternate story branch? </h2> {/*(?) .. pop up.. if a large percentage of contributors are unhappy with the direction of the story, they may branch off and create an alternate story direction.)*/}
+           
                 <select name="allows_fork" value={storyGuideFork} onChange={e => addForkRestriction(e.target.value)}>
                     <option value={true}>Yes</option>
                     <option value={false}>No</option>
