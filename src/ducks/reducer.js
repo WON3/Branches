@@ -3,7 +3,6 @@ const initialState = {
     userName:'',
     userId:'',
     userProfilePic:'',
-
     
     //story
     storyId:'',
@@ -11,8 +10,8 @@ const initialState = {
     storyAddition:'',
 
   //nav drawer
-  openClose:false,
 
+    openClose:false,
     storyGuideTitle: '',
     storyGuideDescripton: '',
     storyGuidePOV: '',
@@ -32,7 +31,84 @@ const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
 const ADD_POV = 'ADD_POV';
 const ADD_FORK_RESTRICTION = 'ADD_FORK_RESTRICTION';
 const ADD_MODERATOR_RESTRICTION = 'ADD_MODERATOR_RESTRICTION';
+/////////////////////User///////////////////////////
+export function getUser (userId, userName) {
+    return {
+        type: GET_USER,
+        payload: {
+            userId,
+            userName
+        }
+    }
+}
+export function updateProfilePic(profilePic){
+    return {
+        type: UPDATE_PROFILEPIC,
+        payload: {profilePic}
+    }
+}
 
+///////////////Story//////////////////////
+export function getStory (storyId, storyBody) {
+    return {
+        type: GET_STORY,
+        payload: {
+            storyId,
+            storyBody
+        }
+    }
+}
+export function storyAddition (storyAddition) {
+    return {
+        type: STORY_ADDITION,
+        payload: {
+            storyAddition
+        }
+    }
+}
+
+export function makeOpenClose(open){
+    return{
+        type: OPEN_CLOSE,
+        payload: {
+            open:!open
+        }
+    }
+
+}
+
+
+
+export function addTitle(storyGuideTitle){
+    return {
+        type: ADD_TITILE,
+        payload: storyGuideTitle
+    }
+}
+export function addDescripton(storyGuideDescripton){
+    return {
+        type: ADD_DESCRIPTION,
+        payload: storyGuideDescripton
+    }
+}
+export function addPOV(storyGuidePOV){
+    return {
+        type: ADD_POV, 
+        payload: storyGuidePOV
+    }
+}
+export function addForkRestriction(storyGuideFork){
+    return {
+        type: ADD_FORK_RESTRICTION,
+        payload: storyGuideFork
+    }
+}
+export function addModerator(storyGuideMod){
+    return {
+        type: ADD_MODERATOR_RESTRICTION,
+        payload: storyGuideMod
+    }
+}
 function reducer (state = initialState, action) {
     let {payload} = action;
 
@@ -78,82 +154,6 @@ function reducer (state = initialState, action) {
         
         default:
             return state;
-    }
-}
-
-/////////////////////User///////////////////////////
-export function getUser (userId, userName) {
-    return {
-        type: GET_USER,
-        payload: {
-            userId,
-            userName
-        }
-    }
-}
-export function updateProfilePic(profilePic){
-    return {
-        type: UPDATE_PROFILEPIC,
-        payload: {profilePic}
-    }
-}
-
-///////////////Story//////////////////////
-export function getStory (storyId, storyBody) {
-    return {
-        type: GET_STORY,
-        payload: {
-            storyId,
-            storyBody
-        }
-    }
-}
-export function storyAddition (storyAddition) {
-    return {
-        type: STORY_ADDITION,
-        payload: {
-            storyAddition
-        }
-    }
-}
-
-export function makeOpenClose(open){
-    return{
-        type: OPEN_CLOSE,
-        payload: {
-            open:!open
-        }
-    }
- }
-
-export function addTitle(storyGuideTitle){
-    return {
-        type: ADD_TITILE,
-        payload: storyGuideTitle
-    }
-}
-export function addDescripton(storyGuideDescripton){
-    return {
-        type: ADD_DESCRIPTION,
-        payload: storyGuideDescripton
-    }
-}
-export function addPOV(storyGuidePOV){
-    return {
-        type: ADD_POV, 
-        payload: storyGuidePOV
-    }
-}
-export function addForkRestriction(storyGuideFork){
-    return {
-        type: ADD_FORK_RESTRICTION,
-        payload: storyGuideFork
-    }
-}
-export function addModerator(storyGuideMod){
-    return {
-        type: ADD_MODERATOR_RESTRICTION,
-        payload: storyGuideMod
     }
 }
 

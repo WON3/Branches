@@ -1,7 +1,7 @@
 import React from "react";
 import "./Buttons.css";
 import Button from "@material-ui/core/Button";
-// import { createMuiTheme } from '@material-ui/core/styles';
+
 
 function Buttons(props) {
   return (
@@ -12,6 +12,7 @@ function Buttons(props) {
     </div>
   );
 }
+
 
 /*const theme = createMuiTheme({
   palette: {
@@ -40,6 +41,7 @@ function Buttons(props) {
 //     },
 //   },
 // });
+
 
 export default Buttons;
 
