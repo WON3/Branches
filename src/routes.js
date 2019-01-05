@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 
 import Login from "./Components/Views/Login/Login";
 import User from "./Components/Views/User/User";
-import View_Story from "./Components/Views/View_Story/View_Story";
 import StoryWizardOne from "./Components/Views/CreateStory/StoryWizardOne/StoryWizardOne";
 import StoryWizardTwo from "./Components/Views/CreateStory/StoryWizardTwo/StoryWizardTwo";
 import StoryWizardThree from "./Components/Views/CreateStory/StoryWizardThree/StoryWizardThree";

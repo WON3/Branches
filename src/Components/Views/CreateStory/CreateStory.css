@@ -5,6 +5,9 @@
     align-items: center;
     padding: 10px;
     margin-top: 60px;
+    height: 100%;
+    width: 100%;
+    font-family: 'Slabo 27px', serif;
 }
 
 
@@ -12,12 +15,14 @@
     margin-top: 20px;
 }
 
+
 .title{
     height: 30px;
     width: 500px;
-    background-color:#EAFBF7;
+    background-color: transparent;
     color: black;
     font-size: 24px;
+    
 }
 
 .wizard-box{
@@ -26,6 +31,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
 }
 
 .descripton{
@@ -38,11 +46,21 @@ select{
 }
 
 h2{
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 100;
 }
 
 #POV-Fork-Mod{
-    background-color: #378674ff;
+    margin: 250px auto;
+    background-color: RGBA(55, 134, 116,.8);
+    width: 600px;
+    box-shadow: 3px 5px 8px grey;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-family: 'Slabo 27px', serif;
+    font-size: 30pt;
+    font-weight: 700;
 }
 
 .submit-story-bttn{

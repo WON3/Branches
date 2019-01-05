@@ -1,11 +1,15 @@
-import React, { Component } from "react";
-import "../../CreateStory/CreateStory.css";
-import { addTitle } from "../../../../ducks/reducer";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
+import React, {Component} from 'react';
+import '../../CreateStory/CreateStory.css';
+import { addTitle } from '../../../../ducks/reducer';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+
 
 class StoryWizardOne extends Component {
   constructor(props) {
@@ -39,9 +43,10 @@ class StoryWizardOne extends Component {
   render(props) {
     const { storyGuideTitle, addTitle } = this.props;
     return (
-      <div className="createStory">
-        <div className="title-box">
-        <Snackbar
+
+        <div className="createStory">
+            <div className="title-box">
+                   <Snackbar
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "center"
@@ -61,22 +66,27 @@ class StoryWizardOne extends Component {
               </IconButton>
             ]}
           />
-          <h1>Create Story Wizard</h1>
-          <p>
-            We'll walk you through all of guidelines for creating your new story
-            here
-          </p>
-        </div>
-        <div className="wizard-box">
-          <h2>Title</h2>
-          <input
-            className="title"
-            name="title"
-            onChange={e => {
-              addTitle(e.target.value);
-            }}
-          />
-          {console.log(storyGuideTitle)}
+                <h1>Create Story Wizard</h1>
+                <p>We'll walk you through all of guidelines for creating your new story here</p>
+            </div>
+            <div className="wizard-box">
+            <TextField 
+            className="title" 
+            name= "title" 
+            label= "Title" 
+            onChange={e => {addTitle(e.target.value)}} 
+            margin="normal"
+            variant="outlined"
+            />
+         
+          <div className='button'> <Link to= '/create_two'>
+
+          <Button variant="contained" color="primary">
+            NEXT
+          </Button></Link></div>
+        
+            </div>
+   
 
           <div>
             {" "}
