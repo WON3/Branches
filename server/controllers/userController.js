@@ -1,6 +1,7 @@
+const db = req.app.get('db');
+
 module.exports = {
     getProfile: (req,res) =>{
-        const db = req.app.get('db');
         const {userId} = req.params;
         let profile ={stories:[]};
         db.getProfile(userId)
@@ -17,17 +18,23 @@ module.exports = {
                                 profile.stories.push({story_id,title,is_complete,description});
                             }
                         } else { profile.url = null}
-                        res.status(200).send(profile);
+                        res.send(profile);
                 })
             };
         })
     },
     updateBio: (req,res) => {
-        const db =req.app.get('db');
         const {userId} = req.params;
-        db.updateBio(req.query, userId).then(res=>{
+        const {bio} = req.query
+        db.users.update({id:userId}, {bio:bio}),(err,res)=>{
             res.send('Update successful.');
+        };
+    },
+    updateProfilePic: (req, res) => {
+        const {userId} = req.params;
+        const {url} = req.query;
+        db.addProfilePic(userId, url).then(res => {
+            res.send('Succesfful update!')
         });
     }
-
 }
