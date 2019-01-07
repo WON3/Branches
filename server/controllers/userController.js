@@ -1,7 +1,8 @@
-const db = req.app.get('db');
+
 
 module.exports = {
     getProfile: (req,res) =>{
+        const db = req.app.get('db');
         const {userId} = req.params;
         let profile ={stories:[]};
         db.getProfile(userId)
@@ -24,6 +25,7 @@ module.exports = {
         })
     },
     updateBio: (req,res) => {
+        const db = req.app.get('db');
         const {userId} = req.params;
         const {bio} = req.query
         db.users.update({id:userId}, {bio:bio}),(err,res)=>{
@@ -31,10 +33,11 @@ module.exports = {
         };
     },
     updateProfilePic: (req, res) => {
+        const db = req.app.get('db');
         const {userId} = req.params;
         const {url} = req.query;
-        db.addProfilePic(userId, url).then(res => {
-            res.send('Succesfful update!')
+        db.addProfilePic(userId, url).then(response => {
+            res.send('Successful update!')
         });
     }
 }
