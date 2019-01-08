@@ -146,7 +146,13 @@ res.send('Successful Login!')
 })
 
 /////////////////// API ROUTES ///////////////////////////
-
+app.get('/api/Dashboard',(req, res, next)=>{
+    const db = app.get('db');
+    db.stories.find()
+    .then((stories)=>{
+        res.send(stories)
+    })
+})
 app.get('/api/contributions/:story_id', contribution.get_contribution);
 app.post('/api/newStory', story.addStory);
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
