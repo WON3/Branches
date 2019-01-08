@@ -35,6 +35,7 @@ class Contribute extends React.Component {
                 is_accepted,
                 prior_contribution_id
             }
+            debugger
             axios.post('/api/contribution', contributions)
                 .then(res => {
                     this.props.addContribution(res.data);
@@ -50,14 +51,17 @@ class Contribute extends React.Component {
         const { classes } = this.props;
         return (
             <div className="contribute">
-                <form noValidate autoComplete="off">
+                <form >
                     <h1 className="add">Add contribution</h1>
-                    <TextField id="outlined-multiline-flexible"
+                    <TextField
+                        type="text"
+                        value={this.state.contribution}
+                        id="outlined-multiline-flexible"
                         label="Continue the story here!"
                         multiline
                         rowsMax="4"
                         margin="normal"
-                        variant="outlined" 
+                        variant="outlined"
                         onChange={this.handleChange} />
                     <Button style={{ margin: "auto" }} size="large" color="default" onClick={this.handleSubmit}>Submit Contribution</Button>
                 </form>
