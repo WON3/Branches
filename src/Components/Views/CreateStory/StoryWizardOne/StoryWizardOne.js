@@ -74,6 +74,9 @@ class StoryWizardOne extends Component {
             className="title" 
             name= "title" 
             label= "Title" 
+            inputProps={{
+              maxLength: "100"
+            }}
             onChange={e => {addTitle(e.target.value)}} 
             margin="normal"
             variant="outlined"

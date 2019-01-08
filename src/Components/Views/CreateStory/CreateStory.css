@@ -77,6 +77,8 @@ h2{
     text-shadow: 1px 2px 2px rgb(65, 60, 60);
 }
 
-.snackbar{
+input{
     height: 10px;
+    word-break: break-all;
+    overflow-wrap: "break-word";
 }
