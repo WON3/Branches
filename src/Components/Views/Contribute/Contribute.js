@@ -9,8 +9,8 @@ class Contribute extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_id: 1,
-            story_id: 1,
+            user_id: 0,
+            story_id: 0,
             contribution: "",
             is_accepted: false,
             prior_contribution_id: 0,
@@ -51,7 +51,7 @@ class Contribute extends React.Component {
         return (
             <div className="contribute">
                 <form noValidate autoComplete="off">
-                    <h1>Add contribution</h1>
+                    <h1 className="add">Add contribution</h1>
                     <TextField id="outlined-multiline-flexible"
                         label="Continue the story here!"
                         multiline
