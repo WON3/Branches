@@ -91,6 +91,7 @@ import { Link } from "react-router-dom";
         <CssBaseline />
       
         <Drawer
+          color='#00000'
           className={classes.drawer}
           variant="persistent"
           anchor="left"

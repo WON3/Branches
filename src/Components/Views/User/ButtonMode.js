@@ -98,6 +98,7 @@ class ButtonMode extends Component {
 
     handle() {
         this.props.change(this.state.input);
+        this.setState({open:false})
     };
 
     render(){
@@ -138,6 +139,9 @@ class ButtonMode extends Component {
 
 ButtonMode.propTypes = {
     classes: PropTypes.object.isRequired,
+    placeHolder: PropTypes.string.isRequired,
+    change: PropTypes.func.isRequired,
+    rows: PropTypes.string
   };
 
 export default withStyles(styles)(ButtonMode)

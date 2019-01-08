@@ -46,7 +46,7 @@ class StoryWizardFour extends Component {
             axios.post(`/api/newStory`, newStory)
                 .then( res => {
                     console.log("new story added");
-                    // this.props.history.push('/')
+                    this.props.history.push('/')
                 })
         }
     
@@ -59,18 +59,38 @@ render(props){
     return (
         <div className="createStory">
             <div>
+            <h2 style={{fontSize: "40px", paddingTop: "15%"}}>You're Almost Finished</h2>
+            </div>
+            <div>
             <h2>Please Review the Story Guidelines You've Selected </h2>
             </div>
-            <div className="wizard-box">
-                <p>Title:{storyGuideTitle}</p>
-                <p>Description:{storyGuideDescripton}</p>
-                <p>Point of View:{storyGuidePOV}</p>
-                <p>Allows Story to Fork:{storyGuideFork}</p>
-                <p>You are Controlling All Submissions:{storyGuideMod}</p>
+            <div className="create-three-div">
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Title:</h2>
+                    <div  style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideTitle}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Description:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideDescripton}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Point of View:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuidePOV}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Allows Story to Fork:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideFork}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">You are Controlling All Submissions:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideMod}</div>
+                </div>
+        
                 <div className="button">
                 <Button 
                 variant="contained" 
                 color="primary" 
+                style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}
                 onClick= {() => {this.addNewStory()}}>
                 Submit New Story
                 </Button>
