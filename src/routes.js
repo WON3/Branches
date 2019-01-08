@@ -18,7 +18,6 @@ export default (
   <Route path="/user/:user_id" component={User}/>
   <Route path="/user" component={User}/>
   <Route path="/contribute" component={Contribute} />
-  <Route path="/view_story/:story_id" component={View_Story} />
   <Route path="/create_one" component={StoryWizardOne} />
   <Route path="/create_two" component={StoryWizardTwo} />
   <Route path="/create_three" component={StoryWizardThree} />

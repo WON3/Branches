@@ -111,6 +111,7 @@ class Register extends Component{
                     className='openMode'
                     variant="contained"
                     color="primary"
+                    style={{backgroundColor: "#5d5147", textDecoration: "none"}}
                     onClick={this.handleOpen}
                     >
                     Register
@@ -177,6 +178,7 @@ class Register extends Component{
                             <Button 
                                 variant="contained"
                                 color="primary"
+                                style={{backgroundColor: "#5d5147", textDecoration: "none"}}
                                 onClick={this.registerUser}
                             >
                                 Register
