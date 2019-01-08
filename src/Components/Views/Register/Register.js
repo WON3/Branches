@@ -18,6 +18,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom";
+import RegisterButton from "../../Views/Register/RegisterButton";
 
 
 const styles = theme => ({
@@ -106,16 +107,16 @@ class Register extends Component{
     render() {
         const { classes } = this.props;
         return (
+            /* <RegisterButton/> can be used in place of button below for styling purposes*/
             <div>
+               
                 <Button 
                     className='openMode'
                     variant="contained"
                     color="primary"
                     style={{backgroundColor: "#5d5147", textDecoration: "none"}}
                     onClick={this.handleOpen}
-                    >
-                    Register
-                </Button>
+                    />
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
