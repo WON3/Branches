@@ -3,18 +3,16 @@ import "./Login.css";
 import axios from "axios";
 import Register from "../Register/Register";
 import TextField from "@material-ui/core/TextField";
-import Button from '@material-ui/core/Button';
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { Link } from "react-router-dom";
 
 
 /*format login code for username and password as well as css for Login view*/
 
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/reducer";
-import Buttons from '../../Shared/Buttons/Buttons';
+import LoginButton from "./LoginButton";
 
 class Login extends Component {
   constructor(props) {
@@ -86,10 +84,7 @@ class Login extends Component {
             <br />
             <Register />
           </form>
-          <Buttons/>
-          <Button className="login" variant="contained" color="primary" onClick={this.login}>
-            login
-          </Button>
+          <LoginButton onClick={this.Login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
