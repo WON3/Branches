@@ -38,17 +38,18 @@ render(props){
              <div className="title-box">
                 <h1>Create Story Wizard</h1>
             </div>
-            <div className="wizard-box">
+            <div className="wizard-box" style={{width: "80%", height: "100%"}}>
             <TextField 
             className="descripton" 
             name="description"
             label= "Description" 
+            style={{textDecoration: "none", height: "100%"}}
             onChange={e => {addDescripton(e.target.value)}}   
             margin="normal"
             variant="outlined"/>
             <div className= "button">
-            <Link to= '/create_three'>
-            <Button variant="contained" color="primary">
+            <Link to= '/create_three' style={{textDecoration: "none"}}>
+            <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
                 NEXT
             </Button>            
             </Link>
