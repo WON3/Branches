@@ -3,7 +3,6 @@ const initialState = {
     userName:'',
     userId:'',
     userProfilePic:'',
-
     
     //story
     storyId:'',
@@ -11,8 +10,8 @@ const initialState = {
     storyAddition:'',
 
   //nav drawer
-  openClose:false,
 
+    openClose:false,
     storyGuideTitle: '',
     storyGuideDescripton: '',
     storyGuidePOV: '',
@@ -75,7 +74,9 @@ export function makeOpenClose(open){
             open:!open
         }
     }
+
 }
+
 
 
 export function addTitle(storyGuideTitle){

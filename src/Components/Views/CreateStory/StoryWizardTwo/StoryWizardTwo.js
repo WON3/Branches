@@ -3,6 +3,8 @@ import '../../CreateStory/CreateStory.css';
 import { addDescripton } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 class StoryWizardTwo extends Component {
     constructor(props){
@@ -37,10 +39,20 @@ render(props){
                 <h1>Create Story Wizard</h1>
             </div>
             <div className="wizard-box">
-            <h2>Description</h2>
-            <input className="descripton" name= "description" onChange={e => {addDescripton(e.target.value)}}></input>
-            {console.log(storyGuideDescripton)}
-            <Link to= '/create_three'><button>Next</button></Link>
+            <TextField 
+            className="descripton" 
+            name="description"
+            label= "Description" 
+            onChange={e => {addDescripton(e.target.value)}}   
+            margin="normal"
+            variant="outlined"/>
+            <div className= "button">
+            <Link to= '/create_three'>
+            <Button variant="contained" color="primary">
+                NEXT
+            </Button>            
+            </Link>
+            </div>
             </div>   
         </div>
     )

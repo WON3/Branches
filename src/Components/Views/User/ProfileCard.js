@@ -1,122 +1,197 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ImageAvatars from './Avatar';
+import {connect} from 'react-redux';
+import Grid from '@material-ui/core/Grid';
+import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
-    card: {
-      maxWidth: 400,
-      marginTop: 85,
-      width: 400,
-      
+  rootD: {
+      flexGrow:1,
+      marginTop:75,
+      height: '87vh'
+  },
+  container: {
+    height: 'fill',
+  },
+  background: {
+    background: '#EAFBF7',
+  },
+  bio: {
+    height: 140,
+    boxSizing: 'border-box',
+    textAlign:'jusitify'
+  },
+  button: {
+    background:'#378674',
+    marginTop: 5,
+    marginLeft: '62.3%',
+  }, 
+  itemFix: {
+    height:'80vh',
+  },
+  itemFixT:{
+    height:'80vh',
+    width: '82vw'
+  },
+  card: {
+      maxWidth: 1100,
+      width: 'auto',
+      height: '98%',
+      marginTop:25,
+      margin: '4%',
+      marginLeft: 30,
+      padding:theme.spacing.unit*2,      
     },
     media: {
-      height: 0,
+      width: 'fill',
       paddingTop: '56.25%', // 16:9
     },
-    actions: {
-      display: 'flex',
+    paper: {
+      position: 'absolute',
+      top:'35%',
+      left:'35%',
+      width: theme.spacing.unit * 50,
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing.unit * 4,
     },
-    expand: {
-      transform: 'rotate(0deg)',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      marginLeft: 'auto',
-      [theme.breakpoints.up('sm')]: {
-        marginRight: -8,
-      },
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
-    },
-    avatar: {
-      backgroundColor: red[500],
-    },
+    titles: {
+      textAlign: 'center',
+      alignSelf: 'center',
+      fontFamily: 'Slabo'
+    }
   });
   
-  class UserCard extends React.Component {
-    state = { expanded: false };
-  
-    handleExpandClick = () => {
-      this.setState(state => ({ expanded: !state.expanded }));
+  class UserCard extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          tempPro:'',
+          open: false,
+          openTwo: false,
+          profilePicture:''
+        }
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpenTwo = this.handleOpenTwo.bind(this);
+        this.handleCloseTwo = this.handleCloseTwo.bind(this);
+        this.handlePicture = this.handlePicture.bind(this);
+      }
+      
+    
+
+    // componentDidMount(){
+    //   const {userId, profilePic} = this.props;
+    //   this.setState({profilePicture:profilePic});
+    //   // axios.get(`/api/profile/${userId}`).then(res=>{
+        
+    //   //   let {profilePic} = res.data[0];
+    //   //   this.setState({profilePic})
+    //   // })
+    // }
+        
+    handlePicture(val){
+      this.props.changePic(val);
+      this.setState({open:false});
     };
-  
+
+    handleBio(val){
+      this.props.changeBio(val)
+      this.setState({open:false});
+    };
+
+    handleClose(){
+        this.setState({open: false});
+    };
+    handleOpen(){
+      this.setState({open:true});
+    };
+
+    handleCloseTwo(){
+      this.setState({openTwo: false});
+    };
+    handleOpenTwo(){
+      this.setState({openTwo:true});
+    };
+    
     render() {
       const { classes } = this.props;
-  
-      return (
-        <Card className={classes.card}>
-        <ImageAvatars />
-          <CardHeader
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-                {this.props.name}
-              </Avatar>
-              
-            }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title="Users name/username ..."
-            subheader="Somewhere,somestate"
-          />
-          <CardMedia
-            className={classes.media}
-            image="/static/images/cards/paella.jpg"
-            title="Paella dish"
-          />
-          <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              className={classnames(classes.expand, {
-                [classes.expandOpen]: this.state.expanded,
-              })}
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+      const {stories} = this.props;
+      let storyShow = stories.map((story,id) => {
+        return(
+          <div value={story.story_id}>
+              <h3>{story.title}</h3>
+              <ul className={classes.background}>
+                <li>{story.description}</li>
+                <li>{story.is_complete}</li>
+              </ul>  
+          </div>
+        )
+      });
+
+      return (  
+      <div className={classes.rootD}>
+     
+        <Grid container>
+          <Grid className={classes.itemFix} >
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.media}
+                image={this.props.proPic}
+                title={this.props.userName}
+                />
+              <div>
+                <ButtonMode 
+                  label='URL'
+                  placeHolder='Picture URL'
+                  change={this.handlePicture}
+                  rows='1'
+                />
+            </div>
+              <CardHeader
+                className={classes.titles}
+                title={this.props.userName}
+                subheader="Somewhere"
+                />
+              <CardHeader className={classes.titles} title='Bio' />
+              <CardContent className={classes.background}>
+                <Typography className={classes.bio} paragraph>
+                  {this.props.bio}
+                </Typography>
+              </CardContent> 
+              <div>
+                <ButtonMode 
+                    label='Bio'
+                    placeHolder='Tell us about you.'
+                    change={this.handleBio}
+                    rows='4'
+                  />
+               
+            </div>
+            </Card>
+          </Grid>
+          <Grid className={classes.itemFixT}>
+            <Card className={classes.card}>
             <CardContent>
-              <Typography paragraph>Method:</Typography>
-              <Typography paragraph>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae amet, aliquid nulla 
-                repellendus dolores adipisci nihil doloremque. Voluptates id velit ab itaque ipsam laboriosam, 
-                repudiandae, quae sint sed natus omnis.
-              </Typography>
-              <Typography paragraph>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae amet, aliquid nulla
-                repellendus dolores adipisci nihil doloremque. Voluptates id velit ab itaque ipsam laboriosam, 
-                repudiandae, quae sint sed natus omnis.
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
+                <CardHeader 
+                  className={classes.titles}
+                  title='Works'/>
+                <Typography paragraph>
+                  <ul>
+                    {storyShow}
+                  </ul>
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          </Grid>
+      </div>
       );
     }
   }
@@ -124,5 +199,12 @@ const styles = theme => ({
   UserCard.propTypes = {
     classes: PropTypes.object.isRequired,
   };
-  
-  export default withStyles(styles)(UserCard);
+  function mapStateToProps(state){
+    const {userId, profilePic} = state;
+    return {
+      userId,
+      profilePic      
+    }
+  }
+
+  export default connect(mapStateToProps,{})(withStyles(styles)(UserCard));

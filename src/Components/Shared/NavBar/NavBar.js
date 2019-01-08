@@ -82,7 +82,7 @@ import { Link } from "react-router-dom";
     
         
     const { classes, theme, openClose } = this.props;
-    console.log(this.props.makeOpenClose);
+    // console.log(this.props.makeOpenClose);
     const authenticatedListComponents = authenticatedList.filter(e=>e.shouldShow).map((item)=>{
         return <Link to={item.path} key={item.name}><ListItem>{item.name}</ListItem></Link>
     })

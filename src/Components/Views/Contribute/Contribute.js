@@ -1,39 +1,59 @@
 import React from 'react';
-import ContributionCard from './ContributionCard'
-// import { setPriority } from 'os';
 import axios from 'axios';
+import './Contribute.css'
 
 class Contribute extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contribution: []
+            user_id: 1,
+            story_id: 1,
+            contribution: "",
+            is_accepted: false,
+            prior_contribution_id: 0
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+    }
+    handleChange(e) {
+        this.setState({
+            contribution: e.target.value,
+        })
+        console.log(this.state.contribution)
+    }
+    handleSubmit(e) {
+        e.preventDefault();
+        let { user_id, story_id, contribution, is_accepted, prior_contribution_id } = this.state;
+        if (user_id) {
+            let contributions = {
+                user_id,
+                story_id,
+                contribution,
+                is_accepted,
+                prior_contribution_id
+            }
+            debugger
+            axios.post('/api/contribution', contributions)
+            .then(res => {
+                this.props.addContribution(res.data);
+            })
+            .catch(err => console.log("ya done fudged up", err))
+        } else {
+            console.log('Put something in the field!!')
         }
     }
 
-    // console.log(params)
-    componentDidMount() {
-        // const {story_id} = this.props.match.params.story_id
-        console.log(this.props)
-        debugger
-        // axios.get(`/api/contributions`)
-        // .then((res) =>
-        //         this.setState({ contribution: res.data })
-        //     )
-        //     .catch(err => console.log('axios create error', err))
-    }
 
     render() {
-        let contributionCard = this.state.contribution.push((contribution) => {
-            return <ContributionCard    
-            key={contribution.id} 
-            title={contribution.title} 
-            description={contribution.description} 
-            contribution={contribution.contribution} />
-        })
+
         return (
-            <div>
-                {contributionCard}
+            <div className="contribute">
+                <form>
+                <span>Add contribution</span>
+                <input type="text" value={this.state.contribution} onChange={this.handleChange}/>
+                <button onClick={this.handleSubmit}>Submit Contribution</button>
+                </form>
             </div>
         )
     }

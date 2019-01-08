@@ -1,7 +1,7 @@
 import React from "react";
 import "./Buttons.css";
 import Button from "@material-ui/core/Button";
-/*import { createMuiTheme } from '@material-ui/core/styles';*/
+
 
 function Buttons(props) {
   return (
@@ -12,6 +12,7 @@ function Buttons(props) {
     </div>
   );
 }
+
 
 /*const theme = createMuiTheme({
   palette: {
@@ -30,6 +31,17 @@ function Buttons(props) {
     // error: will use the default color
   },
 }); */
+
+// const theme = createMuiTheme({
+//   overrides: {
+//     MuiButton: { // Name of the component ⚛️ / style sheet
+//       root: { // Name of the rule
+//         color: 'white', // Some CSS
+//       },
+//     },
+//   },
+// });
+
 
 export default Buttons;
 

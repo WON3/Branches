@@ -2,7 +2,8 @@ CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     email VARCHAR(100),
-    username VARCHAR(100)
+    username VARCHAR(100),
+    bio VARCHAR(1000)
 );
 
 CREATE TABLE role_type
