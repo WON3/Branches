@@ -11,16 +11,21 @@ import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
-  rootD: {
+  root: {
       marginTop:75,
       height: '87vh',
       overflow:'scroll',
+      flexGrow:1 ,
+      alignSelf: 'center'
   },
-  containerCustom: {
-    height: 'fill',
-    dispaly: 'flex',
-    boxSizing: 'border-box',
+  cardHolder : {
+    display: 'flex',
     flexDirection:'row',
+    width: 850,
+    margin: 'auto',
+    flexWrap:'wrap',
+    justify: 'center'
+
   },
   background: {
     background: '#EAFBF7',
@@ -34,6 +39,7 @@ const styles = theme => ({
     background:'#378674',
     marginTop: 5,
     marginLeft: '62.3%',
+    width: '40%'
   }, 
   buttonHolder: {
     padding:3,
@@ -41,21 +47,25 @@ const styles = theme => ({
   },
   itemFixD: {
     height:'85vh',
-    width: '-webkit-fill-available',
-    maxWidth: '20%',
+    maxWidth: '24%',
+    minWidth: '23%',
     flexGrow: '1',
-    flexShrink: '1',
-    display:'inline-block'
+    margin: 'auto',
+    marginBottom: 15,
+    display:'inline-block',
+    alignSelf:'center'
   },
   itemBio: {
     height: '85vh',
     flexGrow: '2',
     flexShrink:'1',
-    width: '79%',
-    display: 'inline-block'
+    width: '77%',
+    minWidth: '70%',
+    display: 'inline-block',
+    margin: 'auto',
   },
   card: {
-      maxWidth: 1100,
+      maxWidth: 850,
       width: 'auto',
       height: '102%',
       marginTop:20,
@@ -126,8 +136,8 @@ const styles = theme => ({
       });
 
       return (  
-      <div className={classes.rootD}>
-        <Grid containerCustom>
+      <div className={classes.root}>
+        <div className={classes.cardHolder}>
           <Grid className={classes.itemFixD} >
             <Card className={classes.card}>
               <CardMedia
@@ -161,7 +171,6 @@ const styles = theme => ({
                     change={this.handleBio}
                     rows='4'
                   />
-               
             </div>
             </Card>
           </Grid>
@@ -179,7 +188,7 @@ const styles = theme => ({
               </CardContent>
             </Card>
           </Grid>
-          </Grid>
+          </div> 
       </div>
       );
     }
