@@ -41,25 +41,14 @@ class Login extends Component {
   };
 
   login() {
-<<<<<<< HEAD
-    debugger;
-    axios
-      .post(`/api/login`, {
-=======
     axios.post(`/api/login`, {
->>>>>>> 1239ba82afd9521dc84b942453e609b6dfb1c156
         username: this.state.username,
         password: this.state.password
       })
       .then(res => {
-<<<<<<< HEAD
-        this.props.loginUser(res.data);
-        this.props.history.push("/");
-=======
         const {username, id} =res.data;
         this.props.getUser(id, username);
         this.props.history.push('/');       
->>>>>>> 1239ba82afd9521dc84b942453e609b6dfb1c156
       });
   }
 
