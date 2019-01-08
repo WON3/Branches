@@ -40,9 +40,7 @@ class User extends Component{
         this.setState({proPic:val});
         this.props.updateProfilePic(val);
         const {userId} = this.state;
-        debugger
         axios.put(`/api/profilePic/${userId}`, {url:val}).then(res => {
-           debugger
             console.log(res.data);
         })
     };
