@@ -12,12 +12,15 @@ import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
   rootD: {
-      flexGrow:1,
       marginTop:75,
-      height: '87vh'
+      height: '87vh',
+      overflow:'scroll',
   },
-  container: {
+  containerCustom: {
     height: 'fill',
+    dispaly: 'flex',
+    boxSizing: 'border-box',
+    flexDirection:'row',
   },
   background: {
     background: '#EAFBF7',
@@ -32,19 +35,30 @@ const styles = theme => ({
     marginTop: 5,
     marginLeft: '62.3%',
   }, 
-  itemFix: {
-    height:'80vh',
+  buttonHolder: {
+    padding:3,
+    marginLeft:'35%'
   },
-  itemFixT:{
-    height:'80vh',
-    width: '82vw'
+  itemFixD: {
+    height:'85vh',
+    width: '-webkit-fill-available',
+    maxWidth: '20%',
+    flexGrow: '1',
+    flexShrink: '1',
+    display:'inline-block'
+  },
+  itemBio: {
+    height: '85vh',
+    flexGrow: '2',
+    flexShrink:'1',
+    width: '79%',
+    display: 'inline-block'
   },
   card: {
       maxWidth: 1100,
       width: 'auto',
-      height: '98%',
-      marginTop:25,
-      margin: '4%',
+      height: '102%',
+      marginTop:20,
       marginLeft: 30,
       padding:theme.spacing.unit*2,      
     },
@@ -77,24 +91,12 @@ const styles = theme => ({
           openTwo: false,
           profilePicture:''
         }
-        this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleOpenTwo = this.handleOpenTwo.bind(this);
-        this.handleCloseTwo = this.handleCloseTwo.bind(this);
+       
         this.handlePicture = this.handlePicture.bind(this);
+        this.handleBio = this.handleBio.bind(this);
       }
       
     
-
-    // componentDidMount(){
-    //   const {userId, profilePic} = this.props;
-    //   this.setState({profilePicture:profilePic});
-    //   // axios.get(`/api/profile/${userId}`).then(res=>{
-        
-    //   //   let {profilePic} = res.data[0];
-    //   //   this.setState({profilePic})
-    //   // })
-    // }
         
     handlePicture(val){
       this.props.changePic(val);
@@ -103,29 +105,17 @@ const styles = theme => ({
 
     handleBio(val){
       this.props.changeBio(val)
-      this.setState({open:false});
+      this.setState({openTwo:false});
     };
 
-    handleClose(){
-        this.setState({open: false});
-    };
-    handleOpen(){
-      this.setState({open:true});
-    };
-
-    handleCloseTwo(){
-      this.setState({openTwo: false});
-    };
-    handleOpenTwo(){
-      this.setState({openTwo:true});
-    };
+    
     
     render() {
       const { classes } = this.props;
       const {stories} = this.props;
       let storyShow = stories.map((story,id) => {
         return(
-          <div value={story.story_id}>
+          <div key={story.story_id}>
               <h3>{story.title}</h3>
               <ul className={classes.background}>
                 <li>{story.description}</li>
@@ -137,23 +127,22 @@ const styles = theme => ({
 
       return (  
       <div className={classes.rootD}>
-     
-        <Grid container>
-          <Grid className={classes.itemFix} >
+        <Grid containerCustom>
+          <Grid className={classes.itemFixD} >
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
                 title={this.props.userName}
                 />
-              <div>
+              <div className={classes.buttonHolder}>
                 <ButtonMode 
                   label='URL'
                   placeHolder='Picture URL'
                   change={this.handlePicture}
                   rows='1'
                 />
-            </div>
+              </div>
               <CardHeader
                 className={classes.titles}
                 title={this.props.userName}
@@ -165,7 +154,7 @@ const styles = theme => ({
                   {this.props.bio}
                 </Typography>
               </CardContent> 
-              <div>
+              <div className={classes.buttonHolder}>
                 <ButtonMode 
                     label='Bio'
                     placeHolder='Tell us about you.'
@@ -176,7 +165,7 @@ const styles = theme => ({
             </div>
             </Card>
           </Grid>
-          <Grid className={classes.itemFixT}>
+          <Grid className={classes.itemBio}>
             <Card className={classes.card}>
             <CardContent>
                 <CardHeader 
@@ -198,7 +187,13 @@ const styles = theme => ({
   
   UserCard.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+    changePic: PropTypes.string,
+    bio: PropTypes.string,
+    changeBio: PropTypes.func,
+    proPic: PropTypes.string,
+    stories: PropTypes.array
+  }
+  
   function mapStateToProps(state){
     const {userId, profilePic} = state;
     return {
