@@ -107,8 +107,14 @@ class Register extends Component{
     render() {
         const { classes } = this.props;
         return (
+            /* <RegisterButton/> can be used in place of button below for styling purposes*/
             <div>
-                <RegisterButton 
+               
+                <Button 
+                    className='openMode'
+                    variant="contained"
+                    color="primary"
+                    style={{backgroundColor: "#5d5147", textDecoration: "none"}}
                     onClick={this.handleOpen}
                     />
                 <Modal
@@ -173,6 +179,7 @@ class Register extends Component{
                             <Button 
                                 variant="contained"
                                 color="primary"
+                                style={{backgroundColor: "#5d5147", textDecoration: "none"}}
                                 onClick={this.registerUser}
                             >
                                 Register
