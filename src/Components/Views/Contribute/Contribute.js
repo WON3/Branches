@@ -10,10 +10,8 @@ class Contribute extends React.Component {
         super(props);
         this.state = {
             user_id: 0,
-            story_id: 0,
             contribution: "",
             is_accepted: false,
-            prior_contribution_id: 0,
             multiline: 'Controlled'
         }
         this.handleChange = this.handleChange.bind(this);
@@ -26,14 +24,15 @@ class Contribute extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        let { user_id, story_id, contribution, is_accepted, prior_contribution_id } = this.state;
-        if (user_id) {
+        let { user_id, contribution, is_accepted } = this.state;
+        debugger
+        if (contribution) {
             let contributions = {
                 user_id,
-                story_id,
+                story_id: this.props.match.params.story_id,
                 contribution,
                 is_accepted,
-                prior_contribution_id
+                prior_contribution_id: this.props.match.params.prior_contribution_id
             }
             axios.post('/api/contribution', contributions)
                 .then(res => {

@@ -4,7 +4,7 @@
 .body {
     height: 100vh;
     overflow: scroll;
-    margin: 10px
+    margin: 10px;
 }
 
 .head {
@@ -19,4 +19,8 @@ h1 {
 }
 h3 {
     text-align: start;
+}
+
+.butt {
+    text-align: center
 }
