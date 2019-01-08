@@ -40,19 +40,25 @@ class Login extends Component {
     this.setState({ open: false });
   };
 
-  
-
   login() {
     axios.post(`/api/login`, {
         username: this.state.username,
         password: this.state.password
       })
       .then(res => {
+<<<<<<< HEAD
         debugger
         this.props.getUser(res.data)
         this.props.history.push('/')
       })
+=======
+        const {username, id} =res.data;
+        this.props.getUser(id, username);
+        this.props.history.push('/');       
+      });
+>>>>>>> 1239ba82afd9521dc84b942453e609b6dfb1c156
   }
+
   render() {
     return (
       <div>
