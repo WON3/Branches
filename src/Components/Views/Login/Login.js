@@ -46,17 +46,10 @@ class Login extends Component {
         password: this.state.password
       })
       .then(res => {
-<<<<<<< HEAD
-        debugger
-        this.props.getUser(res.data)
-        this.props.history.push('/')
-      })
-=======
         const {username, id} =res.data;
         this.props.getUser(id, username);
         this.props.history.push('/');       
       });
->>>>>>> 1ec57a9ced610ccaecb9cc98b7d6ddad3167699b
   }
 
   render() {

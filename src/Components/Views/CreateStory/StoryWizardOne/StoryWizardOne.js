@@ -87,10 +87,7 @@ class StoryWizardOne extends Component {
         
             </div>
         </div>
-<<<<<<< HEAD
       
-=======
->>>>>>> 1ec57a9ced610ccaecb9cc98b7d6ddad3167699b
     );
   }
 }
