@@ -25,7 +25,6 @@ class Contribute extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let { user_id, contribution, is_accepted } = this.state;
-        debugger
         if (contribution) {
             let contributions = {
                 user_id,
