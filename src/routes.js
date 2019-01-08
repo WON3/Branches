@@ -9,7 +9,11 @@ import StoryWizardThree from "./Components/Views/CreateStory/StoryWizardThree/St
 import StoryWizardFour from "./Components/Views/CreateStory/StoryWizardFour/StoryWizardFour";
 import Dashboard from "./Components/Views/Dashboard/Dashboard";
 import Contribute from "./Components/Views/Contribute/Contribute"
+<<<<<<< HEAD
 import View_Story from './Components/Views/View_Story/View_Story';
+=======
+import View_Story from "./Components/Views/View_Story/View_Story"
+>>>>>>> 0af5ad649e2e332b61e83eed5523220fe74c7c0d
 
 
 
