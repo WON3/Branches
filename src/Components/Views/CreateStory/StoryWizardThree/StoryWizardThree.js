@@ -38,7 +38,7 @@ function StoryWizardThree(props){
                 </select>
                 </div>
         <div><Link to= '/create_four' style={{textDecoration: "none"}}>
-                <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147"}}>
+                <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
                 NEXT
                 </Button>
         </Link></div>

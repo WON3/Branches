@@ -81,7 +81,7 @@ class StoryWizardOne extends Component {
          
           <div className='button'> <Link to= '/create_two' style={{textDecoration: "none"}}>
 
-          <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none"}}>
+          <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
             NEXT
           </Button></Link></div>
         
