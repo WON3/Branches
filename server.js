@@ -27,7 +27,9 @@ massive(process.env.DATABASE_URL)
     })
 ////////////////////Passport authenticate///////////////////////////
 app.use(session({
-    secret: process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
 }))
 
 app.use( passport.initialize() );
@@ -79,9 +81,6 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
-app.post('/login', passport.authenticate(['login']), (req, res, next)=>{
-    res.send('Successful Login!')
-})
 
 //////////////////// MIDDLEWARE ///////////////////////
 app.use(express.static(path.join(__dirname, '/build')));
@@ -147,14 +146,16 @@ app.get('/api/contributions/:story_id', contribution.get_contribution);
 app.post('/api/newStory', story.addStory);
 app.post('/api/contribution', contribute.create_contribution);
 app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
-    res.send('Successful Login!')
+    const db = req.app.get('db');
+    const {username} = req.body;
+    db.users.findOne({username:username}).then(user=>res.send(user));
 })
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
-    res.send('Successful Login!')
+    res.send('Successful registration')
 });
 app.get('/api/profile/:userId', user.getProfile);
 app.put('/api/bio/:userId', user.updateBio);
-
+app.put('/api/profilePic/:userId', user.updateProfilePic);
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
