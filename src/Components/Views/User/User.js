@@ -17,15 +17,21 @@ class User extends Component{
         this.changePic = this.changePic.bind(this);
         this.changeBio = this.changeBio.bind(this);
     }
-    
+    componentWillMount(){
+        const {userId} = this.props;
+        axios.get(`/api/profilePic/${userId}`).then(res => {
+            this.setState({proPic:res.data[0]['url']})
+                       
+        })
+    };
+
     componentDidMount(){
         const {userName,userId} = this.props;
         this.setState({userName:userName, userId:userId})
         axios.get(`/api/profile/${userId}`)
             .then(res=>{
-            const {username, bio, url, stories } = res.data;
-            console.log(res.data)
-            this.setState({userName:username, bio:bio, url:url, stories:stories})   
+            const {username, bio, stories } = res.data;
+            this.setState({userName:username, bio:bio, stories:stories})   
         });
           
     };
@@ -33,7 +39,10 @@ class User extends Component{
     changePic (val) {
         this.setState({proPic:val});
         this.props.updateProfilePic(val);
-        axios.put(`/api/profilePic/${this.state.userId}`).then(res => {
+        const {userId} = this.state;
+        debugger
+        axios.put(`/api/profilePic/${userId}`, {url:val}).then(res => {
+           debugger
             console.log(res.data);
         })
     };
