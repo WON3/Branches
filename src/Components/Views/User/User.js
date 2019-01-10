@@ -1,51 +1,69 @@
 import React, {Component} from 'react';
-
 import ProfileCard from './ProfileCard';
-import { FormHelperText } from '@material-ui/core';
 import {connect} from 'react-redux';
-import {updateProfilePic} from '../../../ducks/reducer';
-
+import {updateProfilePic, updateBio} from '../../../ducks/reducer';
 import axios from 'axios';
-
-//Need Redux initialState for username, user Badge, profile pic, stories in work
 
 class User extends Component{
     constructor(props){
         super(props)
         this.state = {
             userId:'',
-            profilePic:'',
-            userName:''
+            userName:'',
+            bio:'',
+            proPic:'',
+            stories: []
         }
+        this.changePic = this.changePic.bind(this);
+        this.changeBio = this.changeBio.bind(this);
     }
-    
-    componentDidMount(){
+    componentWillMount(){
         const {userId} = this.props;
-        axios.get(`/api/profile/${userId}`).then(res=>{
-            console.log(res.data)
-            let {profilePic} = res.data[0];
-            this.setState({profilePic})
+        axios.get(`/api/profilePic/${userId}`).then(res => {
+            this.setState({proPic:res.data[0]['url']})
+                       
         })
-    }
+    };
 
-    changePic(val){
-        this.setState({profilePic:val})
-        this.props.updateProfilePic(val)
-    }
+    componentDidMount(){
+        const {userName,userId} = this.props;
+        this.setState({userName:userName, userId:userId})
+        axios.get(`/api/profile/${userId}`)
+            .then(res=>{
+            const {username, bio, stories } = res.data;
+            this.setState({userName:username, bio:bio, stories:stories})   
+        });
+          
+    };
+    
+    changePic (val) {
+        this.setState({proPic:val});
+        this.props.updateProfilePic(val);
+        const {userId} = this.state;
+        axios.put(`/api/profilePic/${userId}`, {url:val}).then(res => {
+            console.log(res.data);
+        })
+    };
+
+    changeBio (val) {
+        const userId = this.state.userId;
+        this.setState({ bio:val });
+        this.props.updateBio(val);
+        axios.put(`/api/bio/${userId}?bio=${val}`).then(res=>{
+            console.log(res.data)
+        })
+    };
     
     render(){
         return(
-            <div style={{display:'flex',justifyContent:'space-around', alignItems:'center'}}>
+            <div>
                 <ProfileCard 
-                    name={this.state.userName}
-                    profilePic={this.state.profilePic}
+                    userName={this.state.userName}
                     changePic ={this.changePic}
-                />
-                <ProfileCard 
-                    name='Tris'
-                />
-                <ProfileCard 
-                    name='Pais'
+                    bio={this.state.bio}
+                    changeBio={this.changeBio}
+                    proPic={this.state.proPic}
+                    stories={this.state.stories}
                 />
             </div>
         )
@@ -59,4 +77,4 @@ function mapStateToProps (state) {
         userName
     }
 }
-export default connect(mapStateToProps, {updateProfilePic})(User);
+export default connect(mapStateToProps, {updateProfilePic, updateBio})(User);
