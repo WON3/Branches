@@ -21,11 +21,9 @@ const styles = theme => ({
   cardHolder : {
     display: 'flex',
     flexDirection:'row',
-    width: 850,
+    maxWidth: '850px',
     margin: 'auto',
     flexWrap:'wrap',
-    justify: 'center'
-
   },
   background: {
     background: '#EAFBF7',
@@ -38,13 +36,9 @@ const styles = theme => ({
   button: {
     background:'#378674',
     marginTop: 5,
-    marginLeft: '62.3%',
-    width: '40%'
+    margin: 'auto',
+    
   }, 
-  buttonHolder: {
-    padding:3,
-    marginLeft:'35%'
-  },
   itemFixD: {
     height:'85vh',
     maxWidth: '24%',
@@ -59,7 +53,7 @@ const styles = theme => ({
     height: '85vh',
     flexGrow: '2',
     flexShrink:'1',
-    width: '77%',
+    width: '74%',
     minWidth: '70%',
     display: 'inline-block',
     margin: 'auto',

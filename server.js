@@ -12,7 +12,7 @@ const express = require("express"),
   contribution = require('./server/controllers/contributionController'),
   contribute = require('./server/controllers/createContribution'),
   story = require('./server/controllers/storyController'),
-  user = require('./server/controllers/userController'),
+  userRouter = require('./server/controllers/userController'),
   admin = require('./server/controllers/adminController');
 
 require("dotenv").config();
@@ -138,8 +138,8 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
-
-
+////////////////////Router///////////////////////////////
+app.use('/user', userRouter);
 /////////////////// API ROUTES ///////////////////////////
 
 app.get('/api/contributions/:story_id', contribution.get_contribution);
@@ -153,10 +153,10 @@ app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
     res.send('Successful registration')
 });
-app.get('/api/profile/:userId', user.getProfile);
-app.put('/api/bio/:userId', user.updateBio);
-app.put('/api/profilePic/:userId', user.updateProfilePic);
-app.get('/api/profilePic/:userId', user.getProfilePic);
+// app.get('/user/profile/:userId', user.getProfile);
+// app.put('/user/bio/:userId', user.updateBio);
+// app.put('/user/profilePic/:userId', user.updateProfilePic);
+// app.get('/user/profilePic/:userId', user.getProfilePic);
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
