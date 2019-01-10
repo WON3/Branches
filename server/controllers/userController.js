@@ -1,5 +1,3 @@
-
-
 module.exports = {
     getProfile: (req,res) =>{
         const db = req.app.get('db');
@@ -11,15 +9,14 @@ module.exports = {
                     let r =response[0];
                     profile.username=r.username;
                     profile.bio=r.bio;
-                    db.getProfilePicStory(userId).then(response=>{
+                    db.getStory(userId).then(response=>{
                         if(response.length>0){
-                            profile.url = r.url;
                             for(let story of response){
                                 let {story_id,title,is_complete,description} = story;
                                 profile.stories.push({story_id,title,is_complete,description});
                             }
-                        } else { profile.url = null}
-                        res.send(profile);
+                        } 
+                    res.send(profile);
                 })
             };
         })
@@ -28,16 +25,23 @@ module.exports = {
         const db = req.app.get('db');
         const {userId} = req.params;
         const {bio} = req.query
-        db.users.update({id:userId}, {bio:bio}),(err,res)=>{
+        db.users.update({id:userId}, {bio:bio}),(err,res) => {
             res.send('Update successful.');
         };
     },
     updateProfilePic: (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
-        const {url} = req.query;
-        db.addProfilePic(userId, url).then(response => {
+        const {url} = req.body;
+        db.profile_pic.update({user_id:userId},{url:url}),(err, res) => {
             res.send('Successful update!')
-        });
+        };
+    },
+    getProfilePic: (req, res) => {
+        const db = req.app.get('db');
+        const {userId} = req.params;
+        db.profile_pic.find({user_id:userId}).then((response)=>{
+            res.send(response);
+        })
     }
 }
