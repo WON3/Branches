@@ -9,6 +9,7 @@ import StoryWizardThree from "./Components/Views/CreateStory/StoryWizardThree/St
 import StoryWizardFour from "./Components/Views/CreateStory/StoryWizardFour/StoryWizardFour";
 import Dashboard from "./Components/Views/Dashboard/Dashboard";
 import Contribute from "./Components/Views/Contribute/Contribute"
+import View_Story from "./Components/Views/View_Story/View_Story"
 
 
 
@@ -16,7 +17,8 @@ export default (
   <Switch>
   <Route path="/user/:user_id" component={User}/>
   <Route path="/user" component={User}/>
-  <Route path="/contribute" component={Contribute} />
+  <Route path="/view_story/:story_id" component={View_Story}/>
+  <Route path="/contribute/:story_id/:prior_contribution_id" component={Contribute} />
   <Route path="/create_one" component={StoryWizardOne} />
   <Route path="/create_two" component={StoryWizardTwo} />
   <Route path="/create_three" component={StoryWizardThree} />
