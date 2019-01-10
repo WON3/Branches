@@ -141,7 +141,13 @@ passport.deserializeUser((user, done) => {
 
 
 /////////////////// API ROUTES ///////////////////////////
-
+app.get('/api/Dashboard',(req, res, next)=>{
+    const db = app.get('db');
+    db.stories.find()
+    .then((stories)=>{
+        res.send(stories)
+    })
+})
 app.get('/api/contributions/:story_id', contribution.get_contribution);
 app.post('/api/newStory', story.addStory);
 app.post('/api/contribution', contribute.create_contribution);
