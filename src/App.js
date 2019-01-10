@@ -4,8 +4,20 @@ import NavBar from "./Components/Shared/NavBar/NavBar";
 import { BrowserRouter } from "react-router-dom";
 import routes from "./routes";
 import Header from "./Components/Shared/Header/Header";
+import axios from 'axios';
+import { connect } from "react-redux";
+import { getUser } from "./ducks/reducer";
 
 class App extends Component {
+
+  componentDidMount(){
+    axios.get('/api/isLoggedIn').then(res => {
+      console.log(res.data);
+      const {id, username} = res.data;
+      this.props.getUser(id, username);
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -23,4 +35,7 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export default connect(null, 
+  { getUser })
+  (App);

@@ -157,8 +157,15 @@ app.post('/api/register', passport.authenticate(['register']), (req, res, next)=
 // app.put('/user/bio/:userId', user.updateBio);
 // app.put('/user/profilePic/:userId', user.updateProfilePic);
 // app.get('/user/profilePic/:userId', user.getProfilePic);
+
+/////////////////////////Persist Redux///////////////////////////////////////
+app.get('/api/isLoggedIn', (req, res, next)=>{
+    res.send(req.user)
+})
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
+
+
 
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {
