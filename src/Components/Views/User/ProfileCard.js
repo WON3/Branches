@@ -27,6 +27,7 @@ const styles = theme => ({
   },
   background: {
     background: '#EAFBF7',
+    padding: 5
   },
   bio: {
     height: 140,
@@ -39,24 +40,12 @@ const styles = theme => ({
     margin: 'auto',
     
   }, 
-  itemFixD: {
-    height:'85vh',
-    maxWidth: '24%',
-    minWidth: '23%',
-    flexGrow: '1',
-    margin: 'auto',
-    marginBottom: 15,
-    display:'inline-block',
-    alignSelf:'center'
-  },
   itemBio: {
-    height: '85vh',
-    flexGrow: '2',
-    flexShrink:'1',
-    width: '74%',
-    minWidth: '70%',
-    display: 'inline-block',
+    height: 'auto',
+    width: 850,
+    minWidth: 500,
     margin: 'auto',
+    
   },
   card: {
       maxWidth: 850,
@@ -64,7 +53,9 @@ const styles = theme => ({
       height: '102%',
       marginTop:20,
       marginLeft: 30,
-      padding:theme.spacing.unit*2,      
+      padding:theme.spacing.unit*2, 
+      display: 'flex',
+      justify: 'space-around'     
     },
     media: {
       width: 'fill',
@@ -82,7 +73,11 @@ const styles = theme => ({
     titles: {
       textAlign: 'center',
       alignSelf: 'center',
-      fontFamily: 'Slabo'
+      fontFamily: 'Slabo',
+      width: '75%'
+    },
+    works: {
+      width: '75%',
     }
   });
   
@@ -122,7 +117,7 @@ const styles = theme => ({
           <div key={story.story_id}>
               <h3>{story.title}</h3>
               <ul className={classes.background}>
-                <li>{story.description}</li>
+                <li style={{wordWrap: 'break-word'}}>{story.description}</li>
                 <li>{story.is_complete}</li>
               </ul>  
           </div>
@@ -132,8 +127,10 @@ const styles = theme => ({
       return (  
       <div className={classes.root}>
         <div className={classes.cardHolder}>
-          <Grid className={classes.itemFixD} >
-            <Card className={classes.card}>
+         <Grid className={classes.itemBio}>
+          <Card className={classes.card}>
+              
+              <div>
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
@@ -165,12 +162,12 @@ const styles = theme => ({
                     change={this.handleBio}
                     rows='4'
                   />
+                </div>  
+
+
             </div>
-            </Card>
-          </Grid>
-          <Grid className={classes.itemBio}>
-            <Card className={classes.card}>
-            <CardContent>
+            <div className={classes.works}>
+              <CardContent>
                 <CardHeader 
                   className={classes.titles}
                   title='Works'/>
@@ -180,6 +177,7 @@ const styles = theme => ({
                   </ul>
                 </Typography>
               </CardContent>
+            </div>
             </Card>
           </Grid>
           </div> 

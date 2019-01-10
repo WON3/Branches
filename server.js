@@ -153,10 +153,7 @@ app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
 app.post('/api/register', passport.authenticate(['register']), (req, res, next)=>{
     res.send('Successful registration')
 });
-// app.get('/user/profile/:userId', user.getProfile);
-// app.put('/user/bio/:userId', user.updateBio);
-// app.put('/user/profilePic/:userId', user.updateProfilePic);
-// app.get('/user/profilePic/:userId', user.getProfilePic);
+
 
 /////////////////////////Persist Redux///////////////////////////////////////
 app.get('/api/isLoggedIn', (req, res, next)=>{
