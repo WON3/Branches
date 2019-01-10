@@ -17,8 +17,8 @@ class StoryWizardTwo extends Component {
             description: "",
             point_of_view: "First Person",
             is_public: false, //defaults to false
-            allows_fork: '', //user Input
-            moderator_accepts: '' //user Input
+            allows_fork: true, //user Input
+            moderator_accepts: true //user Input
         }
         this.handleChange = this.handleChange.bind(this);
         // this.addNewStory = this.addNewStory.bind(this);
