@@ -36,14 +36,19 @@ render(props){
     return (
         <div className="createStory">
              <div className="title-box">
-                <h1>Create Story Wizard</h1>
+                <h1 style={{marginTop:"5%"}}>Create Story Wizard</h1>
+                <img src=""></img>
             </div>
-            <div className="wizard-box" style={{width: "80%", height: "100%"}}>
+            <div className="wizard-box" style={{width: "80%", height: "100%", marginLeft: "10%"}}>
             <TextField 
             className="descripton" 
             name="description"
-            label= "Description" 
-            style={{textDecoration: "none", height: "100%"}}
+            label= "Description (maximum: 1000 characters)" 
+            multiline
+            inputProps={{
+                maxLength: "1000"
+              }}
+            style={{textDecoration: "none", height: "400px", wordBreak: "none"}}
             onChange={e => {addDescripton(e.target.value)}}   
             margin="normal"
             variant="outlined"/>

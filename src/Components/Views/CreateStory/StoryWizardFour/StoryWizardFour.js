@@ -80,6 +80,7 @@ render(props){
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Allows Story to Fork:</h2>
                     <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideFork}</div>
+                    
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">You are Controlling All Submissions:</h2>
