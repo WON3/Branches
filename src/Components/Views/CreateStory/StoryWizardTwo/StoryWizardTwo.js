@@ -17,8 +17,8 @@ class StoryWizardTwo extends Component {
             description: "",
             point_of_view: "First Person",
             is_public: false, //defaults to false
-            allows_fork: true, //user Input
-            moderator_accepts: true //user Input
+            allows_fork: '', //user Input
+            moderator_accepts: '' //user Input
         }
         this.handleChange = this.handleChange.bind(this);
         // this.addNewStory = this.addNewStory.bind(this);
@@ -36,13 +36,14 @@ render(props){
     return (
         <div className="createStory">
              <div className="title-box">
-                <h1>Create Story Wizard</h1>
+                <h1 style={{marginTop:"5%"}}>Create Story Wizard</h1>
+                <img src=""></img>
             </div>
             <div className="wizard-box" style={{width: "80%", height: "100%", marginLeft: "10%"}}>
             <TextField 
             className="descripton" 
             name="description"
-            label= "Description" 
+            label= "Description (maximum: 1000 characters)" 
             multiline
             inputProps={{
                 maxLength: "1000"
