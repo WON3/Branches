@@ -10,7 +10,7 @@ function StoryWizardThree(props){
     return (
         <div className="createStory" >
          <div className="title-box">
-                <h1>Create Story Wizard</h1>
+                <h2 className= "wizard-title">Create Story Wizard</h2>
             </div>
             <div className="create-three-div">
             <div id="POV-Fork-Mod">
@@ -37,7 +37,14 @@ function StoryWizardThree(props){
                     <option value={false}>No</option>
                 </select>
                 </div>
-        <div><Link to= '/create_four' style={{textDecoration: "none"}}>
+        <div id="wizard-buttons">
+            <Link to= '/create_two' style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+              BACK
+              </Button>
+            </Link>
+        
+            <Link to= '/create_four' style={{textDecoration: "none"}}>
                 <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
                 NEXT
                 </Button>

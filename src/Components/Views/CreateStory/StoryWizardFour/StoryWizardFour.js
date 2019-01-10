@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../../CreateStory/CreateStory.css';
 import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 
 
@@ -59,7 +60,7 @@ render(props){
     return (
         <div className="createStory">
             <div>
-            <h2 style={{fontSize: "40px", paddingTop: "15%"}}>You're Almost Finished</h2>
+            <h2 style={{fontSize: "40px", paddingTop: "5%"}}>You're Almost Finished</h2>
             </div>
             <div>
             <h2>Please Review the Story Guidelines You've Selected </h2>
@@ -68,23 +69,67 @@ render(props){
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Title:</h2>
                     <div  style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideTitle}</div>
+                    <Link to= '/create_one' style={{textDecoration: "none"}}>
+                    <Button
+                    variant="contained" 
+                    color="primary" 
+                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    onClick= {() => {this.addNewStory()}}>
+                    Edit
+                    </Button>
+                    </Link>
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Description:</h2>
                     <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideDescripton}</div>
+                    <Link to= '/create_two' style={{textDecoration: "none"}}>
+                    <Button
+                    variant="contained" 
+                    color="primary" 
+                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    onClick= {() => {this.addNewStory()}}>
+                    Edit
+                    </Button>
+                    </Link>
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Point of View:</h2>
                     <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuidePOV}</div>
+                    <Link to= '/create_three' style={{textDecoration: "none"}}>
+                    <Button
+                    variant="contained" 
+                    color="primary" 
+                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    onClick= {() => {this.addNewStory()}}>
+                    Edit
+                    </Button>
+                    </Link>
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Allows Story to Fork:</h2>
                     <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideFork}</div>
-                    
+                    <Link to= '/create_three' style={{textDecoration: "none"}}>
+                    <Button
+                    variant="contained" 
+                    color="primary" 
+                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    onClick= {() => {this.addNewStory()}}>
+                    Edit
+                    </Button>
+                    </Link>
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">You are Controlling All Submissions:</h2>
                     <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideMod}</div>
+                    <Link to= '/create_three' style={{textDecoration: "none"}}>
+                    <Button
+                    variant="contained" 
+                    color="primary" 
+                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    onClick= {() => {this.addNewStory()}}>
+                    Edit
+                    </Button>
+                    </Link>
                 </div>
         
                 <div className="button">
