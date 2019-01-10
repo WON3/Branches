@@ -20,6 +20,8 @@ export default (
   <Route path="/user" component={User}/>
   <Route path="/contribute/:story_id" component={Write_Contribution} />
   <Route path="/contribute" component={Contribute} />
+  <Route path="/view_story/:story_id" component={View_Story}/>
+  <Route path="/contribute/:story_id/:prior_contribution_id" component={Contribute} />
   <Route path="/create_one" component={StoryWizardOne} />
   <Route path="/create_two" component={StoryWizardTwo} />
   <Route path="/create_three" component={StoryWizardThree} />

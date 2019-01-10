@@ -7,7 +7,7 @@ module.exports = {
             contribution,
             prior_contribution_id } = req.body;
         dbInstance.addContribution({
-            user_id: req.user.user_id,
+            user_id: req.user.id,
             story_id,
             contribution,
             is_accepted: false,

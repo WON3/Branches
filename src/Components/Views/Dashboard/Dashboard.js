@@ -20,7 +20,7 @@ class Dashboard extends Component {
         <Snackbar
             anchorOrigin={{
               vertical: "bottom",
-              horizontal: "right"
+              horizontal: "left"
             }}
             open={this.state.open}
             autoHideDuration={6000}

@@ -156,6 +156,7 @@ app.post('/api/register', passport.authenticate(['register']), (req, res, next)=
 app.get('/api/profile/:userId', user.getProfile);
 app.put('/api/bio/:userId', user.updateBio);
 app.put('/api/profilePic/:userId', user.updateProfilePic);
+app.get('/api/profilePic/:userId', user.getProfilePic);
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
