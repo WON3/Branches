@@ -9,6 +9,7 @@
     font-family: sans-serif;
     font-size: 50pt;
     font-weight: 700;
+    color: #EAFBF7;
 }
 .header{
     margin:-20px;
@@ -17,6 +18,13 @@
     padding: 10px;
     font-size: 20pt;
     position: relative;
+
+}
+#outlined-name{
+    color:#378674;
+}
+#outlined-password-input{
+    color:#378674; 
 }
 .login{
 width:300px;

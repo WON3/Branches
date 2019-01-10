@@ -110,11 +110,7 @@ class Register extends Component{
             /* <RegisterButton/> can be used in place of button below for styling purposes*/
             <div>
                
-                <Button 
-                    className='openMode'
-                    variant="contained"
-                    color="primary"
-                    style={{backgroundColor: "#5d5147", textDecoration: "none"}}
+                <RegisterButton
                     onClick={this.handleOpen}
                     />
                 <Modal
