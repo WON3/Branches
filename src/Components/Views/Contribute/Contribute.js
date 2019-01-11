@@ -33,7 +33,7 @@ class Contribute extends React.Component {
                 is_accepted,
                 prior_contribution_id
             }
-            debugger
+            
             axios.post('/api/contribution', contributions)
             .then(res => {
                 this.props.addContribution(res.data);

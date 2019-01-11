@@ -12,8 +12,9 @@ const express = require("express"),
   contribution = require('./server/controllers/contributionController'),
   contribute = require('./server/controllers/createContribution'),
   story = require('./server/controllers/storyController'),
+  admin = require('./server/controllers/adminController'),
   userRouter = require('./server/controllers/userController'),
-  admin = require('./server/controllers/adminController');
+  contributionsRouter =  require('./server/controllers/contributionsController');
 
 require("dotenv").config();
 
@@ -139,12 +140,21 @@ passport.deserializeUser((user, done) => {
 });
 
 ////////////////////Router///////////////////////////////
+//User
 app.use('/user', userRouter);
-/////////////////// API ROUTES ///////////////////////////
 
-app.get('/api/contributions/:story_id', contribution.get_contribution);
+//Contributions
+app.use('/contributions', contributionsRouter);
+
+/////////////////// API ROUTES ///////////////////////////
+//
+// app.get('/api/contributions/:story_id', contribution.get_contribution);
+
+
+
 app.post('/api/newStory', story.addStory);
 app.post('/api/contribution', contribute.create_contribution);
+
 app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
     const db = req.app.get('db');
     const {username} = req.body;

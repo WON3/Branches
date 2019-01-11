@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const userRouter = express.Router();
 
-module.exports = router;
+module.exports = userRouter;
 
-    router.get('/profile/:userId' , (req,res) =>{
+    userRouter.get('/profile/:userId' , (req,res) =>{
         const db = req.app.get('db');
         const {userId} = req.params;
         let profile ={stories:[]};
@@ -25,7 +25,7 @@ module.exports = router;
             };
         })
     });
-    router.put('/bio/:userId' , (req,res) => {
+    userRouter.put('/bio/:userId' , (req,res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
         const {bio} = req.query
@@ -33,7 +33,7 @@ module.exports = router;
             res.send('Update successful.');
         };
     });
-    router.put('/profilePic/:userId' , (req, res) => {
+    userRouter.put('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
         const {url} = req.body;
@@ -41,7 +41,7 @@ module.exports = router;
             res.send('Successful update!')
         };
     });
-    router.get('/profilePic/:userId' , (req, res) => {
+    userRouter.get('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
         db.profile_pic.find({user_id:userId}).then((response)=>{
