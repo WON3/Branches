@@ -1,5 +1,9 @@
-module.exports = {
-    getProfile: (req,res) =>{
+const express = require('express');
+const router = express.Router();
+
+module.exports = router;
+
+    router.get('/profile/:userId' , (req,res) =>{
         const db = req.app.get('db');
         const {userId} = req.params;
         let profile ={stories:[]};
@@ -20,28 +24,28 @@ module.exports = {
                 })
             };
         })
-    },
-    updateBio: (req,res) => {
+    });
+    router.put('/bio/:userId' , (req,res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
         const {bio} = req.query
         db.users.update({id:userId}, {bio:bio}),(err,res) => {
             res.send('Update successful.');
         };
-    },
-    updateProfilePic: (req, res) => {
+    });
+    router.put('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
         const {url} = req.body;
         db.profile_pic.update({user_id:userId},{url:url}),(err, res) => {
             res.send('Successful update!')
         };
-    },
-    getProfilePic: (req, res) => {
+    });
+    router.get('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
         db.profile_pic.find({user_id:userId}).then((response)=>{
             res.send(response);
         })
-    }
-}
+    });
+

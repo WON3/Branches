@@ -42,7 +42,7 @@ class Contribute extends React.Component {
             console.log('Put something in the field!!')
         }
     }
-
+    
 
     render() {
         const { classes } = this.props;
