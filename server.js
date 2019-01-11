@@ -69,7 +69,6 @@ passport.serializeUser((user,done)=> {
     if(!user){
         done('No user');
     }
-
     done(null, user);
     },
 );
