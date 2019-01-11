@@ -65,7 +65,7 @@ class User extends Component{
                     changeBio={this.changeBio}
                     proPic={this.state.proPic}
                     stories={this.state.stories}
-                    />
+                />
             </div>
         )
     }
