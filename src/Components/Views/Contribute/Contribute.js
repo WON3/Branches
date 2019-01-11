@@ -34,7 +34,7 @@ class Contribute extends React.Component {
                 prior_contribution_id
             }
             
-            axios.post('/api/contribution', contributions)
+            axios.post('/contributions', contributions)
             .then(res => {
                 this.props.addContribution(res.data);
             })

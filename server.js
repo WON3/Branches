@@ -9,12 +9,10 @@ const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy,
   bcrypt = require("bcrypt"),
-  contribution = require('./server/controllers/contributionController'),
-  contribute = require('./server/controllers/createContribution'),
-  story = require('./server/controllers/storyController'),
   admin = require('./server/controllers/adminController'),
   userRouter = require('./server/controllers/userController'),
-  contributionsRouter =  require('./server/controllers/contributionsController');
+  contributionsRouter =  require('./server/controllers/contributionsController'),
+  storyRouter = reqire('./server/controllers.storyController');
 
 require("dotenv").config();
 
@@ -35,8 +33,6 @@ app.use(session({
 
 app.use( passport.initialize() );
 app.use( passport.session() );
-
-
 
 passport.use('register', new LocalStrategy({
     usernameField: 'email',
@@ -82,16 +78,12 @@ passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
-
 //////////////////// MIDDLEWARE ///////////////////////
 app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 app.use(bodyParser.json());
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-let attempts=0;
 
 passport.use('login', new LocalStrategy({
     usernameField:'username',
@@ -129,31 +121,25 @@ passport.use('login', new LocalStrategy({
 passport.serializeUser((user, done) => {
 if (!user) {
     done('No user');
-}
-
+    }
 done(null, user);
-},
-);
+},);
 
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
 ////////////////////Router///////////////////////////////
-//User
-app.use('/user', userRouter);
+    //User
+    app.use('/user', userRouter);
 
-//Contributions
-app.use('/contributions', contributionsRouter);
+    //Contributions
+    app.use('/contributions', contributionsRouter);
+
+    //Stories
+    app.use('/newStory', storyRouter);
 
 /////////////////// API ROUTES ///////////////////////////
-//
-// app.get('/api/contributions/:story_id', contribution.get_contribution);
-
-
-
-app.post('/api/newStory', story.addStory);
-app.post('/api/contribution', contribute.create_contribution);
 
 app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
     const db = req.app.get('db');
@@ -164,7 +150,6 @@ app.post('/api/register', passport.authenticate(['register']), (req, res, next)=
     res.send('Successful registration')
 });
 
-
 /////////////////////////Persist Redux///////////////////////////////////////
 app.get('/api/isLoggedIn', (req, res, next)=>{
     res.send(req.user)
@@ -172,10 +157,7 @@ app.get('/api/isLoggedIn', (req, res, next)=>{
 ///////////////// ADMIN ROUTES ///////////////////////////
 app.get('/*', admin.publicRouteCatchAll);
 
-
-
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
 })
-

@@ -42,7 +42,7 @@ class StoryWizardFour extends Component {
                 moderator_accepts: storyGuideMod
             }
 
-            axios.post(`/api/newStory`, newStory)
+            axios.post(`/newStory`, newStory)
                 .then( res => {
                     console.log("new story added");
                     // this.props.history.push('/')

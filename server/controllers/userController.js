@@ -25,6 +25,7 @@ module.exports = userRouter;
             };
         })
     });
+    
     userRouter.put('/bio/:userId' , (req,res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
@@ -33,6 +34,7 @@ module.exports = userRouter;
             res.send('Update successful.');
         };
     });
+
     userRouter.put('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
@@ -41,6 +43,7 @@ module.exports = userRouter;
             res.send('Successful update!')
         };
     });
+
     userRouter.get('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
         const {userId} = req.params;
