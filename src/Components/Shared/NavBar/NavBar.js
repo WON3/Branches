@@ -79,6 +79,7 @@ import './NavBar.css'
         {name: "Dashboard", path: "/", shouldShow: true},
         {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
         {name: "Login", path: "/Login", shouldShow: !this.props.userId ? true : false},
+        {name: "Contribute", path: "/contribute", shouldShow: this.props.userId ? true : false}
     ];   
     
         
