@@ -32,12 +32,13 @@ class Dashboard extends Component {
     }
 
     render(){
+       
         const stories = this.state.stories.map((story)=>{
             return(
                 <Card className="storybox">
                 <CardContent>
-                <Typography className= "storyname" key={story.story_id}>{story.title}</Typography>
-                <Typography className = "description" key={story.story_id}>{story.description}</Typography>
+                <Typography variant="h6" className= "storyname" key={story.story_id}>{story.title}</Typography>
+                <Typography variant="body2" className = "description" key={story.story_id}>{story.description}</Typography>
                 <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
                 </CardContent>
                 </Card>
@@ -46,7 +47,7 @@ class Dashboard extends Component {
         return(
 
             <div className ="dashboard" >
-               <h1>Stories in the Works</h1>
+            <h1>Story Dashboard</h1>
              {stories}
              <Snackbar
             anchorOrigin={{
@@ -74,28 +75,3 @@ class Dashboard extends Component {
     }
  }
  export default Dashboard;
-// import React, { Component } from "react";
-// import Snackbar from "@material-ui/core/Snackbar";
-// import IconButton from "@material-ui/core/IconButton";
-// import CloseIcon from "@material-ui/icons/Close";
-
-// class Dashboard extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             open: true
-//     };
-// }
-//       handleClose = () => {
-//         this.setState({ open: false });
-//       };
-    
-//   render() {
-//     return <div>
-//         Dashboard
-        
-//     </div>;
-//   }
-// }
-
-// export default Dashboard;
