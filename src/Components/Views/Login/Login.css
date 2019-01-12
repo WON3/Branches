@@ -5,7 +5,7 @@
     box-shadow: 3px 5px 8px grey;
     padding: 20px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 5px;
     font-family: sans-serif;
     font-size: 50pt;
     font-weight: 700;
@@ -14,18 +14,19 @@
 .header{
     margin:-20px;
 }
-.LoginForm{
+.LoginForm {
     padding: 10px;
     font-size: 20pt;
     position: relative;
+    
 
+}
+.inputBox fieldset{
+    border-radius: 4px;
 }
 #outlined-name{
     color:#378674;
 }
 #outlined-password-input{
     color:#378674; 
-}
-.login{
-width:300px;
 }
