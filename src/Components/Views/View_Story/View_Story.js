@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './View_Story.css';
 import RenderCont from './RenderCont';
+import Readview from './Readview';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon'
