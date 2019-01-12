@@ -38,14 +38,15 @@ class ViewStory extends Component {
     render() {
         if (!this.state.contribution.story) {
             return <div className="load">
-                <LoadingIcon />
+                {/* <LoadingIcon /> */}
+                LOADING!!!
             </div>
         }
 
         const contributions = this.state.contribution.contributions.map((contribution) => <RenderCont contribution={contribution} />)
         const lastContribution = this.state.contribution.contributions[this.state.contribution.contributions.length - 1]
         const prior_contributions_id = lastContribution ? lastContribution.id : 0
-        
+
         return (
             <div className="body">
                 <div style={{ textAlign: "center", padding: "10px" }} className="head">
@@ -55,6 +56,9 @@ class ViewStory extends Component {
                 </div>
                 <div className="contribution">{contributions}</div>
                 <div className="butt">
+                    <Link to={`/dashboard`}>
+                        <Button size="large">Home</Button>
+                    </Link>
                     <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
                         <Button size="large">Create Contribution</Button>
                     </Link>
