@@ -38,8 +38,7 @@ class ViewStory extends Component {
     render() {
         if (!this.state.contribution.story) {
             return <div className="load">
-                {/* <LoadingIcon /> */}
-                LOADING!!!
+                <LoadingIcon />
             </div>
         }
 
