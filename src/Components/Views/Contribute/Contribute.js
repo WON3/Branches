@@ -34,11 +34,13 @@ class Contribute extends React.Component {
                 is_accepted,
                 prior_contribution_id: this.props.match.params.prior_contribution_id
             }
-            axios.post('/api/contribution', contributions)
-                .then(res => {
-                    this.props.history.push(`/view_story/${this.props.match.params.story_id}`)
-                })
-                .catch(err => console.log("ya done fudged up", err))
+
+            
+            axios.post('/contributions', contributions)
+            .then(res => {
+                this.props.addContribution(res.data);
+            })
+
         } else {
             console.log('Put something in the field!!')
         }

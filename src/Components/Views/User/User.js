@@ -17,30 +17,30 @@ class User extends Component{
         this.changePic = this.changePic.bind(this);
         this.changeBio = this.changeBio.bind(this);
     }
+
     componentWillMount(){
         const {userId} = this.props;
         axios.get(`/user/profilePic/${userId}`).then(res => {
-            this.setState({proPic:res.data[0]['url']})
-                       
+            this.setState({proPic:res.data[0]['url']})              
         })
     };
 
     componentDidMount(){
-        const {userName,userId} = this.props;
+        const {userName, userId} = this.props;
         this.setState({userName:userName, userId:userId})
         axios.get(`/user/profile/${userId}`)
             .then(res=>{
             const {username, bio, stories } = res.data;
             this.setState({userName:username, bio:bio, stories:stories})   
-        });
-          
+        });  
     };
     
     changePic (val) {
         this.setState({proPic:val});
         this.props.updateProfilePic(val);
         const {userId} = this.state;
-        axios.put(`/user/profilePic/${userId}`, {url:val}).then(res => {
+        axios.put(`/user/profilePic/${userId}`, {url:val})
+            .then(res => {
             console.log(res.data);
         })
     };
@@ -49,7 +49,8 @@ class User extends Component{
         const userId = this.state.userId;
         this.setState({ bio:val });
         this.props.updateBio(val);
-        axios.put(`/user/bio/${userId}?bio=${val}`).then(res=>{
+        axios.put(`/user/bio/${userId}?bio=${val}`)
+            .then(res=>{
             console.log(res.data)
         })
     };
