@@ -42,7 +42,7 @@ const styles = theme => ({
     button: {
       background:'#378674',
       marginTop: 5,
-      alignSelf: 'center'     
+      alignSelf: 'center' 
     }, 
     itemFix: {
       height:'80vh',

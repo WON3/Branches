@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../../CreateStory/CreateStory.css';
 import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
+import Button from "@material-ui/core/Button";
 
 
 class StoryWizardFour extends Component {
@@ -45,7 +46,7 @@ class StoryWizardFour extends Component {
             axios.post(`/newStory`, newStory)
                 .then( res => {
                     console.log("new story added");
-                    // this.props.history.push('/')
+                    this.props.history.push('/')
                 })
         }
     
@@ -58,17 +59,44 @@ render(props){
     return (
         <div className="createStory">
             <div>
+            <h2 style={{fontSize: "40px", paddingTop: "15%"}}>You're Almost Finished</h2>
+            </div>
+            <div>
             <h2>Please Review the Story Guidelines You've Selected </h2>
             </div>
-            <div className="wizard-box">
-                <div>Title:{storyGuideTitle}</div>
-                <div>Description:{storyGuideDescripton}</div>
-                <div>Point of View:{storyGuidePOV}</div>
-                <div>Allows Story to Fork:{storyGuideFork}</div>
-                <div>You are Controlling All Submissions:{storyGuideMod}</div>
-                <div>
-                <button className="submit-story-bttn" onClick= {() => {this.addNewStory()}}>Submit New Story</button>
-            </div>
+            <div className="create-three-div">
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Title:</h2>
+                    <div  style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideTitle}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Description:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideDescripton}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Point of View:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuidePOV}</div>
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">Allows Story to Fork:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideFork}</div>
+                    
+                </div>
+                <div id="POV-Fork-Mod">
+                    <h2 id="questions">You are Controlling All Submissions:</h2>
+                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideMod}</div>
+                </div>
+        
+                <div className="button">
+                <Button 
+                variant="contained" 
+                color="primary" 
+                style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}
+                onClick= {() => {this.addNewStory()}}>
+                Submit New Story
+                </Button>
+                
+                </div>
             </div>
 
         </div>

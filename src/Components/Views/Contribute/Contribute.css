@@ -1,5 +1,9 @@
 .contribute {
-    margin-top: 50px;
+    margin-top: 150px;
     height: 50vh;
-    background-color: black;
+}
+
+.add {
+    font-size: 100px;
+    text-align: center
 }

@@ -3,6 +3,8 @@ import '../../CreateStory/CreateStory.css';
 import { addDescripton } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 class StoryWizardTwo extends Component {
     constructor(props){
@@ -34,13 +36,29 @@ render(props){
     return (
         <div className="createStory">
              <div className="title-box">
-                <h1>Create Story Wizard</h1>
+                <h1 style={{marginTop:"5%"}}>Create Story Wizard</h1>
+                <img src=""></img>
             </div>
-            <div className="wizard-box">
-            <h2>Description</h2>
-            <input className="descripton" name= "description" onChange={e => {addDescripton(e.target.value)}}></input>
-            {console.log(storyGuideDescripton)}
-            <Link to= '/create_three'><button>Next</button></Link>
+            <div className="wizard-box" style={{width: "80%", height: "100%", marginLeft: "10%"}}>
+            <TextField 
+            className="descripton" 
+            name="description"
+            label= "Description (maximum: 1000 characters)" 
+            multiline
+            inputProps={{
+                maxLength: "1000"
+              }}
+            style={{textDecoration: "none", height: "400px", wordBreak: "none"}}
+            onChange={e => {addDescripton(e.target.value)}}   
+            margin="normal"
+            variant="outlined"/>
+            <div className= "button">
+            <Link to= '/create_three' style={{textDecoration: "none"}}>
+            <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
+                NEXT
+            </Button>            
+            </Link>
+            </div>
             </div>   
         </div>
     )

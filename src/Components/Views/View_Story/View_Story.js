@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './View_Story.css';
-import RenderCont from './RenderCont'
+import RenderCont from './RenderCont';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 
 class ViewStory extends Component {
@@ -12,6 +14,7 @@ class ViewStory extends Component {
             contribution: {},
             open: false
         }
+        this.reset = this.reset.bind(this)
     }
     handleTooltipClose = () => {
         this.setState({ open: false });
@@ -22,13 +25,19 @@ class ViewStory extends Component {
         this.setState({ open: true });
     };
     componentDidMount() {
-        debugger
         const { story_id } = this.props.match.params
         axios.get(`/contributions/${story_id}`)
             .then((res) =>
-                this.setState({ contribution: res.data })
+                this.setState({ contribution: res.data }),
+                this.reset()
             )
             .catch(err => console.log('axios create error', err))
+    }
+
+    reset(){
+        this.setState({
+            contribution: ''
+        })
     }
 
     render() {
@@ -37,15 +46,20 @@ class ViewStory extends Component {
         }
 
         const contributions = this.state.contribution.contributions.map((contribution) => <RenderCont contribution={contribution} />)
-
+        const prior_contributions_id = this.state.contribution.contributions[this.state.contribution.contributions.length - 1].id
         return (
             <div className="body">
-                <div style={{textAlign:"center", padding:"10px"}} className="head">
+                <div style={{ textAlign: "center", padding: "10px" }} className="head">
                     <h1>{this.state.contribution.story.title}</h1>
                     <p>~~~~~Preface~~~~~</p>
                     <h3>{this.state.contribution.story.description}</h3>
                 </div>
                 <div>{contributions}</div>
+                <div className="butt">
+                    <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
+                        <Button>Create Contribution</Button>
+                    </Link>
+                </div>
             </div>
         )
     }

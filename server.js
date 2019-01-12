@@ -140,7 +140,6 @@ passport.deserializeUser((user, done) => {
     app.use('/newStory', storyRouter);
 
 /////////////////// API ROUTES ///////////////////////////
-
 app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
     const db = req.app.get('db');
     const {username} = req.body;
