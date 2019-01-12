@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import classNames from 'classnames';
 import './Contribute.css'
+import { Link } from 'react-router-dom';
+
 
 class Contribute extends React.Component {
     constructor(props) {
@@ -33,31 +34,39 @@ class Contribute extends React.Component {
                 is_accepted,
                 prior_contribution_id: this.props.match.params.prior_contribution_id
             }
-            axios.post('/api/contribution', contributions)
-                .then(res => {
-                    this.props.addContribution(res.data);
-                })
-                .catch(err => console.log("ya done fudged up", err))
+
+            
+            axios.post('/contributions', contributions)
+            .then(res => {
+                this.props.addContribution(res.data);
+            })
+
         } else {
             console.log('Put something in the field!!')
         }
     }
-
+    
 
     render() {
-        const { classes } = this.props;
         return (
             <div className="contribute">
                 <form noValidate autoComplete="off">
                     <h1 className="add">Add contribution</h1>
-                    <TextField id="outlined-multiline-flexible"
+                    <TextField
+                        value={this.state.contribution}
+                        id="outlined-multiline-flexible"
                         label="Continue the story here!"
                         multiline
                         rowsMax="4"
                         margin="normal"
-                        variant="outlined" 
+                        variant="outlined"
                         onChange={this.handleChange} />
-                    <Button style={{ margin: "auto" }} size="large" color="default" onClick={this.handleSubmit}>Submit Contribution</Button>
+                    <div className="butt">
+                        <Link style={{ textDecoration: "none" }} to={`/view_story/${this.props.match.params.story_id}`}>
+                            <Button size="large" style={{ width: "125px", textDecoration: "none" }}>Go Back To Story</Button>
+                        </Link>
+                        <Button type="submit" style={{ margin: "auto" }} size="large" color="default" onClick={this.handleSubmit}>Submit Contribution</Button>
+                    </div>
                 </form>
             </div>
         )
