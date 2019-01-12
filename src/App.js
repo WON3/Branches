@@ -6,8 +6,22 @@ import routes from "./routes";
 import Header from "./Components/Shared/Header/Header";
 import { MuiThemeProvider } from "@material-ui/core";
 import theme from "./theme";
+import axios from 'axios';
+import { connect } from "react-redux";
+import { getUser } from "./ducks/reducer";
 
 class App extends Component {
+
+  componentWillUpdate(){
+    axios.get('/api/isLoggedIn').then(res => {
+      
+      if(Object.keys(res.data).length>0){
+      const {id, username} = res.data;
+      this.props.getUser(id, username);
+      } 
+    })
+  }
+
   render() {
     return (
       
@@ -28,4 +42,7 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export default connect(null, 
+  { getUser })
+  (App);

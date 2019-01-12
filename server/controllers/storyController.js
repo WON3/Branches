@@ -1,6 +1,9 @@
-module.exports = {
+const express = require('express');
+const storyRouter = express.Router();
 
-    addStory: (req, res, next) =>{
+module.exports = storyRouter;
+
+    storyRouter.post('/', (req, res, next) =>{
         const dbInstance = req.app.get('db');
         const {is_complete,
             user_id,
@@ -25,5 +28,4 @@ module.exports = {
             res.status(500).send( {errorMessage: "Failed to add new story"});
             console.log(err);
         })
-    }   
-}
+    });   

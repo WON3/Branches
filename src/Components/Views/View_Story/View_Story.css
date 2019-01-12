@@ -3,8 +3,9 @@
 }
 .body {
     height: 100vh;
-    overflow: scroll;
-    margin: 10px;
+    overflow: wrap;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .head {
@@ -15,7 +16,7 @@
 }
 h1 {
     font-size: 200px;
-    text-decoration: underline
+    color: #5d5147
 }
 h3 {
     text-align: start;
@@ -23,4 +24,10 @@ h3 {
 
 .butt {
     text-align: center
+}
+.contribution {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 10px
 }

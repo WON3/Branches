@@ -36,6 +36,9 @@ const styles = theme => ({
       boxSizing: 'border-box',
       textAlign:'jusitify'
     },
+    but: {
+        margin:'auto'
+    },
     button: {
       background:'#378674',
       marginTop: 5,
@@ -69,7 +72,6 @@ const styles = theme => ({
         alignSelf: 'center',
         fontFamily: 'Slabo'
       }
-  
     });
 
 class ButtonMode extends Component {
@@ -104,7 +106,7 @@ class ButtonMode extends Component {
     render(){
         const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.but}>
                 <Button 
                     className={classes.button}
                     onClick={this.open}
@@ -115,22 +117,24 @@ class ButtonMode extends Component {
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                     onClose={this.close}
-                    >
-                    <div className={classes.paper}>
-                        <TextField
-                            id="filled-textarea"
-                            label={this.props.label}
-                            placeholder={this.props.placeHolder}
-                            multiline
-                            className={classes.textField}
-                            onChange={(e)=>{this.handleInput(e.target.value)}}
-                            rows= {this.props.rows}
-                            />
-                        <Button 
-                            onClick={this.handle}
-                            className={classes.button} 
-                            color="secondary">Submit</Button>                  
-                  </div>
+                >
+                <div className={classes.paper}>
+                    <TextField
+                        id="filled-textarea"
+                        label={this.props.label}
+                        placeholder={this.props.placeHolder}
+                        multiline
+                        className={classes.textField}
+                        onChange={(e)=>{this.handleInput(e.target.value)}}
+                        rows= {this.props.rows}
+                        />
+                    <Button 
+                        onClick={this.handle}
+                        className={classes.button} 
+                        color="secondary">
+                        Submit
+                    </Button>                  
+                </div>
                 </Modal>
             </div>
         )
