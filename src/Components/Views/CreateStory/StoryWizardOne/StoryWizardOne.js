@@ -44,30 +44,11 @@ class StoryWizardOne extends Component {
     const { storyGuideTitle, addTitle } = this.props;
     return (
 
-        <div className="createStory">
-            <div className="title-box">
-                   <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center"
-            }}
-            open={this.state.open}
-            autoHideDuration={5000}
-            onClose={this.handleClose}
-            message={<p>THE TALE STARTS HERE!</p>}
-            action={[
-              <IconButton
-                key="close"
-                aria-label="Close"
-                color="inherit"
-                onClick={this.handleClose}
-              >
-                <CloseIcon />
-              </IconButton>
-            ]}
-          />
+        <div className= "createStory">
+            <div className= "title-box">
+                   
               <div>
-                <h1>Create Story Wizard</h1>
+                <h2 className= "wizard-title">Create Story Wizard</h2>
                 {/* <img src={'./src/images/pen-desktop.png'} alt= "pen"/> */}
               </div>
                 <p>We'll walk you through all of guidelines for creating your new story here</p>
@@ -85,13 +66,14 @@ class StoryWizardOne extends Component {
             variant="outlined"
             />
          
-          <div className='button'> <Link to= '/create_two' style={{textDecoration: "none"}}>
-
-          <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
-            NEXT
-          </Button></Link></div>
-        
-            </div>
+          <div className='button'> 
+            <Link to= '/create_two' style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+              NEXT
+              </Button>
+            </Link>
+          </div>
+          </div>
         </div>
       
     );

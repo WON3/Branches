@@ -36,7 +36,7 @@ render(props){
     return (
         <div className="createStory">
              <div className="title-box">
-                <h1 style={{marginTop:"5%"}}>Create Story Wizard</h1>
+                <h2 className= "wizard-title">Create Story Wizard</h2>
                 <img src=""></img>
             </div>
             <div className="wizard-box" style={{width: "80%", height: "100%", marginLeft: "10%"}}>
@@ -52,7 +52,12 @@ render(props){
             onChange={e => {addDescripton(e.target.value)}}   
             margin="normal"
             variant="outlined"/>
-            <div className= "button">
+            <div className= "button" id="wizard-buttons">
+            <Link to= '/create_one' style={{textDecoration: "none"}}>
+              <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+              BACK
+              </Button>
+            </Link>
             <Link to= '/create_three' style={{textDecoration: "none"}}>
             <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
                 NEXT
