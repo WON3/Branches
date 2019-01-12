@@ -26,7 +26,7 @@ class ViewStory extends Component {
     };
     componentDidMount() {
         const { story_id } = this.props.match.params
-        axios.get(`/api/contributions/${story_id}`)
+        axios.get(`/contributions/${story_id}`)
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
