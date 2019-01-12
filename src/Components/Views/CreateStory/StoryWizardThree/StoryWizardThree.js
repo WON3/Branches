@@ -4,11 +4,25 @@ import {addPOV, addForkRestriction, addModerator } from '../../../../ducks/reduc
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+
 
 function StoryWizardThree(props){
-    const {storyGuidePOV, addPOV, storyGuideFork, addForkRestriction, storyGuideMod, addModerator } = props;
+    const {storyGuidePOV, addPOV, storyGuideFork, addForkRestriction, storyGuideMod, addModerator} = props;
+    const { classes } = props;
     return (
         <div className="createStory" >
+    
          <div className="title-box">
                 <h2 className= "wizard-title">Create Story Wizard</h2>
             </div>
