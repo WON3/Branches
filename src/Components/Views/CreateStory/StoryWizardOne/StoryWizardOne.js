@@ -17,7 +17,7 @@ class StoryWizardOne extends Component {
 
     this.state = {
       is_Complete: false, //defaults to false
-      user_id: 1, //from props,
+      user_id: this.props.userId, //from props,
       title: "", //user Input
       description: "",
       point_of_view: "First Person",
@@ -52,7 +52,7 @@ class StoryWizardOne extends Component {
               horizontal: "center"
             }}
             open={this.state.open}
-            autoHideDuration={6000}
+            autoHideDuration={5000}
             onClose={this.handleClose}
             message={<p>THE TALE STARTS HERE!</p>}
             action={[
@@ -66,14 +66,20 @@ class StoryWizardOne extends Component {
               </IconButton>
             ]}
           />
+              <div>
                 <h1>Create Story Wizard</h1>
+                {/* <img src={'./src/images/pen-desktop.png'} alt= "pen"/> */}
+              </div>
                 <p>We'll walk you through all of guidelines for creating your new story here</p>
             </div>
             <div className="wizard-box">
             <TextField 
             className="title" 
             name= "title" 
-            label= "Title" 
+            label= "Title (maximum: 100 characters)" 
+            inputProps={{
+              maxLength: "100"
+            }}
             onChange={e => {addTitle(e.target.value)}} 
             margin="normal"
             variant="outlined"

@@ -11,19 +11,23 @@ import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
 
 const styles = theme => ({
-  rootD: {
+  root: {
       marginTop:75,
       height: '87vh',
       overflow:'scroll',
+      flexGrow:1 ,
+      alignSelf: 'center'
   },
-  containerCustom: {
-    height: 'fill',
-    dispaly: 'flex',
-    boxSizing: 'border-box',
+  cardHolder : {
+    display: 'flex',
     flexDirection:'row',
+    maxWidth: '850px',
+    margin: 'auto',
+    flexWrap:'wrap',
   },
   background: {
     background: '#EAFBF7',
+    padding: 5
   },
   bio: {
     height: 140,
@@ -33,34 +37,25 @@ const styles = theme => ({
   button: {
     background:'#378674',
     marginTop: 5,
-    marginLeft: '62.3%',
+    margin: 'auto',
+    
   }, 
-  buttonHolder: {
-    padding:3,
-    marginLeft:'35%'
-  },
-  itemFixD: {
-    height:'85vh',
-    width: '-webkit-fill-available',
-    maxWidth: '20%',
-    flexGrow: '1',
-    flexShrink: '1',
-    display:'inline-block'
-  },
   itemBio: {
-    height: '85vh',
-    flexGrow: '2',
-    flexShrink:'1',
-    width: '79%',
-    display: 'inline-block'
+    height: 'auto',
+    width: 850,
+    minWidth: 500,
+    margin: 'auto',
+    
   },
   card: {
-      maxWidth: 1100,
+      maxWidth: 850,
       width: 'auto',
       height: '102%',
       marginTop:20,
       marginLeft: 30,
-      padding:theme.spacing.unit*2,      
+      padding:theme.spacing.unit*2, 
+      display: 'flex',
+      justify: 'space-around'     
     },
     media: {
       width: 'fill',
@@ -78,7 +73,11 @@ const styles = theme => ({
     titles: {
       textAlign: 'center',
       alignSelf: 'center',
-      fontFamily: 'Slabo'
+      fontFamily: 'Slabo',
+      width: '75%'
+    },
+    works: {
+      width: '75%',
     }
   });
   
@@ -118,7 +117,7 @@ const styles = theme => ({
           <div key={story.story_id}>
               <h3>{story.title}</h3>
               <ul className={classes.background}>
-                <li>{story.description}</li>
+                <li style={{wordWrap: 'break-word'}}>{story.description}</li>
                 <li>{story.is_complete}</li>
               </ul>  
           </div>
@@ -126,10 +125,12 @@ const styles = theme => ({
       });
 
       return (  
-      <div className={classes.rootD}>
-        <Grid containerCustom>
-          <Grid className={classes.itemFixD} >
-            <Card className={classes.card}>
+      <div className={classes.root}>
+        <div className={classes.cardHolder}>
+         <Grid className={classes.itemBio}>
+          <Card className={classes.card}>
+              
+              <div>
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
@@ -161,13 +162,12 @@ const styles = theme => ({
                     change={this.handleBio}
                     rows='4'
                   />
-               
+                </div>  
+
+
             </div>
-            </Card>
-          </Grid>
-          <Grid className={classes.itemBio}>
-            <Card className={classes.card}>
-            <CardContent>
+            <div className={classes.works}>
+              <CardContent>
                 <CardHeader 
                   className={classes.titles}
                   title='Works'/>
@@ -177,9 +177,10 @@ const styles = theme => ({
                   </ul>
                 </Typography>
               </CardContent>
+            </div>
             </Card>
           </Grid>
-          </Grid>
+          </div> 
       </div>
       );
     }

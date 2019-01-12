@@ -1,0 +1,38 @@
+* {
+    font-family: sans-serif
+}
+.dashboard {
+    font-size: 10em;
+    height: 100vh;
+    margin: 10px;
+    margin-top: 100px;
+    text-align: center;
+    font-size: 50px;
+    align-items: flex-end;
+}
+
+.storybox {
+    
+    font-size: 2em;
+    height: auto;
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 2px solid ;
+    border: 3px solid rgb(40, 108, 53)
+}
+
+.storyname {
+    border: 3px solid rgb(40, 108, 53);
+    text-align: center;
+}
+.description{
+   height: auto;
+   margin-top: 100px;
+}
+
+.view{
+    width: 100px;
+    background-color: brown;
+    margin-top: 100px;
+}  

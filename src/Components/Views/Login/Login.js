@@ -3,16 +3,15 @@ import "./Login.css";
 import axios from "axios";
 import Register from "../Register/Register";
 import TextField from "@material-ui/core/TextField";
-import Buttons from "../../Shared/Buttons/Buttons";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import { Link } from "react-router-dom";
 
-/*format login code for username and password as well as css for Login view*/
 
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/reducer";
+import LoginButton from "./LoginButton";
+
 
 class Login extends Component {
   constructor(props) {
@@ -39,6 +38,7 @@ class Login extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  
 
   login() {
     axios.post(`/api/login`, {
@@ -52,13 +52,13 @@ class Login extends Component {
       });
   }
 
-  render() {
+  render() {  
     return (
       <div>
         <div className="LoginBox">
-          <header>Welcome Story Teller</header>
+          <div className="header">Login</div>
           <form className="LoginForm">
-            <TextField
+            <TextField className="textfield"
               id="outlined-name"
               label="Username"
               name="username"
@@ -66,6 +66,8 @@ class Login extends Component {
               onChange={this.handleChange}
               margin="normal"
               variant="outlined"
+              style={{backgroundColor: "#EAFBF7", color:"#378674"}
+              }
             />
             <br />
             <TextField
@@ -78,24 +80,24 @@ class Login extends Component {
               onChange={this.handleChange}
               margin="normal"
               variant="outlined"
+              border=""
+              style={{backgroundColor: "#EAFBF7", textDecoration: "none", color:"#378674", border:"#5d5147"}}
             />
             <br />
-   
+
             <br />
             <Register />
           </form>
-          <button onClick={this.login}>
-          login
-        </button>
+          <LoginButton login={this.login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left"
             }}
             open={this.state.open}
-            autoHideDuration={6000}
+            autoHideDuration={5000}
             onClose={this.handleClose}
-            message={<p>Welcome to Branches</p>}
+            message={<p>Welcome Story Teller</p>}
             action={[
               <IconButton
                 key="close"
@@ -112,6 +114,7 @@ class Login extends Component {
     );
   }
 }
+
 
 export default connect(
   null,

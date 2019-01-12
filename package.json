@@ -2,8 +2,10 @@
   "name": "branches",
   "version": "0.1.0",
   "private": true,
-  "main": "server/server.js",
+
+  "main": "server.js",
   "proxy": "http://localhost:8070",
+
   "dependencies": {
     "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",

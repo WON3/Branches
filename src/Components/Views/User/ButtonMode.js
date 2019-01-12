@@ -36,10 +36,13 @@ const styles = theme => ({
       boxSizing: 'border-box',
       textAlign:'jusitify'
     },
+    but: {
+        margin:'auto'
+    },
     button: {
       background:'#378674',
       marginTop: 5,
-      alignSelf: 'center'     
+      alignSelf: 'center' 
     }, 
     itemFix: {
       height:'80vh',
@@ -104,7 +107,7 @@ class ButtonMode extends Component {
     render(){
         const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.but}>
                 <Button 
                     className={classes.button}
                     onClick={this.open}

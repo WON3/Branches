@@ -1,5 +1,6 @@
 .openMode  {
     z-index:0 !important;
+    width: 300px;
 }
 .buttonBox {
     display:flex;
@@ -8,6 +9,8 @@
 }
 .buttonBox Button {
     margin:4px;
+    width:150px;
+    
 }
 form {
     display:flex;
