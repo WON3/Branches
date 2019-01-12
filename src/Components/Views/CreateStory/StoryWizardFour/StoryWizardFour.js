@@ -15,7 +15,7 @@ class StoryWizardFour extends Component {
 
         this.state = {
             is_Complete: false, //defaults to false
-            user_id: 2 , //from props,
+            user_id: this.props.userId, //from props,
             title: "", //user Input
             description: "",
             point_of_view: "First Person",
@@ -145,7 +145,6 @@ render(props){
                 
                 </div>
             </div>
-
         </div>
     )
 }
