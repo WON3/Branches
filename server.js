@@ -12,7 +12,7 @@ const express = require("express"),
   admin = require('./server/controllers/adminController'),
   userRouter = require('./server/controllers/userController'),
   contributionsRouter =  require('./server/controllers/contributionsController'),
-  storyRouter = reqire('./server/controllers.storyController');
+  storyRouter = require('./server/controllers/storyController');
 
 require("dotenv").config();
 
