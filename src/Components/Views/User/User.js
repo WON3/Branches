@@ -18,10 +18,18 @@ class User extends Component{
         this.changeBio = this.changeBio.bind(this);
     }
 
+
     componentWillMount(){
         const {userId} = this.props;
         axios.get(`/user/profilePic/${userId}`).then(res => {
-            this.setState({proPic:res.data[0]['url']})              
+            console.log(res.data)
+            if(res.data.length===0){
+                this.setState({proPic:`https://robohash.org/${userId}?set=set4/`})  
+            }else{
+                this.setState({proPic:res.data[0]['url']})
+            }
+            
+                          
         })
     };
 
