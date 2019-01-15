@@ -93,6 +93,7 @@ class StoryWizardThree extends Component{
             value={this.props.storyGuideFork}
             onChange={e => addForkRestriction(e.target.value)}
             input={<Input name="allows_fork" id="age-helper" />}
+            required
           >
             <MenuItem value="">
               <em>(Select One)</em>

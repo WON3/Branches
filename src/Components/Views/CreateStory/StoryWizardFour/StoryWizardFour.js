@@ -67,7 +67,7 @@ render(props){
             <div>
             <h2>Please Review the Story Guidelines You've Selected </h2>
             </div>
-            <div className="create-three-div">
+            <div className="create-three-div" style={{justifyContent: "space-between"}}>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Title:</h2>
                     <div  style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideTitle}</div>
