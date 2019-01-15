@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import {connect} from 'react-redux';
 import {makeOpenClose} from '../../../ducks/reducer';
 import { Link } from "react-router-dom";
+import './NavBar.css'
 
  const drawerWidth = 240;
  const styles = theme => ({
@@ -77,7 +78,8 @@ import { Link } from "react-router-dom";
     const authenticatedList = [
         {name: "Dashboard", path: "/", shouldShow: true},
         {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
-        {name: "Login", path: "/Login",shouldShow: !this.props.userId ? true : false}
+        {name: "Login", path: "/Login", shouldShow: !this.props.userId ? true : false},
+        {name: "Contribute", path: "/contribute", shouldShow: this.props.userId ? true : false}
     ];   
     
         
@@ -88,7 +90,6 @@ import { Link } from "react-router-dom";
     })
      return (
       <div className={classes.root}>
-        <CssBaseline />
       
         <Drawer
           className={classes.drawer}

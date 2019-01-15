@@ -15,7 +15,7 @@ class StoryWizardFour extends Component {
 
         this.state = {
             is_Complete: false, //defaults to false
-            user_id: 2 , //from props,
+            user_id: this.props.userId, //from props,
             title: "", //user Input
             description: "",
             point_of_view: "First Person",
@@ -67,7 +67,7 @@ render(props){
             <div>
             <h2>Please Review the Story Guidelines You've Selected </h2>
             </div>
-            <div className="create-three-div">
+            <div className="create-three-div" style={{justifyContent: "space-between"}}>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Title:</h2>
                     <div  style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideTitle}</div>
@@ -145,7 +145,6 @@ render(props){
                 
                 </div>
             </div>
-
         </div>
     )
 }

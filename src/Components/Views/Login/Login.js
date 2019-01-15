@@ -23,6 +23,7 @@ class Login extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
+    this.handleClick =this.handleClick.bind(this);
   }
 
   handleChange = e => {
@@ -58,7 +59,7 @@ class Login extends Component {
         <div className="LoginBox">
           <div className="header">Login</div>
           <form className="LoginForm">
-            <TextField className="textfield"
+            <TextField classname = 'inputBox'
               id="outlined-name"
               label="Username"
               name="username"
@@ -66,11 +67,11 @@ class Login extends Component {
               onChange={this.handleChange}
               margin="normal"
               variant="outlined"
-              style={{backgroundColor: "#EAFBF7", color:"#378674"}
+              style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}
               }
             />
             <br />
-            <TextField
+            <TextField classname = 'inputBox'
               id="outlined-password-input"
               label="Password"
               type="password"
@@ -81,14 +82,14 @@ class Login extends Component {
               margin="normal"
               variant="outlined"
               border=""
-              style={{backgroundColor: "#EAFBF7", textDecoration: "none", color:"#378674", border:"#5d5147"}}
+              style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}}
             />
             <br />
 
             <br />
             <Register />
           </form>
-          <LoginButton login={this.login}/>
+          <LoginButton onClick={this.login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
