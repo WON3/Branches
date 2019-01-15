@@ -8,7 +8,7 @@ import { withStyles,} from '@material-ui/core/styles';
 const styles = {
   root: {
     background: '#EAFBF7',
-    borderRadius: 3,
+    borderRadius: 5,
     border: 0,
     color: '#378674',
     fontSize:20,
