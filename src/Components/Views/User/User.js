@@ -25,11 +25,9 @@ class User extends Component{
             console.log(res.data)
             if(res.data.length===0){
                 this.setState({proPic:`https://robohash.org/${userId}?set=set4/`})  
-            }else{
+            } else{
                 this.setState({proPic:res.data[0]['url']})
-            }
-            
-                          
+            }        
         })
     };
 
