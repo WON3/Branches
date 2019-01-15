@@ -47,15 +47,31 @@ passport.deserializeUser((username, done) => {
 });
 
 ////////////////////Router///////////////////////////////
-    //User
-    app.use('/user', userRouter);
 
-    //Contributions
-    app.use('/contributions', contributionsRouter);
+//User
+app.use('/user', userRouter);
+
+
+//Contributions
+app.use('/contributions', contributionsRouter);
+
+//Stories
+app.use('/newStory', storyRouter);
+
+//
+app.get('/api/Dashboard',(req, res, next)=>{
+    const db = app.get('db');
+    db.stories.find()
+    .then((stories)=>{
+        res.send(stories)
+    })
+})
+
 
     //Stories
     app.use('/newStory', storyRouter);
     
+
 /////////////////// API ROUTES ///////////////////////////
 app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
     const db = req.app.get('db');
@@ -71,7 +87,11 @@ app.get('/api/isLoggedIn', (req, res, next)=>{
     res.send(req.user)
 })
 ///////////////// ADMIN ROUTES ///////////////////////////
-app.get('/*', admin.publicRouteCatchAll);
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {
+        root: path.join(__dirname, "build")
+    })
+});
 
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {
