@@ -4,6 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './userStyles.css';
 
 const styles = theme => ({
     rootD: {
@@ -107,11 +109,10 @@ class ButtonMode extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.but}>
-                <Button 
-                    className={classes.button}
+                <FontAwesomeIcon icon="pencil-alt"
+                    className='fontA'
                     onClick={this.open}
-                    >Update
-                </Button>
+                    />
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"

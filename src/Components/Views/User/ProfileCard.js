@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './userStyles.css';
 
 const styles = theme => ({
   root: {
@@ -46,6 +46,7 @@ const styles = theme => ({
     width: 850,
     minWidth: 500,
     margin: 'auto',
+    color: '#378674'
     
   },
   card: {
@@ -128,21 +129,19 @@ render() {
         <Card className={classes.card}>
           <div>
             <div>
-              <FontAwesomeIcon icon="pencil-alt" />
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
                 title={this.props.userName}
                 />
-            </div> 
-            <div className={classes.buttonHolder}>
-              <ButtonMode 
+                <ButtonMode 
                 label='URL'
                 placeHolder='Picture URL'
                 change={this.handlePicture}
                 rows='1'
               />
-            </div>
+            </div> 
+              
             <CardHeader
               className={classes.titles}
               title={this.props.userName}
@@ -152,16 +151,16 @@ render() {
             <CardContent className={classes.background}>
               <Typography className={classes.bio} paragraph>
                 {this.props.bio}
-              </Typography>
-            </CardContent> 
-              <div className={classes.buttonHolder}>
-                <FontAwesomeIcon icon="pencil-alt" />
                 <ButtonMode 
                     label='Bio'
                     placeHolder='Tell us about you.'
                     change={this.handleBio}
                     rows='4'
                   />
+              </Typography>
+            </CardContent> 
+              <div className={classes.buttonHolder}>
+                
               </div>  
           </div>
           <div className={classes.works}>

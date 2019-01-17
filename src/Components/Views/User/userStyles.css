@@ -1,0 +1,17 @@
+* {
+    color: #EAFBF7;
+}
+h3 {
+    color: #EAFBF7;
+}
+.fontA{
+    display:hidden;
+    position:relative;
+    right:0px;
+    top:0px;
+    height:15px;
+
+}
+.fontA:hoover{
+    display:block;
+}

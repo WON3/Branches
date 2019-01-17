@@ -42,7 +42,6 @@ class Login extends Component {
   
 
   login() {
-    debugger
     axios.post(`/api/login`, {
         username: this.state.username,
         password: this.state.password
@@ -90,7 +89,7 @@ class Login extends Component {
             <br />
             <Register />
           </form>
-          <LoginButton onClick={this.login}/>
+          <LoginButton login={this.login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
