@@ -71,7 +71,7 @@ class Login extends Component {
               }
             />
             <br />
-            <TextField classname = 'inputBox'
+            <TextField className = 'inputBox'
               id="outlined-password-input"
               label="Password"
               type="password"
