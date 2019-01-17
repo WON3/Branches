@@ -19,6 +19,7 @@ const styles = theme => ({
 
 function RenderCont(props) {
   const { classes, contribution } = props;
+  console.log({contribution})
   return (
     <div className="contribution">
       <Tooltip title={contribution.username} placement="bottom-start" interactive>
