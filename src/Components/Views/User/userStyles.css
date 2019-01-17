@@ -3,15 +3,34 @@
 }
 h3 {
     color: #EAFBF7;
+    text-align: center !important;
 }
 .fontA{
-    display:hidden;
-    position:relative;
+    display:none;
+    position:absolute;
     right:0px;
     top:0px;
     height:15px;
-
 }
 .fontA:hoover{
     display:block;
+}
+.profile {
+    position:relative;
+}
+
+.contributionBox{
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    width: 97%;
+    flex-direction: column;
+    
+}
+.contributions {
+    height:fill;
+    width:100%;
+    background: #EAFBF7;
+    color: #378674;
+
 }

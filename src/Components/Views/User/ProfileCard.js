@@ -7,7 +7,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
 import './userStyles.css';
 
@@ -17,23 +16,18 @@ const styles = theme => ({
       height: '87vh',
       overflow:'scroll',
       flexGrow:1 ,
-      alignSelf: 'center'
-  },
-  cardHolder : {
-    display: 'flex',
-    flexDirection:'row',
-    maxWidth: '850px',
-    margin: 'auto',
-    flexWrap:'wrap',
+      alignSelf: 'center',
+      color: '#EAFBF7'
   },
   background: {
     background: '#EAFBF7',
     padding: 5
   },
   bio: {
-    height: 140,
+    height: '58vh',
     boxSizing: 'border-box',
-    textAlign:'jusitify'
+    textAlign:'jusitify',
+    width: 200
   },
   button: {
     background:'#378674',
@@ -77,11 +71,9 @@ const styles = theme => ({
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Slabo',
-    width: '75%'
-  },
-  works: {
     width: '75%',
-  }
+    color: '#378674' 
+  },
 });
   
 class UserCard extends Component {
@@ -110,25 +102,24 @@ class UserCard extends Component {
 render() {
   const { classes } = this.props;
   const { stories } = this.props;
-  let storyShow = stories.map((story,id) => {
-    return(
-      <div key={story.story_id}>
-        <h3>{story.title}</h3>
-        <ul className={classes.background}>
-          <li style={{wordWrap: 'break-word'}}>{story.description}</li>
-          <li>{story.is_complete}</li>
-        </ul>  
-      </div>
-    )
-  });
+  // let storyShow = stories.map((story,id) => {
+  //   return(
+  //     <div key={story.story_id}>
+  //       <h3>{story.title}</h3>
+  //       <ul className={classes.background}>
+  //         <li style={{wordWrap: 'break-word'}}>{story.description}</li>
+  //         <li>{story.is_complete}</li>
+  //       </ul>  
+  //     </div>
+  //   )
+  // });
 
   return (  
     <div className={classes.root}>
-      <div className={classes.cardHolder}>
-        <Grid className={classes.itemBio}>
+        <div className={classes.itemBio}>
         <Card className={classes.card}>
           <div>
-            <div>
+            <div className='profile'>
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
@@ -142,14 +133,13 @@ render() {
               />
             </div> 
               
-            <CardHeader
-              className={classes.titles}
-              title={this.props.userName}
-              subheader="Somewhere"
-            />
-            <CardHeader className={classes.titles} title='Bio' />
-            <CardContent className={classes.background}>
-              <Typography className={classes.bio} paragraph>
+            <div className={classes.titles}>
+               <h3>{this.props.userName}</h3>
+            </div>
+            <div className={classes.titles}>
+            <h3>Bio</h3>
+            <div className={classes.background}>
+              <div className={classes.bio} >
                 {this.props.bio}
                 <ButtonMode 
                     label='Bio'
@@ -157,27 +147,25 @@ render() {
                     change={this.handleBio}
                     rows='4'
                   />
-              </Typography>
-            </CardContent> 
+              </div>
+            </div> 
+            </div>
               <div className={classes.buttonHolder}>
                 
               </div>  
           </div>
-          <div className={classes.works}>
-            <CardContent>
-              <CardHeader 
-                className={classes.titles}
-                title='Works'/>
-              <Typography paragraph>
+          <div className='contributionBox'>
+              <div className={classes.titles}>
+                  <h3>Your stories</h3>
+               </div>
+              <div className='contributions'>
                 <ul>
-                  {storyShow}
+                  {/* {storyShow} */}
                 </ul>
-              </Typography>
-            </CardContent>
+              </div>
           </div>
         </Card>
-      </Grid>
-      </div> 
+      </div>
     </div>
   );
   }
