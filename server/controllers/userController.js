@@ -23,6 +23,8 @@ module.exports = userRouter;
                     res.send(profile);
                 })
             };
+        }).catch(err=>{
+            res.status(500).send('Could not find.')
         })
     });
     
@@ -31,7 +33,7 @@ module.exports = userRouter;
         const {userId} = req.params;
         const {bio} = req.query
         db.users.update({id:userId}, {bio:bio}),(err,res) => {
-            res.send('Update successful.');
+            res.send('Update successful.')
         };
     });
 
@@ -41,6 +43,9 @@ module.exports = userRouter;
         const {url} = req.body;
         db.profile_pic.update({user_id:userId},{url:url}),(err, res) => {
             res.send('Successful update!')
+            .catch(err=>{
+                res.status(500).send('Could not find.')
+            })
         };
     });
 
@@ -48,7 +53,10 @@ module.exports = userRouter;
         const db = req.app.get('db');
         const {userId} = req.params;
         db.profile_pic.find({user_id:userId}).then((response)=>{
-            res.send(response);
+            res.send(response)
+            .catch(err=>{
+                res.status(500).send('Could not find.')
+            })
         })
     });
 

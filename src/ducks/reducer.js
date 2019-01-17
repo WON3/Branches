@@ -16,7 +16,10 @@ const initialState = {
     storyGuideDescripton: '',
     storyGuidePOV: '',
     storyGuideFork: '',
-    storyGuideMod: ''
+    storyGuideMod: '',
+
+  //contribute
+    contribution:''
 }
 
 const GET_USER = 'GET_USER';
@@ -31,6 +34,7 @@ const ADD_DESCRIPTION = 'ADD_DESCRIPTION';
 const ADD_POV = 'ADD_POV';
 const ADD_FORK_RESTRICTION = 'ADD_FORK_RESTRICTION';
 const ADD_MODERATOR_RESTRICTION = 'ADD_MODERATOR_RESTRICTION';
+const ADD_CONTRIBUTION = 'ADD_CONTRIBUTION';
 /////////////////////User///////////////////////////
 export function getUser (userId, userName) {
     return {
