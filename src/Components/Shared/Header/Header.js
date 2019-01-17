@@ -31,6 +31,7 @@ const styles = theme => ({
     }),
   },
   menuButton: {
+    paddingBottom:35,
     marginLeft: 12,
     marginRight: 20,
   },
