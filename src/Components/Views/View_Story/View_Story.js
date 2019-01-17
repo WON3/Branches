@@ -5,7 +5,9 @@ import RenderCont from './RenderCont';
 import Readview from './Readview';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import LoadingIcon from '../LoadingIcon/LoadingIcon'
+import LoadingIcon from '../LoadingIcon/LoadingIcon';
+import Switch from '@material-ui/core/Switch';
+
 
 
 class ViewStory extends Component {
@@ -14,9 +16,16 @@ class ViewStory extends Component {
         super(props);
         this.state = {
             contribution: {},
-            open: false
+            open: false,
+            checkedA: true,
+            checkedB: true,
         }
     }
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.checked });
+    };
+
     handleTooltipClose = () => {
         this.setState({ open: false });
     };
@@ -44,27 +53,61 @@ class ViewStory extends Component {
         }
 
         const contributions = this.state.contribution.contributions.map((contribution) => <RenderCont contribution={contribution} />)
+        const contribution = this.state.contribution.contributions.map((contribution) => <Readview contribution={contribution} />)
         const lastContribution = this.state.contribution.contributions[this.state.contribution.contributions.length - 1]
         const prior_contributions_id = lastContribution ? lastContribution.id : 0
 
-        return (
-            <div className="body">
-                <div style={{ textAlign: "center", padding: "10px" }} className="head">
-                    <h1>{this.state.contribution.story.title}</h1>
-                    <p>~~~~~Preface~~~~~</p>
-                    <h3>{this.state.contribution.story.description}</h3>
+        if (this.state.checkedA) {
+            return (
+                <div className="body">
+
+                    <div style={{ textAlign: "center", padding: "10px" }} className="head">
+                        <h1>{this.state.contribution.story.title}</h1>
+                        <p>~~~~~Preface~~~~~</p>
+                        <h3>{this.state.contribution.story.description}</h3>
+                        <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                            onChange={this.handleChange('checkedA')}
+                            value="checkedA" />
+                    <p>User View</p>
+                    </div> 
+                    <div className="contribution">{contributions}</div>
+
+                    <div className="butt">
+                        <Link to={`/dashboard`}>
+                            <Button size="large">Home</Button>
+                        </Link>
+                        <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
+                            <Button size="large">Create Contribution</Button>
+                        </Link>
+                    </div>
                 </div>
-                <div className="contribution">{contributions}</div>
-                <div className="butt">
-                    <Link to={`/dashboard`}>
-                        <Button size="large">Home</Button>
-                    </Link>
-                    <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
-                        <Button size="large">Create Contribution</Button>
-                    </Link>
+            )
+        } else {
+            return (
+                <div className="body">
+
+                    <div style={{ textAlign: "center", padding: "10px" }} className="head">
+                        <h1>{this.state.contribution.story.title}</h1>
+                        <p>~~~~~Preface~~~~~</p>
+                        <h3>{this.state.contribution.story.description}</h3>
+                        <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                            onChange={this.handleChange('checkedA')}
+                            value="checkedA" />
+                            <p>Reader View</p>
+                    </div>
+
+                    <div className="contribution">{contribution}</div>
+                    <div className="butt">
+                        <Link to={`/dashboard`}>
+                            <Button size="large">Home</Button>
+                        </Link>
+                        <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
+                            <Button size="large">Create Contribution</Button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
- export default ViewStory;
+export default ViewStory;

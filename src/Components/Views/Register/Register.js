@@ -120,10 +120,10 @@ class Register extends Component{
                     onClose={this.handleClose}
                     >
                     <div className={classes.paper}>
-                        <Typography variant="h5" id="modal-title">
+                        <Typography id="modal-title">
                             Register
                         </Typography>
-                        <Typography variant="subtitle1" id="simple-modal-description">
+                        <Typography  id="simple-modal-description">
                             <form className={classes.container} noValidate autoComplete="off">
                                 <TextField
                                     required
