@@ -37,8 +37,8 @@ class Dashboard extends Component {
             return(
                 <Card className="storybox">
                 <CardContent>
-                <Typography variant="h6" className= "storyname" key={story.story_id}>{story.title}</Typography>
-                <Typography variant="body2" className = "description" key={story.story_id}>{story.description}</Typography>
+                <Typography className= "storyname" key={story.story_id}>{story.title}</Typography>
+                <Typography className = "description" key={story.story_id}>{story.description}</Typography>
                 <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
                 </CardContent>
                 </Card>

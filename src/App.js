@@ -13,7 +13,6 @@ import { getUser } from "./ducks/reducer";
 class App extends Component {
 
   componentDidMount(){
-
     axios.get('/api/isLoggedIn').then(res => {
       
       if(Object.keys(res.data).length>0){
