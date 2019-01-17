@@ -1,48 +1,61 @@
 .dashboard {
     align-items: center;
-    margin-top: 70px;
+    margin-top: 200px !important;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-self: center !important;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+    
 }
-h1 {
-    font-size: 60px ! important;
+.storydash {
+    font-size: 1010px ! important;
     font-weight: 200px;
     font-family: 'Slabo 27px', serif;
     color:  rgb(55, 134, 116);
-    margin-top: 50px;
+    margin-top: 500px;
     text-align: center;
     text-decoration: none !important;
+    border: 3px solid;
     
 
 }
 .storybox {
     background: rgb(55, 134, 116) ! important ;
     font-size: 2em;
-    height: auto;
-    width: 25%;
+    height: 250px;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     flex-flow: column;
-    
+    float: 1;
+    justify-content: center;
+    width: 45%;  
+    border-radius: 20%;  
 }
 .storyname {
     color: whitesmoke ! important;
     text-align: center;
+    margin-top: 25px;
+    font-size: 25px;
 }
 .description {
     color: whitesmoke ! important;
     font-size: .25em !important;
     
+    
 }
 .view{
     width: 70%;
     background-color: whitesmoke;
-    margin-top: 100px;
+    margin-top: 90px;
     border-radius: 10%;
     height: 35px;
     color: rgb(55, 134, 116);
-    
-    
+    justify-content: center;
+    margin-left: 15%;
 }
