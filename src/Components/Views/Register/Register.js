@@ -80,16 +80,18 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
+    this.props.history.push("/login");
     debugger;
     axios.post("/api/register", { username, email, password }).then(res => {
       debugger;
       if (res.data) {
         alert("Registered. Now, login.");
         this.setState({ open: false });
+        
       } else {
         alert("Email already exists in database.");
         this.setState({ password: "" });
-        this.props.history.push("/");
+        
       }
     });
   }

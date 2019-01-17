@@ -87,9 +87,9 @@ class Login extends Component {
             <br />
 
             <br />
-            <Register />
+            <Register history={this.props.history}/>
           </form>
-          <LoginButton onClick={this.login}/>
+          <LoginButton login={this.login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
