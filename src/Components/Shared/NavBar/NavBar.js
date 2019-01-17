@@ -35,7 +35,7 @@ import './NavBar.css'
     }),
   },
   menuButton: {
-      
+   
     marginLeft: 12,
     marginRight: 20,
   },
@@ -79,7 +79,7 @@ import './NavBar.css'
         {name: "Dashboard", path: "/", shouldShow: true},
         {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
         {name: "Login", path: "/Login", shouldShow: !this.props.userId ? true : false},
-        {name: "Contribute", path: "/contribute", shouldShow: this.props.userId ? true : false}
+        {name: "Create Story", path: "/create_one", shouldShow: this.props.userId ? true : false}
     ];   
     
         
@@ -101,7 +101,7 @@ import './NavBar.css'
           }}
         >
           <div className={classes.drawerHeader}>
-            <IconButton onClick= {()=>this.props.makeOpenClose(this.props.openClose)}>
+            <IconButton padding-bottom='35px' onClick= {()=>this.props.makeOpenClose(this.props.openClose)}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
