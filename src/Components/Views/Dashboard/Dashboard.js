@@ -40,6 +40,7 @@ class Dashboard extends Component {
                 <CardContent>
                 <div  className= "storyname">{story.title}</div>
                 <div  className = "description">{story.description}</div>
+
                 <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
                 </CardContent>
                 </Card>

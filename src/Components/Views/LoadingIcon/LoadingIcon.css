@@ -1,6 +1,7 @@
 .load {
     height: 10px;
     margin: auto;
+    overflow: hidden;
 }
 @-webkit-keyframes rotating /* Safari and Chrome */ {
     from {

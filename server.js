@@ -1,18 +1,18 @@
 /// Serving static files.
-const express = require("express"),
-  cors = require("cors"),
-  bodyParser = require("body-parser"),
-  massive = require("massive"),
-  path = require("path"),
-  app = express(),
-  session = require("express-session"),
-  passport = require("passport"),
-  LocalStrategy = require("passport-local").Strategy,
-  bcrypt = require("bcrypt"),
-  admin = require('./server/controllers/adminController'),
-  userRouter = require('./server/controllers/userController'),
-  contributionsRouter =  require('./server/controllers/contributionsController'),
-  storyRouter = require('./server/controllers/storyController');
+const express =         require("express"),
+  cors =                require("cors"),
+  bodyParser =          require("body-parser"),
+  massive =             require("massive"),
+  path =                require("path"),
+  app =                 express(),
+  session =             require("express-session"),
+  passport =            require("passport"),
+  admin =               require('./server/controllers/adminController'),
+  userRouter =          require('./server/controllers/userController'),
+  contributionsRouter = require('./server/controllers/contributionsController'),
+  storyRouter =         require('./server/controllers/storyController'),
+  localStrategy =       require('./server/controllers/localStrategy'),
+  serializeStrategy =   require('./server/controllers/serializeStrategy');
 
 require("dotenv").config();
 
@@ -31,113 +31,46 @@ app.use(session({
     saveUninitialized: false
 }))
 
-app.use( passport.initialize() );
-app.use( passport.session() );
-
-passport.use('register', new LocalStrategy({
-    usernameField: 'email',
-    passReqToCallback: true,
-}, (req,email, username, done) => {
-        const db = req.app.get('db');
-        let locUser =null;
-        db.users.findOne({email:email})
-        .then(user => {
-            if(!user){
-                db.users.insert({username: req.body.username,email:req.body.email})
-                .then(userid => {
-                    locUser = userid;
-                    return bcrypt.hash(req.body.password,10)
-                })
-                .then(pass => {
-                    return db.user_login.insert({user_id:locUser.id, login_token:pass})
-                })
-                .then(user => {
-                    done(null, locUser);
-                })
-            } else {
-                done('User with this email already exists');
-            } 
-        })
-        .catch(err => {
-            done(err);
-        });
-                        
-    }
-));
-
-passport.serializeUser((user,done)=> {
-    if(!user){
-        done('No user');
-    }
-    done(null, user);
-    },
-);
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
-
 //////////////////// MIDDLEWARE ///////////////////////
 app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use('register', localStrategy.registerLocalStrategy);
+passport.use('login', localStrategy.loginLocalStrategy);
 
-passport.use('login', new LocalStrategy({
-    usernameField:'username',
-    passReqToCallback:true,
-}, (req, username, password, done) => {
-        const db =req.app.get('db')
-        let locUser = null
-        db.users.findOne({username:username})
-        .then(user => {
-            if(!user) {
-                done("User does not exist.")
-            }else {
-                locUser = user
-                return db.user_login.find({user_id:user.id})
-            }
-        })
-        .then((passwords)=>{
-            const isCorrectPassword = passwords.reduce((bool, pass) => {
-                if(bcrypt.compareSync(password, pass.login_token)){
-                    bool = true;
-                }
-                return bool
-            }, false)
-            if(isCorrectPassword){
-                done(null, locUser)
-            }else{
-                done("Incorrect password")
-            }
-        })
-        .catch(err => {
-            done(err);
-        });
-}));
+passport.serializeUser(serializeStrategy.serialize);
 
-passport.serializeUser((user, done) => {
-if (!user) {
-    done('No user');
-    }
-done(null, user);
-},);
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
+passport.deserializeUser((username, done) => {
+    done(null,username);
 });
 
 ////////////////////Router///////////////////////////////
-    
-    //User
-    app.use('/user', userRouter);
 
-    //Contributions
-    app.use('/contributions', contributionsRouter);
+//User
+app.use('/user', userRouter);
+
+
+//Contributions
+app.use('/contributions', contributionsRouter);
+
+//Stories
+app.use('/newStory', storyRouter);
+
+//
+app.get('/api/Dashboard',(req, res, next)=>{
+    const db = app.get('db');
+    db.stories.find()
+    .then((stories)=>{
+        res.send(stories)
+    })
+})
+
 
     //Stories
     app.use('/newStory', storyRouter);
+    
 
 /////////////////// API ROUTES ///////////////////////////
 app.post('/api/login', passport.authenticate(['login']), (req, res, next)=>{
@@ -154,7 +87,11 @@ app.get('/api/isLoggedIn', (req, res, next)=>{
     res.send(req.user)
 })
 ///////////////// ADMIN ROUTES ///////////////////////////
-app.get('/*', admin.publicRouteCatchAll);
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {
+        root: path.join(__dirname, "build")
+    })
+});
 
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {

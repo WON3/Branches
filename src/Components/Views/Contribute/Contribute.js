@@ -38,7 +38,7 @@ class Contribute extends React.Component {
             
             axios.post('/contributions', contributions)
             .then(res => {
-                this.props.addContribution(res.data);
+                this.props.history.push(`/view_story/${this.props.match.params.story_id}`)
             })
 
         } else {
