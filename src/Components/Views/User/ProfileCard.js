@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = theme => ({
   root: {
@@ -55,7 +56,8 @@ const styles = theme => ({
       marginLeft: 30,
       padding:theme.spacing.unit*2, 
       display: 'flex',
-      justify: 'space-around'     
+      justify: 'space-around',
+      color: '#378674'     
     },
   media: {
     width: 'fill',
@@ -125,11 +127,14 @@ render() {
         <Grid className={classes.itemBio}>
         <Card className={classes.card}>
           <div>
-            <CardMedia
-              className={classes.media}
-              image={this.props.proPic}
-              title={this.props.userName}
-              />
+            <div>
+              <FontAwesomeIcon icon="pencil-alt" />
+              <CardMedia
+                className={classes.media}
+                image={this.props.proPic}
+                title={this.props.userName}
+                />
+            </div> 
             <div className={classes.buttonHolder}>
               <ButtonMode 
                 label='URL'
@@ -150,6 +155,7 @@ render() {
               </Typography>
             </CardContent> 
               <div className={classes.buttonHolder}>
+                <FontAwesomeIcon icon="pencil-alt" />
                 <ButtonMode 
                     label='Bio'
                     placeHolder='Tell us about you.'
