@@ -1,8 +1,10 @@
 .idk { 
     display: flex;
     flex-direction: column-reverse;
+    font-family: sans-serif;
 }
 .dashboard {
+    font-family: sans-serif;
     align-items: center;
     display: flex;
     flex-flow: row;
@@ -16,6 +18,7 @@
     
 }
 .storydash {
+    font-family: sans-serif ! important;
     font-size: 50px ! important;
     font-weight: 200px;
     font-family: 'Slabo 27px', serif;
@@ -23,11 +26,9 @@
     margin-top: 80px;
     text-align: center;
     text-decoration: none !important;
-   
-    
-
 }
 .storybox {
+font-family: sans-serif !important;
     background: rgb(55, 134, 116) ! important ;
     font-size: 2em;
     height: 250px;
@@ -42,12 +43,14 @@
     border-radius: 20%;  
 }
 .storyname {
+    font-family: sans-serif;
     color: #EAFBF7 ! important;
     text-align: center;
     margin-top: 25px;
     font-size: 20px;
 }
 .description {
+    font-family: sans-serif;
     color:  #EAFBF7 ! important;
     font-size: .25em !important;
     margin-top: 10px;
@@ -55,12 +58,13 @@
     
 }
 .view{
+    font-family: sans-serif;
     width: 70%;
     background-color:  #EAFBF7;
     margin-top: 80px;
-    border: 0px;
+    border: none;
     padding: 0 30px;
-    border-radius: 2%;
+    border-radius: 4px;
     height: 50px;
     color: rgb(55, 134, 116);
     justify-content: center;
