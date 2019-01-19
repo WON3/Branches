@@ -30,7 +30,7 @@ class Dashboard extends Component {
             this.setState({stories});
         })
     }
-    
+
     render(){
        
         const stories = this.state.stories.map((story)=>{
@@ -47,6 +47,7 @@ class Dashboard extends Component {
             )
         })
         return(
+            <div className="idk">
             <div className="dashboard">
              {stories}
              <Snackbar
@@ -70,7 +71,8 @@ class Dashboard extends Component {
             ]}
           />
             </div>
- 
+            <h3 className= "storydash">Stories Dashboard</h3>
+ </div>
         )
     }
  }
