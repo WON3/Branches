@@ -1,11 +1,12 @@
 * {
-    font-family: sans-serif
+    font-family: sans-serif;
 }
 .body {
     height: 100vh;
     overflow: wrap;
     margin-left: 100px;
     margin-right: 100px;
+    color: #378674
 }
 
 .head {
@@ -16,18 +17,33 @@
 }
 h1 {
     font-size: 200px;
-    color: #5d5147
+    color: #378674
 }
 h3 {
-    text-align: start;
+    text-align: center;
 }
 
 .butt {
-    text-align: center
+    text-align: center;
+}
+.butt Button {
+    margin: 5px
 }
 .contribution {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 10px
+  padding-bottom: 10px;
+  width: 800px;
+  margin: auto;
+  text-transform: capitalize;
 }
+.contribution h3 {
+    color: white
+}
+
+.zzz {
+    text-indent: 50px;
+    padding: 5px
+}
+

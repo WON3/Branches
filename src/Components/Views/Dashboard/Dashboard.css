@@ -1,48 +1,74 @@
-.dashboard {
-    align-items: center;
-    margin-top: 70px;
+.idk { 
     display: flex;
-    flex-flow: column;
+    flex-direction: column-reverse;
+    font-family: sans-serif;
 }
-h1 {
-    font-size: 60px ! important;
+.dashboard {
+    font-family: sans-serif;
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-self: center !important;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+    
+    
+}
+.storydash {
+    font-family: sans-serif ! important;
+    font-size: 50px ! important;
     font-weight: 200px;
     font-family: 'Slabo 27px', serif;
     color:  rgb(55, 134, 116);
-    margin-top: 50px;
+    margin-top: 80px;
     text-align: center;
     text-decoration: none !important;
-    
-
 }
 .storybox {
+font-family: sans-serif !important;
     background: rgb(55, 134, 116) ! important ;
     font-size: 2em;
-    height: auto;
-    width: 25%;
+    height: 250px;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     flex-flow: column;
-    
+    /* float: 1; */
+    justify-content: center;
+    width: 45%;  
+    border-radius: 20%;  
 }
 .storyname {
-    color: whitesmoke ! important;
+    font-family: sans-serif;
+    color: #EAFBF7 ! important;
     text-align: center;
+    margin-top: 25px;
+    font-size: 20px;
 }
 .description {
-    color: whitesmoke ! important;
+    font-family: sans-serif;
+    color:  #EAFBF7 ! important;
     font-size: .25em !important;
+    margin-top: 10px;
+    
     
 }
 .view{
+    font-family: sans-serif;
     width: 70%;
-    background-color: whitesmoke;
-    margin-top: 100px;
-    border-radius: 10%;
-    height: 35px;
+    background-color:  #EAFBF7;
+    margin-top: 80px;
+    border: none;
+    padding: 0 30px;
+    border-radius: 4px;
+    height: 50px;
     color: rgb(55, 134, 116);
-    
-    
+    justify-content: center;
+    margin-left: 15%;
+    font-size: 20px;
+    margin-bottom: 20px;
 }

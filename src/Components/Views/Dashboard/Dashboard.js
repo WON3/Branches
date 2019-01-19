@@ -34,20 +34,21 @@ class Dashboard extends Component {
     render(){
        
         const stories = this.state.stories.map((story)=>{
+           
             return(
-                <Card className="storybox">
+                <Card className="storybox" key={story.story_id}>
                 <CardContent>
-                <Typography variant="h6" className= "storyname" key={story.story_id}>{story.title}</Typography>
-                <Typography variant="body2" className = "description" key={story.story_id}>{story.description}</Typography>
+                <div  className= "storyname">{story.title}</div>
+                <div  className = "description">{story.description}</div>
+
                 <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
                 </CardContent>
                 </Card>
             )
         })
         return(
-
-            <div className ="dashboard" >
-            <h1>Story Dashboard</h1>
+            <div className="idk">
+            <div className="dashboard">
              {stories}
              <Snackbar
             anchorOrigin={{
@@ -70,7 +71,8 @@ class Dashboard extends Component {
             ]}
           />
             </div>
- 
+            <h3 className= "storydash">Stories Dashboard</h3>
+ </div>
         )
     }
  }

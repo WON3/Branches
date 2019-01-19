@@ -1,8 +1,9 @@
-const express = require('express');
+const express = require("express");
 const userRouter = express.Router();
 
 
 module.exports = userRouter;
+
 
     userRouter.get('/profile/:userId' , (req,res) =>{
         const db = req.app.get('db');
@@ -65,3 +66,17 @@ module.exports = userRouter;
         })
     });
 
+
+userRouter.get("/profilePic/:userId", (req, res) => {
+  const db = req.app.get("db");
+  const { userId } = req.params;
+  db.profile_pic.find({ user_id: userId }).then(response => {
+    res.send(response);
+  });
+});
+
+userRouter.post("/logout", (req, res, next) => {
+    req.session.destroy();
+    req.user={};
+    res.send("Logged Out");
+});
