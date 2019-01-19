@@ -12,7 +12,8 @@ const express =         require("express"),
   contributionsRouter = require('./server/controllers/contributionsController'),
   storyRouter =         require('./server/controllers/storyController'),
   localStrategy =       require('./server/controllers/localStrategy'),
-  serializeStrategy =   require('./server/controllers/serializeStrategy');
+  serializeStrategy =   require('./server/controllers/serializeStrategy'),
+  morgan =              require('morgan');
 
 require("dotenv").config();
 
@@ -37,6 +38,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(morgan('dev'));
 passport.use('register', localStrategy.registerLocalStrategy);
 passport.use('login', localStrategy.loginLocalStrategy);
 
@@ -49,7 +51,7 @@ passport.deserializeUser((username, done) => {
 ////////////////////Router///////////////////////////////
 
 //User
-app.use('/user', userRouter);
+app.use('/user', userRouter, morgan);
 
 
 //Contributions
@@ -92,6 +94,11 @@ app.get('/*', (req, res) => {
         root: path.join(__dirname, "build")
     })
 });
+
+const handleError = (err, response) => {
+    console.log(err)
+    response.message(`There was an error with your request. ${err}`)
+}
 
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {

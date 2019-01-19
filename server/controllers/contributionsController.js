@@ -22,10 +22,8 @@ contributionsRouter.get('/:story_id', (req, res) => {
                 description: result.description,
             }
             res.send(data)
-        })
-        .catch(error => {
-            console.error("error getting story.")
-            res.status(500)
+        }).catch(err=>{
+            handleError(err);
         })
     });
 
@@ -45,8 +43,7 @@ contributionsRouter.post('/', (req, res, next) => {
         .then(response => {
             console.log(res)
             res.status(200).send(response.data)
-        }).catch(err => {
-            res.status(500).send({ errormessage: "Failed to add contribution to story" });
-            console.log(err);
+        }).catch(err=>{
+            handleError(err);
         })
 });

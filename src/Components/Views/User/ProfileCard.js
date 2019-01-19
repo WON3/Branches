@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
 import ButtonMode from './ButtonMode';
 import './userStyles.css';
+import { relative } from 'path';
 
 const styles = theme => ({
   root: {
@@ -21,13 +19,16 @@ const styles = theme => ({
   },
   background: {
     background: '#EAFBF7',
-    padding: 5
+    padding: 5,
+    width: '100%'
   },
   bio: {
     height: '58vh',
     boxSizing: 'border-box',
     textAlign:'jusitify',
-    width: 200
+    width: '100%',
+    color: '#378674',
+    fontSize: 15
   },
   button: {
     background:'#378674',
@@ -47,8 +48,6 @@ const styles = theme => ({
       maxWidth: 850,
       width: 'auto',
       height: '102%',
-      marginTop:20,
-      marginLeft: 30,
       padding:theme.spacing.unit*2, 
       display: 'flex',
       justify: 'space-around',
@@ -56,6 +55,7 @@ const styles = theme => ({
     },
   media: {
     width: 'fill',
+    position:relative,
     paddingTop: '56.25%', // 16:9
   },
   paper: {
@@ -74,6 +74,11 @@ const styles = theme => ({
     width: '75%',
     color: '#378674' 
   },
+  userInfo: {
+    padding:5,
+    margin: 5,
+    width: '25%'
+  }
 });
   
 class UserCard extends Component {
@@ -102,23 +107,21 @@ class UserCard extends Component {
 render() {
   const { classes } = this.props;
   const { stories } = this.props;
-  // let storyShow = stories.map((story,id) => {
-  //   return(
-  //     <div key={story.story_id}>
-  //       <h3>{story.title}</h3>
-  //       <ul className={classes.background}>
-  //         <li style={{wordWrap: 'break-word'}}>{story.description}</li>
-  //         <li>{story.is_complete}</li>
-  //       </ul>  
-  //     </div>
-  //   )
-  // });
+  let storyShow = stories.map((story,id) => {
+    return(
+      <div key={story.story_id}>
+        <h4 className='contributionTitle'>{story.title}</h4>
+          <li className='userLi'>{story.description}</li>
+          
+      </div>
+    )
+  });
 
   return (  
     <div className={classes.root}>
         <div className={classes.itemBio}>
         <Card className={classes.card}>
-          <div>
+          <div className={classes.userInfo}>
             <div className='profile'>
               <CardMedia
                 className={classes.media}
@@ -142,6 +145,7 @@ render() {
               <div className={classes.bio} >
                 {this.props.bio}
                 <ButtonMode 
+                    className='buttonDisplay'
                     label='Bio'
                     placeHolder='Tell us about you.'
                     change={this.handleBio}
@@ -159,8 +163,8 @@ render() {
                   <h3>Your stories</h3>
                </div>
               <div className='contributions'>
-                <ul>
-                  {/* {storyShow} */}
+                <ul className='userUl'>
+                  {storyShow}
                 </ul>
               </div>
           </div>

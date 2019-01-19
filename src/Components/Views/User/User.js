@@ -22,12 +22,13 @@ class User extends Component{
     componentWillMount(){
         const {userId} = this.props;
         axios.get(`/user/profilePic/${userId}`).then(res => {
-            console.log(res.data)
             if(res.data.length===0){
                 this.setState({proPic:`https://robohash.org/${userId}?set=set4/`})  
             } else{
                 this.setState({proPic:res.data[0]['url']})
             }        
+        }).catch(err=>{
+            alert(err.data.message)
         })
     };
 

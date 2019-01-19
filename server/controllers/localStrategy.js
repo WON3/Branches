@@ -32,10 +32,9 @@ module.exports = {
             } else {
                 done('User with this email already exists');
             } 
-        })
-        .catch(err => {
-            done(err);
-        });                   
+        }).catch(err=>{
+            handleError(err);
+        })                  
     }
 ),
 
