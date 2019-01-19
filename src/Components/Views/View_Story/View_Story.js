@@ -54,7 +54,12 @@ class ViewStory extends Component {
 
         const contributions = this.state.contribution.contributions.map((contribution) => <RenderCont contribution={contribution} />)
         const contribution = this.state.contribution.contributions.map((contribution) => <Readview contribution={contribution} />)
-        const lastContribution = this.state.contribution.contributions[this.state.contribution.contributions.length - 1]
+        const lastContribution = this.state.contribution.contributions.reduce((object,element)=> {
+            if(element.id>object.id){
+                object=element
+            }
+            return object
+        },{id:0})
         const prior_contributions_id = lastContribution ? lastContribution.id : 0
 
         if (this.state.checkedA) {
