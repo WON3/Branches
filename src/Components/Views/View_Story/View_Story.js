@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
+import {connect} from 'react-redux';
+import {getUser} from '../../../ducks/reducer';
 
 
 
@@ -19,6 +21,7 @@ class ViewStory extends Component {
             open: false,
             checkedA: true,
             checkedB: true,
+            userId: ''
         }
     }
 
@@ -60,7 +63,8 @@ class ViewStory extends Component {
             }
             return object
         },{id:0})
-        const prior_contributions_id = lastContribution ? lastContribution.id : 0
+        const prior_contributions_id = lastContribution ? lastContribution.id : 0;
+        const isUserLoggedIn =  this.props.userId? <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}><Button size="large">Create Contribution</Button></Link>: ''
 
         if (this.state.checkedA) {
             return (
@@ -81,9 +85,10 @@ class ViewStory extends Component {
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>
-                        <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
+                        {isUserLoggedIn}
+                        {/* <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
                             <Button size="large">Create Contribution</Button>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             )
@@ -106,13 +111,23 @@ class ViewStory extends Component {
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>
-                        <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
+                        {isUserLoggedIn}
+                        {/* <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
                             <Button size="large">Create Contribution</Button>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             )
         }
     }
 }
-export default ViewStory;
+
+
+function mapStateToProps (state) {
+    const {userId} = state;
+    return {
+        userId
+    }
+}
+
+export default connect(mapStateToProps, {getUser}) (ViewStory);
