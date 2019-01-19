@@ -81,7 +81,7 @@ class Header extends Component{
               [classes.appBarShift]: this.props.openClose,
             })}
           >
-            <Toolbar disableGutters={!this.props.openClose}>
+            <Toolbar className="header-inner-container" disableGutters={!this.props.openClose}>
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
@@ -90,7 +90,10 @@ class Header extends Component{
               >
                 <MenuIcon />
               </IconButton>
+              <div>Branched</div>
+              <div></div>
             </Toolbar>
+            
           </AppBar></div>
         )
     }

@@ -1,9 +1,7 @@
-/* .MuiIconButton-root-51{
-    padding-bottom: 40px;
-} */
-/* .MuiButtonBase-root-57{
-    padding-bottom: 12px
-    } */
+.MuiToolbar-root-47.MuiToolbar-regular-49.header-inner-container {
+    display: flex;
+    justify-content: space-between;
+}
 
     .button{
         padding-bottom: 12px important! ;
