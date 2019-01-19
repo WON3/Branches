@@ -9,15 +9,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
 import RegisterButton from "../../Views/Register/RegisterButton";
 
 const styles = theme => ({
@@ -74,13 +67,9 @@ class Register extends Component {
     this.setState({ [password]: event.target.value });
   };
 
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
-  };
-
   registerUser() {
     let { username, email, password } = this.state;
-    this.props.history.push("/login");
+    this.props.history.push("/");
     debugger;
     axios.post("/api/register", { username, email, password }).then(res => {
       debugger;
@@ -130,60 +119,72 @@ class Register extends Component {
             <Typography variant="subtitle1" id="simple-modal-description">
               <form className={classes.container} noValidate autoComplete="off">
                 <TextField
-                  required
-                  id="standard-name"
-                  label="username"
-                  style={{color:"#378674"}}
-                  className={classes.textField}
+                  classname="inputBox"
+                  id="outlined-name"
+                  label="Username"
+                  name="username"
                   value={this.state.username}
                   onChange={this.handleName("username")}
                   margin="normal"
+                  variant="outlined"
+                  style={{
+                    backgroundColor: "#EAFBF7",
+                    color: "#378674",
+                    borderRadius: 5,
+                    fontFamily: "sans-serif",
+                    fontSize: 50,
+                    fontWeight: 700
+                  }}
                 />
                 <br />
                 <TextField
-                  required
-                  id="standard-email"
-                  label="email"
-                  style={{color:"#378674"}}
-                  value={this.state.email}
-                  className={classes.textField}
-                  onChange={this.handleEmail("email")}
+                  id="outlined-email-input"
+                  label="Email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
                   margin="normal"
+                  variant="outlined"
+                  value={this.state.email}
+                  onChange={this.handleEmail("email")}
+                  style={{
+                    backgroundColor: "#EAFBF7",
+                    color: "#378674",
+                    borderRadius: 5,
+                    fontFamily: "sans-serif",
+                    fontSize: 50,
+                    fontWeight: 700
+                  }}
                 />
                 <br />
                 <FormControl
                   className={classNames(classes.margin, classes.textField)}
                 >
-                  <InputLabel htmlFor="adornment-password">password</InputLabel>
-                  <Input
-                    required
-                    id="adornment-password"
-                    label="password"
-                    type={this.state.showPassword ? "text" : "password"}
+                  <TextField
+                    className="inputBox"
+                    id="outlined-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
                     value={this.state.password}
-                    className={classes.textField}
+                    name="password"
                     onChange={this.handlePassword("password")}
                     margin="normal"
-                    style={{color:"#378674"}}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="Toggle password visibility"
-                          onClick={this.handleClickShowPassword}
-                        >
-                          {this.state.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    }
+                    variant="outlined"
+                    border=""
+                    style={{
+                      backgroundColor: "#EAFBF7",
+                      color: "#378674",
+                      borderRadius: 5,
+                      fontFamily: "sans-serif",
+                      fontSize: 50,
+                      fontWeight: 700
+                    }}
                   />
                 </FormControl>
               </form>
             </Typography>
-            <br/>
+            <br />
             <div className="buttonBox">
               <Button
                 variant="contained"
@@ -195,13 +196,13 @@ class Register extends Component {
                   fontSize: 20,
                   height: 48,
                   padding: "0 30px",
-                  width: 250
+                  width: 300
                 }}
                 onClick={this.registerUser}
               >
                 Register
               </Button>
-              <br/>
+              <br />
               <br />
               <Button
                 style={{
@@ -212,7 +213,7 @@ class Register extends Component {
                   fontSize: 20,
                   height: 48,
                   padding: "0 30px",
-                  width: 250
+                  width: 300
                 }}
                 onClick={this.cancel}
               >

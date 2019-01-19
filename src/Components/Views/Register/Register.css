@@ -2,32 +2,20 @@
     z-index:0 !important;
     width: 300px;
 }
-.buttonBox{
-    padding:20px;
+#modal-title{
+    margin:-20px;
+}
+#outlined-name{
+    color:#378674;
+}
+#outlined-password-input{
+    color:#378674; 
+    
+}
+#outlined-email-input{
+    color:#378674;
+}
 
-}
-
-#standard-name{
-    background-color: #EAFBF7;
-    color:#378674;
-    border-radius: 5px;
-    border-color:#378674;
-    height: 20px;
-}
-#standard-email{
-    background-color: #EAFBF7;
-    color:#378674;
-    border-radius: 5px;
-    border-color:#378674;
-    height: 20px;
-}
-#adornment-password{
-    background-color: #EAFBF7;
-    color:#378674;
-    border-radius: 5px;
-    border-color:#378674;
-    height: 20px;
-}
 form {
     display:flex;
     flex-direction: column;

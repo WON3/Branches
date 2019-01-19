@@ -64,7 +64,7 @@ class Login extends Component {
               label="Username"
               name="username"
               value={this.state.username}
-              onChange={this.handleChange}
+              onChange={this.handleChange}  
               margin="normal"
               variant="outlined"
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}
@@ -84,8 +84,6 @@ class Login extends Component {
               border=""
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}}
             />
-            <br />
-
             <br />
             <Register history={this.props.history}/>
           </form>
