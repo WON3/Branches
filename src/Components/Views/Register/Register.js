@@ -23,11 +23,12 @@ import RegisterButton from "../../Views/Register/RegisterButton";
 const styles = theme => ({
   paper: {
     width: 600,
-    backgroundColor:"#378674" ,
+    backgroundColor: "#378674",
     padding: 20,
-    margin:'150px auto',
-    textAlign:"center",
-    borderRadius:5,
+    margin: "150px auto",
+    textAlign: "center",
+    borderRadius: 5,
+    outline: "none"
   }
 });
 
@@ -114,12 +115,16 @@ class Register extends Component {
           onClose={this.handleClose}
         >
           <div className={classes.paper}>
-            <Typography variant="h5" id="modal-title"
-            style={{color:"#EAFBF7",
-                    fontFamily: "sans-serif",
-                    fontSize:50,
-                    fontWeight:700 
-                     }}>
+            <Typography
+              variant="h5"
+              id="modal-title"
+              style={{
+                color: "#EAFBF7",
+                fontFamily: "sans-serif",
+                fontSize: 50,
+                fontWeight: 700
+              }}
+            >
               Register
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
@@ -128,21 +133,24 @@ class Register extends Component {
                   required
                   id="standard-name"
                   label="username"
+                  style={{color:"#378674"}}
                   className={classes.textField}
                   value={this.state.username}
                   onChange={this.handleName("username")}
                   margin="normal"
                 />
+                <br />
                 <TextField
                   required
                   id="standard-email"
                   label="email"
+                  style={{color:"#378674"}}
                   value={this.state.email}
                   className={classes.textField}
                   onChange={this.handleEmail("email")}
                   margin="normal"
                 />
-
+                <br />
                 <FormControl
                   className={classNames(classes.margin, classes.textField)}
                 >
@@ -156,6 +164,7 @@ class Register extends Component {
                     className={classes.textField}
                     onChange={this.handlePassword("password")}
                     margin="normal"
+                    style={{color:"#378674"}}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -174,6 +183,7 @@ class Register extends Component {
                 </FormControl>
               </form>
             </Typography>
+            <br/>
             <div className="buttonBox">
               <Button
                 variant="contained"
@@ -192,6 +202,7 @@ class Register extends Component {
                 Register
               </Button>
               <br/>
+              <br />
               <Button
                 style={{
                   background: "#EAFBF7",
