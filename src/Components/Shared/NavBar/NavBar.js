@@ -80,7 +80,7 @@ import './NavBar.css'
         {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
         {name: "Login", path: "/Login", shouldShow: !this.props.userId ? true : false},
         {name: "Create Story", path: "/create_one", shouldShow: this.props.userId ? true : false},
-        {name: "Logout"}
+        
     ];   
     
         
