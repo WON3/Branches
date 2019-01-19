@@ -79,7 +79,8 @@ import './NavBar.css'
         {name: "Dashboard", path: "/", shouldShow: true},
         {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
         {name: "Login", path: "/Login", shouldShow: !this.props.userId ? true : false},
-        {name: "Create Story", path: "/create_one", shouldShow: this.props.userId ? true : false}
+        {name: "Create Story", path: "/create_one", shouldShow: this.props.userId ? true : false},
+        
     ];   
     
         
@@ -105,11 +106,9 @@ import './NavBar.css'
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
-          <Divider />
           <List>
           {authenticatedListComponents}
           </List>
-          <Divider />
         </Drawer>
       </div>
     );

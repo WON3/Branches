@@ -1,6 +1,9 @@
+.idk { 
+    display: flex;
+    flex-direction: column-reverse;
+}
 .dashboard {
     align-items: center;
-    margin-top: 200px !important;
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
@@ -10,16 +13,17 @@
     width: 70%;
     margin: 0 auto;
     
+    
 }
 .storydash {
-    font-size: 1010px ! important;
+    font-size: 50px ! important;
     font-weight: 200px;
     font-family: 'Slabo 27px', serif;
     color:  rgb(55, 134, 116);
-    margin-top: 500px;
+    margin-top: 80px;
     text-align: center;
     text-decoration: none !important;
-    border: 3px solid;
+   
     
 
 }
@@ -32,30 +36,35 @@
     padding: 10px;
     display: flex;
     flex-flow: column;
-    float: 1;
+    /* float: 1; */
     justify-content: center;
     width: 45%;  
     border-radius: 20%;  
 }
 .storyname {
-    color: whitesmoke ! important;
+    color: #EAFBF7 ! important;
     text-align: center;
     margin-top: 25px;
-    font-size: 25px;
+    font-size: 20px;
 }
 .description {
-    color: whitesmoke ! important;
+    color:  #EAFBF7 ! important;
     font-size: .25em !important;
+    margin-top: 10px;
     
     
 }
 .view{
     width: 70%;
-    background-color: whitesmoke;
-    margin-top: 90px;
-    border-radius: 10%;
-    height: 35px;
+    background-color:  #EAFBF7;
+    margin-top: 80px;
+    border: 0px;
+    padding: 0 30px;
+    border-radius: 2%;
+    height: 50px;
     color: rgb(55, 134, 116);
     justify-content: center;
     margin-left: 15%;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
