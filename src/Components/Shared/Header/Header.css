@@ -6,3 +6,11 @@
     .button{
         padding-bottom: 12px important! ;
     }
+    .profile-button {
+        margin-right: 23px;
+        font-size: 12px;
+        padding-left: 1px;
+        margin-top: 2px;
+        text-align: right;
+    
+    }
