@@ -22,13 +22,12 @@ import RegisterButton from "../../Views/Register/RegisterButton";
 
 const styles = theme => ({
   paper: {
-    position: "absolute",
-    top: "35%",
-    left: "35%",
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4
+    width: 600,
+    backgroundColor:"#378674" ,
+    padding: 20,
+    margin:'150px auto',
+    textAlign:"center",
+    borderRadius:5,
   }
 });
 
@@ -87,11 +86,9 @@ class Register extends Component {
       if (res.data) {
         alert("Registered. Now, login.");
         this.setState({ open: false });
-        
       } else {
         alert("Email already exists in database.");
         this.setState({ password: "" });
-        
       }
     });
   }
@@ -108,7 +105,6 @@ class Register extends Component {
   render() {
     const { classes } = this.props;
     return (
-      /* <RegisterButton/> can be used in place of button below for styling purposes*/
       <div>
         <RegisterButton onClick={this.handleOpen} />
         <Modal
@@ -118,7 +114,12 @@ class Register extends Component {
           onClose={this.handleClose}
         >
           <div className={classes.paper}>
-            <Typography variant="h5" id="modal-title">
+            <Typography variant="h5" id="modal-title"
+            style={{color:"#EAFBF7",
+                    fontFamily: "sans-serif",
+                    fontSize:50,
+                    fontWeight:700 
+                     }}>
               Register
             </Typography>
             <Typography variant="subtitle1" id="simple-modal-description">
@@ -178,18 +179,30 @@ class Register extends Component {
                 variant="contained"
                 color="primary"
                 style={{
-                  backgroundColor: "#5d5147",
-                  textDecoration: "none",
-                  borderRadius: 5
+                  background: "#EAFBF7",
+                  borderRadius: 5,
+                  color: "#378674",
+                  fontSize: 20,
+                  height: 48,
+                  padding: "0 30px",
+                  width: 250
                 }}
                 onClick={this.registerUser}
               >
                 Register
               </Button>
+              <br/>
               <Button
-                variant="contained"
-                color="secondary"
-                style={{ borderRadius: 5 }}
+                style={{
+                  background: "#EAFBF7",
+                  borderRadius: 5,
+                  border: 0,
+                  color: "#378674",
+                  fontSize: 20,
+                  height: 48,
+                  padding: "0 30px",
+                  width: 250
+                }}
                 onClick={this.cancel}
               >
                 Cancel

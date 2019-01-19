@@ -2,16 +2,12 @@
     z-index:0 !important;
     width: 300px;
 }
-.buttonBox {
-    display:flex;
-    justify-content: center;
-    align-items: space-between;
-    
-}
-.buttonBox Button {
-    margin:4px;
-    width:150px;
-    
+
+#standard-name{
+    background-color: #EAFBF7;
+    color:#378674;
+    border-radius: 5px;
+
 }
 form {
     display:flex;
