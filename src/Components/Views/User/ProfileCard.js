@@ -177,7 +177,7 @@ render() {
   
 UserCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  changePic: PropTypes.string,
+  changePic: PropTypes.func,
   bio: PropTypes.string,
   changeBio: PropTypes.func,
   proPic: PropTypes.string,

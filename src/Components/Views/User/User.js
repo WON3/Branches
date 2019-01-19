@@ -28,7 +28,7 @@ class User extends Component{
                 this.setState({proPic:res.data[0]['url']})
             }        
         }).catch(err=>{
-            alert(err.data.message)
+            alert(err.message)
         })
     };
 
@@ -49,6 +49,8 @@ class User extends Component{
         axios.put(`/user/profilePic/${userId}`, {url:val})
             .then(res => {
             console.log(res.data);
+        }).catch(err=>{
+            alert(err.message)
         })
     };
 
@@ -59,6 +61,8 @@ class User extends Component{
         axios.put(`/user/bio/${userId}?bio=${val}`)
             .then(res=>{
             console.log(res.data)
+        }).catch(err=>{
+            alert(err.message)
         })
     };
     

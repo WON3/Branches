@@ -6,6 +6,7 @@ module.exports = contributionsRouter;
 contributionsRouter.get('/:story_id', (req, res) => {
     const db = req.app.get('db');
     const { story_id } = req.params
+    const handleError = req.app.get('handleError');
     const data = {}
     db.get_contributions({
         story_id,
@@ -29,6 +30,7 @@ contributionsRouter.get('/:story_id', (req, res) => {
 
 contributionsRouter.post('/', (req, res, next) => {
     const dbInstance = req.app.get('db')
+    const handleError = req.app.get('handleError');
     const { 
         story_id,
         contribution,

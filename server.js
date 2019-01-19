@@ -95,10 +95,11 @@ app.get('/*', (req, res) => {
     })
 });
 
-const handleError = (err, response) => {
+const handleError = (err, res) => {
     console.log(err)
-    response.message(`There was an error with your request. ${err}`)
-}
+    return({message:`There was an error with your request. ${err}`})
+};
+app.set('handleError', handleError);
 
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {

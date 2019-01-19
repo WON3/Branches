@@ -5,6 +5,7 @@ module.exports = storyRouter;
 
     storyRouter.post('/', (req, res, next) =>{
         const dbInstance = req.app.get('db');
+        const handleError = req.app.get('handleError');
         const {is_complete,
             user_id,
             title,

@@ -1,10 +1,12 @@
 const express = require('express');
 const userRouter = express.Router();
 
+
 module.exports = userRouter;
 
     userRouter.get('/profile/:userId' , (req,res) =>{
         const db = req.app.get('db');
+        const handleError = req.app.get('handleError');
         const {userId} = req.params;
         let profile ={stories:[]};
         db.getProfile(userId)
@@ -24,34 +26,41 @@ module.exports = userRouter;
                 })
             };
         }).catch(err=>{
-            handleError(err);
+            app.handleError(err);
         })
     });
     
     userRouter.put('/bio/:userId' , (req,res) => {
         const db = req.app.get('db');
+        const handleError = req.app.get('handleError');
         const {userId} = req.params;
         const {bio} = req.query
         db.users.update({id:userId}, {bio:bio}),(err,res) => {
             res.send('Update successful.')
         };
+    }).catch(( err )=>{
+        handleError(err);
     });
 
     userRouter.put('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
+        const handleError = req.app.get('handleError');
         const {userId} = req.params;
         const {url} = req.body;
         db.profile_pic.update({user_id:userId},{url:url}),(err, res) => {
             res.send('Successful update!')
         };
+    }).catch(( err )=>{
+        handleError(err);
     });
 
     userRouter.get('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
+        const handleError = req.app.get('handleError');
         const {userId} = req.params;
         db.profile_pic.find({user_id:userId}).then((response)=>{
             res.send(response)    
-        }).catch(err=>{
+        }).catch(( err )=>{
             handleError(err);
         })
     });
