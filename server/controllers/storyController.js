@@ -5,6 +5,7 @@ module.exports = storyRouter;
 
     storyRouter.post('/', (req, res, next) =>{
         const dbInstance = req.app.get('db');
+        const handleError = req.app.get('handleError');
         const {is_complete,
             user_id,
             title,
@@ -24,8 +25,7 @@ module.exports = storyRouter;
             moderator_accepts)
         .then( response => {
             res.status(200).send(response.data)
-        }).catch( err => {
-            res.status(500).send( {errorMessage: "Failed to add new story"});
-            console.log(err);
+        }).catch(err=>{
+            handleError(err);
         })
     });   

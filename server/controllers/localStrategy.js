@@ -14,6 +14,7 @@ module.exports = {
     },
     (req, email, done) => {
         const db = req.app.get('db');
+        const handleError = req.app.get('handleError');
         let locUser =null;
         db.users.findOne({email:email})
         .then(user => {
@@ -32,10 +33,9 @@ module.exports = {
             } else {
                 done('User with this email already exists');
             } 
-        })
-        .catch(err => {
-            done(err);
-        });                   
+        }).catch(err=>{
+            handleError(err);
+        })                  
     }
 ),
 
@@ -45,6 +45,7 @@ loginLocalStrategy: new LocalStrategy({
     }, 
     (req, username, password, done) => {
         const db =req.app.get('db');
+        const handleError = req.app.get('handleError');
         let locUser = null;
         db.users.findOne({username:username})
         .then(user => {

@@ -6,6 +6,7 @@ module.exports = contributionsRouter;
 contributionsRouter.get('/:story_id', (req, res) => {
     const db = req.app.get('db');
     const { story_id } = req.params
+    const handleError = req.app.get('handleError');
     const data = {}
     db.get_contributions({
         story_id,
@@ -22,15 +23,14 @@ contributionsRouter.get('/:story_id', (req, res) => {
                 description: result.description,
             }
             res.send(data)
-        })
-        .catch(error => {
-            console.error("error getting story.")
-            res.status(500)
+        }).catch(err=>{
+            handleError(err);
         })
     });
 
 contributionsRouter.post('/', (req, res, next) => {
     const dbInstance = req.app.get('db')
+    const handleError = req.app.get('handleError');
     const { 
         story_id,
         contribution,
@@ -45,8 +45,7 @@ contributionsRouter.post('/', (req, res, next) => {
         .then(response => {
             console.log(res)
             res.status(200).send(response.data)
-        }).catch(err => {
-            res.status(500).send({ errormessage: "Failed to add contribution to story" });
-            console.log(err);
+        }).catch(err=>{
+            handleError(err);
         })
 });
