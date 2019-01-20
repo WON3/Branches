@@ -24,3 +24,6 @@ button.MuiButtonBase-root-57.MuiIconButton-root-51.MuiIconButton-colorInherit-52
 button.MuiButtonBase-root-57.MuiIconButton-root-51 {
     padding-top: 2px;
 }
+.profile-button{
+cursor: pointer;
+}
