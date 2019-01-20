@@ -64,14 +64,14 @@ class Login extends Component {
               label="Username"
               name="username"
               value={this.state.username}
-              onChange={this.handleChange}
+              onChange={this.handleChange}  
               margin="normal"
               variant="outlined"
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}
               }
             />
             <br />
-            <TextField classname = 'inputBox'
+            <TextField className = 'inputBox'
               id="outlined-password-input"
               label="Password"
               type="password"
@@ -85,9 +85,7 @@ class Login extends Component {
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}}
             />
             <br />
-
-            <br />
-            <Register />
+            <Register history={this.props.history}/>
           </form>
           <LoginButton login={this.login}/>
           <Snackbar
