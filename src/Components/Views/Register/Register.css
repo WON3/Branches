@@ -2,16 +2,20 @@
     z-index:0 !important;
     width: 300px;
 }
-.buttonBox {
-    display:flex;
-    justify-content: center;
-    align-items: space-between;
+#modal-title{
+    margin:-20px;
 }
-.buttonBox Button {
-    margin:4px;
-    width:150px;
+#outlined-name{
+    color:#378674;
+}
+#outlined-password-input{
+    color:#378674; 
     
 }
+#outlined-email-input{
+    color:#378674;
+}
+
 form {
     display:flex;
     flex-direction: column;

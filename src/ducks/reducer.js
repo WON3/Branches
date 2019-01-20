@@ -11,13 +11,17 @@ const initialState = {
 
   //nav drawer
 
-  openClose: false,
-  storyGuideTitle: "",
-  storyGuideDescripton: "",
-  storyGuidePOV: "",
-  storyGuideFork: "",
-  storyGuideMod: ""
-};
+    openClose:false,
+    storyGuideTitle: '',
+    storyGuideDescripton: '',
+    storyGuidePOV: '',
+    storyGuideFork: '',
+    storyGuideMod: '',
+
+  //contribute
+    contribution:''
+}
+
 
 const GET_USER = "GET_USER";
 const GET_STORY = "GET_STORY";
@@ -26,12 +30,14 @@ const OPEN_CLOSE = "OPEN_CLOSE";
 const UPDATE_BIO = "UPDATE_BIO";
 const UPDATE_PROFILEPIC = "UPDATE_PROFILEPIC";
 
+
 const ADD_TITILE = "ADD_TITLE";
 const ADD_DESCRIPTION = "ADD_DESCRIPTION";
 const ADD_POV = "ADD_POV";
 const ADD_FORK_RESTRICTION = "ADD_FORK_RESTRICTION";
 const ADD_MODERATOR_RESTRICTION = "ADD_MODERATOR_RESTRICTION";
 const LOGOUT = "LOGOUT";
+const ADD_CONTRIBUTION = 'ADD_CONTRIBUTION';
 /////////////////////User///////////////////////////
 export function getUser(userId, userName) {
   return {
