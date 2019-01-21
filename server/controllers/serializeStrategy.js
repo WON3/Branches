@@ -1,9 +1,3 @@
-// const express = require('express'),
-//     passport = require('passport'),
-//     app = express();
-//     // app.use(passport.initialize());
-//     // app.use(passport.session());
-
 module.exports = {
     serialize: (user, done) => {
         if(!user){

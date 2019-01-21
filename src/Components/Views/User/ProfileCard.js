@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
+import './userStyles.css';
+import { relative } from 'path';
 
 const styles = theme => ({
   root: {
@@ -16,23 +14,21 @@ const styles = theme => ({
       height: '87vh',
       overflow:'scroll',
       flexGrow:1 ,
-      alignSelf: 'center'
-  },
-  cardHolder : {
-    display: 'flex',
-    flexDirection:'row',
-    maxWidth: '850px',
-    margin: 'auto',
-    flexWrap:'wrap',
+      alignSelf: 'center',
+      color: '#EAFBF7'
   },
   background: {
     background: '#EAFBF7',
-    padding: 5
+    padding: 5,
+    width: '100%'
   },
   bio: {
-    height: 140,
+    height: '58vh',
     boxSizing: 'border-box',
-    textAlign:'jusitify'
+    textAlign:'jusitify',
+    width: '100%',
+    color: '#378674',
+    fontSize: 15
   },
   button: {
     background:'#378674',
@@ -45,20 +41,21 @@ const styles = theme => ({
     width: 850,
     minWidth: 500,
     margin: 'auto',
+    color: '#378674'
     
   },
   card: {
       maxWidth: 850,
       width: 'auto',
       height: '102%',
-      marginTop:20,
-      marginLeft: 30,
       padding:theme.spacing.unit*2, 
       display: 'flex',
-      justify: 'space-around'     
+      justify: 'space-around',
+      color: '#378674'     
     },
   media: {
     width: 'fill',
+    position:relative,
     paddingTop: '56.25%', // 16:9
   },
   paper: {
@@ -74,10 +71,13 @@ const styles = theme => ({
     textAlign: 'center',
     alignSelf: 'center',
     fontFamily: 'Slabo',
-    width: '75%'
-  },
-  works: {
     width: '75%',
+    color: '#378674' 
+  },
+  userInfo: {
+    padding:5,
+    margin: 5,
+    width: '25%'
   }
 });
   
@@ -110,69 +110,66 @@ render() {
   let storyShow = stories.map((story,id) => {
     return(
       <div key={story.story_id}>
-        <h3>{story.title}</h3>
-        <ul className={classes.background}>
-          <li style={{wordWrap: 'break-word'}}>{story.description}</li>
-          <li>{story.is_complete}</li>
-        </ul>  
+        <h4 className='contributionTitle'>{story.title}</h4>
+          <li className='userLi'>{story.description}</li>
+          
       </div>
     )
   });
 
   return (  
     <div className={classes.root}>
-      <div className={classes.cardHolder}>
-        <Grid className={classes.itemBio}>
+        <div className={classes.itemBio}>
         <Card className={classes.card}>
-          <div>
-            <CardMedia
-              className={classes.media}
-              image={this.props.proPic}
-              title={this.props.userName}
-              />
-            <div className={classes.buttonHolder}>
-              <ButtonMode 
+          <div className={classes.userInfo}>
+            <div className='profile'>
+              <CardMedia
+                className={classes.media}
+                image={this.props.proPic}
+                title={this.props.userName}
+                />
+                <ButtonMode 
                 label='URL'
                 placeHolder='Picture URL'
                 change={this.handlePicture}
                 rows='1'
               />
+            </div> 
+              
+            <div className={classes.titles}>
+               <h3>{this.props.userName}</h3>
             </div>
-            <CardHeader
-              className={classes.titles}
-              title={this.props.userName}
-              subheader="Somewhere"
-            />
-            <CardHeader className={classes.titles} title='Bio' />
-            <CardContent className={classes.background}>
-              <Typography className={classes.bio} paragraph>
+            <div className={classes.titles}>
+            <h3>Bio</h3>
+            <div className={classes.background}>
+              <div className={classes.bio} >
                 {this.props.bio}
-              </Typography>
-            </CardContent> 
-              <div className={classes.buttonHolder}>
                 <ButtonMode 
+                    className='buttonDisplay'
                     label='Bio'
                     placeHolder='Tell us about you.'
                     change={this.handleBio}
                     rows='4'
                   />
+              </div>
+            </div> 
+            </div>
+              <div className={classes.buttonHolder}>
+                
               </div>  
           </div>
-          <div className={classes.works}>
-            <CardContent>
-              <CardHeader 
-                className={classes.titles}
-                title='Works'/>
-              <Typography paragraph>
-                <ul>
+          <div className='contributionBox'>
+              <div className={classes.titles}>
+                  <h3>Your stories</h3>
+               </div>
+              <div className='contributions'>
+                <ul className='userUl'>
                   {storyShow}
                 </ul>
-              </Typography>
-            </CardContent>
+              </div>
           </div>
         </Card>
-      </Grid>
-      </div> 
+      </div>
     </div>
   );
   }
@@ -180,7 +177,7 @@ render() {
   
 UserCard.propTypes = {
   classes: PropTypes.object.isRequired,
-  changePic: PropTypes.string,
+  changePic: PropTypes.func,
   bio: PropTypes.string,
   changeBio: PropTypes.func,
   proPic: PropTypes.string,

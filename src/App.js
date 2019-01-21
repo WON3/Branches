@@ -9,6 +9,11 @@ import theme from "./theme";
 import axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "./ducks/reducer";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPencilAlt)
 
 class App extends Component {
   componentDidMount() {

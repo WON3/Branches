@@ -5,8 +5,6 @@ import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } fro
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import Select from '@material-ui/core/Select';
-
 
 
 class StoryWizardFour extends Component {

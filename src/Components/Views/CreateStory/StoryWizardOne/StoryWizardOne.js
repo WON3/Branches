@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 
 
 class StoryWizardOne extends Component {
