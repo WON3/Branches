@@ -50,12 +50,14 @@ module.exports = userRouter;
         const handleError = req.app.get('handleError');
         const {userId} = req.params;
         const {url} = req.body;
-        db.profile_pic.update({user_id:userId},{url:url}),(err, res) => {
+        db.profile_pic.update({user_id:userId},{url:url})
+        .then((res) => {
             res.send('Successful update!')
-        };
-    }).catch(( err )=>{
-        handleError(err);
-    });
+        })
+        .catch(( err )=>{
+            handleError(err);
+        })
+    })
 
     userRouter.get('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
