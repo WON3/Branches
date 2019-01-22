@@ -24,9 +24,9 @@ const styles = theme => ({
       background: '#EAFBF7',
     },
     but: {
-        position: 'relative',    
-        right: 5,
-        top: 25,
+        float: 'right',
+        marginTop: '-35px',
+        paddingRight: 5,
     },
     button: {
       background:'#378674',
