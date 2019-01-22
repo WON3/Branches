@@ -56,7 +56,7 @@ class Dashboard extends Component {
               horizontal: "left"
             }}
             open={this.state.open}
-            autoHideDuration={6000}
+            autoHideDuration={3250}
             onClose={this.handleClose}
             message={<p>This is your dashboard. Choose your actions wisely!</p>}
             action={[

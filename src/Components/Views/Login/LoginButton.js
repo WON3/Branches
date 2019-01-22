@@ -15,6 +15,7 @@ const styles = {
     height: 48,
     padding: '0 30px',
     width: 300,
+    margin:"auto"
   },
 };
 

@@ -24,6 +24,7 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
     this.handleClick =this.handleClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleChange = e => {
@@ -39,9 +40,15 @@ class Login extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  handleKeyPress = (event) => {
+    if(event.key == 'Enter')
+    {this.login()}
+  }
   
 
   login() {
+    debugger
     axios.post(`/api/login`, {
         username: this.state.username,
         password: this.state.password
@@ -58,7 +65,9 @@ class Login extends Component {
       <div>
         <div className="LoginBox">
           <div className="header">Login</div>
-          <form className="LoginForm">
+          <form className="LoginForm"
+          onKeyPress={this.handleKeyPress}>
+
             <TextField classname = 'inputBox'
               id="outlined-name"
               label="Username"
@@ -85,9 +94,10 @@ class Login extends Component {
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}}
             />
             <br />
+            <LoginButton login={this.login}/>
+            <br/>
             <Register history={this.props.history}/>
           </form>
-          <LoginButton login={this.login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
