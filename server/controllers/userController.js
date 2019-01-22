@@ -36,12 +36,14 @@ module.exports = userRouter;
         const handleError = req.app.get('handleError');
         const {userId} = req.params;
         const {bio} = req.query
-        db.users.update({id:userId}, {bio:bio}),(err,res) => {
+        db.users.update({id:userId}, {bio:bio})
+        .then((res) => {
             res.send('Update successful.')
-        };
-    }).catch(( err )=>{
-        handleError(err);
-    });
+        })
+        .catch(( err )=>{
+            handleError(err);
+        });
+    })
 
     userRouter.put('/profilePic/:userId' , (req, res) => {
         const db = req.app.get('db');
