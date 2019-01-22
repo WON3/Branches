@@ -13,11 +13,22 @@ class Contribute extends React.Component {
             user_id: 0,
             contribution: "",
             is_accepted: false,
-            multiline: 'Controlled'
+            multiline: 'Controlled',
+            prior_contribution: {} 
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentDidMount(){
+        axios.get(`/contributions/last_contribution/${this.props.match.params.prior_contribution_id}`)
+        .then((res)=>{
+            this.setState({
+                prior_contribution: res.data
+            })
+        })
+    }
+
     handleChange(e) {
         this.setState({
             contribution: e.target.value,
@@ -52,6 +63,10 @@ class Contribute extends React.Component {
             <div className="contribute">
                 <form noValidate autoComplete="off">
                     <h1 className="add">Add contribution</h1>
+                    <h3 className="prior">
+                       ~ Branch off the last contribution ~
+                       <p>{this.state.prior_contribution.contribution}</p>
+                    </h3>
                     <TextField
                         value={this.state.contribution}
                         id="outlined-multiline-flexible"
