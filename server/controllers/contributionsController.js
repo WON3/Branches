@@ -49,3 +49,16 @@ contributionsRouter.post('/', (req, res, next) => {
             handleError(err);
         })
 });
+contributionsRouter.get(`/last_contribution/:id`, (req,res,next)=>{
+    const db = req.app.get('db');
+    const handleError = req.app.get('handleError');
+    db.contributions.findOne({
+        id: req.params.id
+    })
+    .then(contribution => {
+        console.log(res)
+        res.status(200).send(contribution)
+    }).catch(err=>{
+        handleError(err);
+    })
+})

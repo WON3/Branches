@@ -1,6 +1,9 @@
 .contribute {
-    margin-top: 150px;
     height: 50vh;
+    width: 80%;
+    max-width: 720px;
+    margin: auto;
+    margin-top: 150px;
 }
 
 .add {
@@ -9,5 +12,11 @@
 }
 .butt Link {
     height: 100%;
-    text-decoration: none
+    text-decoration: none;
+}
+.butt button {
+    background-color: #378674;
+    color: #eafbf7;
+    width: 175px;
+    height: 50px
 }
