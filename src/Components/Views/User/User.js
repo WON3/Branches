@@ -29,6 +29,7 @@ class User extends Component{
             }        
         }).catch(err=>{
             alert(err.message)
+        
         })
     };
 
@@ -67,6 +68,7 @@ class User extends Component{
     };
     
     render(){
+        // let errorMessage = this.state.error && <ErrorModal err = {this.state.error} />    
         return(
             <div>
                 <ProfileCard 
