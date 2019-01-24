@@ -26,14 +26,7 @@ class ViewStory extends Component {
         }
     }
 
-    componentDidMount() {
-        setTimeout(() => {
-            debugger
-            this.setState({
-                isReaderViewEnabled: true
-            })
-        }, 3 * 1000)
-    }
+
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -54,6 +47,12 @@ class ViewStory extends Component {
                 this.setState({ contribution: res.data }),
             )
             .catch(err => console.log('axios create error', err))
+
+            setTimeout(() => {
+                this.setState({
+                    isReaderViewEnabled: true
+                })
+            }, 3 * 1000)
     }
 
 
