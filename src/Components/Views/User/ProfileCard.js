@@ -107,7 +107,10 @@ class UserCard extends Component {
 render() {
   const { classes } = this.props;
   const { stories } = this.props;
-  let storyShow = stories.map((story,id) => {
+  
+  let storyShow;
+  if( stories ){
+    storyShow =stories.map((story,id) => {
     return(
       <div key={story.story_id}>
         <h4 className='contributionTitle'>{story.title}</h4>
@@ -116,6 +119,9 @@ render() {
       </div>
     )
   });
+  } else {
+    storyShow = <h4>You have not written any stories yet, time to get writing.</h4>
+  }
 
   return (  
     <div className={classes.root}>
