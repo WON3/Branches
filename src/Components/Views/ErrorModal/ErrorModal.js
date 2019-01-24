@@ -9,14 +9,15 @@ export default class ErrorModal extends Component {
     constructor(props){
         super(props)
         this.state={
-            open: true,
+            open: false,
             error:''
         }
     }
-    componentDidMount(){
+    componentDidUMount(){
+        debugger
         let {error} = this.props;
         this.setState({
-            error: error
+            error: error, open:true
         })
     }
     handleClose = () => {
@@ -35,7 +36,6 @@ export default class ErrorModal extends Component {
                 onClose={this.handleClose}
                 message={<p>Error:{this.state.error}</p>}
                
-
                 action={[
                 <IconButton
                     key="close"

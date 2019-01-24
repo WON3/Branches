@@ -89,11 +89,11 @@ app.get('/api/isLoggedIn', (req, res, next)=>{
     res.send(req.user)
 })
 ///////////////// ADMIN ROUTES ///////////////////////////
-app.get('/*', (req, res) => {
-    res.sendFile('index.html', {
-        root: path.join(__dirname, "build")
-    })
-});
+// app.get('/*', (req, res) => {
+//     res.sendFile('index.html', {
+//         root: path.join(__dirname, "build")
+//     })
+// });
 
 const handleError = (err, res) => {
     console.log(err)
