@@ -66,7 +66,7 @@ class ViewStory extends Component {
         const prior_contributions_id = lastContribution ? lastContribution.id : 0;
         const isUserLoggedIn =  this.props.userId? <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}><Button size="large">Create Contribution</Button></Link>: ''
 
-        if (this.state.checkedA) {
+        if (!this.state.checkedA) {
             return (
                 <div className="body">
 
@@ -86,9 +86,6 @@ class ViewStory extends Component {
                             <Button size="large">Home</Button>
                         </Link>
                         {isUserLoggedIn}
-                        {/* <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
-                            <Button size="large">Create Contribution</Button>
-                        </Link> */}
                     </div>
                 </div>
             )
@@ -96,7 +93,7 @@ class ViewStory extends Component {
             return (
                 <div className="body">
 
-                    <div style={{ textAlign: "center", padding: "10px" }} className="head">
+                    <div style={{ textAlign: "center" }} className="head">
                         <h1>{this.state.contribution.story.title}</h1>
                         <p>~~~~~Preface~~~~~</p>
                         <h3>{this.state.contribution.story.description}</h3>
@@ -112,9 +109,6 @@ class ViewStory extends Component {
                             <Button size="large">Home</Button>
                         </Link>
                         {isUserLoggedIn}
-                        {/* <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}>
-                            <Button size="large">Create Contribution</Button>
-                        </Link> */}
                     </div>
                 </div>
             )
