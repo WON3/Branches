@@ -7,7 +7,7 @@ module.exports = storyRouter;
         const dbInstance = req.app.get('db');
         const handleError = req.app.get('handleError');
         const {is_complete,
-            user_id,
+            userId,
             title,
             description,
             point_of_view,
@@ -16,7 +16,7 @@ module.exports = storyRouter;
             moderator_accepts} = req.body;
 
         dbInstance.addNewStory(is_complete,
-            user_id,
+            userId,
             title,
             description,
             point_of_view,

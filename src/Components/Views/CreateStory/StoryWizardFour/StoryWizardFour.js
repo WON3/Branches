@@ -13,7 +13,7 @@ class StoryWizardFour extends Component {
 
         this.state = {
             is_Complete: false, //defaults to false
-            user_id: this.props.userId, //from props,
+            userId: '',
             title: "", //user Input
             description: "",
             point_of_view: "First Person",
@@ -23,8 +23,13 @@ class StoryWizardFour extends Component {
         }
         this.addNewStory = this.addNewStory.bind(this);
     }
-
+    componentDidMount(){
+        console.log(this.props)
+        let {userId} = this.props;
+        this.setState({userId:userId})
+    }
         addNewStory(props){
+            console.log(this.state.userId)
             const {
                 storyGuideTitle,
                 storyGuideDescripton,
@@ -35,7 +40,7 @@ class StoryWizardFour extends Component {
 
             const newStory= {
                 is_complete: false,
-                user_id: this.state.user_id,
+                userId: this.state.userId,
                 title: storyGuideTitle,
                 description: storyGuideDescripton,
                 point_of_view: storyGuidePOV,
@@ -155,7 +160,8 @@ function mapStateToProps(state){
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
-        storyGuideMod
+        storyGuideMod,
+        userId
             } = state;
 
     return {
@@ -163,7 +169,8 @@ function mapStateToProps(state){
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
-        storyGuideMod
+        storyGuideMod,
+        userId
     };
 }
 
