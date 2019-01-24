@@ -128,7 +128,7 @@ render() {
                 image={this.props.proPic}
                 title={this.props.userName}
                 />
-                <ButtonMode 
+              <ButtonMode 
                 label='URL'
                 placeHolder='Picture URL'
                 change={this.handlePicture}
@@ -142,15 +142,16 @@ render() {
             <div className={classes.titles}>
             <h3>Bio</h3>
             <div className={classes.background}>
-              <div className={classes.bio} >
-                {this.props.bio}
-                <ButtonMode 
-                    className='buttonDisplay'
-                    label='Bio'
-                    placeHolder='Tell us about you.'
-                    change={this.handleBio}
-                    rows='4'
-                  />
+              <div className='bioHolder'>
+                <div className={classes.bio} >
+                  <ButtonMode 
+                      label='Bio'
+                      placeHolder='Tell us about you.'
+                      change={this.handleBio}
+                      rows='4'
+                    />
+                  {this.props.bio}
+                </div>
               </div>
             </div> 
             </div>
