@@ -1,0 +1,23 @@
+const nums = "1 2 -3 4 5";
+
+function highAndLow(numbers){
+  // ...
+  let splitArr= nums.split(" ");
+  let sortedArr= splitArr.sort();
+  console.log(sortedArr[0] + " " + (sortedArr[sortedArr.length -1]));
+  console.log(sortedArr)
+
+  for(var i= 0; i < sortedArr.length; i++){
+     parseInt(sortedArr[i])
+     console.log(sortedArr)
+  }
+}
+
+highAndLow(nums);
+
+//split using comma
+//sort
+//console.log(arr[1] + " " + arr[-1])
+
+
+var new_array = ar.map()
