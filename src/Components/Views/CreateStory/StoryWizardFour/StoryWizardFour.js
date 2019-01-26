@@ -73,7 +73,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -86,7 +86,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -99,7 +99,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -112,7 +112,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -125,7 +125,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -136,7 +136,7 @@ render(props){
                 <Button 
                 variant="contained" 
                 color="primary" 
-                style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}
+                style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
                 onClick= {() => {this.addNewStory()}}>
                 Submit New Story
                 </Button>
