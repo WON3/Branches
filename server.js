@@ -96,8 +96,7 @@ app.get('/api/isLoggedIn', (req, res, next)=>{
 // });
 
 const handleError = (err, res) => {
-    console.log(err)
-    return({message:`There was an error with your request. ${err}`})
+   res.status(500).send({message:`There was an error with your request. ${err.message}`})
 };
 app.set('handleError', handleError);
 

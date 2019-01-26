@@ -28,23 +28,21 @@ class User extends Component{
     componentDidMount(){
         const {userName, userId} = this.props;
         this.setState({userName:userName, userId:userId})
-        axios.get(`/user/profilePic/${userId}`).then(res => {
-            
-            if(!res.data[0]['url']){
-               this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
-            }
-            this.setState({proPic:res.data[0]['url']})        
-        }).catch(err=>{
-            let er = err.message;
-            this.setState({serverErrorMessage:er})
-        });
-        
-        axios.get(`/user/profile/${userId}`).then(res=>{
-            console.log(res)
+        axios.get(`/user/profile/${userId}`)
+        .then(res=>{
+            debugger
             const {username, bio, stories } = res.data;
-            this.setState({userName:username, bio:bio, stories:stories})   
-        }).catch(err=>{
-            let er = err.message;
+            this.setState({userName:username, bio:bio, stories:stories}) 
+            return axios.get(`/user/profilePic/${userId}`)  
+        })
+        .then(res => {
+                if(!res.data[0]['url']){
+                   this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
+                }
+                this.setState({proPic:res.data[0]['url']})        
+            })
+        .catch(err=>{
+            let er = err.response.data.message;
             this.setState({serverErrorMessage: er})
         });  
     };
@@ -54,11 +52,10 @@ class User extends Component{
         this.props.updateProfilePic(val);
         const {userId} = this.state;
         axios.put(`/user/profilePic/${userId}`, {url:val})
-            .then(res => {
-            debugger
-            console.log(res.data);
-        }).catch(err=>{
-            let er = err.message;
+        .then(res => {   
+        })
+        .catch(err=>{
+            let er = err.response.data.message;
             this.setState({serverErrorMessage: er})
         })
     };
@@ -70,7 +67,7 @@ class User extends Component{
         axios.put(`/user/bio/${userId}?bio=${val}`)
             .then(res=>{
         }).catch(err=>{
-            let er = err.message;
+            let er = err.response.data.message;
             this.setState({serverErrorMessage: er})
         })
     };

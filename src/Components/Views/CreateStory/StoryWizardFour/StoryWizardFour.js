@@ -5,7 +5,7 @@ import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } fro
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-
+import ErrorModal from '../../ErrorModal/ErrorModal';
 
 class StoryWizardFour extends Component {
     constructor(props){
@@ -19,7 +19,8 @@ class StoryWizardFour extends Component {
             point_of_view: "First Person",
             is_public: false, //defaults to false
             allows_fork: true, //user Input
-            moderator_accepts: true //user Input
+            moderator_accepts: true, //user Input
+            serverErrorMessage:''
         }
         this.addNewStory = this.addNewStory.bind(this);
     }
@@ -54,9 +55,14 @@ class StoryWizardFour extends Component {
                     console.log("new story added");
                     this.props.history.push('/')
                 })
+                .catch(err =>{
+                    let er = err.respons.data.message;
+                    this.setState({serverErrorMessage:er})
+                  });
         }
     
 render(props){
+    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     const {storyGuideTitle,
         storyGuideDescripton,
         storyGuidePOV,
@@ -148,6 +154,7 @@ render(props){
                 
                 </div>
             </div>
+            {errorMessage}
         </div>
     )
 }

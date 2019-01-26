@@ -6,7 +6,7 @@ module.exports = userRouter;
 
 
     userRouter.get('/profile/:userId' , (req,res) =>{
-        const db = req.app.get('db');
+        const db = req.app.get('db');  
         const handleError = req.app.get('handleError');
         const {userId} = req.params;
         let profile ={stories:[]};
@@ -27,7 +27,7 @@ module.exports = userRouter;
                 })
             };
         }).catch(err=>{
-            app.handleError(err);
+            handleError(err,res);
         })
     });
     

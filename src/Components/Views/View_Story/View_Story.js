@@ -9,7 +9,7 @@ import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
 import {connect} from 'react-redux';
 import {getUser} from '../../../ducks/reducer';
-
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 
 class ViewStory extends Component {
@@ -21,7 +21,8 @@ class ViewStory extends Component {
             open: false,
             checkedA: true,
             checkedB: true,
-            userId: ''
+            userId: '',
+            serverErrorMessage:''
         }
     }
 
@@ -43,12 +44,16 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-            .catch(err => console.log('axios create error', err))
+            .catch(err =>{
+                let er = err.response.data.message;
+                this.setState({serverErrorMessage: er})
+            })
     }
 
 
 
     render() {
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
         if (!this.state.contribution.story) {
             return <div className="load">
                 <LoadingIcon />
@@ -87,6 +92,7 @@ class ViewStory extends Component {
                         </Link>
                         {isUserLoggedIn}
                     </div>
+                    {errorMessage}
                 </div>
             )
         } else {
@@ -110,6 +116,7 @@ class ViewStory extends Component {
                         </Link>
                         {isUserLoggedIn}
                     </div>
+                    {errorMessage}
                 </div>
             )
         }

@@ -13,18 +13,20 @@ export default class ErrorModal extends Component {
             error:''
         }
     }
-    componentDidUMount(){
-        debugger
-        let {error} = this.props;
+    componentDidMount(){
+        if(this.props.error){
+            let {error} = this.props;
         this.setState({
             error: error, open:true
         })
     }
+        }
+        
     handleClose = () => {
         this.setState({ open: false });
       };
     render(){
-        console.log(this.props)
+        
         return(
             <Snackbar
                 anchorOrigin={{
@@ -34,7 +36,7 @@ export default class ErrorModal extends Component {
                 open={this.state.open}
                 autoHideDuration={5000}
                 onClose={this.handleClose}
-                message={<p>Error:{this.state.error}</p>}
+                message={<p>Error:{this.props.error}</p>}
                
                 action={[
                 <IconButton
