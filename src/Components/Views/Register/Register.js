@@ -12,9 +12,9 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import RegisterButton from "../../Views/Register/RegisterButton";
-import Snackbar from "@material-ui/core/Snackbar";
+/*import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@material-ui/icons/Close";*/
 
 const styles = theme => ({
   paper: {
@@ -76,18 +76,7 @@ class Register extends Component {
     
     axios.post("/api/register", { username, email, password }).then(res => {
       debugger;
-      function ValidateEmail(email) 
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.emailAddr.value))
-  {
-    return (true)
-  }
-   else{
-     alert("Invalid email.")
-
-    return (false)
-    }
-}
+      
         alert("Registered. Now, login.");
         this.setState({ open: false });
         this.props.history.push("/");
