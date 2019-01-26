@@ -12,6 +12,9 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import RegisterButton from "../../Views/Register/RegisterButton";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 const styles = theme => ({
   paper: {
@@ -69,18 +72,31 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
-    this.props.history.push("/");
-    debugger;
+  
+    
     axios.post("/api/register", { username, email, password }).then(res => {
       debugger;
-      if (res.data) {
+      function ValidateEmail(email) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.emailAddr.value))
+  {
+    return (true)
+  }
+   else{
+     alert("Invalid email.")
+
+    return (false)
+    }
+}
         alert("Registered. Now, login.");
         this.setState({ open: false });
-      } else {
-        alert("Email already exists in database.");
-        this.setState({ password: "" });
-      }
-    });
+        this.props.history.push("/");
+      })
+       .catch(err=>{
+      alert("Email already exists in database.");
+      this.setState({ password: "" });
+    }
+    );
   }
 
   cancel() {
@@ -143,6 +159,7 @@ class Register extends Component {
                   type="email"
                   name="email"
                   autoComplete="email"
+                  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   margin="normal"
                   variant="outlined"
                   value={this.state.email}
@@ -169,6 +186,7 @@ class Register extends Component {
                     value={this.state.password}
                     name="password"
                     onChange={this.handlePassword("password")}
+                    required minlength ="8"
                     margin="normal"
                     variant="outlined"
                     border=""
