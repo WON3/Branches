@@ -26,12 +26,13 @@
     font-size: 30px;
     text-align: center;
     margin-top: 5%;
+    font-family: sans-serif;
 }
 .title{
     height: 30px;
     width: 500px;
     background-color: transparent;
-    color: black;
+    color: #378674;
     font-size: 24px;
     
 }
@@ -39,6 +40,7 @@
 .wizard-box{
     background-color: #378674ff;
     height: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;

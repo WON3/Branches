@@ -55,6 +55,7 @@ class StoryWizardOne extends Component {
             className="title" 
             name= "title" 
             label= "Title (maximum: 100 characters)" 
+            style = {{backgroundColor: "#EAFBF7"}}
             inputProps={{
               maxLength: "100"
             }}
@@ -65,7 +66,7 @@ class StoryWizardOne extends Component {
          
           <div className='button'> 
             <Link to= '/create_two' style={{textDecoration: "none"}}>
-              <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+              <Button variant="contained" color="#378674ff" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
               NEXT
               </Button>
             </Link>

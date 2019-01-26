@@ -160,13 +160,13 @@ class StoryWizardThree extends Component{
         <div id="wizard-buttons">
             <Link to= '/create_two' style={{textDecoration: "none"}}>
               <Button variant="contained" color="primary" 
-                 style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
               BACK
               </Button>
             </Link>
         
             <Link to= '/create_four' style={{textDecoration: "none"}}>
-                <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
+                <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}>
                 NEXT
                 </Button>
         </Link></div>
