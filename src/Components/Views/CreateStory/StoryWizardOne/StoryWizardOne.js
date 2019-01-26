@@ -26,19 +26,21 @@ const styles = theme => ({
 });
 
 function getSteps() {
-  return ['Add a Title', 'Write a Description', 'Story Rules'];
+  return ['Add a Title', 'Write a Description', 'Story Rules', 'Review and Submit'];
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Add a Title...';
+      return '';
     case 1:
       return 'What is this story about?';
     case 2:
       return 'How much control do you want?';
+    case 3:
+      return 'Almost Finished..';
     default:
-      return 'Unknown step';
+      return 'Review and Submit';
   }
 }
 
@@ -73,7 +75,7 @@ class StoryWizardOne extends Component {
     this.setState({ open: false });
   };
 
-  isStepOptional = step => step === -1;
+  isStepOptional = step => step === false;
 
   handleNext = () => {
     const { activeStep } = this.state;
@@ -136,7 +138,7 @@ class StoryWizardOne extends Component {
               </div>
                 <p>We'll walk you through all of guidelines for creating your new story here</p>
             </div>
-            <Stepper activeStep={activeStep}>
+            <Stepper id="stepper" activeStep={activeStep}>
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
@@ -166,33 +168,7 @@ class StoryWizardOne extends Component {
           ) : (
             <div>
               <Typography >{getStepContent(activeStep)}</Typography>
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  
-                >
-                  Back
-                </Button>
-                {this.isStepOptional(activeStep) && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleSkip}
-                    
-                  >
-                    Skip
-                  </Button>
-                )}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div>
+              
             </div>
           )}
         </div>
@@ -212,8 +188,11 @@ class StoryWizardOne extends Component {
          
           <div className='button'> 
             <Link to= '/create_two' style={{textDecoration: "none"}}>
-              <Button variant="contained" color="#378674ff" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
-              NEXT
+              <Button variant="contained" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
+              onClick={this.handleNext}
+                  
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </Link>
           </div>

@@ -103,3 +103,9 @@ input{
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+#stepper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
