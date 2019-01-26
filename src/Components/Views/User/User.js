@@ -17,31 +17,40 @@ class User extends Component{
         this.changePic = this.changePic.bind(this);
         this.changeBio = this.changeBio.bind(this);
     }
+
+
     componentWillMount(){
         const {userId} = this.props;
-        axios.get(`/api/profilePic/${userId}`).then(res => {
-            this.setState({proPic:res.data[0]['url']})
-                       
+        axios.get(`/user/profilePic/${userId}`).then(res => {
+            if(res.data.length===0){
+                this.setState({proPic:`https://robohash.org/${userId}?set=set4/`})  
+            } else{
+                this.setState({proPic:res.data[0]['url']})
+            }        
+        }).catch(err=>{
+            alert(err.message)
         })
     };
 
     componentDidMount(){
-        const {userName,userId} = this.props;
+        const {userName, userId} = this.props;
         this.setState({userName:userName, userId:userId})
-        axios.get(`/api/profile/${userId}`)
+        axios.get(`/user/profile/${userId}`)
             .then(res=>{
             const {username, bio, stories } = res.data;
             this.setState({userName:username, bio:bio, stories:stories})   
-        });
-          
+        });  
     };
     
     changePic (val) {
         this.setState({proPic:val});
         this.props.updateProfilePic(val);
         const {userId} = this.state;
-        axios.put(`/api/profilePic/${userId}`, {url:val}).then(res => {
+        axios.put(`/user/profilePic/${userId}`, {url:val})
+            .then(res => {
             console.log(res.data);
+        }).catch(err=>{
+            alert(err.message)
         })
     };
 
@@ -49,8 +58,11 @@ class User extends Component{
         const userId = this.state.userId;
         this.setState({ bio:val });
         this.props.updateBio(val);
-        axios.put(`/api/bio/${userId}?bio=${val}`).then(res=>{
+        axios.put(`/user/bio/${userId}?bio=${val}`)
+            .then(res=>{
             console.log(res.data)
+        }).catch(err=>{
+            alert(err.message)
         })
     };
     

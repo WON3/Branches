@@ -12,6 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import {connect} from 'react-redux';
 import {makeOpenClose} from '../../../ducks/reducer';
 import { Link } from "react-router-dom";
+import './NavBar.css'
 
  const drawerWidth = 240;
  const styles = theme => ({
@@ -34,7 +35,7 @@ import { Link } from "react-router-dom";
     }),
   },
   menuButton: {
-      
+   
     marginLeft: 12,
     marginRight: 20,
   },
@@ -77,7 +78,9 @@ import { Link } from "react-router-dom";
     const authenticatedList = [
         {name: "Dashboard", path: "/", shouldShow: true},
         {name: "My Profile", path: "/user", shouldShow: this.props.userId ? true : false},
-        {name: "Login", path: "/Login",shouldShow: !this.props.userId ? true : false}
+        {name: "Login", path: "/Login", shouldShow: !this.props.userId ? true : false},
+        {name: "Create Story", path: "/create_one", shouldShow: this.props.userId ? true : false},
+        
     ];   
     
         
@@ -88,7 +91,6 @@ import { Link } from "react-router-dom";
     })
      return (
       <div className={classes.root}>
-        <CssBaseline />
       
         <Drawer
           className={classes.drawer}
@@ -100,15 +102,13 @@ import { Link } from "react-router-dom";
           }}
         >
           <div className={classes.drawerHeader}>
-            <IconButton onClick= {()=>this.props.makeOpenClose(this.props.openClose)}>
+            <IconButton padding-bottom='35px' onClick= {()=>this.props.makeOpenClose(this.props.openClose)}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
-          <Divider />
           <List>
           {authenticatedListComponents}
           </List>
-          <Divider />
         </Drawer>
       </div>
     );

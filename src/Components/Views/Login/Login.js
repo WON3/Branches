@@ -8,11 +8,10 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
 
-/*format login code for username and password as well as css for Login view*/
-
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/reducer";
 import LoginButton from "./LoginButton";
+
 
 class Login extends Component {
   constructor(props) {
@@ -24,6 +23,7 @@ class Login extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
+    this.handleClick =this.handleClick.bind(this);
   }
 
   handleChange = e => {
@@ -39,6 +39,7 @@ class Login extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  
 
   login() {
     axios.post(`/api/login`, {
@@ -52,23 +53,25 @@ class Login extends Component {
       });
   }
 
-  render() {
+  render() {  
     return (
       <div>
         <div className="LoginBox">
           <div className="header">Login</div>
           <form className="LoginForm">
-            <TextField
+            <TextField classname = 'inputBox'
               id="outlined-name"
               label="Username"
               name="username"
               value={this.state.username}
-              onChange={this.handleChange}
+              onChange={this.handleChange}  
               margin="normal"
               variant="outlined"
+              style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}
+              }
             />
             <br />
-            <TextField
+            <TextField className = 'inputBox'
               id="outlined-password-input"
               label="Password"
               type="password"
@@ -78,11 +81,11 @@ class Login extends Component {
               onChange={this.handleChange}
               margin="normal"
               variant="outlined"
+              border=""
+              style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}}
             />
             <br />
-
-            <br />
-            <Register />
+            <Register history={this.props.history}/>
           </form>
           <LoginButton login={this.login}/>
           <Snackbar
@@ -110,6 +113,7 @@ class Login extends Component {
     );
   }
 }
+
 
 export default connect(
   null,

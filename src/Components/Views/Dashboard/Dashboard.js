@@ -32,21 +32,23 @@ class Dashboard extends Component {
     }
 
     render(){
+       
         const stories = this.state.stories.map((story)=>{
+           
             return(
-                <Card className="storybox">
+                <Card className="storybox" key={story.story_id}>
                 <CardContent>
-                <Typography className= "storyname" key={story.story_id}>{story.title}</Typography>
-                <Typography className = "description" key={story.story_id}>{story.description}</Typography>
+                <div  className= "storyname">{story.title}</div>
+                <div  className = "description">{story.description}</div>
+
                 <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
                 </CardContent>
                 </Card>
             )
         })
         return(
-
-            <div className ="dashboard" >
-               <h1>Stories in the Works</h1>
+            <div className="idk">
+            <div className="dashboard">
              {stories}
              <Snackbar
             anchorOrigin={{
@@ -69,33 +71,9 @@ class Dashboard extends Component {
             ]}
           />
             </div>
- 
+            <h3 className= "storydash">Stories Dashboard</h3>
+ </div>
         )
     }
  }
  export default Dashboard;
-// import React, { Component } from "react";
-// import Snackbar from "@material-ui/core/Snackbar";
-// import IconButton from "@material-ui/core/IconButton";
-// import CloseIcon from "@material-ui/icons/Close";
-
-// class Dashboard extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             open: true
-//     };
-// }
-//       handleClose = () => {
-//         this.setState({ open: false });
-//       };
-    
-//   render() {
-//     return <div>
-//         Dashboard
-        
-//     </div>;
-//   }
-// }
-
-// export default Dashboard;

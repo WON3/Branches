@@ -4,54 +4,35 @@ import Modal from '@material-ui/core/Modal';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './userStyles.css';
 
 const styles = theme => ({
     rootD: {
         flexGrow:1,
         marginTop:75,
-        height: '87vh'
+        height: '87vh',
+        color: '#378674'
     },
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        height: 'fill',
-      },
-      textField: {
+    textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
         width: '90%',
         height: theme.spacing.unit*14,
       },
-      dense: {
-        marginTop: 16,
-      },
-      menu: {
-        width: 200,
-      },
-    background: {
+         background: {
       background: '#EAFBF7',
     },
-    bio: {
-      height: 140,
-      boxSizing: 'border-box',
-      textAlign:'jusitify'
+    but: {
+        float: 'right',
+        marginTop: '-35px',
+        paddingRight: 5,
     },
     button: {
       background:'#378674',
       marginTop: 5,
       alignSelf: 'center' 
-    }, 
-    itemFix: {
-      height:'80vh',
-    },
-    itemFixT:{
-      height:'80vh',
-      width: '82vw'
-    },
-    media: {
-        width: 'fill',
-        paddingTop: '56.25%', // 16:9
-      },
+    },    
     paper: {
         position: 'absolute',
         top:'35%',
@@ -64,12 +45,6 @@ const styles = theme => ({
         flexDirection: 'column',
         justify: 'center',
       },
-      titles: {
-        textAlign: 'center',
-        alignSelf: 'center',
-        fontFamily: 'Slabo'
-      }
-  
     });
 
 class ButtonMode extends Component {
@@ -104,33 +79,34 @@ class ButtonMode extends Component {
     render(){
         const { classes } = this.props;
         return (
-            <div>
-                <Button 
-                    className={classes.button}
+            <div className={classes.but}>
+                <FontAwesomeIcon icon="pencil-alt"
+                    className='fontA'
                     onClick={this.open}
-                    >Update
-                </Button>
+                    />
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                     onClose={this.close}
-                    >
-                    <div className={classes.paper}>
-                        <TextField
-                            id="filled-textarea"
-                            label={this.props.label}
-                            placeholder={this.props.placeHolder}
-                            multiline
-                            className={classes.textField}
-                            onChange={(e)=>{this.handleInput(e.target.value)}}
-                            rows= {this.props.rows}
-                            />
-                        <Button 
-                            onClick={this.handle}
-                            className={classes.button} 
-                            color="secondary">Submit</Button>                  
-                  </div>
+                >
+                <div className={classes.paper}>
+                    <TextField
+                        id="filled-textarea"
+                        label={this.props.label}
+                        placeholder={this.props.placeHolder}
+                        multiline
+                        className={classes.textField}
+                        onChange={(e)=>{this.handleInput(e.target.value)}}
+                        rows= {this.props.rows}
+                        />
+                    <Button 
+                        onClick={this.handle}
+                        className={classes.button} 
+                        color="secondary">
+                        Submit
+                    </Button>                  
+                </div>
                 </Modal>
             </div>
         )

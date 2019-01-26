@@ -2,204 +2,195 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import {connect} from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import ButtonMode from './ButtonMode';
+import './userStyles.css';
+import { relative } from 'path';
 
 const styles = theme => ({
-  rootD: {
+  root: {
       marginTop:75,
       height: '87vh',
       overflow:'scroll',
-  },
-  containerCustom: {
-    height: 'fill',
-    dispaly: 'flex',
-    boxSizing: 'border-box',
-    flexDirection:'row',
+      flexGrow:1 ,
+      alignSelf: 'center',
+      color: '#EAFBF7'
   },
   background: {
     background: '#EAFBF7',
+    padding: 5,
+    width: '100%'
   },
   bio: {
-    height: 140,
+    height: '58vh',
     boxSizing: 'border-box',
-    textAlign:'jusitify'
+    textAlign:'jusitify',
+    width: '100%',
+    color: '#378674',
+    fontSize: 15
   },
   button: {
     background:'#378674',
     marginTop: 5,
-    marginLeft: '62.3%',
+    margin: 'auto',
+    
   }, 
-  buttonHolder: {
-    padding:3,
-    marginLeft:'35%'
-  },
-  itemFixD: {
-    height:'85vh',
-    width: '-webkit-fill-available',
-    maxWidth: '20%',
-    flexGrow: '1',
-    flexShrink: '1',
-    display:'inline-block'
-  },
   itemBio: {
-    height: '85vh',
-    flexGrow: '2',
-    flexShrink:'1',
-    width: '79%',
-    display: 'inline-block'
+    height: 'auto',
+    width: 850,
+    minWidth: 500,
+    margin: 'auto',
+    color: '#378674'
+    
   },
   card: {
-      maxWidth: 1100,
+      maxWidth: 850,
       width: 'auto',
       height: '102%',
-      marginTop:20,
-      marginLeft: 30,
-      padding:theme.spacing.unit*2,      
+      padding:theme.spacing.unit*2, 
+      display: 'flex',
+      justify: 'space-around',
+      color: '#378674'     
     },
-    media: {
-      width: 'fill',
-      paddingTop: '56.25%', // 16:9
-    },
-    paper: {
-      position: 'absolute',
-      top:'35%',
-      left:'35%',
-      width: theme.spacing.unit * 50,
-      backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing.unit * 4,
-    },
-    titles: {
-      textAlign: 'center',
-      alignSelf: 'center',
-      fontFamily: 'Slabo'
-    }
-  });
+  media: {
+    width: 'fill',
+    position:relative,
+    paddingTop: '56.25%', // 16:9
+  },
+  paper: {
+    position: 'absolute',
+    top:'35%',
+    left:'35%',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+  titles: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontFamily: 'Slabo',
+    width: '75%',
+    color: '#378674' 
+  },
+  userInfo: {
+    padding:5,
+    margin: 5,
+    width: '25%'
+  }
+});
   
-  class UserCard extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          tempPro:'',
-          open: false,
-          openTwo: false,
-          profilePicture:''
-        }
-       
-        this.handlePicture = this.handlePicture.bind(this);
-        this.handleBio = this.handleBio.bind(this);
-      }
-      
+class UserCard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      tempPro:'',
+      open: false,
+      openTwo: false,
+      profilePicture:''
+    }
+    this.handlePicture = this.handlePicture.bind(this);
+    this.handleBio = this.handleBio.bind(this);
+  }
     
-        
-    handlePicture(val){
-      this.props.changePic(val);
-      this.setState({open:false});
-    };
+  handlePicture(val){
+    this.props.changePic(val);
+    this.setState({open:false});
+  };
 
-    handleBio(val){
-      this.props.changeBio(val)
-      this.setState({openTwo:false});
-    };
+  handleBio(val){
+    this.props.changeBio(val)
+    this.setState({openTwo:false});
+  };
 
-    
-    
-    render() {
-      const { classes } = this.props;
-      const {stories} = this.props;
-      let storyShow = stories.map((story,id) => {
-        return(
-          <div key={story.story_id}>
-              <h3>{story.title}</h3>
-              <ul className={classes.background}>
-                <li>{story.description}</li>
-                <li>{story.is_complete}</li>
-              </ul>  
-          </div>
-        )
-      });
+render() {
+  const { classes } = this.props;
+  const { stories } = this.props;
+  let storyShow = stories.map((story,id) => {
+    return(
+      <div key={story.story_id}>
+        <h4 className='contributionTitle'>{story.title}</h4>
+          <li className='userLi'>{story.description}</li>
+          
+      </div>
+    )
+  });
 
-      return (  
-      <div className={classes.rootD}>
-        <Grid containerCustom>
-          <Grid className={classes.itemFixD} >
-            <Card className={classes.card}>
+  return (  
+    <div className={classes.root}>
+        <div className={classes.itemBio}>
+        <Card className={classes.card}>
+          <div className={classes.userInfo}>
+            <div className='profile'>
               <CardMedia
                 className={classes.media}
                 image={this.props.proPic}
                 title={this.props.userName}
                 />
-              <div className={classes.buttonHolder}>
-                <ButtonMode 
-                  label='URL'
-                  placeHolder='Picture URL'
-                  change={this.handlePicture}
-                  rows='1'
-                />
-              </div>
-              <CardHeader
-                className={classes.titles}
-                title={this.props.userName}
-                subheader="Somewhere"
-                />
-              <CardHeader className={classes.titles} title='Bio' />
-              <CardContent className={classes.background}>
-                <Typography className={classes.bio} paragraph>
-                  {this.props.bio}
-                </Typography>
-              </CardContent> 
-              <div className={classes.buttonHolder}>
-                <ButtonMode 
-                    label='Bio'
-                    placeHolder='Tell us about you.'
-                    change={this.handleBio}
-                    rows='4'
-                  />
-               
+              <ButtonMode 
+                label='URL'
+                placeHolder='Picture URL'
+                change={this.handlePicture}
+                rows='1'
+              />
+            </div> 
+              
+            <div className={classes.titles}>
+               <h3>{this.props.userName}</h3>
             </div>
-            </Card>
-          </Grid>
-          <Grid className={classes.itemBio}>
-            <Card className={classes.card}>
-            <CardContent>
-                <CardHeader 
-                  className={classes.titles}
-                  title='Works'/>
-                <Typography paragraph>
-                  <ul>
-                    {storyShow}
-                  </ul>
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          </Grid>
+            <div className={classes.titles}>
+            <h3>Bio</h3>
+            <div className={classes.background}>
+              <div className='bioHolder'>
+                <div className={classes.bio} >
+                  <ButtonMode 
+                      label='Bio'
+                      placeHolder='Tell us about you.'
+                      change={this.handleBio}
+                      rows='4'
+                    />
+                  {this.props.bio}
+                </div>
+              </div>
+            </div> 
+            </div>
+              <div className={classes.buttonHolder}>
+                
+              </div>  
+          </div>
+          <div className='contributionBox'>
+              <div className={classes.titles}>
+                  <h3>Your stories</h3>
+               </div>
+              <div className='contributions'>
+                <ul className='userUl'>
+                  {storyShow}
+                </ul>
+              </div>
+          </div>
+        </Card>
       </div>
-      );
-    }
+    </div>
+  );
   }
+}
   
-  UserCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-    changePic: PropTypes.string,
-    bio: PropTypes.string,
-    changeBio: PropTypes.func,
-    proPic: PropTypes.string,
-    stories: PropTypes.array
-  }
+UserCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  changePic: PropTypes.func,
+  bio: PropTypes.string,
+  changeBio: PropTypes.func,
+  proPic: PropTypes.string,
+  stories: PropTypes.array
+};
   
-  function mapStateToProps(state){
-    const {userId, profilePic} = state;
-    return {
-      userId,
-      profilePic      
-    }
+function mapStateToProps(state){
+  const {userId, profilePic} = state;
+  return {
+    userId,
+    profilePic      
   }
+};
 
-  export default connect(mapStateToProps,{})(withStyles(styles)(UserCard));
+export default connect(mapStateToProps,{})(withStyles(styles)(UserCard));

@@ -3,13 +3,13 @@ import { Switch, Route } from "react-router-dom";
 
 import Login from "./Components/Views/Login/Login";
 import User from "./Components/Views/User/User";
+import View_Story from "./Components/Views/View_Story/View_Story";
 import StoryWizardOne from "./Components/Views/CreateStory/StoryWizardOne/StoryWizardOne";
 import StoryWizardTwo from "./Components/Views/CreateStory/StoryWizardTwo/StoryWizardTwo";
 import StoryWizardThree from "./Components/Views/CreateStory/StoryWizardThree/StoryWizardThree";
 import StoryWizardFour from "./Components/Views/CreateStory/StoryWizardFour/StoryWizardFour";
 import Dashboard from "./Components/Views/Dashboard/Dashboard";
-import Contribute from "./Components/Views/Contribute/Contribute"
-import View_Story from "./Components/Views/View_Story/View_Story"
+import Contribute from "./Components/Views/Contribute/Contribute";
 
 
 
