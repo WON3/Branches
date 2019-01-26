@@ -168,7 +168,8 @@ render(props){
             className="descripton" 
             name="description"
             label= "Description (maximum: 1000 characters)" 
-            multiline
+            multiline = {true}
+            rowsMax= {15}
             inputProps={{
                 maxLength: "1000"
               }}

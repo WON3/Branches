@@ -46,7 +46,7 @@ const styles = theme => ({
       case 1:
         return 'What is this story about?';
       case 2:
-        return 'How much control do you want?';
+        return 'Story Guidelines';
       case 3:
         return 'Almost Finished..';
       default:
@@ -131,7 +131,7 @@ class StoryWizardThree extends Component{
     const steps = getSteps();
     const { activeStep } = this.state;
     return (
-        <div className="createStory" >
+        <div className="createStory">
          <div className="title-box">
                 <h2 className= "wizard-title">Create Story Wizard</h2>
             </div>
@@ -171,13 +171,13 @@ class StoryWizardThree extends Component{
           </div>
             <div id="POV-Fork-Mod">
             <form className={styles.root} autoComplete="off">
-        <FormControl className={styles.formControl}>
-          <InputLabel id="questions" htmlFor="age-simple" style={{color: "#eafbf7"}}>Point of View </InputLabel>
+        <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly"}}>
+          <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
           <Select
             value={storyGuidePOV}
             onChange={e => {
-                this.props.addPOV(e.target.value)
+                addPOV(e.target.value)
             }
         }
             inputProps={{
@@ -185,13 +185,13 @@ class StoryWizardThree extends Component{
               id: 'age-simple',
             }}
           >
-            <MenuItem value="">
+            <MenuItem value="" style={{backgroundColor: "#EAFBF7"}}>
               <em>(Select One)</em>
             </MenuItem>
-            <MenuItem value="First Person">First Person</MenuItem>
-            <MenuItem value="Second Person">Second Person</MenuItem>
-            <MenuItem value="Third Person">Third Person</MenuItem>
-            <MenuItem value="Narrative">Narrative</MenuItem>
+            <MenuItem value="First Person" style={{backgroundColor: "#EAFBF7"}}>First Person</MenuItem>
+            <MenuItem value="Second Person" style={{backgroundColor: "#EAFBF7"}}>Second Person</MenuItem>
+            <MenuItem value="Third Person" style={{backgroundColor: "#EAFBF7"}}>Third Person</MenuItem>
+            <MenuItem value="Narrative" style={{backgroundColor: "#EAFBF7"}}>Narrative</MenuItem>
           </Select>
         </FormControl>
         <FormControl className={styles.formControl}>
@@ -199,7 +199,7 @@ class StoryWizardThree extends Component{
           <Select
             value={storyGuideFork}
             onChange={e => 
-                {this.props.addForkRestriction(e.target.value)}
+                {addForkRestriction(e.target.value)}
             }
             inputProps={{
                 name:"allows_fork", 
@@ -207,11 +207,11 @@ class StoryWizardThree extends Component{
             }}
             
           >
-            <MenuItem value="">
+            <MenuItem value="" style={{backgroundColor: "#EAFBF7"}}>
               <em>(Select One)</em>
             </MenuItem>
-            <MenuItem value={true}>Yes</MenuItem>
-            <MenuItem value={false}>No</MenuItem>
+            <MenuItem value={true} style={{backgroundColor: "#EAFBF7"}}>Yes</MenuItem>
+            <MenuItem value={false} style={{backgroundColor: "#EAFBF7"}}>No</MenuItem>
           </Select>
           <FormHelperText>This feature allows contributors to create a new branch and go in new direction with the story.</FormHelperText>
         </FormControl>
@@ -229,11 +229,11 @@ class StoryWizardThree extends Component{
             id:"age-helper",
             }}
           >
-            <MenuItem value="">
+            <MenuItem value="" style={{backgroundColor: "#EAFBF7"}}>
               <em>(Select One)</em>
             </MenuItem>
-            <MenuItem value={true}>Yes</MenuItem>
-            <MenuItem value={false}>No</MenuItem>
+            <MenuItem value={true} style={{backgroundColor: "#EAFBF7"}}>Yes</MenuItem>
+            <MenuItem value={false} style={{backgroundColor: "#EAFBF7"}}>No</MenuItem>
           </Select>
           <FormHelperText>By Selecting "Yes" you agree to either approve or reject all contributer story submissions. Otherwise, all submissions will be voted on by approved contributers.</FormHelperText>
         </FormControl>
