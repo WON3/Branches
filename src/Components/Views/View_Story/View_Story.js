@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './View_Story.css';
 import RenderCont from './RenderCont';
-import Readview from './Readview';
+import ReadView from './Readview';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
@@ -10,6 +10,8 @@ import Switch from '@material-ui/core/Switch';
 import {connect} from 'react-redux';
 import {getUser} from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
+import {storyBuilder} from './services/pageBuilder'
+
 
 
 class ViewStory extends Component {
@@ -22,9 +24,13 @@ class ViewStory extends Component {
             checkedA: true,
             checkedB: true,
             userId: '',
-            serverErrorMessage:''
+            serverErrorMessage:'',
+            isReaderViewEnabled: false
+
         }
     }
+
+
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -48,6 +54,11 @@ class ViewStory extends Component {
                 let er = err.response.data.message;
                 this.setState({serverErrorMessage: er})
             })
+            setTimeout(() => {
+                this.setState({
+                    isReaderViewEnabled: true
+                })
+            }, 3 * 1000)
     }
 
 
@@ -61,15 +72,14 @@ class ViewStory extends Component {
         }
 
         const contributions = this.state.contribution.contributions.map((contribution) => <RenderCont contribution={contribution} />)
-        const contribution = this.state.contribution.contributions.map((contribution) => <Readview contribution={contribution} />)
-        const lastContribution = this.state.contribution.contributions.reduce((object,element)=> {
-            if(element.id>object.id){
-                object=element
+        const lastContribution = this.state.contribution.contributions.reduce((object, element) => {
+            if (element.id > object.id) {
+                object = element
             }
             return object
-        },{id:0})
+        }, { id: 0 })
         const prior_contributions_id = lastContribution ? lastContribution.id : 0;
-        const isUserLoggedIn =  this.props.userId? <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}><Button size="large">Create Contribution</Button></Link>: ''
+        const isUserLoggedIn = this.props.userId ? <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}><Button size="large">Create Contribution</Button></Link> : ''
 
         if (!this.state.checkedA) {
             return (
@@ -82,8 +92,8 @@ class ViewStory extends Component {
                         <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
                             onChange={this.handleChange('checkedA')}
                             value="checkedA" />
-                    <p>User View</p>
-                    </div> 
+                        <p>User View</p>
+                    </div>
                     <div className="contribution">{contributions}</div>
 
                     <div className="butt">
@@ -97,18 +107,27 @@ class ViewStory extends Component {
             )
         } else {
             return (
-                <div className="body">
+                <div className="read-view-main">
+                <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                    onChange={this.handleChange('checkedA')}
+                    value="checkedA" />
 
-                    <div style={{ textAlign: "center" }} className="head">
-                        <h1>{this.state.contribution.story.title}</h1>
-                        <p>~~~~~Preface~~~~~</p>
-                        <h3>{this.state.contribution.story.description}</h3>
-                        <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                            onChange={this.handleChange('checkedA')}
-                            value="checkedA" />
-                            <p>Reader View</p>
+                    <div style={{ textAlign: "left" }} className="read-view-container">
+                        <div className="read-view-title">
+                            {this.state.contribution.story.title}
+                        </div>
+                        <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
+                            <p>~~~~~Preface~~~~~</p>
+                            <h3 style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>{this.state.contribution.story.description}</h3>
+                        </div>
+                        <ReadView pages={storyBuilder(this.state.contribution.contributions, 280)}/>
+                        <div className="butt" style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
+                            <Link to={`/dashboard`}>
+                                <Button size="large">Home</Button>
+                            </Link>
+                            {isUserLoggedIn}
+                        </div>
                     </div>
-
                     <div className="contribution">{contribution}</div>
                     <div className="butt">
                         <Link to={`/dashboard`}>
@@ -124,11 +143,11 @@ class ViewStory extends Component {
 }
 
 
-function mapStateToProps (state) {
-    const {userId} = state;
+function mapStateToProps(state) {
+    const { userId } = state;
     return {
         userId
     }
 }
 
-export default connect(mapStateToProps, {getUser}) (ViewStory);
+export default connect(mapStateToProps, { getUser })(ViewStory);

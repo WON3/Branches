@@ -68,9 +68,9 @@ class StoryWizardThree extends Component{
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#eafbf7"}}>Point of View </InputLabel>
 
           <Select
-            value={this.props.storyGuidePOV}
+            value={storyGuidePOV}
             onChange={e => {
-                addPOV(e.target.value)
+                this.props.addPOV(e.target.value)
             }
         }
             inputProps={{
@@ -90,10 +90,15 @@ class StoryWizardThree extends Component{
         <FormControl className={styles.formControl}>
           <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Allows New Story Branch?</InputLabel>
           <Select
-            value={this.props.storyGuideFork}
-            onChange={e => addForkRestriction(e.target.value)}
-            input={<Input name="allows_fork" id="age-helper" />}
-            required
+            value={storyGuideFork}
+            onChange={e => 
+                {this.props.addForkRestriction(e.target.value)}
+            }
+            inputProps={{
+                name:"allows_fork", 
+                id:"age-helper",
+            }}
+            
           >
             <MenuItem value="">
               <em>(Select One)</em>
@@ -106,13 +111,16 @@ class StoryWizardThree extends Component{
         <FormControl className={styles.formControl}>
           <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Do you want to approve all story snippet submissions or let contributors vote on each submission?</InputLabel>
           <Select
-            value={this.props.storyGuideMod}
+            value={storyGuideMod}
             onChange={e => {
                 addModerator(e.target.value)
              
                 }
             }
-            input={<Input name="moderator_accepts" id="age-helper" />}
+            inputProps={{
+            name:"moderator_accepts", 
+            id:"age-helper",
+            }}
           >
             <MenuItem value="">
               <em>(Select One)</em>
@@ -151,13 +159,14 @@ class StoryWizardThree extends Component{
                 </div> */}
         <div id="wizard-buttons">
             <Link to= '/create_two' style={{textDecoration: "none"}}>
-              <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+              <Button variant="contained" color="primary" 
+                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
               BACK
               </Button>
             </Link>
         
             <Link to= '/create_four' style={{textDecoration: "none"}}>
-                <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
+                <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}>
                 NEXT
                 </Button>
         </Link></div>

@@ -9,6 +9,38 @@
     color: #378674
 }
 
+.read-view-title {
+    background: #3A8674;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #EAFBF7;
+}
+.read-view-main{
+    padding: 0px 10px
+}
+.read-view-container {
+    margin-top: 35px;
+}
+
+
+.view-story-page{
+    background: white;
+    padding: 5px;
+    height: 560px;
+    min-width: 372px;
+    max-width: 437px;
+}
+
+.one{
+    border-radius: 0px 10px 10px 0px;
+    margin: 17px 0px 0px 0px;
+}
+
+.two {
+    border-radius: 10px 0px 0px 10px;
+    margin: 17px 0px 0px 4px;
+}
 .head {
     font-size: 2em;
     width: 100%;
@@ -39,6 +71,20 @@ h3 {
   margin: auto;
   text-transform: capitalize;
 }
+
+.contribution-view-story {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    margin: auto;
+    max-width: 900px;
+    text-transform: capitalize;
+  }
+
+
+
 .contribution h3 {
     color: white
 }
