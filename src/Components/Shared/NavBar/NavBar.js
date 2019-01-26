@@ -87,7 +87,7 @@ import './NavBar.css'
     const { classes, theme, openClose } = this.props;
     // console.log(this.props.makeOpenClose);
     const authenticatedListComponents = authenticatedList.filter(e=>e.shouldShow).map((item)=>{
-        return <Link to={item.path} key={item.name}><ListItem>{item.name}</ListItem></Link>
+        return <Link to={item.path} key={item.name} onClick= {()=>this.props.makeOpenClose(this.props.openClose)}><ListItem>{item.name}</ListItem></Link>
     })
      return (
       <div className={classes.root}>
