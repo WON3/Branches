@@ -7,14 +7,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import './View_Story.css'
 
-// const styles = theme => ({
-//   root: {
-//     ...theme.mixins.gutters(),
-//     paddingTop: theme.spacing.unit * 2,
-//     paddingBottom: theme.spacing.unit * 2,
-
-//   },
-// });
 
 function Readview(props) {
   const { classes, contribution } = props;
@@ -27,8 +19,4 @@ function Readview(props) {
   );
 }
 
-// Readview.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-// withStyles(styles)
 export default (Readview);
