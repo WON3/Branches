@@ -55,7 +55,7 @@ class StoryWizardOne extends Component {
             className="title" 
             name= "title" 
             label= "Title (maximum: 100 characters)" 
-            style = {{backgroundColor: "#EAFBF7"}}
+            style = {{backgroundColor: "#EAFBF7", width: "90%"}}
             inputProps={{
               maxLength: "100"
             }}
