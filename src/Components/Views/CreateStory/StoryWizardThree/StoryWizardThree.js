@@ -194,6 +194,7 @@ class StoryWizardThree extends Component{
             <MenuItem value="Narrative" style={{backgroundColor: "#EAFBF7"}}>Narrative</MenuItem>
           </Select>
         </FormControl>
+        <div></div>
         <FormControl className={styles.formControl}>
           <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Allows New Story Branch?</InputLabel>
           <Select
@@ -215,6 +216,8 @@ class StoryWizardThree extends Component{
           </Select>
           <FormHelperText>This feature allows contributors to create a new branch and go in new direction with the story.</FormHelperText>
         </FormControl>
+        <div></div>
+
         <FormControl className={styles.formControl}>
           <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Do you want to approve all story snippet submissions or let contributors vote on each submission?</InputLabel>
           <Select
@@ -235,6 +238,7 @@ class StoryWizardThree extends Component{
             <MenuItem value={true} style={{backgroundColor: "#EAFBF7"}}>Yes</MenuItem>
             <MenuItem value={false} style={{backgroundColor: "#EAFBF7"}}>No</MenuItem>
           </Select>
+       
           <FormHelperText>By Selecting "Yes" you agree to either approve or reject all contributer story submissions. Otherwise, all submissions will be voted on by approved contributers.</FormHelperText>
         </FormControl>
       </form>

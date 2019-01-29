@@ -40,7 +40,7 @@
 .wizard-box{
     background-color: #378674ff;
     height: 100%;
-    width: 80%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,6 +108,9 @@ input{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    max-width: 100%;
+    margin: auto;
+    padding: 10px;
 }
 
 #stepThree{
