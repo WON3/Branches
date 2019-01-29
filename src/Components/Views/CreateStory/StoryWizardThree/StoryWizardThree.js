@@ -61,7 +61,7 @@ class StoryWizardThree extends Component{
         this.state = {
             storyGuidePOV: '',
             storyGuideFork: '',
-            storyGuideMod: '',
+            storyGuideMod: true,
             labelWidth: 0,
             activeStep: 2,
             skipped: new Set()
@@ -69,10 +69,11 @@ class StoryWizardThree extends Component{
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount(props) {
         this.setState({
           labelWidth: '40px'
         });
+        this.props.addModerator(this.state.storyGuideMod)
       }
       
       handleChange = event => {
@@ -169,8 +170,8 @@ class StoryWizardThree extends Component{
             </div>
           )}
           </div>
-            <div id="POV-Fork-Mod">
-            <form className={styles.root} style = {{justifyContent: "space-between"}} autoComplete="off">
+            <div id="POV-Fork-Mod" style = {{justifyContent: "space-between", maxWidth: "250px"}}>
+            <form className={styles.root} style = {{justifyContent: "space-between", maxWidth: "100%", padding: "10px"}} autoComplete="off">
         <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
@@ -218,7 +219,7 @@ class StoryWizardThree extends Component{
         </FormControl>
         <div></div>
 
-        <FormControl className={styles.formControl}>
+        {/* <FormControl className={styles.formControl}>
           <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Approve all story snippet submissions or let contributors vote on each submission?</InputLabel>
           <Select
             value={storyGuideMod}
@@ -240,7 +241,7 @@ class StoryWizardThree extends Component{
           </Select>
        
           <FormHelperText>By Selecting "Yes" you agree to either approve or reject all contributer story submissions. Otherwise, all submissions will be voted on by approved contributers.</FormHelperText>
-        </FormControl>
+        </FormControl> */}
       </form>
           {/* </div>  
             <div className="create-three-div">
