@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
 import {connect} from 'react-redux';
-import {getUser} from '../../../ducks/reducer';
+import * as Actions from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
 import {storyBuilder} from './services/pageBuilder'
 
@@ -55,6 +55,7 @@ class ViewStory extends Component {
                 this.setState({serverErrorMessage: er})
             })
             setTimeout(() => {
+                this.props.toggleReadview(this.props.isReadView)
                 this.setState({
                     isReaderViewEnabled: true
                 })
@@ -151,11 +152,5 @@ visibility
 
 
 
-function mapStateToProps(state) {
-    const { userId } = state;
-    return {
-        userId
-    }
-}
 
-export default connect(mapStateToProps, { getUser })(ViewStory);
+export default connect(state => state, Actions)(ViewStory);

@@ -59,7 +59,6 @@ class StoryWizardFour extends Component {
             allows_fork: true, //user Input
             moderator_accepts: true,
             serverErrorMessage:'',
-        //user Input
             activeStep: 3,
             skipped: new Set(),
         }
