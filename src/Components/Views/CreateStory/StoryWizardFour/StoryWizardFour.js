@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import ErrorModal from '../../ErrorModal/ErrorModal'
 
 const styles = theme => ({
     root: {
@@ -57,9 +58,7 @@ class StoryWizardFour extends Component {
             is_public: false, //defaults to false
             allows_fork: true, //user Input
             moderator_accepts: true,
-            serverErrorMessage:''
-        }//user Input
-
+            serverErrorMessage:'',
             activeStep: 3,
             skipped: new Set(),
         }
