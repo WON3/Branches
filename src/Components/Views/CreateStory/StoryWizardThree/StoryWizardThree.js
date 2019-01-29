@@ -19,6 +19,13 @@ import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import AddIcon from '@material-ui/icons/Add';
+import HelpRounded from '@material-ui/icons/HelpRounded';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
+
+
 
 
 const styles = theme => ({
@@ -32,6 +39,14 @@ const styles = theme => ({
     },
     selectEmpty: {
       marginTop: theme.spacing.unit * 2,
+    },
+    fab: {
+      margin: theme.spacing.unit * 2,
+    },
+    absolute: {
+      position: 'absolute',
+      bottom: theme.spacing.unit * 2,
+      right: theme.spacing.unit * 3,
     },
   });
 
@@ -171,7 +186,7 @@ class StoryWizardThree extends Component{
           )}
           </div>
             <div id="POV-Fork-Mod" style = {{justifyContent: "space-between", maxWidth: "250px"}}>
-            <form className={styles.root} style = {{justifyContent: "space-between", maxWidth: "100%", padding: "10px"}} autoComplete="off">
+            <form className={styles.root} style = {{justifyContent: "space-between", width: "100%", padding: "0px"}} autoComplete="off">
         <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
@@ -195,9 +210,14 @@ class StoryWizardThree extends Component{
             <MenuItem value="Narrative" style={{backgroundColor: "#EAFBF7"}}>Narrative</MenuItem>
           </Select>
         </FormControl>
-        <div></div>
         <FormControl className={styles.formControl}>
-          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Allows New Story Branch?</InputLabel>
+       
+          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7", display: "flex", flexDirection: "row", justifyContent: "flex-end", alignItems: "center"}}>Allows New Story Branch   <Tooltip title="This feature allows contributors to create a new branch and go in new direction with the story." aria-label="HelpRounded">
+            <IconButton style={{backgroundColor: "transparent"}} >
+              <HelpRounded style={{height: "20%"}}/>
+            </IconButton>
+          </Tooltip></InputLabel>
+        
           <Select
             value={storyGuideFork}
             onChange={e => 
@@ -215,8 +235,8 @@ class StoryWizardThree extends Component{
             <MenuItem value={true} style={{backgroundColor: "#EAFBF7"}}>Yes</MenuItem>
             <MenuItem value={false} style={{backgroundColor: "#EAFBF7"}}>No</MenuItem>
           </Select>
-          <FormHelperText>This feature allows contributors to create a new branch and go in new direction with the story.</FormHelperText>
         </FormControl>
+        
         <div></div>
 
         {/* <FormControl className={styles.formControl}>
