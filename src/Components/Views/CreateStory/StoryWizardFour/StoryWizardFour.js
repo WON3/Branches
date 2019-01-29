@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import ErrorModal from '../../ErrorModal/ErrorModal'
 
 
 const styles = theme => ({
