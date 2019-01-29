@@ -61,7 +61,7 @@ class StoryWizardFour extends Component {
         }
         this.addNewStory = this.addNewStory.bind(this);
     }
-
+      
         addNewStory(props){
             const {
                 storyGuideTitle,
@@ -229,7 +229,10 @@ render(props){
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Allows Story to Fork:</h2>
-                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideFork}</div>
+                    { storyGuideFork ?
+                      <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
+                      :<div style= {{fontSize: "18pt", fontStyle: "normal"}}>No</div>
+                    }
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
@@ -242,7 +245,10 @@ render(props){
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">You are Controlling All Submissions:</h2>
-                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideMod}</div>
+                    { storyGuideMod ?
+                      <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
+                      :<div style= {{fontSize: "18pt", fontStyle: "normal"}}>No</div>
+                    }
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
@@ -260,7 +266,7 @@ render(props){
                 color="primary" 
                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
                 
-                onClick= {() => {this.addNewStory().this.handleNext()}}>
+                onClick= {() => {this.addNewStory()}}>
                 {activeStep === steps.length - 1 ? 'Submit New Story' : 'Next'}                </Button>
                 
                 </div>
