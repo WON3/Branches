@@ -56,7 +56,6 @@ contributionsRouter.get(`/last_contribution/:id`, (req,res,next)=>{
         id: req.params.id
     })
     .then(contribution => {
-        console.log(res)
         res.status(200).send(contribution)
     }).catch(err=>{
         handleError(err);

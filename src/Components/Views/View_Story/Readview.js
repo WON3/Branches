@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './View_Story.css'
-import { duration } from '@material-ui/core/styles/transitions';
 
 
 class ReadView extends Component {

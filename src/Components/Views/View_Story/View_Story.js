@@ -118,6 +118,9 @@ class ViewStory extends Component {
                             <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
                         onChange={this.handleChange('checkedA')}
                         value="checkedA" />
+                        <i class="material-icons">
+visibility
+</i>
                         </div>
                         <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
                             <p>~~~~~Preface~~~~~</p>
