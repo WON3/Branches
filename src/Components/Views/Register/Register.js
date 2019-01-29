@@ -74,7 +74,7 @@ class Register extends Component {
   
     
     axios.post("/api/register", { username, email, password }).then(res => {
-      debugger;
+
       
         alert("Registered. Now, login.");
         this.setState({ open: false });
