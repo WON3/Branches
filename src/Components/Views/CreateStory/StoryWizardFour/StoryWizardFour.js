@@ -267,7 +267,7 @@ render(props){
                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
                 
                 onClick= {() => {this.addNewStory()}}>
-                {activeStep === steps.length - 1 ? 'Submit New Story' : 'Next'}                </Button>
+                {activeStep === steps.length - 1 ? 'Submit New Story' : 'Next'} </Button>
                 
                 </div>
             </div>

@@ -171,7 +171,7 @@ class StoryWizardThree extends Component{
           </div>
             <div id="POV-Fork-Mod">
             <form className={styles.root} autoComplete="off">
-        <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-evenly"}}>
+        <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
           <Select
@@ -219,7 +219,7 @@ class StoryWizardThree extends Component{
         <div></div>
 
         <FormControl className={styles.formControl}>
-          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Do you want to approve all story snippet submissions or let contributors vote on each submission?</InputLabel>
+          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Approve all story snippet submissions or let contributors vote on each submission?</InputLabel>
           <Select
             value={storyGuideMod}
             onChange={e => {
