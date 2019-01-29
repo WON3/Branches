@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
 import {connect} from 'react-redux';
-import {getUser} from '../../../ducks/reducer';
+import * as Actions from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
 import {storyBuilder} from './services/pageBuilder'
 
@@ -55,6 +55,7 @@ class ViewStory extends Component {
                 this.setState({serverErrorMessage: er})
             })
             setTimeout(() => {
+                this.props.toggleReadview(this.props.isReadView)
                 this.setState({
                     isReaderViewEnabled: true
                 })
@@ -108,19 +109,22 @@ class ViewStory extends Component {
         } else {
             return (
                 <div className="read-view-main">
-                <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                    onChange={this.handleChange('checkedA')}
-                    value="checkedA" />
+                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                        onChange={this.handleChange('checkedA')}
+                        value="checkedA" />
 
                     <div style={{ textAlign: "left" }} className="read-view-container">
                         <div className="read-view-title">
-                            {this.state.contribution.story.title}
+                            {this.state.contribution.story.title} {" "}
+                            <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                        onChange={this.handleChange('checkedA')}
+                        value="checkedA" />
                         </div>
                         <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
                             <p>~~~~~Preface~~~~~</p>
                             <h3 style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>{this.state.contribution.story.description}</h3>
                         </div>
-                        <ReadView pages={storyBuilder(this.state.contribution.contributions, 280)}/>
+                        <ReadView pages={storyBuilder(this.state.contribution.contributions, 270)} />
                         <div className="butt" style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
                             <Link to={`/dashboard`}>
                                 <Button size="large">Home</Button>
@@ -128,8 +132,10 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-                    <div className="contribution">{this.state.contribution}</div>
-                    <div className="butt">
+
+                    <div style={{display: "none"}} className="contribution">{contributions}</div>
+                    <div style={{display: "none"}} className="butt">
+
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>
@@ -143,11 +149,7 @@ class ViewStory extends Component {
 }
 
 
-function mapStateToProps(state) {
-    const { userId } = state;
-    return {
-        userId
-    }
-}
 
-export default connect(mapStateToProps, { getUser })(ViewStory);
+
+
+export default connect(state => state, Actions)(ViewStory);
