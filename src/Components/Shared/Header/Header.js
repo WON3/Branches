@@ -73,12 +73,20 @@ const styles = theme => ({
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      serverErrorMessage:''
+    }
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogout() {
-    axios.post("/user/logout").then(() => {
+    axios.post("/user/logout")
+    .then(() => {
       this.props.logout();
-    });
+    })
+    .catch(err =>{
+      let er = err.respons.data.message;
+      this.setState({serverErrorMessage:er})
+    });;
   }
   render() {
     const { classes, userName } = this.props;
@@ -87,7 +95,8 @@ class Header extends Component {
         <div className="profile-button">
           Hello, <Link to="/user">{userName.toUpperCase()}</Link>
           <br />
-          <span onClick={this.handleLogout}>Logout</span>
+          <span onClick={this.handleLogout}
+         >Logout</span>
         </div>
       ) : (
         <Link className="profile-button" to="/Login">

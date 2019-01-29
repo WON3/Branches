@@ -180,8 +180,7 @@ CREATE TABLE story_genre
     genre_id INT,
     FOREIGN KEY (story_id) REFERENCES stories(story_id),
     FOREIGN KEY (genre_id) REFERENCES genre(id)
-)
-
+);
 CREATE TABLE rule
 (
     id SERIAL PRIMARY KEY,
