@@ -139,6 +139,7 @@ class Register extends Component {
                   value={this.state.username}
                   onChange={this.handleName("username")}
                   margin="normal"
+                  autoComplete="none"
                   variant="outlined"
                   style={{
                     backgroundColor: "#EAFBF7",
@@ -156,6 +157,7 @@ class Register extends Component {
                   type="email"
                   name="email"
                   autoComplete="email"
+                  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   margin="normal"
                   variant="outlined"
                   value={this.state.email}
@@ -182,6 +184,7 @@ class Register extends Component {
                     value={this.state.password}
                     name="password"
                     onChange={this.handlePassword("password")}
+                    required minlength ="8"
                     margin="normal"
                     variant="outlined"
                     border=""
