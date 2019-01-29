@@ -19,7 +19,10 @@ const initialState = {
     storyGuideMod: '',
 
   //contribute
-    contribution:''
+    contribution:'',
+
+  //appBar
+  isReadView: false
 }
 
 
@@ -38,6 +41,7 @@ const ADD_FORK_RESTRICTION = "ADD_FORK_RESTRICTION";
 const ADD_MODERATOR_RESTRICTION = "ADD_MODERATOR_RESTRICTION";
 const LOGOUT = "LOGOUT";
 const ADD_CONTRIBUTION = 'ADD_CONTRIBUTION';
+const TOGGLE_READVIEW = 'TOGGLE_READVIEW';
 /////////////////////User///////////////////////////
 export function getUser(userId, userName) {
   return {
@@ -124,6 +128,12 @@ export function addModerator(storyGuideMod) {
     payload: storyGuideMod
   };
 }
+export function toggleReadview(isReadview){
+return{
+  type: TOGGLE_READVIEW,
+  payload: !isReadview
+}
+}
 function reducer(state = initialState, action) {
   let { payload } = action;
 
@@ -175,6 +185,10 @@ function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         bio: action.payload
       });
+      case TOGGLE_READVIEW:
+      return Object.assign({}, state,{
+        isReadView: action.payload
+      } );
     default:
       return state;
   }
