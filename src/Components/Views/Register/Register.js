@@ -131,6 +131,7 @@ class Register extends Component {
                   value={this.state.username}
                   onChange={this.handleName("username")}
                   margin="normal"
+                  autoComplete="none"
                   variant="outlined"
                   style={{
                     backgroundColor: "#EAFBF7",
