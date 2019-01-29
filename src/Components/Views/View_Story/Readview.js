@@ -11,7 +11,8 @@ class ReadView extends Component {
       pages: [],
       currentPage: 2,
       showNextButton: true,
-      showPreviousbutton: false
+      showPreviousbutton: false,
+      backArrow: "<"
     }
     this.changePage = this.changePage.bind(this)
   }
@@ -57,11 +58,11 @@ class ReadView extends Component {
     return (
       <div className="contribution-view-story">
         <div className="view-story-page one" onClick={()=>{this.changePage('prev')}}>
-          <div style={showPreviousbutton ? { display: "block" } : { display: "none" }}>Click page for Previous</div>
+          <div className="hoverBug-1" >{this.state.backArrow}</div>
           {pages.length > 0 ? pages[currentPage - 2].arrWords.join(' ') : 'loading'}
         </div>
         <div className="view-story-page two" onClick={()=>{this.changePage('next')}}>
-          <div style={showNextButton ? { display: "block" } : { display: "none" }}>Click page for next</div>
+          <div className="hoverBug-2" > > </div>
           {pages.length > 0 ? pages.length > 1 ? currentPage < pages.length ?  pages[currentPage - 1].arrWords.join(' ') : '' : '' : 'loading'}
         </div>
 
@@ -71,3 +72,5 @@ class ReadView extends Component {
 }
 
 export default (ReadView);
+// style={showPreviousbutton ? { display: "block" } : { display: "none" }}
+// style={showNextButton ? { display: "block" } : { display: "none" }}
