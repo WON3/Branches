@@ -7,7 +7,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-
+import ErrorModal from '../ErrorModal/ErrorModal';
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/reducer";
 import LoginButton from "./LoginButton";
@@ -19,11 +19,13 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      open: true
+      open: true,
+      serverErrorMessage:'',
     };
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
     this.handleClick =this.handleClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleChange = e => {
@@ -39,6 +41,11 @@ class Login extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  handleKeyPress = (event) => {
+    if(event.key === 'Enter')
+    {this.login()}
+  }
   
 
   login() {
@@ -50,15 +57,22 @@ class Login extends Component {
         const {username, id} =res.data;
         this.props.getUser(id, username);
         this.props.history.push('/');       
+      })
+      .catch(err =>{
+        let er = err.respons.data.message;
+        this.setState({serverErrorMessage:er})
       });
   }
 
-  render() {  
+  render() {
+    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>
     return (
       <div>
         <div className="LoginBox">
           <div className="header">Login</div>
-          <form className="LoginForm">
+          <form className="LoginForm"
+          onKeyPress={this.handleKeyPress}>
+
             <TextField classname = 'inputBox'
               id="outlined-name"
               label="Username"
@@ -85,9 +99,10 @@ class Login extends Component {
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}}
             />
             <br />
+            <LoginButton login={this.login}/>
+            <br/>
             <Register history={this.props.history}/>
           </form>
-          <LoginButton login={this.login}/>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
@@ -109,6 +124,7 @@ class Login extends Component {
             ]}
           />
         </div>
+        {errorMessage}
       </div>
     );
   }

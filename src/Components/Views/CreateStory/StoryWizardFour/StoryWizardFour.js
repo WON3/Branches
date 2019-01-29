@@ -43,26 +43,37 @@ const styles = theme => ({
     }
   }  
 
+
 class StoryWizardFour extends Component {
     constructor(props){
         super(props)
 
         this.state = {
             is_Complete: false, //defaults to false
-            user_id: this.props.userId, //from props,
+            userId: '',
             title: "", //user Input
             description: "",
             point_of_view: "First Person",
             is_public: false, //defaults to false
             allows_fork: true, //user Input
-            moderator_accepts: true, //user Input
+            moderator_accepts: true,
+            serverErrorMessage:''
+        }//user Input
+
             activeStep: 3,
             skipped: new Set(),
         }
         this.addNewStory = this.addNewStory.bind(this);
     }
       
+    componentDidMount(){
+        console.log(this.props)
+        let {userId} = this.props;
+        this.setState({userId:userId})
+    }
+
         addNewStory(props){
+            console.log(this.state.userId)
             const {
                 storyGuideTitle,
                 storyGuideDescripton,
@@ -73,7 +84,7 @@ class StoryWizardFour extends Component {
 
             const newStory= {
                 is_complete: false,
-                user_id: this.state.user_id,
+                userId: this.state.userId,
                 title: storyGuideTitle,
                 description: storyGuideDescripton,
                 point_of_view: storyGuidePOV,
@@ -87,6 +98,10 @@ class StoryWizardFour extends Component {
                     console.log("new story added");
                     this.props.history.push('/')
                 })
+                .catch(err =>{
+                    let er = err.respons.data.message;
+                    this.setState({serverErrorMessage:er})
+                  });
         }
         isStepOptional = step => step === -1;
 
@@ -138,6 +153,7 @@ class StoryWizardFour extends Component {
 
     
 render(props){
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     const {classes, storyGuideTitle,
         storyGuideDescripton,
         storyGuidePOV,
@@ -271,6 +287,7 @@ render(props){
                 
                 </div>
             </div>
+            {errorMessage}
         </div>
     )
 }
@@ -283,7 +300,8 @@ function mapStateToProps(state){
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
-        storyGuideMod
+        storyGuideMod,
+        userId
             } = state;
 
     return {
@@ -291,7 +309,8 @@ function mapStateToProps(state){
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
-        storyGuideMod
+        storyGuideMod,
+        userId
     };
 }
 
