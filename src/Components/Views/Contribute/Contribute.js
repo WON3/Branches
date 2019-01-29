@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './Contribute.css'
 import { Link } from 'react-router-dom';
-
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 class Contribute extends React.Component {
     constructor(props) {
@@ -14,7 +14,8 @@ class Contribute extends React.Component {
             contribution: "",
             is_accepted: false,
             multiline: 'Controlled',
-            prior_contribution: {} 
+            prior_contribution: {},
+            serverErrorMessage:'' 
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,6 +28,10 @@ class Contribute extends React.Component {
                 prior_contribution: res.data
             })
         })
+        .catch(err =>{
+            let er = err.respons.data.message;
+            this.setState({serverErrorMessage:er})
+          });
     }
 
     handleChange(e) {
@@ -51,6 +56,10 @@ class Contribute extends React.Component {
             .then(res => {
                 this.props.history.push(`/view_story/${this.props.match.params.story_id}`)
             })
+            .catch(err =>{
+                let er = err.respons.data.message;
+                this.setState({serverErrorMessage:er})
+              });
 
         } else {
             console.log('Put something in the field!!')
@@ -59,6 +68,7 @@ class Contribute extends React.Component {
     
 
     render() {
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
         return (
             <div className="contribute">
                 <form noValidate autoComplete="off">
@@ -83,6 +93,7 @@ class Contribute extends React.Component {
                         <Button type="submit" style={{ margin: "auto" }} size="large" color="default" onClick={this.handleSubmit}>Submit Contribution</Button>
                     </div>
                 </form>
+                {errorMessage}
             </div>
         )
     }

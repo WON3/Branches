@@ -12,9 +12,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import RegisterButton from "../../Views/Register/RegisterButton";
-/*import Snackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";*/
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 const styles = theme => ({
   paper: {
@@ -36,7 +34,8 @@ class Register extends Component {
       username: "",
       email: "",
       password: "",
-      showPassword: false
+      showPassword: false,
+      serverErrorMessage:''
     };
     this.cancel = this.cancel.bind(this);
     this.registerUser = this.registerUser.bind(this);
@@ -99,6 +98,7 @@ class Register extends Component {
 
   render() {
     const { classes } = this.props;
+    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     return (
       <div>
         <RegisterButton onClick={this.handleOpen} />
@@ -230,6 +230,7 @@ class Register extends Component {
             </div>
           </div>
         </Modal>
+        {errorMessage}
       </div>
     );
   }

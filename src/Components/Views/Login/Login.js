@@ -7,7 +7,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-
+import ErrorModal from '../ErrorModal/ErrorModal';
 import { connect } from "react-redux";
 import { getUser } from "../../../ducks/reducer";
 import LoginButton from "./LoginButton";
@@ -19,7 +19,8 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      open: true
+      open: true,
+      serverErrorMessage:'',
     };
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
@@ -57,10 +58,15 @@ class Login extends Component {
         const {username, id} =res.data;
         this.props.getUser(id, username);
         this.props.history.push('/');       
+      })
+      .catch(err =>{
+        let er = err.respons.data.message;
+        this.setState({serverErrorMessage:er})
       });
   }
 
-  render() {  
+  render() {
+    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>
     return (
       <div>
         <div className="LoginBox">
@@ -119,6 +125,7 @@ class Login extends Component {
             ]}
           />
         </div>
+        {errorMessage}
       </div>
     );
   }
