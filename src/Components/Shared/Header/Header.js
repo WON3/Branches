@@ -79,7 +79,8 @@ class Header extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogout() {
-    axios.post("/user/logout").then(() => {
+    axios.post("/user/logout")
+    .then(() => {
       this.props.logout();
     })
     .catch(err =>{
@@ -94,7 +95,8 @@ class Header extends Component {
         <div className="profile-button">
           Hello, <Link to="/user">{userName.toUpperCase()}</Link>
           <br />
-          <span onClick={this.handleLogout}>Logout</span>
+          <span onClick={this.handleLogout}
+         >Logout</span>
         </div>
       ) : (
         <Link className="profile-button" to="/Login">
