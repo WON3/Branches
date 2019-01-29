@@ -24,9 +24,9 @@ const styles = theme => ({
       background: '#EAFBF7',
     },
     but: {
-        position: 'relative',    
-        right: 5,
-        top: 25,
+        float: 'right',
+        marginTop: '-35px',
+        paddingRight: 5,
     },
     button: {
       background:'#378674',
@@ -34,16 +34,13 @@ const styles = theme => ({
       alignSelf: 'center' 
     },    
     paper: {
-        position: 'absolute',
-        top:'35%',
-        left:'35%',
-        width: theme.spacing.unit * 53,
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 5,
-        display: 'flex',
-        flexDirection: 'column',
-        justify: 'center',
+        width: 600,
+        backgroundColor: "#378674",
+        padding: 45,
+        margin: "150px auto",
+        textAlign: "center",
+        borderRadius: 5,
+        outline: "none",
       },
     });
 
@@ -58,6 +55,7 @@ class ButtonMode extends Component {
         this.handle = this.handle.bind(this);
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
     open(){
         this.setState({open:true});
@@ -72,9 +70,14 @@ class ButtonMode extends Component {
     };
 
     handle() {
+        debugger
         this.props.change(this.state.input);
         this.setState({open:false})
     };
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter')
+        {this.handle()}
+      }
 
     render(){
         const { classes } = this.props;
@@ -90,20 +93,40 @@ class ButtonMode extends Component {
                     open={this.state.open}
                     onClose={this.close}
                 >
-                <div className={classes.paper}>
+                <div className={classes.paper}
+                onKeyPress={this.handleKeyPress}  >
                     <TextField
                         id="filled-textarea"
                         label={this.props.label}
                         placeholder={this.props.placeHolder}
-                        multiline
-                        className={classes.textField}
+                        variant="outlined"
+                        style={{
+                            width:600,
+                            backgroundColor: "#EAFBF7",
+                            color: "#378674",
+                            borderRadius: 5,
+                            fontFamily: "sans-serif",
+                            fontSize: 50,
+                            fontWeight: 700
+                          }}
                         onChange={(e)=>{this.handleInput(e.target.value)}}
                         rows= {this.props.rows}
                         />
+                        <br/>
                     <Button 
                         onClick={this.handle}
                         className={classes.button} 
-                        color="secondary">
+                        variant="contained"
+                color="primary"
+                style={{
+                  background: "#EAFBF7",
+                  borderRadius: 5,
+                  color: "#378674",
+                  fontSize: 20,
+                  height: 48,
+                  padding: "0 30px",
+                  width: 300
+                }}>
                         Submit
                     </Button>                  
                 </div>

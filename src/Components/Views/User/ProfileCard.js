@@ -107,7 +107,10 @@ class UserCard extends Component {
 render() {
   const { classes } = this.props;
   const { stories } = this.props;
-  let storyShow = stories.map((story,id) => {
+  
+  let storyShow;
+  if( stories ){
+    storyShow =stories.map((story,id) => {
     return(
       <div key={story.story_id}>
         <h4 className='contributionTitle'>{story.title}</h4>
@@ -116,6 +119,9 @@ render() {
       </div>
     )
   });
+  } else {
+    storyShow = <h4>You have not written any stories yet, time to get writing.</h4>
+  }
 
   return (  
     <div className={classes.root}>
@@ -128,7 +134,7 @@ render() {
                 image={this.props.proPic}
                 title={this.props.userName}
                 />
-                <ButtonMode 
+              <ButtonMode 
                 label='URL'
                 placeHolder='Picture URL'
                 change={this.handlePicture}
@@ -142,15 +148,16 @@ render() {
             <div className={classes.titles}>
             <h3>Bio</h3>
             <div className={classes.background}>
-              <div className={classes.bio} >
-                {this.props.bio}
-                <ButtonMode 
-                    className='buttonDisplay'
-                    label='Bio'
-                    placeHolder='Tell us about you.'
-                    change={this.handleBio}
-                    rows='4'
-                  />
+              <div className='bioHolder'>
+                <div className={classes.bio} >
+                  <ButtonMode 
+                      label='Bio'
+                      placeHolder='Tell us about you.'
+                      change={this.handleBio}
+                      rows='4'
+                    />
+                  {this.props.bio}
+                </div>
               </div>
             </div> 
             </div>

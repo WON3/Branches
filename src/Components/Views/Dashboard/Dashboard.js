@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 class Dashboard extends Component {
 
@@ -16,7 +17,8 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             stories: [],
-            open: true
+            open: true,
+            serverErrorMessage:''
         }
     }
     handleClose = () => {
@@ -29,10 +31,14 @@ class Dashboard extends Component {
             const stories =res.data;
             this.setState({stories});
         })
+        .catch(err =>{
+            let er = err.respons.data.message;
+            this.setState({serverErrorMessage:er})
+          });
     }
 
     render(){
-       
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
         const stories = this.state.stories.map((story)=>{
            
             return(
@@ -56,7 +62,7 @@ class Dashboard extends Component {
               horizontal: "left"
             }}
             open={this.state.open}
-            autoHideDuration={6000}
+            autoHideDuration={3250}
             onClose={this.handleClose}
             message={<p>This is your dashboard. Choose your actions wisely!</p>}
             action={[
@@ -72,6 +78,7 @@ class Dashboard extends Component {
           />
             </div>
             <h3 className= "storydash">Stories Dashboard</h3>
+            {errorMessage}
  </div>
         )
     }

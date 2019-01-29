@@ -5,6 +5,44 @@ import { addTitle, addDescripton, addPOV, addForkRestriction, addModerator } fro
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+
+
+const styles = theme => ({
+    root: {
+      width: '90%',
+    },
+    button: {
+      marginRight: theme.spacing.unit,
+    },
+    instructions: {
+      marginTop: theme.spacing.unit,
+      marginBottom: theme.spacing.unit,
+    },
+  });
+
+  function getSteps() {
+    return ['Add a Title', 'Write a Description', 'Story Rules', 'Review and Submit'];
+  }
+  
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return 'Add a Title';
+      case 1:
+        return 'What is this story about?';
+      case 2:
+        return 'How much control do you want?';
+      case 3:
+        return '';
+      default:
+        return 'Review and Submit';
+    }
+  }  
 
 
 class StoryWizardFour extends Component {
@@ -13,18 +51,28 @@ class StoryWizardFour extends Component {
 
         this.state = {
             is_Complete: false, //defaults to false
-            user_id: this.props.userId, //from props,
+            userId: '',
             title: "", //user Input
             description: "",
             point_of_view: "First Person",
             is_public: false, //defaults to false
             allows_fork: true, //user Input
-            moderator_accepts: true //user Input
+            moderator_accepts: true,
+            serverErrorMessage:'',
+            activeStep: 3,
+            skipped: new Set(),
         }
         this.addNewStory = this.addNewStory.bind(this);
     }
+      
+    componentDidMount(){
+        console.log(this.props)
+        let {userId} = this.props;
+        this.setState({userId:userId})
+    }
 
         addNewStory(props){
+            console.log(this.state.userId)
             const {
                 storyGuideTitle,
                 storyGuideDescripton,
@@ -35,7 +83,7 @@ class StoryWizardFour extends Component {
 
             const newStory= {
                 is_complete: false,
-                user_id: this.state.user_id,
+                userId: this.state.userId,
                 title: storyGuideTitle,
                 description: storyGuideDescripton,
                 point_of_view: storyGuidePOV,
@@ -49,14 +97,69 @@ class StoryWizardFour extends Component {
                     console.log("new story added");
                     this.props.history.push('/')
                 })
+                .catch(err =>{
+                    let er = err.respons.data.message;
+                    this.setState({serverErrorMessage:er})
+                  });
         }
+        isStepOptional = step => step === -1;
+
+        handleNext = () => {
+          const { activeStep } = this.state;
+          let { skipped } = this.state;
+          if (this.isStepSkipped(activeStep)) {
+            skipped = new Set(skipped.values());
+            skipped.delete(activeStep);
+          }
+          this.setState({
+            activeStep: activeStep + 1,
+            skipped,
+          });
+        };
+      
+        handleBack = () => {
+          this.setState(state => ({
+            activeStep: state.activeStep - 1,
+          }));
+        };
+      
+        handleSkip = () => {
+          const { activeStep } = this.state;
+          if (!this.isStepOptional(activeStep)) {
+            // You probably want to guard against something like this,
+            // it should never occur unless someone's actively trying to break something.
+            throw new Error("You can't skip a step that isn't optional.");
+          }
+          this.setState(state => {
+            const skipped = new Set(state.skipped.values());
+            skipped.add(activeStep);
+            return {
+              activeStep: state.activeStep + 1,
+              skipped,
+            };
+          });
+        };
+      
+        handleReset = () => {
+          this.setState({
+            activeStep: 0,
+          });
+        };
+      
+        isStepSkipped(step) {
+          return this.state.skipped.has(step);
+        }
+
     
 render(props){
-    const {storyGuideTitle,
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
+    const {classes, storyGuideTitle,
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
         storyGuideMod} = this.props;
+   const steps = getSteps();
+   const { activeStep } = this.state;
     return (
         <div className="createStory">
             <div>
@@ -65,6 +168,40 @@ render(props){
             <div>
             <h2>Please Review the Story Guidelines You've Selected </h2>
             </div>
+            <Stepper activeStep={activeStep} id="stepper">
+          {steps.map((label, index) => {
+            const props = {};
+            const labelProps = {};
+            if (this.isStepOptional(index)) {
+              labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            }
+            if (this.isStepSkipped(index)) {
+              props.completed = false;
+            }
+            return (
+              <Step key={label} {...props}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <div>
+          {activeStep === steps.length ? (
+            <div>
+              <Typography >
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Button onClick={this.handleReset} >
+                Reset
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Typography >{getStepContent(activeStep)}</Typography>
+            
+            </div>
+          )}
+          </div>
             <div className="create-three-div" style={{justifyContent: "space-between"}}>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Title:</h2>
@@ -73,7 +210,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -86,7 +223,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -99,7 +236,7 @@ render(props){
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -107,12 +244,15 @@ render(props){
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Allows Story to Fork:</h2>
-                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideFork}</div>
+                    { storyGuideFork ?
+                      <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
+                      :<div style= {{fontSize: "18pt", fontStyle: "normal"}}>No</div>
+                    }
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -120,12 +260,15 @@ render(props){
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">You are Controlling All Submissions:</h2>
-                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideMod}</div>
+                    { storyGuideMod ?
+                      <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
+                      :<div style= {{fontSize: "18pt", fontStyle: "normal"}}>No</div>
+                    }
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
                     color="primary" 
-                    style={{backgroundColor: "#5d5147", textDecoration: "none", width: "20%", height: "100%"}}
+                    style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "20%", height: "100%"}}
                     onClick= {() => {this.addNewStory()}}>
                     Edit
                     </Button>
@@ -136,13 +279,14 @@ render(props){
                 <Button 
                 variant="contained" 
                 color="primary" 
-                style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}
+                style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
+                
                 onClick= {() => {this.addNewStory()}}>
-                Submit New Story
-                </Button>
+                {activeStep === steps.length - 1 ? 'Submit New Story' : 'Next'} </Button>
                 
                 </div>
             </div>
+            {errorMessage}
         </div>
     )
 }
@@ -155,7 +299,8 @@ function mapStateToProps(state){
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
-        storyGuideMod
+        storyGuideMod,
+        userId
             } = state;
 
     return {
@@ -163,7 +308,8 @@ function mapStateToProps(state){
         storyGuideDescripton,
         storyGuidePOV,
         storyGuideFork,
-        storyGuideMod
+        storyGuideMod,
+        userId
     };
 }
 

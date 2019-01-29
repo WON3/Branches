@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import RegisterButton from "../../Views/Register/RegisterButton";
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 const styles = theme => ({
   paper: {
@@ -33,7 +34,8 @@ class Register extends Component {
       username: "",
       email: "",
       password: "",
-      showPassword: false
+      showPassword: false,
+      serverErrorMessage:''
     };
     this.cancel = this.cancel.bind(this);
     this.registerUser = this.registerUser.bind(this);
@@ -69,18 +71,20 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
-    this.props.history.push("/");
-    debugger;
+  
+    
     axios.post("/api/register", { username, email, password }).then(res => {
-      debugger;
-      if (res.data) {
+
+      
         alert("Registered. Now, login.");
         this.setState({ open: false });
-      } else {
-        alert("Email already exists in database.");
-        this.setState({ password: "" });
-      }
-    });
+        this.props.history.push("/");
+      })
+       .catch(err=>{
+      alert("Email already exists in database.");
+      this.setState({ password: "" });
+    }
+    );
   }
 
   cancel() {
@@ -94,6 +98,7 @@ class Register extends Component {
 
   render() {
     const { classes } = this.props;
+    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     return (
       <div>
         <RegisterButton onClick={this.handleOpen} />
@@ -126,6 +131,7 @@ class Register extends Component {
                   value={this.state.username}
                   onChange={this.handleName("username")}
                   margin="normal"
+                  autoComplete="none"
                   variant="outlined"
                   style={{
                     backgroundColor: "#EAFBF7",
@@ -143,6 +149,7 @@ class Register extends Component {
                   type="email"
                   name="email"
                   autoComplete="email"
+                  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   margin="normal"
                   variant="outlined"
                   value={this.state.email}
@@ -169,6 +176,7 @@ class Register extends Component {
                     value={this.state.password}
                     name="password"
                     onChange={this.handlePassword("password")}
+                    required minlength ="8"
                     margin="normal"
                     variant="outlined"
                     border=""
@@ -222,6 +230,7 @@ class Register extends Component {
             </div>
           </div>
         </Modal>
+        {errorMessage}
       </div>
     );
   }
