@@ -50,15 +50,6 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-<<<<<<< HEAD
-            .catch(err => console.log('axios create error', err))
-
-        setTimeout(() => {
-            this.setState({
-                isReaderViewEnabled: true
-            })
-        }, 3 * 1000)
-=======
             .catch(err =>{
                 let er = err.response.data.message;
                 this.setState({serverErrorMessage: er})
@@ -68,7 +59,6 @@ class ViewStory extends Component {
                     isReaderViewEnabled: true
                 })
             }, 3 * 1000)
->>>>>>> 413968e506f432671d124e733fbb7f2118ce84fe
     }
 
 
@@ -125,6 +115,9 @@ class ViewStory extends Component {
                     <div style={{ textAlign: "left" }} className="read-view-container">
                         <div className="read-view-title">
                             {this.state.contribution.story.title} {" "}
+                            <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                        onChange={this.handleChange('checkedA')}
+                        value="checkedA" />
                         </div>
                         <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
                             <p>~~~~~Preface~~~~~</p>
@@ -138,8 +131,8 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-                    <div className="contribution">{contribution}</div>
-                    <div className="butt">
+                    <div style={{display: "none"}} className="contribution">{contributions}</div>
+                    <div style={{display: "none"}} className="butt">
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>
