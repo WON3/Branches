@@ -71,21 +71,20 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
-    this.props.history.push("/");
-    axios.post("/api/register", { username, email, password })
-    .then(res => {
-      if (res.data) {
+  
+    
+    axios.post("/api/register", { username, email, password }).then(res => {
+
+      
         alert("Registered. Now, login.");
         this.setState({ open: false });
-      } else {
-        alert("Email already exists in database.");
-        this.setState({ password: "" });
-      }
-    })
-    .catch(err =>{
-      let er = err.respons.data.message;
-      this.setState({serverErrorMessage:er})
-    });
+        this.props.history.push("/");
+      })
+       .catch(err=>{
+      alert("Email already exists in database.");
+      this.setState({ password: "" });
+    }
+    );
   }
 
   cancel() {
@@ -132,6 +131,7 @@ class Register extends Component {
                   value={this.state.username}
                   onChange={this.handleName("username")}
                   margin="normal"
+                  autoComplete="none"
                   variant="outlined"
                   style={{
                     backgroundColor: "#EAFBF7",
@@ -149,6 +149,7 @@ class Register extends Component {
                   type="email"
                   name="email"
                   autoComplete="email"
+                  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   margin="normal"
                   variant="outlined"
                   value={this.state.email}
@@ -175,6 +176,7 @@ class Register extends Component {
                     value={this.state.password}
                     name="password"
                     onChange={this.handlePassword("password")}
+                    required minlength ="8"
                     margin="normal"
                     variant="outlined"
                     border=""

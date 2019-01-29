@@ -12,7 +12,7 @@ module.exports = {
     usernameField: 'email',
     passReqToCallback: true,
     },
-    (req, email, done) => {
+    (req, email, password, done) => {
         const db = req.app.get('db');
         const handleError = req.app.get('handleError');
         let locUser =null;
