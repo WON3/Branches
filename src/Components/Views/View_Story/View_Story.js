@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
-import { connect } from 'react-redux';
-import { getUser } from '../../../ducks/reducer';
-import { storyBuilder } from './services/pageBuilder';
+import {connect} from 'react-redux';
+import {getUser} from '../../../ducks/reducer';
+import ErrorModal from '../ErrorModal/ErrorModal';
+import {storyBuilder} from './services/pageBuilder'
 
 
 
@@ -23,7 +24,9 @@ class ViewStory extends Component {
             checkedA: true,
             checkedB: true,
             userId: '',
+            serverErrorMessage:'',
             isReaderViewEnabled: false
+
         }
     }
 
@@ -47,6 +50,7 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
+<<<<<<< HEAD
             .catch(err => console.log('axios create error', err))
 
         setTimeout(() => {
@@ -54,11 +58,23 @@ class ViewStory extends Component {
                 isReaderViewEnabled: true
             })
         }, 3 * 1000)
+=======
+            .catch(err =>{
+                let er = err.response.data.message;
+                this.setState({serverErrorMessage: er})
+            })
+            setTimeout(() => {
+                this.setState({
+                    isReaderViewEnabled: true
+                })
+            }, 3 * 1000)
+>>>>>>> 413968e506f432671d124e733fbb7f2118ce84fe
     }
 
 
 
     render() {
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
         if (!this.state.contribution.story) {
             return <div className="load">
                 <LoadingIcon />
@@ -96,6 +112,7 @@ class ViewStory extends Component {
                         </Link>
                         {isUserLoggedIn}
                     </div>
+                    {errorMessage}
                 </div>
             )
         } else {
@@ -121,7 +138,14 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-
+                    <div className="contribution">{contribution}</div>
+                    <div className="butt">
+                        <Link to={`/dashboard`}>
+                            <Button size="large">Home</Button>
+                        </Link>
+                        {isUserLoggedIn}
+                    </div>
+                    {errorMessage}
                 </div>
             )
         }

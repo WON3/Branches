@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import RegisterButton from "../../Views/Register/RegisterButton";
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 const styles = theme => ({
   paper: {
@@ -33,7 +34,8 @@ class Register extends Component {
       username: "",
       email: "",
       password: "",
-      showPassword: false
+      showPassword: false,
+      serverErrorMessage:''
     };
     this.cancel = this.cancel.bind(this);
     this.registerUser = this.registerUser.bind(this);
@@ -70,9 +72,8 @@ class Register extends Component {
   registerUser() {
     let { username, email, password } = this.state;
     this.props.history.push("/");
-    debugger;
-    axios.post("/api/register", { username, email, password }).then(res => {
-      debugger;
+    axios.post("/api/register", { username, email, password })
+    .then(res => {
       if (res.data) {
         alert("Registered. Now, login.");
         this.setState({ open: false });
@@ -80,6 +81,10 @@ class Register extends Component {
         alert("Email already exists in database.");
         this.setState({ password: "" });
       }
+    })
+    .catch(err =>{
+      let er = err.respons.data.message;
+      this.setState({serverErrorMessage:er})
     });
   }
 
@@ -94,6 +99,7 @@ class Register extends Component {
 
   render() {
     const { classes } = this.props;
+    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     return (
       <div>
         <RegisterButton onClick={this.handleOpen} />
@@ -222,6 +228,7 @@ class Register extends Component {
             </div>
           </div>
         </Modal>
+        {errorMessage}
       </div>
     );
   }
