@@ -48,18 +48,18 @@ render(props){
             inputProps={{
                 maxLength: "1000"
               }}
-            style={{textDecoration: "none", height: "400px", wordBreak: "none"}}
+            style={{textDecoration: "none", height: "400px", wordBreak: "none", backgroundColor: "#EAFBF7"}}
             onChange={e => {addDescripton(e.target.value)}}   
             margin="normal"
             variant="outlined"/>
             <div className= "button" id="wizard-buttons">
             <Link to= '/create_one' style={{textDecoration: "none"}}>
-              <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", textDecoration: "none", width: "40%", height: "100%"}}>
+              <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
               BACK
               </Button>
             </Link>
             <Link to= '/create_three' style={{textDecoration: "none"}}>
-            <Button variant="contained" color="primary" style={{backgroundColor: "#5d5147", width: "40%", height: "100%"}}>
+            <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}>
                 NEXT
             </Button>            
             </Link>

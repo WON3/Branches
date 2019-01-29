@@ -53,16 +53,17 @@ font-family: sans-serif !important;
     font-family: sans-serif;
     color:  #EAFBF7 ! important;
     font-size: .25em ;
-    margin-top: 10px;
+    
     text-overflow: hidden;
     text-overflow: ellipsis;
+   
     
 }
 .view{
     font-family: sans-serif;
     width: 70%;
     background-color:  #EAFBF7;
-    margin-top: 80px;
+    margin-top: 35px;
     border: none;
     padding: 0 30px;
     border-radius: 4px;
@@ -78,19 +79,19 @@ font-family: sans-serif !important;
     width: 90%;
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .storybox {
-      width: 100%;
+      width: 90%;
     }
 }
-@media (max-width:600px){
+@media (max-width:1700px){
     .storyname {
         font-size: 12px;
-       
         margin-bottom: 5px;
+        margin-top: 0px;
     }
 }
-@media (max-width: 600px){
+@media (max-width: 1700px){
 .description{
     font-size: 8px;
     margin-top: 0%;
@@ -99,9 +100,4 @@ font-family: sans-serif !important;
     text-overflow: ellipsis;
     }
 }
- @media (max-width:600px){
- .view {
-     height: 20px;
-     font-size: 10px;
-    }
- }
+
