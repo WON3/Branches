@@ -131,7 +131,7 @@ class StoryWizardThree extends Component{
     const steps = getSteps();
     const { activeStep } = this.state;
     return (
-        <div className="createStory">
+        <div className="createStory" id="storyGuidelines">
          <div className="title-box">
                 <h2 className= "wizard-title">Create Story Wizard</h2>
             </div>
@@ -170,7 +170,7 @@ class StoryWizardThree extends Component{
           )}
           </div>
             <div id="POV-Fork-Mod">
-            <form className={styles.root} autoComplete="off">
+            <form className={styles.root} style = {{justifyContent: "space-between"}} autoComplete="off">
         <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
