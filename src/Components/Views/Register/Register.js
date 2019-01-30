@@ -35,7 +35,8 @@ class Register extends Component {
       email: "",
       password: "",
       showPassword: false,
-      serverErrorMessage:''
+      serverErrorMessage:'',
+      formValidationCheck:''
     };
     this.cancel = this.cancel.bind(this);
     this.registerUser = this.registerUser.bind(this);
@@ -71,20 +72,27 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
-  
-    
-    axios.post("/api/register", { username, email, password }).then(res => {
-
-      
-        alert("Registered. Now, login.");
-        this.setState({ open: false });
-        this.props.history.push("/");
+    if (password.length<8){
+        this.setState({formValidationCheck:<ErrorModal error=" Password too short." />})
+    } else if( !email.includes('@')){
+        this.setState({formValidationCheck:<ErrorModal error=" Invalid email address." />})
+    } else {
+      this.props.history.push("/");
+      axios.post("/api/register", { username, email, password })
+      .then(res => {
+        if (res.data) {
+          alert("Registered. Now, login.");
+          this.setState({ open: false });
+        } else {
+          alert("Email already exists in database.");
+          this.setState({ password: "" });
+        }
       })
-       .catch(err=>{
-      alert("Email already exists in database.");
-      this.setState({ password: "" });
+      .catch(err =>{
+        let er = err.respons.data.message;
+        this.setState({serverErrorMessage:er})
+      });
     }
-    );
   }
 
   cancel() {
@@ -231,6 +239,7 @@ class Register extends Component {
           </div>
         </Modal>
         {errorMessage}
+        {this.state.formValidationCheck}
       </div>
     );
   }
