@@ -74,18 +74,19 @@ class StoryWizardFour extends Component {
     }
 
         addNewStory(props){
-            console.log(this.state.userId)
+            console.log(this.props.userId)
             const {
                 storyGuideTitle,
                 storyGuideDescripton,
                 storyGuidePOV,
                 storyGuideFork,
-                storyGuideMod
+                storyGuideMod,
+                userId
                 } = this.props;
 
             const newStory= {
                 is_complete: false,
-                userId: this.state.userId,
+                userId: userId,
                 title: storyGuideTitle,
                 description: storyGuideDescripton,
                 point_of_view: storyGuidePOV,

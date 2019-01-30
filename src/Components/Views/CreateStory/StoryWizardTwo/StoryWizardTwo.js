@@ -58,6 +58,8 @@ class StoryWizardTwo extends Component {
             moderator_accepts: true, //user Input
             activeStep: 1,
             skipped: new Set(),
+            required: true,
+            error: false
         }
         this.handleChange = this.handleChange.bind(this);
         // this.addNewStory = this.addNewStory.bind(this);
@@ -75,6 +77,13 @@ class StoryWizardTwo extends Component {
   handleNext = () => {
     const { activeStep } = this.state;
     let { skipped } = this.state;
+    if(!this.props.storyGuideDescripton){
+        this.setState({
+          error: true
+        })
+        alert("Please complete all fields to continue")
+      } else{
+        this.props.history.push('/create_three')
     if (this.isStepSkipped(activeStep)) {
       skipped = new Set(skipped.values());
       skipped.delete(activeStep);
@@ -83,6 +92,7 @@ class StoryWizardTwo extends Component {
       activeStep: activeStep + 1,
       skipped,
     });
+    }
   };
 
   handleBack = () => {
@@ -170,6 +180,8 @@ render(props){
             label= "Description (maximum: 1000 characters)" 
             multiline = {true}
             rowsMax= {15}
+            required = {this.state.required}
+            error = {this.state.error}
             inputProps={{
                 maxLength: "1000"
               }}
@@ -184,7 +196,7 @@ render(props){
               BACK
               </Button>
             </Link>
-            <Link to= '/create_three' style={{textDecoration: "none"}}>
+            {/* <Link to= '/create_three' style={{textDecoration: "none"}}> */}
             <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}
             onClick={this.handleNext}
                   
@@ -192,7 +204,7 @@ render(props){
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 
             </Button>            
-            </Link>
+            {/* </Link> */}
             </div>
             {/* <div>
                 <Button

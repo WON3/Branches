@@ -79,7 +79,9 @@ class StoryWizardThree extends Component{
             storyGuideMod: true,
             labelWidth: 0,
             activeStep: 2,
-            skipped: new Set()
+            skipped: new Set(),
+            required: true,
+            error: false
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -96,17 +98,25 @@ class StoryWizardThree extends Component{
       };
       isStepOptional = step => step === -1;
 
-      handleNext = () => {
+      handleNext = (props) => {
         const { activeStep } = this.state;
         let { skipped } = this.state;
-        if (this.isStepSkipped(activeStep)) {
-          skipped = new Set(skipped.values());
-          skipped.delete(activeStep);
+        if(!this.props.storyGuidePOV || this.props.storyGuideFork === ''){
+          this.setState({
+            error: true
+          })
+          alert("Please complete all fields to continue")
+        } else{
+          this.props.history.push('/create_four')
+          if (this.isStepSkipped(activeStep)) {
+            skipped = new Set(skipped.values());
+            skipped.delete(activeStep);
+          }
+          this.setState({
+            activeStep: activeStep + 1,
+            skipped,
+          });
         }
-        this.setState({
-          activeStep: activeStep + 1,
-          skipped,
-        });
       };
     
       handleBack = () => {
@@ -187,7 +197,8 @@ class StoryWizardThree extends Component{
           </div>
             <div id="POV-Fork-Mod" style = {{justifyContent: "space-between", maxWidth: "250px"}}>
             <form className={styles.root} style = {{justifyContent: "space-between", width: "100%", padding: "0px"}} autoComplete="off">
-        <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
+        <FormControl className={styles.formControl} required = {this.state.required}
+            error = {this.state.error} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
           <Select
@@ -210,7 +221,8 @@ class StoryWizardThree extends Component{
             <MenuItem value="Narrative" style={{backgroundColor: "#EAFBF7"}}>Narrative</MenuItem>
           </Select>
         </FormControl>
-        <FormControl className={styles.formControl}>
+        <FormControl className={styles.formControl} required = {this.state.required}
+            error = {this.state.error}>
        
           <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7", display: "flex", flexDirection: "row", justifyContent: "flex-end", alignItems: "center"}}>Allows New Story Branch   <Tooltip title="This feature allows contributors to create a new branch and go in new direction with the story." aria-label="HelpRounded">
             <IconButton style={{backgroundColor: "transparent"}} >
@@ -299,7 +311,7 @@ class StoryWizardThree extends Component{
               </Button>
             </Link>
         
-            <Link to= '/create_four' style={{textDecoration: "none"}}>
+            {/* <Link to= '/create_four' style={{textDecoration: "none"}}> */}
                 <Button variant="contained" 
                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}
                 onClick={this.handleNext}
@@ -308,8 +320,9 @@ class StoryWizardThree extends Component{
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'} 
                 
                 </Button>
-        </Link></div>
-        </div>
+        {/* </Link> */}
+            </div>
+          </div>
         </div>
         )
     }
