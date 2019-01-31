@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import ButtonMode from './ButtonMode';
 import './userStyles.css';
 import { relative } from 'path';
+import StoryCard from './StoryCard'
 
 const styles = theme => ({
   root: {
@@ -115,7 +116,7 @@ render() {
       <div key={story.story_id}>
         <h4 className='contributionTitle'>{story.title}</h4>
           <li className='userLi'>{story.description}</li>
-          
+          <StoryCard storyId={story.story_id}/>
       </div>
     )
   });

@@ -20,28 +20,25 @@ class User extends Component{
         this.changePic = this.changePic.bind(this);
         this.changeBio = this.changeBio.bind(this);
     }
-    componentWillMount(){
-        let {userId} = this.props;
-        this.setState({proPic:`https://robohash.org/${userId}?set=set4`})
-    }
 
     componentDidMount(){
         const {userName, userId} = this.props;
+        this.setState({proPic:`https://robohash.org/${userId}?set=set4`})
         this.setState({userName:userName, userId:userId})
         axios.get(`/user/profile/${userId}`)
         .then(res=>{
-            debugger
             const {username, bio, stories } = res.data;
             this.setState({userName:username, bio:bio, stories:stories}) 
             return axios.get(`/user/profilePic/${userId}`)  
         })
         .then(res => {
-                if(!res.data[0]['url']){
+                if(!res.data[0]){
                    this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
                 }
                 this.setState({proPic:res.data[0]['url']})        
             })
         .catch(err=>{
+            debugger
             let er = err.response.data.message;
             this.setState({serverErrorMessage: er})
         });  

@@ -128,7 +128,7 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-                    <div className="contribution">{contribution}</div>
+                    <div className="contribution">{contributions}</div>
                     <div className="butt">
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
