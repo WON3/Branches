@@ -144,8 +144,10 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-                    <div style={{ display: "none" }} className="contribution">{contributions}</div>
-                    <div style={{ display: "none" }} className="butt">
+
+                    <div style={{display: "none"}} className="contribution">{contributions}</div>
+                    <div style={{display: "none"}} className="butt">
+
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>

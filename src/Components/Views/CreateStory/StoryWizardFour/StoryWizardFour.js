@@ -12,6 +12,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import ErrorModal from '../../ErrorModal/ErrorModal';
 
+
+
 const styles = theme => ({
     root: {
       width: '90%',
@@ -258,7 +260,7 @@ render(props){
                     </Button>
                     </Link>
                 </div>
-                <div id="POV-Fork-Mod">
+                {/* <div id="POV-Fork-Mod">
                     <h2 id="questions">You are Controlling All Submissions:</h2>
                     { storyGuideMod ?
                       <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
@@ -273,7 +275,7 @@ render(props){
                     Edit
                     </Button>
                     </Link>
-                </div>
+                </div> */}
         
                 <div className="button">
                 <Button 

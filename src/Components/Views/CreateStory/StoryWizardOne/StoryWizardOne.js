@@ -128,8 +128,7 @@ class StoryWizardOne extends Component {
     const steps = getSteps();
     const { activeStep } = this.state;
     return (
-
-        <div className= "createStory">
+        <div className= "createStory" style= {{display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center"}}>
             <div className= "title-box">
                    
               <div>
@@ -172,7 +171,7 @@ class StoryWizardOne extends Component {
             </div>
           )}
         </div>
-            <div className="wizard-box">
+            <div className="wizard-box" style = {{maxWidth: "80%"}}>
             <TextField 
             className="title" 
             name= "title" 
