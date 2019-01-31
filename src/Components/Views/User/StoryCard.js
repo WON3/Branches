@@ -41,7 +41,7 @@ class StoryCard extends Component{
             this.setState({serverErrorMessage: er})
         }); 
     }
-    
+
     handleOpen = () => {
         this.setState({
           open: true
@@ -81,12 +81,9 @@ render(){
                 <Typography variant="subtitle1" id="simple-modal-description">
                   <form className={classes.container} noValidate autoComplete="off">
                     <TextField
-                      classname="inputBox"
                       id="outlined-name"
-                      label="Username"
-                      name="username"
-                    //   value={this.state.username}
-                    //   onChange={this.handleName("username")}
+                      label="Story Title"
+                      name="storyTitle"
                       margin="normal"
                       variant="outlined"
                       style={{
@@ -101,14 +98,11 @@ render(){
                     <br />
                     <TextField
                       id="outlined-email-input"
-                      label="Email"
-                      type="email"
-                      name="email"
-                      autoComplete="email"
+                      label="Contribution Pending"
+                      type="contirbution"
+                      name="contribution"
                       margin="normal"
                       variant="outlined"
-                    //   value={this.state.email}
-                    //   onChange={this.handleEmail("email")}
                       style={{
                         backgroundColor: "#EAFBF7",
                         color: "#378674",
@@ -119,31 +113,6 @@ render(){
                       }}
                     />
                     <br />
-                    <FormControl
-                      className={classNames(classes.margin, classes.textField)}
-                    >
-                      <TextField
-                        className="inputBox"
-                        id="outlined-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        value={this.state.password}
-                        name="password"
-                        // onChange={this.handlePassword("password")}
-                        margin="normal"
-                        variant="outlined"
-                        border=""
-                        style={{
-                          backgroundColor: "#EAFBF7",
-                          color: "#378674",
-                          borderRadius: 5,
-                          fontFamily: "sans-serif",
-                          fontSize: 50,
-                          fontWeight: 700
-                        }}
-                      />
-                    </FormControl>
                   </form>
                 </Typography>
                 <br />
@@ -160,9 +129,8 @@ render(){
                       padding: "0 30px",
                       width: 300
                     }}
-                    // onClick={this.registerUser}
                   >
-                    Register
+                    Approve
                   </Button>
                   <br />
                   <br />
@@ -179,7 +147,7 @@ render(){
                     }}
                     onClick={this.cancel}
                   >
-                    Cancel
+                    Deny
                   </Button>
                 </div>
               </div>

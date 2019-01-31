@@ -168,7 +168,7 @@ render() {
           </div>
           <div className='contributionBox'>
               <div className={classes.titles}>
-                  <h3>Your stories</h3>
+                  <h3 style={{color:'black'}}>Your stories</h3>
                </div>
               <div className='contributions'>
                 <ul className='userUl'>
