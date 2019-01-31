@@ -16,7 +16,17 @@
     border-radius: 4px;
     font-size: 20px;
     color: #EAFBF7;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 80px
+    
 }
+.read-view-title:hover .switch {
+    opacity: 1 !important;
+  }
+  
+
 .read-view-main{
     padding: 0px 10px
 }
@@ -148,6 +158,12 @@ font-size: 100px;
     max-width: 437px;
    
 }
+
+.headerRight {
+    display: flex
+}
+
+
 
 /* .view-story-page-one:hover {
     background-color: black
