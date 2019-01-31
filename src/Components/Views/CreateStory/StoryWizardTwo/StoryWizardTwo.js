@@ -96,6 +96,8 @@ class StoryWizardTwo extends Component {
   };
 
   handleBack = () => {
+    this.props.history.push('/create_one')
+
     this.setState(state => ({
       activeStep: state.activeStep - 1,
     }));
@@ -190,12 +192,12 @@ render(props){
             margin="normal"
             variant="outlined"/>
             <div className= "button" id="wizard-buttons">
-            <Link to= '/create_one' style={{textDecoration: "none"}}>
+            {/* <Link to= '/create_one' style={{textDecoration: "none"}}> */}
               <Button variant="contained" color="primary" disabled={activeStep === 0}
                   onClick={this.handleBack} style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
               BACK
               </Button>
-            </Link>
+            {/* </Link> */}
             {/* <Link to= '/create_three' style={{textDecoration: "none"}}> */}
             <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}
             onClick={this.handleNext}
