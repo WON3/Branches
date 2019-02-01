@@ -26,18 +26,31 @@ class StoryCard extends Component{
     constructor(props){
         super(props)
         this.state ={
-            contributions:[]
+            storyTitle:'',
+            isAccepted: false,
+            contributions:null
         }
     }
 
     componentDidMount(){
         let {storyId} = this.props;
+        let contributionUpdate;
         axios.get(`/contributions/${storyId}`)
         .then(res => {
-            console.log(res)
+            debugger
+            if(res.data.contributions.length === 0){
+                contributionUpdate = 'None to speak of'
+            } else{
+                contributionUpdate = res.data.contributions.map(contribution=>contribution)
+            }
+            this.setState({
+                title:res.data.story.title, 
+                contributions: contributionUpdate,
+                description:res.data.story.description
+                })
         })
         .catch(err=>{
-            let er = err.response.data.message;
+            let er = err.message;
             this.setState({serverErrorMessage: er})
         }); 
     }
@@ -65,96 +78,72 @@ render(){
               open={this.state.open}
               onClose={this.handleClose}
             >
-              <div className={classes.paper}>
+            <div className={classes.paper}>
                 <Typography
-                  variant="h5"
-                  id="modal-title"
-                  style={{
+                    variant="h5"
+                    id="modal-title"
+                    style={{
                     color: "#EAFBF7",
                     fontFamily: "sans-serif",
                     fontSize: 50,
                     fontWeight: 700
-                  }}
-                >
-                  Contributions
+                    }}>
+                    {this.state.title}
                 </Typography>
-                <Typography variant="subtitle1" id="simple-modal-description">
-                  <form className={classes.container} noValidate autoComplete="off">
-                    <TextField
-                      id="outlined-name"
-                      label="Story Title"
-                      name="storyTitle"
-                      margin="normal"
-                      variant="outlined"
-                      style={{
-                        backgroundColor: "#EAFBF7",
-                        color: "#378674",
-                        borderRadius: 5,
-                        fontFamily: "sans-serif",
-                        fontSize: 50,
-                        fontWeight: 700
-                      }}
-                    />
-                    <br />
-                    <TextField
-                      id="outlined-email-input"
-                      label="Contribution Pending"
-                      type="contirbution"
-                      name="contribution"
-                      margin="normal"
-                      variant="outlined"
-                      style={{
-                        backgroundColor: "#EAFBF7",
-                        color: "#378674",
-                        borderRadius: 5,
-                        fontFamily: "sans-serif",
-                        fontSize: 50,
-                        fontWeight: 700
-                      }}
-                    />
-                    <br />
-                  </form>
-                </Typography>
-                <br />
+                <p>{this.state.description.slice(0,22)+'...'}</p>
+                <br/>
+                <TextField
+                    id="outlined-email-input"
+                    label="Contribution Pending"
+                    type="contirbution"
+                    name="contribution"
+                    margin="normal"
+                    variant="outlined"
+                    style={{
+                    backgroundColor: "#EAFBF7",
+                    color: "#378674",
+                    borderRadius: 5,
+                    fontFamily: "sans-serif",
+                    fontSize: 50,
+                    fontWeight: 700
+                }}/>
+                <br/>
+                <br/>
                 <div className="buttonBox">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    style={{
-                      background: "#EAFBF7",
-                      borderRadius: 5,
-                      color: "#378674",
-                      fontSize: 20,
-                      height: 48,
-                      padding: "0 30px",
-                      width: 300
-                    }}
-                  >
-                    Approve
-                  </Button>
-                  <br />
-                  <br />
-                  <Button
-                    style={{
-                      background: "#EAFBF7",
-                      borderRadius: 5,
-                      border: 0,
-                      color: "#378674",
-                      fontSize: 20,
-                      height: 48,
-                      padding: "0 30px",
-                      width: 300
-                    }}
-                    onClick={this.cancel}
-                  >
-                    Deny
-                  </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        style={{
+                            background: "#EAFBF7",
+                            borderRadius: 5,
+                            color: "#378674",
+                            fontSize: 20,
+                            height: 48,
+                            padding: "0 30px",
+                            width: 300
+                        }}>Approve
+                    </Button>
+                    <br />
+                    <br />
+                    <Button
+                        style={{
+                            background: "#EAFBF7",
+                            borderRadius: 5,
+                            border: 0,
+                            color: "#378674",
+                            fontSize: 20,
+                            height: 48,
+                            padding: "0 30px",
+                            width: 300
+                        }}
+                        onClick={this.cancel}
+                        >Deny
+                    </Button>
                 </div>
-              </div>
-            </Modal>
-        </div>
-    )
-    }
+            </div>
+        </Modal>
+    </div>
+    )}
 }
 StoryCard.propTypes = {
     classes: PropTypes.object.isRequired
