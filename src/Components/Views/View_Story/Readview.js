@@ -16,15 +16,11 @@ class ReadView extends Component {
     this.changePage = this.changePage.bind(this)
   }
 
-  componentDidUpdate(prevProps) {
-    debugger
-    // if the lenght of prevPros is > 2 setState showNextButton as false
-    if (this.state.pages.length !== prevProps.pages.length) {
+  componentDidMount() {
       this.setState({
-        pages: prevProps.pages,
-        showNextButton: prevProps.pages.length > 2 ? true : false
+        pages: this.props.pages,
+        showNextButton: this.props.pages.length > 2 ? true : false
       })
-    }
   }
 
   changePage(buttonOption) {
