@@ -99,10 +99,11 @@ class ViewStory extends Component {
                             <div style={{ margin: "auto 0px" }}>
                                 {this.state.contribution.story.title} {" "}
                             </div>
-                            <div style={{ marginTop: "auto" }}>
-                                <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                                    onChange={this.handleChange('checkedA')}
-                                    value="checkedA" />
+                            <div className="headerRight">
+                                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                                        onChange={this.handleChange('checkedA')}
+                                        value="checkedA" />
+                                <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
                             </div>
                         </div>
                     </div>
