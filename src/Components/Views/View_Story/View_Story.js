@@ -51,8 +51,7 @@ class ViewStory extends Component {
                 this.setState({ contribution: res.data }),
             )
             .catch(err =>{
-                let er = err.response.data.message;
-                this.setState({serverErrorMessage: er})
+                this.setState({serverErrorMessage: ' Server error'})
             })
             setTimeout(() => {
                 this.props.toggleReadview(this.props.isReadView)
@@ -132,13 +131,8 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div className="contribution">{contributions}</div>
                     <div className="butt">
-=======
-                    <div style={{display: "none"}} className="contribution">{contributions}</div>
-                    <div style={{display: "none"}} className="butt">
->>>>>>> c8fda3a57c467c278f8dc0e44f4a45f076148164
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>

@@ -29,7 +29,8 @@ export default class ErrorModal extends Component {
         
         return(
             <Snackbar
-                anchorOrigin={{
+            zIndex='1000000'    
+            anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left"
                 }}

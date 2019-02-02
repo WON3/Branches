@@ -37,13 +37,11 @@ class StoryCard extends Component{
         let contributionUpdate;
         axios.get(`/contributions/${storyId}`)
         .then(res => {
-            
             if(res.data.contributions.length < 1){
                 contributionUpdate = 'None to speak of'
             } else{
                 contributionUpdate = res.data.contributions.map(contribution=>contribution)
             }
-            debugger
             this.setState({
                 title:res.data.story.title, 
                 contributions: contributionUpdate,
@@ -51,8 +49,7 @@ class StoryCard extends Component{
                 })
         })
         .catch(err=>{
-            let er = err.message;
-            this.setState({serverErrorMessage: er})
+            this.setState({serverErrorMessage:' Server error'})
         }); 
     }
 

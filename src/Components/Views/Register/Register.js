@@ -86,13 +86,14 @@ class Register extends Component {
         } else {
           alert("Email already exists in database.");
           this.setState({ password: "" });
+          this.setState({username:'', email:'', password:'', errorMessage:''})
         }
       })
       .catch(err =>{
-        let er = err.message;
-        this.setState({serverErrorMessage:er})
+        this.setState({serverErrorMessage:' Server error'})
       });
     }
+    
   }
 
   cancel() {
@@ -113,6 +114,7 @@ class Register extends Component {
           buttonName="REGISTER"
           onClick={this.handleOpen} />
         <Modal
+          zIndex="1"
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
