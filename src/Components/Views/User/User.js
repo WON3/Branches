@@ -39,7 +39,7 @@ class User extends Component{
             })
         .catch(err=>{
             debugger
-            let er = err.response.data.message;
+            let er = err.message;
             this.setState({serverErrorMessage: er})
         });  
     };
@@ -52,7 +52,7 @@ class User extends Component{
         .then(res => {   
         })
         .catch(err=>{
-            let er = err.response.data.message;
+            let er = err.message;
             this.setState({serverErrorMessage: er})
         })
     };
@@ -64,7 +64,7 @@ class User extends Component{
         axios.put(`/user/bio/${userId}?bio=${val}`)
             .then(res=>{
         }).catch(err=>{
-            let er = err.response.data.message;
+            let er = err.message;
             this.setState({serverErrorMessage: er})
         })
     };
