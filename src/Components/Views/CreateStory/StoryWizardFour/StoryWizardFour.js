@@ -74,18 +74,18 @@ class StoryWizardFour extends Component {
     }
 
         addNewStory(props){
-            console.log(this.state.userId)
             const {
                 storyGuideTitle,
                 storyGuideDescripton,
                 storyGuidePOV,
                 storyGuideFork,
-                storyGuideMod
+                storyGuideMod,
+                userId
                 } = this.props;
 
             const newStory= {
                 is_complete: false,
-                userId: this.state.userId,
+                userId: userId,
                 title: storyGuideTitle,
                 description: storyGuideDescripton,
                 point_of_view: storyGuidePOV,
@@ -207,7 +207,7 @@ render(props){
             <div className="create-three-div" style={{justifyContent: "space-between"}}>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Title:</h2>
-                    <div  style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideTitle}</div>
+                    <div  style= {{fontSize: "14pt", fontStyle: "normal", fontFamily: 'Slabo 27px'}}>{storyGuideTitle}</div>
                     <Link to= '/create_one' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
@@ -220,7 +220,7 @@ render(props){
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Description:</h2>
-                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuideDescripton}</div>
+                    <div style= {{fontSize: "12pt", fontStyle: "normal", fontFamily: 'Slabo 27px', padding: '5px', textAlign: 'left'}}>{storyGuideDescripton}</div>
                     <Link to= '/create_two' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
@@ -233,7 +233,7 @@ render(props){
                 </div>
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Point of View:</h2>
-                    <div style= {{fontSize: "18pt", fontStyle: "normal"}}>{storyGuidePOV}</div>
+                    <div style= {{fontSize: "14pt", fontStyle: "normal", fontFamily: 'Slabo 27px'}}>{storyGuidePOV}</div>
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button
                     variant="contained" 
@@ -247,8 +247,8 @@ render(props){
                 <div id="POV-Fork-Mod">
                     <h2 id="questions">Allows Story to Fork:</h2>
                     { storyGuideFork ?
-                      <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
-                      :<div style= {{fontSize: "18pt", fontStyle: "normal"}}>No</div>
+                      <div style= {{fontSize: "14pt", fontStyle: "normal", fontFamily: 'Slabo 27px'}}>Yes</div>
+                      :<div style= {{fontSize: "14pt", fontStyle: "normal", fontFamily: 'Slabo 27px'}}>No</div>
                     }
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button
@@ -263,8 +263,8 @@ render(props){
                 {/* <div id="POV-Fork-Mod">
                     <h2 id="questions">You are Controlling All Submissions:</h2>
                     { storyGuideMod ?
-                      <div style= {{fontSize: "18pt", fontStyle: "normal"}}>Yes</div>
-                      :<div style= {{fontSize: "18pt", fontStyle: "normal"}}>No</div>
+                      <div style= {{fontSize: "12pt", fontStyle: "normal", fontFamily: 'Slabo 27px'}}>Yes</div>
+                      :<div style= {{fontSize: "12pt", fontStyle: "normal", fontFamily: 'Slabo 27px'}}>No</div>
                     }
                     <Link to= '/create_three' style={{textDecoration: "none"}}>
                     <Button

@@ -60,6 +60,8 @@ class StoryWizardOne extends Component {
       open: true,
       activeStep: 0,
       skipped: new Set(),
+      required: true,
+      error: false
     };
     this.handleChange = this.handleChange.bind(this);
     // this.addNewStory = this.addNewStory.bind(this);
@@ -77,9 +79,18 @@ class StoryWizardOne extends Component {
 
   isStepOptional = step => step === false;
 
-  handleNext = () => {
+  handleNext = (props) => {
     const { activeStep } = this.state;
     let { skipped } = this.state;
+    //if this.props.storyGuideTitle === false ... then change this.error.state to true... and alert "Please fill out all fields"  ... else (run the rest of this code)
+
+    if(!this.props.storyGuideTitle){
+      this.setState({
+        error: true
+      })
+      alert("Please complete all fields to continue")
+    } else{
+      this.props.history.push('/create_two')
     if (this.isStepSkipped(activeStep)) {
       skipped = new Set(skipped.values());
       skipped.delete(activeStep);
@@ -89,6 +100,7 @@ class StoryWizardOne extends Component {
       skipped,
     });
   };
+}
 
   handleBack = () => {
     this.setState(state => ({
@@ -97,21 +109,21 @@ class StoryWizardOne extends Component {
   };
 
   handleSkip = () => {
-    const { activeStep } = this.state;
-    if (!this.isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-    this.setState(state => {
-      const skipped = new Set(state.skipped.values());
-      skipped.add(activeStep);
-      return {
-        activeStep: state.activeStep + 1,
-        skipped,
-      };
-    });
-  };
+    const { activeStep } = this.state;    
+        if (!this.isStepOptional(activeStep)) {
+        // You probably want to guard against something like this,
+        // it should never occur unless someone's actively trying to break something.
+        throw new Error("You can't skip a step that isn't optional.");
+      }
+      this.setState(state => {
+        const skipped = new Set(state.skipped.values());
+        skipped.add(activeStep);
+        return {
+          activeStep: state.activeStep + 1,
+          skipped,
+          };
+        });
+    };
 
   handleReset = () => {
     this.setState({
@@ -177,7 +189,8 @@ class StoryWizardOne extends Component {
             name= "title" 
             label= "Title (maximum: 100 characters)" 
             style = {{backgroundColor: "#EAFBF7", width: "80%"}}
-            required = {true}
+            required = {this.state.required}
+            error = {this.state.error}
             inputProps={{
               maxLength: "100"
             }}
@@ -187,14 +200,12 @@ class StoryWizardOne extends Component {
             />
          
           <div className='button'> 
-            <Link to= '/create_two' style={{textDecoration: "none"}}>
               <Button variant="contained" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
               onClick={this.handleNext}
                   
               >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
-            </Link>
           </div>
           </div>
         </div>
