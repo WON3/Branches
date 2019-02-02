@@ -63,13 +63,9 @@ class StoryWizardOne extends Component {
       moderator_accepts: true, //user Input
       open: true,
       activeStep: 0,
-<<<<<<< HEAD
-      skipped: new Set()
-=======
       skipped: new Set(),
       required: true,
       error: false
->>>>>>> 6a1e47ebd75e593a0433addd64895af61b47549c
     };
     this.handleChange = this.handleChange.bind(this);
     // this.addNewStory = this.addNewStory.bind(this);
@@ -235,6 +231,7 @@ class StoryWizardOne extends Component {
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
+              </Link>
           </div>
         </div>
       </div>
