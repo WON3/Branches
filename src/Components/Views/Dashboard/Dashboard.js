@@ -29,22 +29,16 @@ class Dashboard extends Component {
      };
 
     
-   componentDidMount(){
-       axios.get(`/api/Dashboard`)
-       .then(res=>{
-           const stories =res.data;
-           this.setState({stories,  filteredStories:stories});
-       })
-   };
- handleChange(e){
-this.setState({
-    filteredStories : this.state.stories.filter((story)=>{
-       return story.title.toUpperCase().includes(e.target.value.toUpperCase()) 
-    })
-})
- }
- 
- 
+    componentDidMount(){
+        axios.get(`/api/Dashboard`)
+        .then(res=>{
+            const stories =res.data;
+            this.setState({stories});
+        })
+        .catch(err =>{
+            this.setState({serverErrorMessage:' Server error'})
+          });
+    }
 
    render(){
 

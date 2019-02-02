@@ -100,8 +100,7 @@ class StoryWizardFour extends Component {
                     this.props.history.push('/')
                 })
                 .catch(err =>{
-                    let er = err.respons.data.message;
-                    this.setState({serverErrorMessage:er})
+                  this.setState({serverErrorMessage:' Server error'})
                   });
         }
         isStepOptional = step => step === -1;

@@ -84,8 +84,7 @@ class Header extends Component {
       this.props.logout();
     })
     .catch(err =>{
-      let er = err.respons.data.message;
-      this.setState({serverErrorMessage:er})
+      this.setState({serverErrorMessage:' Server error'})
     });;
   }
   render() {

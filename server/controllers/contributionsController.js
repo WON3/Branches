@@ -3,6 +3,7 @@ const contributionsRouter = express.Router();
 
 module.exports = contributionsRouter;
 
+
 contributionsRouter.get('/:story_id', (req, res) => {
     const db = req.app.get('db');
     const { story_id } = req.params

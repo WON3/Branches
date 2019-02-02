@@ -20,43 +20,42 @@ class User extends Component {
         this.changePic = this.changePic.bind(this);
         this.changeBio = this.changeBio.bind(this);
     }
-    componentWillMount() {
-        let { userId } = this.props;
-        this.setState({ proPic: `https://robohash.org/${userId}?set=set4` })
-    }
 
-    componentDidMount() {
-        const { userName, userId } = this.props;
-        this.setState({ userName: userName, userId: userId })
+
+    componentDidMount(){
+        const {userName, userId} = this.props;
+        this.setState({proPic:`https://robohash.org/${userId}?set=set4`})
+        this.setState({userName:userName, userId:userId})
         axios.get(`/user/profile/${userId}`)
-            .then(res => {
-                const { username, bio, stories } = res.data;
-                this.setState({ userName: username, bio: bio, stories: stories })
-                return axios.get(`/user/profilePic/${userId}`)
-            })
-            .then(res => {
-                if (!res.data[0]['url']) {
-                    this.setState({ proPic: `https://robohash.org/${userId}?set=set4` })
+        .then(res=>{
+            const {username, bio, stories } = res.data;
+            this.setState({userName:username, bio:bio, stories:stories}) 
+            return axios.get(`/user/profilePic/${userId}`)  
+        })
+        .then(res => {
+                if(!res.data[0]){
+                   this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
+
                 }
                 this.setState({ proPic: res.data[0]['url'] })
             })
-            .catch(err => {
-                let er = err.response.data.message;
-                this.setState({ serverErrorMessage: er })
-            });
-    };
+
+        .catch(err=>{
+            this.setState({serverErrorMessage:' Server error'})
+        });  
+
 
     changePic(val) {
         this.setState({ proPic: val });
         this.props.updateProfilePic(val);
-        const { userId } = this.state;
-        axios.put(`/user/profilePic/${userId}`, { url: val })
-            .then(res => {
-            })
-            .catch(err => {
-                let er = err.response.data.message;
-                this.setState({ serverErrorMessage: er })
-            })
+        const {userId} = this.state;
+        axios.put(`/user/profilePic/${userId}`, {url:val})
+        .then(res => {   
+        })
+        .catch(err=>{
+            this.setState({serverErrorMessage:' Server error'})
+        })
+
     };
 
     changeBio(val) {
@@ -64,11 +63,11 @@ class User extends Component {
         this.setState({ bio: val });
         this.props.updateBio(val);
         axios.put(`/user/bio/${userId}?bio=${val}`)
-            .then(res => {
-            }).catch(err => {
-                let er = err.response.data.message;
-                this.setState({ serverErrorMessage: er })
-            })
+            .then(res=>{
+        }).catch(err=>{
+            this.setState({serverErrorMessage:' Server error'})
+        })
+
     };
 
     render() {
