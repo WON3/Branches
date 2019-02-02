@@ -57,10 +57,10 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
+
             .catch(err =>{
                 this.setState({serverErrorMessage: ' Server error'})
             })
-        
     }
 
 

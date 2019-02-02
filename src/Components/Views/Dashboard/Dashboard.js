@@ -28,12 +28,11 @@ class Dashboard extends Component {
        this.setState({ open: false });
      };
 
-    
-    componentDidMount(){
+     componentDidMount(){
         axios.get(`/api/Dashboard`)
         .then(res=>{
             const stories =res.data;
-            this.setState({stories, filteredStories:stories});
+            this.setState({stories,  filteredStories:stories});
         })
         .catch(err =>{
             this.setState({serverErrorMessage:' Server error'})
@@ -47,6 +46,16 @@ class Dashboard extends Component {
         })
     }
     
+
+
+  handleChange(e){
+ this.setState({
+     filteredStories : this.state.stories.filter((story)=>{
+        return story.title.toUpperCase().includes(e.target.value.toUpperCase()) 
+     })
+ })
+}
+          
 
    render(){
 
@@ -89,6 +98,7 @@ class Dashboard extends Component {
          />
            </div>
            <input  name="filter" type="text" placeholder="Search by Title" onChange={this.handleChange} />
+           <LandingModal/>
            <h3 className= "storydash">Stories Dashboard</h3>
 </div>
        )
