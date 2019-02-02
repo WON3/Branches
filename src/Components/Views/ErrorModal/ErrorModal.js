@@ -14,31 +14,36 @@ export default class ErrorModal extends Component {
         }
     }
     componentDidMount(){
-        if(this.props.error){
-            let {error} = this.props;
+        let {error} = this.props;
         this.setState({
-            error: error, open:true
+            open:true,
+            error: error
         })
     }
-        }
+
+    componentWillReceiveProps(){
+        let {error} = this.props;
+        this.setState({
+            open:true,
+            error: error
+        })
+    }
         
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({ open: false, error:''});
       };
+
     render(){
-        
         return(
-            <Snackbar
-            zIndex='1000000'    
-            anchorOrigin={{
+            <Snackbar   
+                anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left"
                 }}
                 open={this.state.open}
-                autoHideDuration={5000}
+                autoHideDuration={2000}
                 onClose={this.handleClose}
-                message={<p>Error:{this.props.error}</p>}
-               
+                message={<p>Error:{this.state.error}</p>}
                 action={[
                 <IconButton
                     key="close"
