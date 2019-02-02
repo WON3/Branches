@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './View_Story.css'
-import { duration } from '@material-ui/core/styles/transitions';
 
 
 class ReadView extends Component {
@@ -18,6 +17,7 @@ class ReadView extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    debugger
     // if the lenght of prevPros is > 2 setState showNextButton as false
     if (this.state.pages.length !== prevProps.pages.length) {
       this.setState({
@@ -54,7 +54,6 @@ class ReadView extends Component {
 
   render() {
     const { pages, currentPage, showNextButton, showPreviousbutton } = this.state;
-    // debugger
     return (
       <div className="contribution-view-story">
         <div className="view-story-page one" onClick={()=>{this.changePage('prev')}}>

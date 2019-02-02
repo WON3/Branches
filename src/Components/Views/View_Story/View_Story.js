@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as Actions from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
-import {storyBuilder} from './services/pageBuilder'
+import { storyBuilder } from './services/pageBuilder'
+import Icons from '@material-ui/icons/Visibility'
 
 
 
@@ -24,9 +25,8 @@ class ViewStory extends Component {
             checkedA: true,
             checkedB: true,
             userId: '',
-            serverErrorMessage:'',
+            serverErrorMessage: '',
             isReaderViewEnabled: false
-
         }
     }
 
@@ -44,28 +44,36 @@ class ViewStory extends Component {
     handleTooltipOpen = () => {
         this.setState({ open: true });
     };
+
+    handleReadviewEnable = () => {
+        this.props.toggleReadview(this.props.isReadView);
+        this.setState({
+            isReaderViewEnabled: !this.state.isReaderViewEnabled
+        })
+    }
+
     componentDidMount() {
         const { story_id } = this.props.match.params
         axios.get(`/contributions/${story_id}`)
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-            .catch(err =>{
+            .catch(err => {
                 let er = err.response.data.message;
-                this.setState({serverErrorMessage: er})
+                this.setState({ serverErrorMessage: er })
             })
-            setTimeout(() => {
-                this.props.toggleReadview(this.props.isReadView)
-                this.setState({
-                    isReaderViewEnabled: true
-                })
-            }, 3 * 1000)
+        setTimeout(() => {
+            this.props.toggleReadview(this.props.isReadView)
+            this.setState({
+                isReaderViewEnabled: true
+            })
+        }, 3 * 1000)
     }
 
 
 
     render() {
-        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error={this.state.serverErrorMessage} />
         if (!this.state.contribution.story) {
             return <div className="load">
                 <LoadingIcon />
@@ -109,16 +117,20 @@ class ViewStory extends Component {
         } else {
             return (
                 <div className="read-view-main">
-                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                        onChange={this.handleChange('checkedA')}
-                        value="checkedA" />
 
                     <div style={{ textAlign: "left" }} className="read-view-container">
                         <div className="read-view-title">
-                            {this.state.contribution.story.title} {" "}
-                            <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                        onChange={this.handleChange('checkedA')}
-                        value="checkedA" />
+                            <div>
+                                {this.state.contribution.story.title} {" "}
+                            </div>
+                            <div className="headerRight">
+                                <div style={this.state.isReaderViewEnabled ? { opacity: "0" } : { opacity: "1" }} className="switch">
+                                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                                        onChange={this.handleChange('checkedA')}
+                                        value="checkedA" />
+                                </div>
+                                <i onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
+                            </div>
                         </div>
                         <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
                             <p>~~~~~Preface~~~~~</p>
