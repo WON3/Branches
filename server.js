@@ -33,7 +33,6 @@ app.use(session({
 }))
 
 //////////////////// MIDDLEWARE ///////////////////////
-app.use(express.static(path.join(__dirname, '/build')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
@@ -48,6 +47,10 @@ passport.deserializeUser((username, done) => {
     done(null,username);
 });
 
+const handleError = (err, res) => {
+    res.status(500).send({message:`There was an error with your request. ${err.message}`})
+ };
+ app.set('handleError', handleError);
 ////////////////////Router///////////////////////////////
 
 //User
@@ -89,16 +92,12 @@ app.get('/api/isLoggedIn', (req, res, next)=>{
     res.send(req.user)
 })
 ///////////////// ADMIN ROUTES ///////////////////////////
-app.get('/*', (req, res) => {
-    res.sendFile('index.html', {
-        root: path.join(__dirname, "build")
-    })
+app.use(express.static(path.join(__dirname, '/build')));
+
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/build/index.html'));
 });
 
-const handleError = (err, res) => {
-   res.status(500).send({message:`There was an error with your request. ${err.message}`})
-};
-app.set('handleError', handleError);
 
 const port = process.env.SERVER_PORT || 8070;
 app.listen(port, () => {

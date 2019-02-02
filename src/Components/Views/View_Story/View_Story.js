@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import * as Actions from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
 import { storyBuilder } from './services/pageBuilder'
-import Icons from '@material-ui/icons/Visibility'
 
 
 
@@ -94,7 +93,7 @@ class ViewStory extends Component {
                                 {this.state.contribution.story.title} {" "}
                             </div>
                             <div className="headerRight">
-                                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                                    <Switch defaultChecked color="default" checked={this.state.checkedA}
                                         onChange={this.handleChange('checkedA')}
                                         value="checkedA" />
                                 <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
@@ -132,7 +131,7 @@ class ViewStory extends Component {
                                 <div style={this.state.isReaderViewEnabled ? { opacity: "0" } : { opacity: "1" }} className="switch">
                                     <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
                                         onChange={this.handleChange('checkedA')}
-                                        value="checkedA" />
+                                         />
                                 </div>
                                 <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
                             </div>

@@ -39,6 +39,14 @@ class Dashboard extends Component {
             this.setState({serverErrorMessage:' Server error'})
           });
     }
+    handleChange(e){
+        this.setState({
+            filteredStories : this.state.stories.filter((story)=>{
+               return story.title.toUpperCase().includes(e.target.value.toUpperCase()) 
+            })
+        })
+    }
+    
 
    render(){
 
@@ -49,7 +57,6 @@ class Dashboard extends Component {
                <CardContent>
                <div  className= "storyname">{story.title}</div>
                <div  className = "description">{story.description}</div>
-
                <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
                <button className="view">Add to Favorites</button>
                </CardContent>
