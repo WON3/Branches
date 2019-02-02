@@ -110,14 +110,12 @@ class Register extends Component {
     return (
       <div>
         <RegisterButton onClick={this.handleOpen} />
-        <Modal
+        <Modal className="modal"
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
-          style ={{modalBackdrop:".08"
-
-          }}
+      
         >
           <div className={classes.paper}>
             <Typography
