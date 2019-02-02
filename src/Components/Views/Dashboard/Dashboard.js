@@ -32,7 +32,7 @@ class Dashboard extends Component {
             this.setState({stories});
         })
         .catch(err =>{
-            let er = err.respons.data.message;
+            let er = err.response.data.message;
             this.setState({serverErrorMessage:er})
           });
     }

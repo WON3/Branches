@@ -1,46 +1,50 @@
-
-import React, {Component} from 'react';
-import '../../CreateStory/CreateStory.css';
-import { addTitle } from '../../../../ducks/reducer';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import "../../CreateStory/CreateStory.css";
+import { addTitle } from "../../../../ducks/reducer";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    width: "90%"
   },
   button: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   instructions: {
     marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-  },
+    marginBottom: theme.spacing.unit
+  }
 });
 
 function getSteps() {
-  return ['Add a Title', 'Write a Description', 'Story Rules', 'Review and Submit'];
+  return [
+    "Add a Title",
+    "Write a Description",
+    "Story Rules",
+    "Review and Submit"
+  ];
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return '';
+      return "";
     case 1:
-      return 'What is this story about?';
+      return "What is this story about?";
     case 2:
-      return 'How much control do you want?';
+      return "How much control do you want?";
     case 3:
-      return 'Almost Finished..';
+      return "Almost Finished..";
     default:
-      return 'Review and Submit';
+      return "Review and Submit";
   }
 }
 
@@ -59,7 +63,7 @@ class StoryWizardOne extends Component {
       moderator_accepts: true, //user Input
       open: true,
       activeStep: 0,
-      skipped: new Set(),
+      skipped: new Set()
     };
     this.handleChange = this.handleChange.bind(this);
     // this.addNewStory = this.addNewStory.bind(this);
@@ -86,13 +90,13 @@ class StoryWizardOne extends Component {
     }
     this.setState({
       activeStep: activeStep + 1,
-      skipped,
+      skipped
     });
   };
 
   handleBack = () => {
     this.setState(state => ({
-      activeStep: state.activeStep - 1,
+      activeStep: state.activeStep - 1
     }));
   };
 
@@ -108,14 +112,14 @@ class StoryWizardOne extends Component {
       skipped.add(activeStep);
       return {
         activeStep: state.activeStep + 1,
-        skipped,
+        skipped
       };
     });
   };
 
   handleReset = () => {
     this.setState({
-      activeStep: 0,
+      activeStep: 0
     });
   };
 
@@ -128,22 +132,25 @@ class StoryWizardOne extends Component {
     const steps = getSteps();
     const { activeStep } = this.state;
     return (
-
-        <div className= "createStory">
-            <div className= "title-box">
-                   
-              <div>
-                <h2 className= "wizard-title">Create Story Wizard</h2>
-                {/* <img src={'./src/images/pen-desktop.png'} alt= "pen"/> */}
-              </div>
-                <p>We'll walk you through all of guidelines for creating your new story here</p>
-            </div>
-            <Stepper id="stepper" activeStep={activeStep}>
+      <div className="createStory">
+        <div className="title-box">
+          <div>
+            <h2 className="wizard-title">Create Story Wizard</h2>
+            {/* <img src={'./src/images/pen-desktop.png'} alt= "pen"/> */}
+          </div>
+          <p>
+            We'll walk you through all of guidelines for creating your new story
+            here
+          </p>
+        </div>
+        <Stepper id="stepper" activeStep={activeStep}>
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
             if (this.isStepOptional(index)) {
-              labelProps.optional = <Typography variant="caption">Optional</Typography>;
+              labelProps.optional = (
+                <Typography variant="caption">Optional</Typography>
+              );
             }
             if (this.isStepSkipped(index)) {
               props.completed = false;
@@ -158,48 +165,65 @@ class StoryWizardOne extends Component {
         <div>
           {activeStep === steps.length ? (
             <div>
-              <Typography >
+              <Typography>
                 All steps completed - you&apos;re finished
               </Typography>
-              <Button onClick={this.handleReset} >
-                Reset
-              </Button>
+              <Button onClick={this.handleReset}>Reset</Button>
             </div>
           ) : (
             <div>
-              <Typography >{getStepContent(activeStep)}</Typography>
-              
+              <Typography>{getStepContent(activeStep)}</Typography>
             </div>
           )}
         </div>
-            <div className="wizard-box">
-            <TextField 
-            className="title" 
-            name= "title" 
-            label= "Title (maximum: 100 characters)" 
-            style = {{backgroundColor: "#EAFBF7", width: "80%"}}
-            required = {true}
+        <div className="wizard-box">
+          <TextField
+            className="title"
+            name="title"
+            label="Title (maximum: 100 characters)"
+            style={{
+              backgroundColor: "#EAFBF7",
+              color: "#378674",
+              borderRadius: 5,
+              border:0,
+              fontFamily: "sans-serif",
+              fontSize: 50,
+              fontWeight: 700,
+            }}
+            required={true}
             inputProps={{
               maxLength: "100"
             }}
-            onChange={e => {addTitle(e.target.value)}} 
+            onChange={e => {
+              addTitle(e.target.value);
+            }}
             margin="normal"
             variant="outlined"
-            />
-         
-          <div className='button'> 
-            <Link to= '/create_two' style={{textDecoration: "none"}}>
-              <Button variant="contained" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
-              onClick={this.handleNext}
-                  
+          />
+
+          <div className="button">
+            <Link to="/create_two" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#EAFBF7",
+                  textDecoration: "none",
+                  width: 300,
+                  borderRadius: 5,
+                  border: 0,
+                  color: "#378674",
+                  fontSize: 20,
+                  height: 48,
+                  padding: "0 30px"
+                }}
+                onClick={this.handleNext}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
             </Link>
           </div>
-          </div>
         </div>
-      
+      </div>
     );
   }
 }

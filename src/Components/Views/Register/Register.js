@@ -107,6 +107,9 @@ class Register extends Component {
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
+          style ={{modalBackdrop:".08"
+
+          }}
         >
           <div className={classes.paper}>
             <Typography
