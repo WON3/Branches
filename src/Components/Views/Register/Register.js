@@ -73,9 +73,9 @@ class Register extends Component {
   registerUser() {
     let { username, email, password } = this.state;
     if (password.length<8){
-        this.setState({formValidationCheck:<ErrorModal error=" Password too short." />})
+      this.setState({formValidationCheck:<ErrorModal error=" Password too short." />})
     } else if( !email.includes('@')){
-        this.setState({formValidationCheck:<ErrorModal error=" Invalid email address." />})
+      this.setState({formValidationCheck:<ErrorModal error=" Invalid email address." />})
     } else {
       this.props.history.push("/");
       axios.post("/api/register", { username, email, password })
@@ -86,11 +86,12 @@ class Register extends Component {
         } else {
           alert("Email already exists in database.");
           this.setState({ password: "" });
-          this.setState({username:'', email:'', password:'', errorMessage:''})
+          this.setState({errorMessage:''})
         }
       })
       .catch(err =>{
-        this.setState({serverErrorMessage:' Server error'})
+        this.setState({formValidationCheck:<ErrorModal error=' Server error'/>})
+        
       });
     }
     
