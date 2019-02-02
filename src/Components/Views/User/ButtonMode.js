@@ -70,7 +70,6 @@ class ButtonMode extends Component {
     };
 
     handle() {
-        debugger
         this.props.change(this.state.input);
         this.setState({open:false})
     };
