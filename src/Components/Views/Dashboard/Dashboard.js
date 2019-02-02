@@ -89,6 +89,7 @@ class Dashboard extends Component {
          />
            </div>
            <input  name="filter" type="text" placeholder="Search by Title" onChange={this.handleChange} />
+           <LandingModal/>
            <h3 className= "storydash">Stories Dashboard</h3>
 </div>
        )
