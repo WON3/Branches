@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import '../../CreateStory/CreateStory.css';
 import {addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -12,13 +11,17 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import HelpRounded from '@material-ui/icons/HelpRounded';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+
+
 
 
 const styles = theme => ({
@@ -32,6 +35,14 @@ const styles = theme => ({
     },
     selectEmpty: {
       marginTop: theme.spacing.unit * 2,
+    },
+    fab: {
+      margin: theme.spacing.unit * 2,
+    },
+    absolute: {
+      position: 'absolute',
+      bottom: theme.spacing.unit * 2,
+      right: theme.spacing.unit * 3,
     },
   });
 
@@ -61,18 +72,21 @@ class StoryWizardThree extends Component{
         this.state = {
             storyGuidePOV: '',
             storyGuideFork: '',
-            storyGuideMod: '',
+            storyGuideMod: true,
             labelWidth: 0,
             activeStep: 2,
-            skipped: new Set()
+            skipped: new Set(),
+            required: true,
+            error: false
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount(props) {
         this.setState({
           labelWidth: '40px'
         });
+        this.props.addModerator(this.state.storyGuideMod)
       }
       
       handleChange = event => {
@@ -80,20 +94,30 @@ class StoryWizardThree extends Component{
       };
       isStepOptional = step => step === -1;
 
-      handleNext = () => {
+      handleNext = (props) => {
         const { activeStep } = this.state;
         let { skipped } = this.state;
-        if (this.isStepSkipped(activeStep)) {
-          skipped = new Set(skipped.values());
-          skipped.delete(activeStep);
+        if(!this.props.storyGuidePOV || this.props.storyGuideFork === ''){
+          this.setState({
+            error: true
+          })
+          alert("Please complete all fields to continue")
+        } else{
+          this.props.history.push('/create_four')
+          if (this.isStepSkipped(activeStep)) {
+            skipped = new Set(skipped.values());
+            skipped.delete(activeStep);
+          }
+          this.setState({
+            activeStep: activeStep + 1,
+            skipped,
+          });
         }
-        this.setState({
-          activeStep: activeStep + 1,
-          skipped,
-        });
       };
     
       handleBack = () => {
+        this.props.history.push('/create_two')
+
         this.setState(state => ({
           activeStep: state.activeStep - 1,
         }));
@@ -169,9 +193,10 @@ class StoryWizardThree extends Component{
             </div>
           )}
           </div>
-            <div id="POV-Fork-Mod">
-            <form className={styles.root} style = {{justifyContent: "space-between"}} autoComplete="off">
-        <FormControl className={styles.formControl} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
+            <div id="POV-Fork-Mod" style = {{justifyContent: "space-between", maxWidth: "250px"}}>
+            <form className={styles.root} style = {{justifyContent: "space-between", width: "100%", padding: "0px"}} autoComplete="off">
+        <FormControl className={styles.formControl} required = {this.state.required}
+            error = {this.state.error} style={{display: "flex", flexDirection: "column", justifyContent: "space-between", textAlign: "left"}}>
           <InputLabel id="questions" htmlFor="age-simple" style={{color: "#EAFBF7"}}>Point of View </InputLabel>
 
           <Select
@@ -194,9 +219,15 @@ class StoryWizardThree extends Component{
             <MenuItem value="Narrative" style={{backgroundColor: "#EAFBF7"}}>Narrative</MenuItem>
           </Select>
         </FormControl>
-        <div></div>
-        <FormControl className={styles.formControl}>
-          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Allows New Story Branch?</InputLabel>
+        <FormControl className={styles.formControl} required = {this.state.required}
+            error = {this.state.error}>
+       
+          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7", display: "flex", flexDirection: "row", justifyContent: "flex-end", alignItems: "center"}}>Allows New Story Branch   <Tooltip title="This feature allows contributors to create a new branch and go in new direction with the story." aria-label="HelpRounded">
+            <IconButton style={{backgroundColor: "transparent"}} >
+              <HelpRounded style={{height: "20%"}}/>
+            </IconButton>
+          </Tooltip></InputLabel>
+        
           <Select
             value={storyGuideFork}
             onChange={e => 
@@ -214,71 +245,21 @@ class StoryWizardThree extends Component{
             <MenuItem value={true} style={{backgroundColor: "#EAFBF7"}}>Yes</MenuItem>
             <MenuItem value={false} style={{backgroundColor: "#EAFBF7"}}>No</MenuItem>
           </Select>
-          <FormHelperText>This feature allows contributors to create a new branch and go in new direction with the story.</FormHelperText>
         </FormControl>
+        
         <div></div>
-
-        <FormControl className={styles.formControl}>
-          <InputLabel id="questions" htmlFor="age-helper" style={{color: "#eafbf7"}}>Approve all story snippet submissions or let contributors vote on each submission?</InputLabel>
-          <Select
-            value={storyGuideMod}
-            onChange={e => {
-                addModerator(e.target.value)
-             
-                }
-            }
-            inputProps={{
-            name:"moderator_accepts", 
-            id:"age-helper",
-            }}
-          >
-            <MenuItem value="" style={{backgroundColor: "#EAFBF7"}}>
-              <em>(Select One)</em>
-            </MenuItem>
-            <MenuItem value={true} style={{backgroundColor: "#EAFBF7"}}>Yes</MenuItem>
-            <MenuItem value={false} style={{backgroundColor: "#EAFBF7"}}>No</MenuItem>
-          </Select>
        
-          <FormHelperText>By Selecting "Yes" you agree to either approve or reject all contributer story submissions. Otherwise, all submissions will be voted on by approved contributers.</FormHelperText>
-        </FormControl>
       </form>
-          {/* </div>  
-            <div className="create-three-div">
-            <div id="POV-Fork-Mod">
-        <h2 id="questions"> Point of View </h2>
-            <select name="point_of_view" value={storyGuidePOV} onChange={e => addPOV(e.target.value)}>
-                <option value="First Person">First Person</option>
-                <option value="Second Person">Second Person</option>
-                <option value="Third Person">Third Person</option>
-                <option value="Narrative">Narrative</option>
-            </select>
-            </div>
-            <div id="POV-Fork-Mod">
-            <h2 id="questions">Would you like to allow approved contributors to create an alternate story branch? </h2> 
-           
-                <select name="allows_fork" value={storyGuideFork} onChange={e => addForkRestriction(e.target.value)}>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
-                </select>
-                </div>
-                <div id="POV-Fork-Mod">
-            <h2 id="questions">Do you want to approve all story snippet submissions or let contributors vote on each submission?</h2>
-                <select name="moderator_accepts" value={storyGuideMod} onChange={e => addModerator(e.target.value)}>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
-                </select>
-                </div> */}
+         
         <div id="wizard-buttons">
-            <Link to= '/create_two' style={{textDecoration: "none"}}>
+        
               <Button variant="contained" disabled={activeStep === 0}
                   onClick={this.handleBack} 
                  style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
                  >
               BACK
               </Button>
-            </Link>
-        
-            <Link to= '/create_four' style={{textDecoration: "none"}}>
+    
                 <Button variant="contained" 
                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}
                 onClick={this.handleNext}
@@ -287,8 +268,9 @@ class StoryWizardThree extends Component{
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'} 
                 
                 </Button>
-        </Link></div>
-        </div>
+        {/* </Link> */}
+            </div>
+          </div>
         </div>
         )
     }

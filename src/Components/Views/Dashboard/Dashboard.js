@@ -10,20 +10,24 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import ErrorModal from '../ErrorModal/ErrorModal';
+import LandingModal from '../Dashboard/LandingModal'
 
 class Dashboard extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            stories: [],
-            open: true,
-            serverErrorMessage:''
-        }
-    }
-    handleClose = () => {
-        this.setState({ open: false });
-      };
+   constructor(props) {
+       super(props);
+       this.state = {
+           filteredStories: [],
+           stories: [],
+           open: true
+       }
+      this.handleChange=this.handleChange.bind(this);
+     
+   }
+   handleClose = () => {
+       this.setState({ open: false });
+     };
+
     
     componentDidMount(){
         axios.get(`/api/Dashboard`)
@@ -36,50 +40,51 @@ class Dashboard extends Component {
           });
     }
 
-    render(){
-        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
-        const stories = this.state.stories.map((story)=>{
-           
-            return(
-                <Card className="storybox" key={story.story_id}>
-                <CardContent>
-                <div  className= "storyname">{story.title}</div>
-                <div  className = "description">{story.description}</div>
+   render(){
 
-                <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
-                </CardContent>
-                </Card>
-            )
-        })
-        return(
-            <div className="idk">
-            <div className="dashboard">
-             {stories}
-             <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left"
-            }}
-            open={this.state.open}
-            autoHideDuration={3250}
-            onClose={this.handleClose}
-            message={<p>This is your dashboard. Choose your actions wisely!</p>}
-            action={[
-              <IconButton
-                key="close"
-                aria-label="Close"
-                color="inherit"
-                onClick={this.handleClose}
-              >
-                <CloseIcon />
-              </IconButton>
-            ]}
-          />
-            </div>
-            <h3 className= "storydash">Stories Dashboard</h3>
-            {errorMessage}
- </div>
-        )
-    }
- }
- export default Dashboard;
+       const stories = this.state.filteredStories.map((story)=>{
+        
+           return(
+               <Card className="storybox" key={story.story_id}>
+               <CardContent>
+               <div  className= "storyname">{story.title}</div>
+               <div  className = "description">{story.description}</div>
+
+               <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
+               <button className="view">Add to Favorites</button>
+               </CardContent>
+               </Card>
+           )
+       })
+       return(
+           <div className="idk">
+           <div className="dashboard">
+            {stories}
+            <Snackbar
+           anchorOrigin={{
+             vertical: "bottom",
+             horizontal: "left"
+           }}
+           open={this.state.open}
+           autoHideDuration={6000}
+           onClose={this.handleClose}
+           message={<p>This is your dashboard. Choose your actions wisely!</p>}
+           action={[
+             <IconButton
+               key="close"
+               aria-label="Close"
+               color="inherit"
+               onClick={this.handleClose}
+             >
+               <CloseIcon />
+             </IconButton>
+           ]}
+         />
+           </div>
+           <input  name="filter" type="text" placeholder="Search by Title" onChange={this.handleChange} />
+           <h3 className= "storydash">Stories Dashboard</h3>
+</div>
+       )
+   }
+}
+export default Dashboard;

@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import Switch from '@material-ui/core/Switch';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as Actions from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
-import {storyBuilder} from './services/pageBuilder'
+import { storyBuilder } from './services/pageBuilder'
+import Icons from '@material-ui/icons/Visibility'
 
 
 
@@ -24,9 +25,8 @@ class ViewStory extends Component {
             checkedA: true,
             checkedB: true,
             userId: '',
-            serverErrorMessage:'',
+            serverErrorMessage: '',
             isReaderViewEnabled: false
-
         }
     }
 
@@ -44,6 +44,14 @@ class ViewStory extends Component {
     handleTooltipOpen = () => {
         this.setState({ open: true });
     };
+
+    handleReadviewEnable = () => {
+        this.props.toggleReadview(this.props.isReadView);
+        this.setState({
+            isReaderViewEnabled: !this.state.isReaderViewEnabled
+        })
+    }
+
     componentDidMount() {
         const { story_id } = this.props.match.params
         axios.get(`/contributions/${story_id}`)
@@ -53,18 +61,13 @@ class ViewStory extends Component {
             .catch(err =>{
                 this.setState({serverErrorMessage: ' Server error'})
             })
-            setTimeout(() => {
-                this.props.toggleReadview(this.props.isReadView)
-                this.setState({
-                    isReaderViewEnabled: true
-                })
-            }, 3 * 1000)
+        }, 3 * 1000)
     }
 
 
 
     render() {
-        let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
+        let errorMessage = this.state.serverErrorMessage && <ErrorModal error={this.state.serverErrorMessage} />
         if (!this.state.contribution.story) {
             return <div className="load">
                 <LoadingIcon />
@@ -83,16 +86,27 @@ class ViewStory extends Component {
 
         if (!this.state.checkedA) {
             return (
-                <div className="body">
+                <div className="read-view-er">
 
-                    <div style={{ textAlign: "center", padding: "10px" }} className="head">
-                        <h1>{this.state.contribution.story.title}</h1>
-                        <p>~~~~~Preface~~~~~</p>
+                    <div className="head">
+                        <div className="header">
+                            <div style={{ margin: "auto 0px" }}>
+                                {this.state.contribution.story.title} {" "}
+                            </div>
+                            <div className="headerRight">
+                                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                                        onChange={this.handleChange('checkedA')}
+                                        value="checkedA" />
+                                <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="afterHeader">
+                        <div style={{ textAlign: "center" }}>
+                            <p>~Preface~</p>
+                        </div>
                         <h3>{this.state.contribution.story.description}</h3>
-                        <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                            onChange={this.handleChange('checkedA')}
-                            value="checkedA" />
-                        <p>User View</p>
                     </div>
                     <div className="contribution">{contributions}</div>
 
@@ -108,22 +122,27 @@ class ViewStory extends Component {
         } else {
             return (
                 <div className="read-view-main">
-                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                        onChange={this.handleChange('checkedA')}
-                        value="checkedA" />
 
                     <div style={{ textAlign: "left" }} className="read-view-container">
                         <div className="read-view-title">
-                            {this.state.contribution.story.title} {" "}
-                            <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
-                        onChange={this.handleChange('checkedA')}
-                        value="checkedA" />
+                            <div style={{ margin: "auto 0" }}>
+                                {this.state.contribution.story.title} {" "}
+                            </div>
+                            <div className="headerRight">
+                                <div style={this.state.isReaderViewEnabled ? { opacity: "0" } : { opacity: "1" }} className="switch">
+                                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
+                                        onChange={this.handleChange('checkedA')}
+                                        value="checkedA" />
+                                </div>
+                                <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
+                            </div>
                         </div>
-                        <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
-                            <p>~~~~~Preface~~~~~</p>
-                            <h3 style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>{this.state.contribution.story.description}</h3>
+                        <div>
+                            <div style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
+                                <h3 style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>{this.state.contribution.story.description}</h3>
+                            </div>
+                            <ReadView pages={storyBuilder(this.state.contribution.contributions, 270)} />
                         </div>
-                        <ReadView pages={storyBuilder(this.state.contribution.contributions, 270)} />
                         <div className="butt" style={this.state.isReaderViewEnabled ? { display: "none" } : { display: "block" }}>
                             <Link to={`/dashboard`}>
                                 <Button size="large">Home</Button>
