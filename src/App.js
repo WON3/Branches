@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./Components/Shared/NavBar/NavBar";
-import { BrowserRouter } from "react-router-dom";
 import routes from "./routes";
 import Header from "./Components/Shared/Header/Header";
 import { MuiThemeProvider } from "@material-ui/core";
 import theme from "./theme";
 import axios from "axios";
 import { connect } from "react-redux";
-import { getUser } from "./ducks/reducer";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faPencilAlt)
+import * as Actions from "./ducks/reducer";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { withRouter } from "react-router-dom";
+library.add(faPencilAlt);
 
 class App extends Component {
   componentDidMount() {
@@ -23,26 +22,30 @@ class App extends Component {
       }
     });
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.props.toggleReadview(true);
+    }
+  }
 
   render() {
     return (
       <div className="App">
         <MuiThemeProvider theme={theme}>
-          <BrowserRouter>
-            <div>
-              <Header />
-              <NavBar />
+          <div>
+            <Header />
+            <NavBar />
 
-              {routes}
-            </div>
-          </BrowserRouter>
+            {routes}
+          </div>
         </MuiThemeProvider>
       </div>
     );
   }
 }
-
-export default connect(
-  null,
-  { getUser }
-)(App);
+export default withRouter(
+  connect(
+    null,
+    Actions
+  )(App)
+);
