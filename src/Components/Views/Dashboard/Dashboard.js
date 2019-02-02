@@ -33,7 +33,7 @@ class Dashboard extends Component {
         axios.get(`/api/Dashboard`)
         .then(res=>{
             const stories =res.data;
-            this.setState({stories});
+            this.setState({stories, filteredStories:stories});
         })
         .catch(err =>{
             this.setState({serverErrorMessage:' Server error'})
