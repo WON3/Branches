@@ -61,7 +61,7 @@ class ViewStory extends Component {
             .catch(err =>{
                 this.setState({serverErrorMessage: ' Server error'})
             })
-        }, 3 * 1000)
+        
     }
 
 

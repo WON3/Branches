@@ -42,7 +42,8 @@ class User extends Component {
 
         .catch(err=>{
             this.setState({serverErrorMessage:' Server error'})
-        });  
+        }); 
+    } 
 
 
     changePic(val) {
@@ -67,7 +68,6 @@ class User extends Component {
         }).catch(err=>{
             this.setState({serverErrorMessage:' Server error'})
         })
-
     };
 
     render() {
