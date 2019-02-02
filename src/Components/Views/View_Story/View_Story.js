@@ -58,10 +58,7 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-            .catch(err =>{
-                this.setState({serverErrorMessage: ' Server error'})
-            })
-        }, 3 * 1000)
+            .catch(err => console.log('axios create error', err))
     }
 
 
