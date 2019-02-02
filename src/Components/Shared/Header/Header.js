@@ -104,7 +104,7 @@ class Header extends Component {
         </Link>
       );
     return (
-      <div>
+      <div style={this.props.isReadView ? {display:"none"}:{display:"block"}}>
         {" "}
         <AppBar
           position="fixed"

@@ -26,4 +26,4 @@ export default (
   <Route path="/login" component={Login} />
   <Route path="/" component={Dashboard} />
   </Switch>
-);
+)

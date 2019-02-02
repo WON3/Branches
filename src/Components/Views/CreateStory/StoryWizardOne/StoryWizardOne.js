@@ -63,7 +63,13 @@ class StoryWizardOne extends Component {
       moderator_accepts: true, //user Input
       open: true,
       activeStep: 0,
+<<<<<<< HEAD
       skipped: new Set()
+=======
+      skipped: new Set(),
+      required: true,
+      error: false
+>>>>>>> 6a1e47ebd75e593a0433addd64895af61b47549c
     };
     this.handleChange = this.handleChange.bind(this);
     // this.addNewStory = this.addNewStory.bind(this);
@@ -81,9 +87,18 @@ class StoryWizardOne extends Component {
 
   isStepOptional = step => step === false;
 
-  handleNext = () => {
+  handleNext = (props) => {
     const { activeStep } = this.state;
     let { skipped } = this.state;
+    //if this.props.storyGuideTitle === false ... then change this.error.state to true... and alert "Please fill out all fields"  ... else (run the rest of this code)
+
+    if(!this.props.storyGuideTitle){
+      this.setState({
+        error: true
+      })
+      alert("Please complete all fields to continue")
+    } else{
+      this.props.history.push('/create_two')
     if (this.isStepSkipped(activeStep)) {
       skipped = new Set(skipped.values());
       skipped.delete(activeStep);
@@ -93,6 +108,7 @@ class StoryWizardOne extends Component {
       skipped
     });
   };
+}
 
   handleBack = () => {
     this.setState(state => ({
@@ -101,21 +117,21 @@ class StoryWizardOne extends Component {
   };
 
   handleSkip = () => {
-    const { activeStep } = this.state;
-    if (!this.isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-    this.setState(state => {
-      const skipped = new Set(state.skipped.values());
-      skipped.add(activeStep);
-      return {
-        activeStep: state.activeStep + 1,
-        skipped
-      };
-    });
-  };
+    const { activeStep } = this.state;    
+        if (!this.isStepOptional(activeStep)) {
+        // You probably want to guard against something like this,
+        // it should never occur unless someone's actively trying to break something.
+        throw new Error("You can't skip a step that isn't optional.");
+      }
+      this.setState(state => {
+        const skipped = new Set(state.skipped.values());
+        skipped.add(activeStep);
+        return {
+          activeStep: state.activeStep + 1,
+          skipped,
+          };
+        });
+    };
 
   handleReset = () => {
     this.setState({
@@ -132,18 +148,16 @@ class StoryWizardOne extends Component {
     const steps = getSteps();
     const { activeStep } = this.state;
     return (
-      <div className="createStory">
-        <div className="title-box">
-          <div>
-            <h2 className="wizard-title">Create Story Wizard</h2>
-            {/* <img src={'./src/images/pen-desktop.png'} alt= "pen"/> */}
-          </div>
-          <p>
-            We'll walk you through all of guidelines for creating your new story
-            here
-          </p>
-        </div>
-        <Stepper id="stepper" activeStep={activeStep}>
+        <div className= "createStory" style= {{display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center"}}>
+            <div className= "title-box">
+                   
+              <div>
+                <h2 className= "wizard-title">Create Story Wizard</h2>
+                {/* <img src={'./src/images/pen-desktop.png'} alt= "pen"/> */}
+              </div>
+                <p>We'll walk you through all of guidelines for creating your new story here</p>
+            </div>
+            <Stepper id="stepper" activeStep={activeStep}>
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
@@ -190,7 +204,8 @@ class StoryWizardOne extends Component {
               fontSize: 50,
               fontWeight: 700,
             }}
-            required={true}
+            required = {this.state.required}
+            error = {this.state.error}
             inputProps={{
               maxLength: "100"
             }}
@@ -220,7 +235,6 @@ class StoryWizardOne extends Component {
               >
                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
               </Button>
-            </Link>
           </div>
         </div>
       </div>
