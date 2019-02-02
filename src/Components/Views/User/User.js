@@ -43,6 +43,7 @@ class User extends Component {
         })}  
 
 
+
     changePic(val) {
         this.setState({ proPic: val });
         this.props.updateProfilePic(val);
@@ -65,7 +66,6 @@ class User extends Component {
         }).catch(err=>{
             this.setState({serverErrorMessage:' Server error'})
         })
-
     };
 
     render() {
