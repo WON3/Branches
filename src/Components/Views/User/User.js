@@ -38,7 +38,6 @@ class User extends Component{
                 this.setState({proPic:res.data[0]['url']})        
             })
         .catch(err=>{
-            debugger
             let er = err.message;
             this.setState({serverErrorMessage: er})
         });  

@@ -109,7 +109,9 @@ class Register extends Component {
     let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     return (
       <div>
-        <RegisterButton onClick={this.handleOpen} />
+        <RegisterButton 
+          buttonName="REGISTER"
+          onClick={this.handleOpen} />
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

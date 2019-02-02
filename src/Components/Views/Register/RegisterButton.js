@@ -22,7 +22,7 @@ function RegisterButton(props) {
   const { classes, children, className, ...other } = props;
   return (
     <Button className={classNames(classes.root, className)} {...other}>
-      Register
+      {props.buttonName}
     </Button>
   );
 }

@@ -69,9 +69,12 @@ class StoryCard extends Component{
 
 render(){
     const { classes } = this.props;
+    console.log(this.props)
     return(
         <div>
-        <RegisterButton onClick={this.handleOpen} />
+        <RegisterButton 
+            buttonName="CONTRIBUTIONS"
+            onClick={this.handleOpen} />
         <Modal
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
@@ -90,23 +93,9 @@ render(){
                     }}>
                     {this.state.title}
                 </Typography>
-                <p>{this.state.description.slice(0,22)+'...'}</p>
+                <p>{this.state.description}</p>
                 <br/>
-                <TextField
-                    id="outlined-email-input"
-                    label="Contribution Pending"
-                    type="contirbution"
-                    name="contribution"
-                    margin="normal"
-                    variant="outlined"
-                    style={{
-                    backgroundColor: "#EAFBF7",
-                    color: "#378674",
-                    borderRadius: 5,
-                    fontFamily: "sans-serif",
-                    fontSize: 50,
-                    fontWeight: 700
-                }}/>
+                <p>Contribution status: {}</p>
                 <br/>
                 <br/>
                 <div className="buttonBox">
