@@ -192,13 +192,12 @@ render(props){
             margin="normal"
             variant="outlined"/>
             <div className= "button" id="wizard-buttons">
-            {/* <Link to= '/create_one' style={{textDecoration: "none"}}> */}
+        
               <Button variant="contained" color="primary" disabled={activeStep === 0}
                   onClick={this.handleBack} style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}>
               BACK
               </Button>
-            {/* </Link> */}
-            {/* <Link to= '/create_three' style={{textDecoration: "none"}}> */}
+          
             <Button variant="contained" color="primary" style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}
             onClick={this.handleNext}
                   
@@ -206,35 +205,8 @@ render(props){
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 
             </Button>            
-            {/* </Link> */}
-            </div>
-            {/* <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-
-                >
-                  Back
-                </Button>
-                {this.isStepOptional(activeStep) && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleSkip}
-                    
-                  >
-                    Skip
-                  </Button>
-                )}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div> */}
+            
+                </div>
             </div>   
         </div>
     )

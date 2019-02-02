@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import '../../CreateStory/CreateStory.css';
 import {addPOV, addForkRestriction, addModerator } from '../../../../ducks/reducer';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -12,18 +11,15 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import AddIcon from '@material-ui/icons/Add';
 import HelpRounded from '@material-ui/icons/HelpRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import Fab from '@material-ui/core/Fab';
 
 
 
@@ -256,16 +252,14 @@ class StoryWizardThree extends Component{
       </form>
          
         <div id="wizard-buttons">
-            {/* <Link to= '/create_two' style={{textDecoration: "none"}}> */}
+        
               <Button variant="contained" disabled={activeStep === 0}
                   onClick={this.handleBack} 
                  style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
                  >
               BACK
               </Button>
-            {/* </Link> */}
-        
-            {/* <Link to= '/create_four' style={{textDecoration: "none"}}> */}
+    
                 <Button variant="contained" 
                 style={{color:"#378674ff", backgroundColor: "#EAFBF7", width: "40%", height: "100%"}}
                 onClick={this.handleNext}

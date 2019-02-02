@@ -200,14 +200,12 @@ class StoryWizardOne extends Component {
             />
          
           <div className='button'> 
-            {/* <Link to= '/create_two' style={{textDecoration: "none"}}> */}
               <Button variant="contained" style={{color:"#378674ff", backgroundColor: "#EAFBF7", textDecoration: "none", width: "40%", height: "100%"}}
               onClick={this.handleNext}
                   
               >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
-            {/* </Link> */}
           </div>
           </div>
         </div>
