@@ -26,7 +26,6 @@ export default class ErrorModal extends Component {
         this.setState({ open: false });
       };
     render(){
-        
         return(
             <Snackbar
                 anchorOrigin={{
@@ -37,7 +36,6 @@ export default class ErrorModal extends Component {
                 autoHideDuration={5000}
                 onClose={this.handleClose}
                 message={<p>Error:{this.props.error}</p>}
-               
                 action={[
                 <IconButton
                     key="close"
