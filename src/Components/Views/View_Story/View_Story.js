@@ -58,16 +58,10 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-            .catch(err => {
-                let er = err.response.data.message;
-                this.setState({ serverErrorMessage: er })
+            .catch(err =>{
+                this.setState({serverErrorMessage: ' Server error'})
             })
-        setTimeout(() => {
-            this.props.toggleReadview(this.props.isReadView)
-            this.setState({
-                isReaderViewEnabled: true
-            })
-        }, 3 * 1000)
+        
     }
 
 
@@ -156,10 +150,8 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-
-                    <div style={{ display: "none" }} className="contribution">{contributions}</div>
-                    <div style={{ display: "none" }} className="buttt">
-
+                    <div className="contribution">{contributions}</div>
+                    <div className="butt">
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>
