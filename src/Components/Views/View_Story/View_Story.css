@@ -9,6 +9,27 @@
     margin-right: 100px;
     color: #378674
 }
+.head {
+    margin-top: 35px;
+}
+.header {
+    background: #378674;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #EAFBF7;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+
+}
+.afterHeader{
+    margin: auto;
+    padding: 25px 0;
+}
 
 .read-view-title {
     background: #3A8674;
@@ -28,6 +49,9 @@
   
 
 .read-view-main{
+    padding: 0px 10px
+}
+.read-view-er{
     padding: 0px 10px
 }
 .read-view-container {
@@ -61,16 +85,7 @@
     border-radius: 10px 0px 0px 10px;
     margin: 17px 0px 0px 4px;
 }
-.head {
-    font-size: 2em;
-    width: 100%;
-    margin: auto;
-    margin-bottom: 25px;
-}
-h1 {
-    font-size: 150px;
-    color: #378674
-}
+
 h3 {
     text-align: center;
     color: #378674
@@ -160,7 +175,8 @@ font-size: 100px;
 }
 
 .headerRight {
-    display: flex
+    display: flex;
+    justify-content: space-between
 }
 
 
