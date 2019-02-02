@@ -37,12 +37,13 @@ class StoryCard extends Component{
         let contributionUpdate;
         axios.get(`/contributions/${storyId}`)
         .then(res => {
-            debugger
-            if(res.data.contributions.length === 0){
+            
+            if(res.data.contributions.length < 1){
                 contributionUpdate = 'None to speak of'
             } else{
                 contributionUpdate = res.data.contributions.map(contribution=>contribution)
             }
+            debugger
             this.setState({
                 title:res.data.story.title, 
                 contributions: contributionUpdate,
@@ -70,6 +71,16 @@ class StoryCard extends Component{
 render(){
     const { classes } = this.props;
     console.log(this.props)
+//     let contributes = this.state.contributions.map((cont, key)=>{} )
+//     0:
+// contribution: "Sometimes not blarg too."
+// email: "r"
+// id: 145
+// is_accepted: false
+// prior_contribution_id: 0
+// story_id: 32
+// user_id: 13
+// username: "r"
     return(
         <div>
         <RegisterButton 

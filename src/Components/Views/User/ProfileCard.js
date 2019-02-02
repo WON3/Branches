@@ -144,10 +144,10 @@ render() {
             </div> 
               
             <div className={classes.titles}>
-               <h3>{this.props.userName}</h3>
+               <h3 style={{color:'black'}}>Name: {this.props.userName}</h3>
             </div>
             <div className={classes.titles}>
-            <h3>Bio</h3>
+            <h3 style={{color:'black'}}>Bio</h3>
             <div className={classes.background}>
               <div className='bioHolder'>
                 <div className={classes.bio} >

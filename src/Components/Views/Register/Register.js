@@ -89,7 +89,7 @@ class Register extends Component {
         }
       })
       .catch(err =>{
-        let er = err.respons.data.message;
+        let er = err.message;
         this.setState({serverErrorMessage:er})
       });
     }
