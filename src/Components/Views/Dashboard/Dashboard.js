@@ -10,6 +10,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import ErrorModal from '../ErrorModal/ErrorModal';
+import LandingModal from '../Dashboard/LandingModal'
 
 class Dashboard extends Component {
 
@@ -77,7 +78,9 @@ class Dashboard extends Component {
             ]}
           />
             </div>
+            <LandingModal/>
             <h3 className= "storydash">Stories Dashboard</h3>
+
             {errorMessage}
  </div>
         )
