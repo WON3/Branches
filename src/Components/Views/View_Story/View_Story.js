@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../../../ducks/reducer';
 import ErrorModal from '../ErrorModal/ErrorModal';
 import { storyBuilder } from './services/pageBuilder'
+import Icons from '@material-ui/icons/Visibility'
 
 
 
@@ -57,10 +58,16 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-
-            .catch(err =>{
-                this.setState({serverErrorMessage: ' Server error'})
+            .catch(err => {
+                let er = err.response.data.message;
+                this.setState({ serverErrorMessage: er })
             })
+        setTimeout(() => {
+            this.props.toggleReadview(this.props.isReadView)
+            this.setState({
+                isReaderViewEnabled: true
+            })
+        }, 3 * 1000)
     }
 
 
@@ -82,7 +89,6 @@ class ViewStory extends Component {
         }, { id: 0 })
         const prior_contributions_id = lastContribution ? lastContribution.id : 0;
         const isUserLoggedIn = this.props.userId ? <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}><Button size="large">Create Contribution</Button></Link> : ''
-
         if (!this.state.checkedA) {
             return (
                 <div className="read-view-er">
@@ -93,7 +99,7 @@ class ViewStory extends Component {
                                 {this.state.contribution.story.title} {" "}
                             </div>
                             <div className="headerRight">
-                                    <Switch defaultChecked color="default" checked={this.state.checkedA}
+                                    <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
                                         onChange={this.handleChange('checkedA')}
                                         value="checkedA" />
                                 <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
@@ -131,7 +137,7 @@ class ViewStory extends Component {
                                 <div style={this.state.isReaderViewEnabled ? { opacity: "0" } : { opacity: "1" }} className="switch">
                                     <Switch defaultChecked value="checkedF" color="default" checked={this.state.checkedA}
                                         onChange={this.handleChange('checkedA')}
-                                         />
+                                        value="checkedA" />
                                 </div>
                                 <i style={{ margin: "auto" }} onClick={this.handleReadviewEnable} class="material-icons">{!this.state.isReaderViewEnabled ? `visibility` : `visibility_off`}</i>
                             </div>
@@ -149,8 +155,10 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-                    <div className="contribution">{contributions}</div>
-                    <div className="butt">
+
+                    <div style={{ display: "none" }} className="contribution">{contributions}</div>
+                    <div style={{ display: "none" }} className="buttt">
+
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>
