@@ -1,0 +1,29 @@
+
+
+.suppers{
+    background-color:  #378674 !important;
+    font-family: slabo;
+    font-size: 30px;
+    color:  #eafbf7;
+    text-decoration-color: #eafbf7;
+    
+}
+.MuiListItem-root-100{
+    color: #eafbf7;
+    text-decoration-line: none;
+}
+
+.MuiSvgIcon-root-60{
+    /* color : black */
+    color: #eafbf7
+}
+button.MuiButtonBase-root-57.MuiIconButton-root-51.MuiIconButton-colorInherit-52.Header-menuButton-4 {
+    padding-top: 1px;
+}
+
+button.MuiButtonBase-root-57.MuiIconButton-root-51 {
+    padding-top: 2px;
+}
+.profile-button{
+cursor: pointer;
+}

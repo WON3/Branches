@@ -1,0 +1,106 @@
+.idk { 
+    display: flex;
+    flex-direction: column-reverse;
+    font-family: sans-serif;
+}
+.dashboard {
+    font-family: sans-serif;
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-self: center !important;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+    
+    
+}
+.storydash {
+    font-family: sans-serif ! important;
+    font-size: 50px ! important;
+    font-weight: 200px;
+    font-family: 'Slabo 27px', serif;
+    color:  rgb(55, 134, 116);
+    margin-top: 80px;
+    text-align: center;
+    text-decoration: none !important;
+}
+.storybox {
+font-family: sans-serif !important;
+    background: rgb(55, 134, 116) ! important ;
+    font-size: 2em;
+    height: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    /* float: 1; */
+    justify-content: center;
+    width: 45%;  
+    border-radius: 20%;  
+}
+.storyname {
+    font-family: sans-serif;
+    color: #EAFBF7 ! important;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 20px;
+}
+.description {
+    font-family: sans-serif;
+    color:  #EAFBF7 ! important;
+    font-size: .25em ;
+    
+    text-overflow: hidden;
+    text-overflow: ellipsis;
+   
+    
+}
+.view{
+    font-family: sans-serif;
+    width: 70%;
+    background-color:  #EAFBF7;
+    margin-top: 35px;
+    border: none;
+    padding: 0 30px;
+    border-radius: 4px;
+    height: 50px;
+    color: rgb(55, 134, 116);
+    justify-content: center;
+    margin-left: 15%;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+@media (max-width:600px){
+.dashboard{
+    width: 90%;
+    }
+}
+@media (max-width: 900px) {
+    .storybox {
+      width: 90%;
+    }
+}
+@media (max-width:1700px){
+    .storyname {
+        font-size: 12px;
+        margin-bottom: 5px;
+        margin-top: 0px;
+    }
+}
+@media (max-width: 1700px){
+.description{
+    font-size: 8px;
+    margin-top: 0%;
+    margin-bottom: 0;
+    text-overflow: hidden;
+    text-overflow: ellipsis;
+    }
+}
+
+.dialogTitle {
+    color: #EAFBF7 !important
+} 

@@ -1,0 +1,57 @@
+
+h3 {
+    color: #EAFBF7;
+    text-align: center !important;
+}
+.fontA{
+    
+    right:55px;
+    bottom:7px;
+    height:15px;
+    /* color:rgb(234, 251, 247); */
+    color:rgba(255, 255, 255, 0);
+}
+.profile:hover .fontA{
+    color: black;
+}
+.bioHolder:hover .fontA{
+    color:black;
+}
+.profile {
+    color:rgba(234, 251, 247, 1);
+}
+
+.contributionBox{
+    margin: auto;
+    display: flex;
+    align-self: flex-end;
+    justify-content: center;
+    justify-self: center;
+    width: 87%;
+    flex-direction: column;
+}
+.contributions {
+    height: -webkit-fill-available;
+    height: -moz-available;
+    height: stretch;
+    width: 100%;
+    background: #EAFBF7;
+    color: #378674
+
+}
+.userUl{
+    list-style: circle ;
+    margin:15px;
+}
+.userLi{
+    font-size: 19px;
+    word-wrap: break-word;
+    margin:10px;
+}
+.contributionTitle{
+    margin: auto;
+    text-align: center;
+}
+#filled-textarea{
+    color:#378674;
+}

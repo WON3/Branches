@@ -1,0 +1,183 @@
+* {
+    font-family: sans-serif;
+    user-select: none;
+}
+.body {
+    height: 100vh;
+    overflow: wrap;
+    margin-left: 100px;
+    margin-right: 100px;
+    color: #378674
+}
+.head {
+    margin-top: 35px;
+}
+.header {
+    background: #378674;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #EAFBF7;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+
+}
+.afterHeader{
+    margin: auto;
+    padding: 25px 0;
+}
+
+.read-view-title {
+    background: #3A8674;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #EAFBF7;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 80px
+    
+}
+.read-view-title:hover .switch {
+    opacity: 1 !important;
+  }
+  
+
+.read-view-main{
+    padding: 0px 10px
+}
+.read-view-er{
+    padding: 0px 10px
+}
+.read-view-container {
+    margin-top: 35px;
+}
+
+
+.view-story-page{
+    background: white;
+    padding: 5px;
+    height: 560px;
+    min-width: 437px;
+    max-width: 437px;
+}
+.view-story-page:hover{
+    background-color: #378674;
+    opacity: 0.3;
+    padding: 5px;
+    height: 560px;
+    min-width: 437px;
+    max-width: 437px;
+}
+
+
+.one{
+    border-radius: 0px 10px 10px 0px;
+    margin: 17px 0px 0px 0px;
+}
+
+.two {
+    border-radius: 10px 0px 0px 10px;
+    margin: 17px 0px 0px 4px;
+}
+
+h3 {
+    text-align: center;
+    color: #378674
+}
+
+.butt {
+    text-align: center;
+}
+.butt Button {
+    margin: 5px
+}
+.contribution {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 10px;
+  width: 800px;
+  margin: auto;
+  text-transform: capitalize;
+}
+
+.contribution-view-story {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    margin: auto;
+    max-width: 900px;
+    text-transform: capitalize;
+  }
+
+
+
+.contribution h3 {
+    color: white
+}
+
+.zzz {
+    text-indent: 50px;
+    padding: 5px
+}
+
+.hoverBug-1{
+    display: hidden;
+    color: transparent;
+    position: absolute;
+    height: 563px;
+    width: 437px;
+    text-align: center;
+    font-size: 100px;
+}
+
+
+.hoverBug-2{
+    display: hidden;
+    color: transparent;
+    position: absolute;
+    height: 563px;
+    width: 437px;
+    text-align: center;
+    font-size: 100px;
+}
+
+.hoverBug-1:hover{
+    color: black;
+    font-size: 100px;
+    position: absolute;
+    display: block;
+    padding-top: 209px;
+    max-width: 356px;
+    text-align: center;
+    max-width: 437px;
+}
+
+.hoverBug-2:hover{
+    color: black;
+    font-size: 100px;
+    position: absolute;
+    display: block;
+    padding-top: 209px;
+    height: 356px;
+    max-width: 437px;
+}
+
+.headerRight {
+    display: flex;
+    justify-content: space-between
+}
+
+
+
+/* .view-story-page-one:hover {
+    background-color: black
+} */

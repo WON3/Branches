@@ -1,0 +1,28 @@
+.LoginBox{
+    margin: 150px auto;
+    background-color: #378674;
+    width: 600px;
+    box-shadow: 3px 5px 8px grey;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 50pt;
+    font-weight: 700;
+    color: #EAFBF7;
+}
+.header{
+    margin:-20px;
+}
+.LoginForm {
+    padding: 10px;
+    font-size: 20pt;
+    position: relative;
+}
+.inputBox
+#outlined-name{
+    color:#378674;
+}
+#outlined-password-input{
+    color:#378674; 
+}

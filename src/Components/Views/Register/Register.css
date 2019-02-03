@@ -1,0 +1,22 @@
+.openMode  {
+    z-index:0 !important;
+    width: 300px;
+}
+#modal-title{
+    margin:-20px;
+}
+#outlined-name{
+    color:#378674;
+}
+#outlined-password-input{
+    color:#378674; 
+    
+}
+#outlined-email-input{
+    color:#378674;
+}
+
+form {
+    display:flex;
+    flex-direction: column;
+}
