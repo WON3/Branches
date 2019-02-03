@@ -130,7 +130,7 @@ class NavBar extends React.Component {
               )}
             </IconButton>
           </div>
-          <List>{authenticatedListComponents}</List>
+          <List className="">{authenticatedListComponents}</List>
         </Drawer>
       </div>
     );
