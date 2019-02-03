@@ -111,7 +111,7 @@ render() {
   
   let storyShow;
   if( stories ){
-    storyShow =stories.map((story,id) => {
+    storyShow =stories.map((story) => {
     return(
       <div key={story.story_id}>
         <h4 className='contributionTitle'>{story.title}</h4>

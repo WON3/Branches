@@ -5,7 +5,7 @@ import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import classNames from "classnames";
-import PropTypes from "prop-types";
+import PropTypes, { string } from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import axios from 'axios';
 import RegisterButton from "../../Views/Register/RegisterButton";
@@ -67,17 +67,23 @@ class StoryCard extends Component{
 
 render(){
     const { classes } = this.props;
-    console.log(this.props)
-//     let contributes = this.state.contributions.map((cont, key)=>{} )
-//     0:
-// contribution: "Sometimes not blarg too."
-// email: "r"
-// id: 145
-// is_accepted: false
-// prior_contribution_id: 0
-// story_id: 32
-// user_id: 13
-// username: "r"
+    let contributes;
+    console.log(typeof this.state.contributions)
+    if(this.state.contributions == null || typeof this.state.contributions == String){
+        debugger
+        contributes=<div>None to speak of.</div>   
+    } else{
+        debugger
+        contributes = this.state.contributions.map((cont)=>{
+            return(
+                <div key={cont.id}>
+                    {`Contribution status: ${cont.is_accepted}
+                      Contributer: ${cont.username}
+                      Contribution: ${cont.contribution}`}
+                </div>
+            )
+        })
+    }
     return(
         <div>
         <RegisterButton 
@@ -103,8 +109,7 @@ render(){
                 </Typography>
                 <p>{this.state.description}</p>
                 <br/>
-                <p>Contribution status: {}</p>
-                <br/>
+                    {contributes}
                 <br/>
                 <div className="buttonBox">
                     <Button
