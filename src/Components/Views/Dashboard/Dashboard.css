@@ -63,15 +63,15 @@ font-family: sans-serif !important;
     font-family: sans-serif;
     width: 70%;
     background-color:  #EAFBF7;
-    margin-top: 35px;
+    margin-top: 10px;
     border: none;
     padding: 0 30px;
     border-radius: 4px;
-    height: 50px;
+    height: 30px;
     color: rgb(55, 134, 116);
     justify-content: center;
     margin-left: 15%;
-    font-size: 20px;
+    font-size: 8px;
     margin-bottom: 20px;
 }
 @media (max-width:600px){
