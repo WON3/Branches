@@ -19,10 +19,6 @@ form {
   display: flex;
   flex-direction: column;
 }
-.modal-backdrop {
-  opacity: 0.02;
-  transition: opacity 0.2s;
-}
-.modal-backdrop.in {
-  opacity: 0.7;
+.modal{
+    background: rgba(0, 0, 0, 0.10)
 }

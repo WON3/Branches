@@ -3,9 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 4px;
     height: 100%;
-    width: 100vw;
+    width: 80vw;
     font-family: 'Slabo 27px', serif;
     border-radius: 5px;
 }
@@ -13,6 +12,7 @@
 
 .title-box{
     margin-top: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -32,12 +32,10 @@
     border-radius: 5px;
 }
 .title{
-    height: 30px;
     width: 80%;
     background-color: #EAFBF7;
     color: #378674;
     font-size: 24px;
-    padding: 20px;
     border-radius: 5px;
     
 }
