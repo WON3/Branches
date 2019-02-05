@@ -99,7 +99,7 @@ app.get('*', (req,res) =>{
 });
 
 
-const port = process.env.SERVER_PORT || 8070;
+const port = process.env.PORT || 8070;
 app.listen(port, () => {
     console.log(`branchin' on port ${port}`)
 })
