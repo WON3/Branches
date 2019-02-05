@@ -40,13 +40,16 @@ class StoryCard extends Component{
             if(res.data.contributions.length < 1){
                 contributionUpdate = 'None to speak of'
             } else{
-                contributionUpdate = res.data.contributions.map(contribution=>contribution)
+                debugger
+                contributionUpdate = res.data.contributions;
             }
             this.setState({
                 title:res.data.story.title, 
                 contributions: contributionUpdate,
                 description:res.data.story.description
                 })
+
+
         })
         .catch(err=>{
             this.setState({serverErrorMessage:' Server error'})
@@ -65,25 +68,18 @@ class StoryCard extends Component{
         });
       };
 
+      approve = ()=> {
+        let {storyId} = this.props;
+        axios.post(`/contributions/threadApproval/${storyId}`, {approval:true}).then(res=>{
+            debugger
+            this.setState({isAccepted:true})
+            this.handleClose();
+        })
+      };
+
 render(){
     const { classes } = this.props;
-    let contributes;
-    console.log(typeof this.state.contributions)
-    if(this.state.contributions == null || typeof this.state.contributions == String){
-        debugger
-        contributes=<div>None to speak of.</div>   
-    } else{
-        debugger
-        contributes = this.state.contributions.map((cont)=>{
-            return(
-                <div key={cont.id}>
-                    {`Contribution status: ${cont.is_accepted}
-                      Contributer: ${cont.username}
-                      Contribution: ${cont.contribution}`}
-                </div>
-            )
-        })
-    }
+   
     return(
         <div>
         <RegisterButton 
@@ -109,12 +105,13 @@ render(){
                 </Typography>
                 <p>{this.state.description}</p>
                 <br/>
-                    {contributes}
+                    
                 <br/>
                 <div className="buttonBox">
                     <Button
                         variant="contained"
                         color="primary"
+                        onClick={this.approve}
                         style={{
                             background: "#EAFBF7",
                             borderRadius: 5,
