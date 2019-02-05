@@ -39,6 +39,34 @@ class Dashboard extends Component {
       this.login();
     }
   };
+     componentDidMount(){
+        axios.get(`/api/Dashboard`)
+        .then(res=>{
+            const stories =res.data;
+            this.setState({stories,  filteredStories:stories});
+        })
+        .catch(err =>{
+            this.setState({serverErrorMessage:' Server error'})
+          });
+    }
+    handleChange(e){
+        this.setState({
+            filteredStories : this.state.stories.filter((story)=>{
+               return story.title.toUpperCase().includes(e.target.value.toUpperCase()) 
+            })
+        })
+    }
+    
+
+
+  handleChange(e){
+ this.setState({
+     filteredStories : this.state.stories.filter((story)=>{
+        return story.title.toUpperCase().includes(e.target.value.toUpperCase()) 
+     })
+ })
+}
+          
 
   componentDidMount() {
     axios
@@ -52,66 +80,52 @@ class Dashboard extends Component {
       });
   }
 
-  render() {
-    const stories = this.state.filteredStories.map(story => {
-      return (
-        <Card className="storybox" key={story.story_id}>
-          <CardContent>
-            <div className="storyname">{story.title}</div>
-            <div className="description">{story.description}</div>
-
-            <Link to={`/view_story/${story.story_id}`}>
-              <button className="view">View story</button>
-            </Link>
-            <button className="view">Add to Favorites</button>
-          </CardContent>
-        </Card>
-      );
-    });
-    return (
-      <div className="idk">
-        <div className="dashboard">
-          {stories}
-          <Snackbar
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left"
-            }}
-            open={this.state.open}
-            autoHideDuration={6000}
-            onClose={this.handleClose}
-            message={<p>This is your dashboard. Choose your actions wisely!</p>}
-            action={[
-              <IconButton
-                key="close"
-                aria-label="Close"
-                color="inherit"
-                onClick={this.handleClose}
-              >
-                <CloseIcon />
-              </IconButton>
-            ]}
-          />
-        </div>
-        <TextField
-          id="outlined-search"
-          label="Search field"
-          type="search"
-          margin="normal"
-          variant="outlined"
-          onChange={this.handleChange}
-          style={{
-            backgroundColor: "#EAFBF7",
-            color: "#378674",
-            borderRadius: 5,
-            fontFamily: "sans-serif",
-            fontSize: 50,
-            fontWeight: 700
-          }}
-        />
-        <h3 className="storydash">Stories Dashboard</h3>
-      </div>
-    );
-  }
+       const stories = this.state.filteredStories.map((story)=>{
+        
+           return(
+               <Card className="storybox" key={story.story_id}>
+               <CardContent>
+               <div  className= "storyname">{story.title}</div>
+               <div  className = "description">{story.description}</div>
+               <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
+               
+               </CardContent>
+               </Card>
+           )
+           },
+           <div className="idk">
+           <div className="dashboard">
+            {stories}
+            <Snackbar
+           anchorOrigin={{
+             vertical: "bottom",
+             horizontal: "left",
+           }}
+           open={this.state.open}
+           autoHideDuration={6000}
+           onClose={this.handleClose}
+           message={<p>This is your dashboard. Choose your actions wisely!</p>}
+           action={[
+             <IconButton
+               key="close"
+               aria-label="Close"
+               color="inherit"
+               onClick={this.handleClose}
+             >
+               <CloseIcon />
+             </IconButton>
+           ]}
+         />
+           </div>
+           <input className="filter" type="text" placeholder="Search by Title" onChange={this.handleChange} margin="normal"
+              variant="outlined"
+              border=""
+              style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}} />
+           <LandingModal/>
+           <h3 className= "storydash">Stories Dashboard</h3>
+</div>
+</div>
+       )
+   }
 }
 export default Dashboard;

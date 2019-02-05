@@ -35,15 +35,13 @@ class User extends Component {
         .then(res => {
                 if(!res.data[0]){
                    this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
-
                 }
                 this.setState({ proPic: res.data[0]['url'] })
             })
-
         .catch(err=>{
             this.setState({serverErrorMessage:' Server error'})
-        }); 
-    } 
+        })}  
+
 
 
     changePic(val) {

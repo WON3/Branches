@@ -5,11 +5,14 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 const styles = theme => ({
   root: {
@@ -61,17 +64,22 @@ class StoryWizardOne extends Component {
       is_public: false, //defaults to false
       allows_fork: true, //user Input
       moderator_accepts: true, //user Input
-      open: true,
+      open: false,
       activeStep: 0,
       skipped: new Set(),
       required: true,
-      error: false
+      error: false,
+      open: false
     };
     this.handleChange = this.handleChange.bind(this);
     // this.addNewStory = this.addNewStory.bind(this);
   }
 
   //handleChange() for all input fields update state.. later will also update redux??
+  handleCloseSnack = () => {
+    this.setState({ open: false });
+  };
+  
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -90,9 +98,9 @@ class StoryWizardOne extends Component {
 
     if(!this.props.storyGuideTitle){
       this.setState({
-        error: true
+        error: true,
+        open: true
       })
-      alert("Please complete all fields to continue")
     } else{
       this.props.history.push('/create_two')
     if (this.isStepSkipped(activeStep)) {
@@ -186,7 +194,7 @@ class StoryWizardOne extends Component {
             </div>
           )}
         </div>
-        <div className="wizard-box">
+        <div className="wizard-box" style = {{maxWidth: "80%", boxShadow: "3px 5px 8px grey"}}>
           <TextField
             className="title"
             name="title"
@@ -233,6 +241,27 @@ class StoryWizardOne extends Component {
               </Button>
               </Link>
           </div>
+          <Snackbar
+        style= {{maxWidth: "100%", maxHeight: "20%", boxShadow: "3px 5px 8px grey"}}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left"
+        }}
+        open={this.state.open}
+        autoHideDuration={3250}
+        onClose={this.handleCloseSnack}
+        message={<p>Please Complete All Fields to Continue</p>}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            onClick={this.handleCloseSnack}
+          >
+            <CloseIcon />
+          </IconButton>
+        ]}
+      />
         </div>
       </div>
     );

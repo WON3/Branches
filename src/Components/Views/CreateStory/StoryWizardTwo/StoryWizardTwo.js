@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 const styles = theme => ({
   root: {
@@ -59,12 +62,16 @@ class StoryWizardTwo extends Component {
             activeStep: 1,
             skipped: new Set(),
             required: true,
-            error: false
+            error: false,
+            open: false
         }
         this.handleChange = this.handleChange.bind(this);
         // this.addNewStory = this.addNewStory.bind(this);
     }
-
+    handleCloseSnack = () => {
+        this.setState({ open: false });
+      };
+      
           //handleChange() for all input fields update state.. later will also update redux??
         handleChange(e){
             this.setState({
@@ -77,11 +84,11 @@ class StoryWizardTwo extends Component {
   handleNext = () => {
     const { activeStep } = this.state;
     let { skipped } = this.state;
-    if(!this.props.storyGuideDescripton){
+    if(this.props.storyGuideDescripton === ''){
         this.setState({
-          error: true
+          error: true,
+          open: true
         })
-        alert("Please complete all fields to continue")
       } else{
         this.props.history.push('/create_three')
     if (this.isStepSkipped(activeStep)) {
@@ -175,7 +182,7 @@ render(props){
             </div>
           )}
           </div>
-            <div className="wizard-box" style={{width: "80%", height: "100%", marginLeft: "10%"}}>
+            <div className="wizard-box" style={{width: "80%", height: "100%", marginLeft: "10%", boxShadow: "3px 5px 8px grey"}}>
             <TextField 
             className="descripton" 
             name="description"
@@ -207,7 +214,28 @@ render(props){
             </Button>            
             
                 </div>
-            </div>   
+            </div> 
+            <Snackbar
+        style= {{maxWidth: "100%", maxHeight: "20%", boxShadow: "3px 5px 8px grey"}}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left"
+        }}
+        open={this.state.open}
+        autoHideDuration={3250}
+        onClose={this.handleCloseSnack}
+        message={<p>Please Complete All Fields to Continue</p>}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            onClick={this.handleCloseSnack}
+          >
+            <CloseIcon />
+          </IconButton>
+        ]}
+      />
         </div>
     )
 }

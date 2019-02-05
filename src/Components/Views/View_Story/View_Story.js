@@ -58,10 +58,16 @@ class ViewStory extends Component {
             .then((res) =>
                 this.setState({ contribution: res.data }),
             )
-            .catch(err =>{
-                this.setState({serverErrorMessage: ' Server error'})
+            .catch(err => {
+                let er = err.response.data.message;
+                this.setState({ serverErrorMessage: er })
             })
-        
+        setTimeout(() => {
+            this.props.toggleReadview(this.props.isReadView)
+            this.setState({
+                isReaderViewEnabled: true
+            })
+        }, 3 * 1000)
     }
 
 
@@ -83,7 +89,6 @@ class ViewStory extends Component {
         }, { id: 0 })
         const prior_contributions_id = lastContribution ? lastContribution.id : 0;
         const isUserLoggedIn = this.props.userId ? <Link to={`/contribute/${this.props.match.params.story_id}/${prior_contributions_id}`}><Button size="large">Create Contribution</Button></Link> : ''
-
         if (!this.state.checkedA) {
             return (
                 <div className="read-view-er">
@@ -150,8 +155,10 @@ class ViewStory extends Component {
                             {isUserLoggedIn}
                         </div>
                     </div>
-                    <div className="contribution">{contributions}</div>
-                    <div className="butt">
+
+                    <div style={{ display: "none" }} className="contribution">{contributions}</div>
+                    <div style={{ display: "none" }} className="buttt">
+
                         <Link to={`/dashboard`}>
                             <Button size="large">Home</Button>
                         </Link>

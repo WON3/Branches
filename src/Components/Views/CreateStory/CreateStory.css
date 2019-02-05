@@ -115,7 +115,9 @@ input{
     max-width: 80%;
     margin: auto;
     padding: 10px;
-    margin: 20px;
+    border-radius: 4px;
+    background-color: #378674ff; 
+    color: rgba(0, 0, 0, 0.87);
 }
 
 #stepThree{

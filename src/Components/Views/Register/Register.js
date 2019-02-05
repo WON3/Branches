@@ -79,36 +79,27 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
-    if (password.length < 8) {
-      this.setState({
-        formValidationCheck: <ErrorModal error=" Password too short." />
-      });
-    } else if (!email.includes("@")) {
-      this.setState({
-        formValidationCheck: <ErrorModal error=" Invalid email address." />
-      });
+    if (password.length<8){
+      this.setState({formValidationCheck:<ErrorModal error=" Password too short." />})
+    } else if( !email.includes('@')){
+      this.setState({formValidationCheck:<ErrorModal error=" Invalid email address." />})
     } else {
       this.props.history.push("/");
-      axios
-        .post("/api/register", { username, email, password })
-        .then(res => {
-          if (res.data) {
-            alert("Registered. Now, login.");
-            this.setState({ open: false });
-          } else {
-            alert("Email already exists in database.");
-            this.setState({ password: "" });
-            this.setState({
-              username: "",
-              email: "",
-              password: "",
-              errorMessage: ""
-            });
-          }
-        })
-        .catch(err => {
-          this.setState({ serverErrorMessage: " Server error" });
-        });
+      axios.post("/api/register", { username, email, password })
+      .then(res => {
+        if (res.data) {
+          alert("Registered. Now, login.");
+          this.setState({ open: false });
+        } else {
+          alert("Email already exists in database.");
+          this.setState({ password: "" });
+          this.setState({errorMessage:''})
+        }
+      })
+      .catch(err =>{
+        this.setState({formValidationCheck:<ErrorModal error=' Server error'/>})
+        
+      });
     }
   }
 
