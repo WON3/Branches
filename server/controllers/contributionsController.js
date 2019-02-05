@@ -44,7 +44,6 @@ contributionsRouter.post('/', (req, res, next) => {
         prior_contribution_id
     })
         .then(response => {
-            console.log(res)
             res.status(200).send(response.data)
         }).catch(err=>{
             handleError(err);

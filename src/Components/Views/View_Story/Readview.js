@@ -49,7 +49,7 @@ class ReadView extends Component {
 
 
   render() {
-    const { pages, currentPage, showNextButton, showPreviousbutton } = this.state;
+    const { pages, currentPage } = this.state;
     return (
       <div className="contribution-view-story">
         <div className="view-story-page one" onClick={()=>{this.changePage('prev')}}>
