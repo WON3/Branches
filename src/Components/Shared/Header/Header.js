@@ -103,13 +103,13 @@ class Header extends Component {
         </Link>
       );
     return (
-      <div style={this.props.isReadView ? {display:"none"}:{display:"block"}}>
+      <div  style={this.props.isReadView ? {display:"none"}:{display:"block"}}>
         {" "}
         <AppBar
           position="fixed"
-          className={classNames(classes.appBar, {
+          className={ classNames(classes.appBar, {
             [classes.appBarShift]: this.props.openClose
-          })}
+          }) + ` suppers`}
         >
           <Toolbar
             className="header-inner-container"

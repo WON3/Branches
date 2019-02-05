@@ -45,6 +45,7 @@ export default class ErrorModal extends Component {
                 autoHideDuration={2000}
                 onClose={this.handleClose}
                 message={<p>Error: {this.state.error}</p>}
+
                 action={[
                 <IconButton
                     key="close"

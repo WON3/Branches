@@ -20,6 +20,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import HelpRounded from '@material-ui/icons/HelpRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
 
 
 
@@ -77,7 +79,8 @@ class StoryWizardThree extends Component{
             activeStep: 2,
             skipped: new Set(),
             required: true,
-            error: false
+            error: false,
+            open: false
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -88,7 +91,7 @@ class StoryWizardThree extends Component{
         });
         this.props.addModerator(this.state.storyGuideMod)
       }
-      
+
       handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
       };
@@ -99,9 +102,9 @@ class StoryWizardThree extends Component{
         let { skipped } = this.state;
         if(!this.props.storyGuidePOV || this.props.storyGuideFork === ''){
           this.setState({
-            error: true
+            error: true,
+            open: true
           })
-          alert("Please complete all fields to continue")
         } else{
           this.props.history.push('/create_four')
           if (this.isStepSkipped(activeStep)) {
@@ -268,9 +271,29 @@ class StoryWizardThree extends Component{
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'} 
                 
                 </Button>
-        {/* </Link> */}
             </div>
           </div>
+          <Snackbar
+        style= {{maxWidth: "100%", maxHeight: "20%", boxShadow: "3px 5px 8px grey"}}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left"
+        }}
+        open={this.state.open}
+        autoHideDuration={3000}
+        onClose={this.handleCloseSnack}
+        message={<p>Please Complete All Fields to Continue</p>}
+        action={[
+          <IconButton
+            key="close"
+            aria-label="Close"
+            color="inherit"
+            onClick={this.handleCloseSnack}
+          >
+            <CloseIcon />
+          </IconButton>
+        ]}
+      />
         </div>
         )
     }

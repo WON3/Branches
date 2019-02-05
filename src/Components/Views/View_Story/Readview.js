@@ -49,16 +49,16 @@ class ReadView extends Component {
 
 
   render() {
-    const { pages, currentPage, showNextButton, showPreviousbutton } = this.state;
+    const { pages, currentPage } = this.state;
     return (
       <div className="contribution-view-story">
         <div className="view-story-page one" onClick={()=>{this.changePage('prev')}}>
           <div className="hoverBug-1" >{this.state.backArrow}</div>
-          {pages.length > 0 ? pages[currentPage - 2].arrWords.join(' ') : 'loading'}
+          {pages.length > 0 ? pages[currentPage - 2].arrWords.join(' ') : 'No content'}
         </div>
         <div className="view-story-page two" onClick={()=>{this.changePage('next')}}>
           <div className="hoverBug-2" > > </div>
-          {pages.length > 0 ? pages.length > 1 ? currentPage < pages.length ?  pages[currentPage - 1].arrWords.join(' ') : '' : '' : 'loading'}
+          {pages.length > 0 ? pages.length > 1 ? currentPage < pages.length ?  pages[currentPage - 1].arrWords.join(' ') : '' : '' : 'No Content'}
         </div>
 
       </div>
