@@ -66,6 +66,7 @@ class StoryWizardFour extends Component {
         }
         this.addNewStory = this.addNewStory.bind(this);
     }
+  
       
     componentDidMount(){
         let {userId} = this.props;

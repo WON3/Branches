@@ -1,33 +1,44 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './Dashboard.css';
-import RenderCont from '../View_Story/RenderCont'
-import { Typography } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import axios from "axios";
+import "./Dashboard.css";
+import RenderCont from "../View_Story/RenderCont";
+import { Typography } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import { Link } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import ErrorModal from '../ErrorModal/ErrorModal';
-import LandingModal from '../Dashboard/LandingModal'
+import ErrorModal from "../ErrorModal/ErrorModal";
+import LandingModal from "../Dashboard/LandingModal";
+import TextField from "@material-ui/core/TextField";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filteredStories: [],
+      stories: [],
+      open: true
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
-   constructor(props) {
-       super(props);
-       this.state = {
-           filteredStories: [],
-           stories: [],
-           open: true
-       }
-      this.handleChange=this.handleChange.bind(this);
-     
-   }
-   handleClose = () => {
-       this.setState({ open: false });
-     };
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
+      this.login();
+    }
+  };
      componentDidMount(){
         axios.get(`/api/Dashboard`)
         .then(res=>{
@@ -57,7 +68,17 @@ class Dashboard extends Component {
 }
           
 
-   render(){
+  componentDidMount() {
+    axios
+      .get(`/api/Dashboard`)
+      .then(res => {
+        const stories = res.data;
+        this.setState({ stories });
+      })
+      .catch(err => {
+        this.setState({ serverErrorMessage: " Server error" });
+      });
+  }
 
        const stories = this.state.filteredStories.map((story)=>{
         
@@ -71,15 +92,14 @@ class Dashboard extends Component {
                </CardContent>
                </Card>
            )
-       })
-       return(
+           },
            <div className="idk">
            <div className="dashboard">
             {stories}
             <Snackbar
            anchorOrigin={{
              vertical: "bottom",
-             horizontal: "left"
+             horizontal: "left",
            }}
            open={this.state.open}
            autoHideDuration={6000}
@@ -103,6 +123,7 @@ class Dashboard extends Component {
               style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}} />
            <LandingModal/>
            <h3 className= "storydash">Stories Dashboard</h3>
+</div>
 </div>
        )
    }

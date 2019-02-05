@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import RegisterButton from "../../Views/Register/RegisterButton";
-import ErrorModal from '../ErrorModal/ErrorModal';
+import ErrorModal from "../ErrorModal/ErrorModal";
 
 const styles = theme => ({
   paper: {
@@ -35,11 +35,12 @@ class Register extends Component {
       email: "",
       password: "",
       showPassword: false,
-      serverErrorMessage:'',
-      formValidationCheck:''
+      serverErrorMessage: "",
+      formValidationCheck: ""
     };
     this.cancel = this.cancel.bind(this);
     this.registerUser = this.registerUser.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleOpen = () => {
@@ -70,6 +71,12 @@ class Register extends Component {
     this.setState({ [password]: event.target.value });
   };
 
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
+      this.login();
+    }
+  };
+
   registerUser() {
     let { username, email, password } = this.state;
     if (password.length<8){
@@ -94,7 +101,6 @@ class Register extends Component {
         
       });
     }
-    
   }
 
   cancel() {
@@ -108,13 +114,14 @@ class Register extends Component {
 
   render() {
     const { classes } = this.props;
-    let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
+    let errorMessage = this.state.serverErrorMessage && (
+      <ErrorModal error={this.state.serverErrorMessage} />
+    );
     return (
       <div>
-        <RegisterButton 
-          buttonName="REGISTER"
-          onClick={this.handleOpen} />
+        <RegisterButton buttonName="REGISTER" onClick={this.handleOpen} />
         <Modal
+          className="modal"
           zIndex="1"
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -162,7 +169,8 @@ class Register extends Component {
                   type="email"
                   name="email"
                   autoComplete="email"
-                  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   margin="normal"
                   variant="outlined"
                   value={this.state.email}
@@ -189,7 +197,8 @@ class Register extends Component {
                     value={this.state.password}
                     name="password"
                     onChange={this.handlePassword("password")}
-                    required minlength ="8"
+                    required
+                    minlength="8"
                     margin="normal"
                     variant="outlined"
                     border=""
