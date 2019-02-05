@@ -35,18 +35,14 @@ class User extends Component {
             this.setState({userName:username, bio:bio, stories:stories}) 
             return  axios.get(`/user/profilePic/${userId}`)
             .then(res => {
-                console.log(res.data['0'])
-                debugger
                 if(res.data['0']){
                    this.setState({proPic: res.data[0]['url']})    
                 }
             })
             .catch(err=>{
-                debugger
                 this.setState({serverErrorMessage:err.message}) 
         })
         .catch(err=>{
-            debugger
             this.setState({serverErrorMessage:err.message})
         })
     })
@@ -58,10 +54,11 @@ class User extends Component {
         this.props.updateProfilePic(val);
         const {userId} = this.state;
         axios.put(`/user/profilePic/${userId}`, {url:val})
-        .then(res => {   
+        .then(res => {  
+            debugger 
         })
         .catch(err=>{
-            this.setState({serverErrorMessage:' Server error'})
+            this.setState({serverErrorMessage:err.message})
         })
 
     };
@@ -73,7 +70,7 @@ class User extends Component {
         axios.put(`/user/bio/${userId}?bio=${val}`)
             .then(res=>{
         }).catch(err=>{
-            this.setState({serverErrorMessage:' Server error'})
+            this.setState({serverErrorMessage:err.message})
         })
     };
 
