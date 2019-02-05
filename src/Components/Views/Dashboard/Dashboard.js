@@ -67,7 +67,7 @@ class Dashboard extends Component {
                <div  className= "storyname">{story.title}</div>
                <div  className = "description">{story.description}</div>
                <Link to ={`/view_story/${story.story_id}`}><button className="view">View story</button></Link>
-               <button className="view">Add to Favorites</button>
+               
                </CardContent>
                </Card>
            )
@@ -97,7 +97,10 @@ class Dashboard extends Component {
            ]}
          />
            </div>
-           <input  name="filter" type="text" placeholder="Search by Title" onChange={this.handleChange} />
+           <input className="filter" type="text" placeholder="Search by Title" onChange={this.handleChange} margin="normal"
+              variant="outlined"
+              border=""
+              style={{backgroundColor: "#EAFBF7", color:"#378674", borderRadius:5}} />
            <LandingModal/>
            <h3 className= "storydash">Stories Dashboard</h3>
 </div>
