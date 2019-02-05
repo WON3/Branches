@@ -93,9 +93,11 @@ h3 {
 
 .butt {
     text-align: center;
+
 }
 .butt Button {
-    margin: 5px
+    margin: 5px;
+    font-size: 12px
 }
 .contribution {
   display: flex;
@@ -181,3 +183,5 @@ h3 {
 /* .view-story-page-one:hover {
     background-color: black
 } */
+
+

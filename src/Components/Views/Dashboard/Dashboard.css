@@ -101,6 +101,11 @@ font-family: sans-serif !important;
     }
 }
 
+
+.dialogBox {
+    background: seagreen;
+}
+
 .dialogTitle {
     color: #EAFBF7 !important
 } 

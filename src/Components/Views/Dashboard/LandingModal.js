@@ -40,13 +40,14 @@ class LandingModal extends React.Component {
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
+                    className="dialogStuff"
                 >
-                    <DialogTitle id="alert-dialog-title">
+                    <DialogTitle className="dialogBox" id="alert-dialog-title">
                         <div className="dialogTitle">
                             Branches
                         </div>
                     </DialogTitle>
-                    <DialogContent>
+                    <DialogContent className="dialogBox">
                         <DialogContentText style={{ color: "#EAFBF7" }} id="alert-dialog-description">
                             Welcome to Branches! Your story starts here and continues with the help of the community around you. This website is designed to let loose the creative mind by allowing individuals to collaborate with narrative. Please feel free to read and enjoy these stories! Create an account to make your own and contribute to others! Enjoy!
             </DialogContentText>
