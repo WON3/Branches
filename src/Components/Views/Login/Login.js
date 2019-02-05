@@ -59,8 +59,7 @@ class Login extends Component {
         this.props.history.push('/');       
       })
       .catch(err =>{
-        let er = err.respons.data.message;
-        this.setState({serverErrorMessage:er})
+        this.setState({serverErrorMessage:' Server error'})
       });
   }
 
@@ -69,11 +68,11 @@ class Login extends Component {
     return (
       <div>
         <div className="LoginBox">
-          <div className="header">Login</div>
+          <div>Login</div>
           <form className="LoginForm"
           onKeyPress={this.handleKeyPress}>
 
-            <TextField classname = 'inputBox'
+            <TextField className = 'inputBox'
               id="outlined-name"
               label="Username"
               name="username"

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './View_Story.css'
-import { duration } from '@material-ui/core/styles/transitions';
 
 
 class ReadView extends Component {
@@ -11,19 +10,17 @@ class ReadView extends Component {
       pages: [],
       currentPage: 2,
       showNextButton: true,
-      showPreviousbutton: false
+      showPreviousbutton: false,
+      backArrow: "<"
     }
     this.changePage = this.changePage.bind(this)
   }
 
-  componentDidUpdate(prevProps) {
-    // if the lenght of prevPros is > 2 setState showNextButton as false
-    if (this.state.pages.length !== prevProps.pages.length) {
+  componentDidMount() {
       this.setState({
-        pages: prevProps.pages,
-        showNextButton: prevProps.pages.length > 2 ? true : false
+        pages: this.props.pages,
+        showNextButton: this.props.pages.length > 2 ? true : false
       })
-    }
   }
 
   changePage(buttonOption) {
@@ -53,15 +50,14 @@ class ReadView extends Component {
 
   render() {
     const { pages, currentPage, showNextButton, showPreviousbutton } = this.state;
-    // debugger
     return (
       <div className="contribution-view-story">
         <div className="view-story-page one" onClick={()=>{this.changePage('prev')}}>
-          <div style={showPreviousbutton ? { display: "block" } : { display: "none" }}>Click page for Previous</div>
+          <div className="hoverBug-1" >{this.state.backArrow}</div>
           {pages.length > 0 ? pages[currentPage - 2].arrWords.join(' ') : 'loading'}
         </div>
         <div className="view-story-page two" onClick={()=>{this.changePage('next')}}>
-          <div style={showNextButton ? { display: "block" } : { display: "none" }}>Click page for next</div>
+          <div className="hoverBug-2" > > </div>
           {pages.length > 0 ? pages.length > 1 ? currentPage < pages.length ?  pages[currentPage - 1].arrWords.join(' ') : '' : '' : 'loading'}
         </div>
 
@@ -71,3 +67,5 @@ class ReadView extends Component {
 }
 
 export default (ReadView);
+// style={showPreviousbutton ? { display: "block" } : { display: "none" }}
+// style={showNextButton ? { display: "block" } : { display: "none" }}

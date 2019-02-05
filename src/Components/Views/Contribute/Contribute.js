@@ -29,8 +29,7 @@ class Contribute extends React.Component {
             })
         })
         .catch(err =>{
-            let er = err.respons.data.message;
-            this.setState({serverErrorMessage:er})
+            this.setState({serverErrorMessage:' Server error'})
           });
     }
 
@@ -57,8 +56,7 @@ class Contribute extends React.Component {
                 this.props.history.push(`/view_story/${this.props.match.params.story_id}`)
             })
             .catch(err =>{
-                let er = err.respons.data.message;
-                this.setState({serverErrorMessage:er})
+                this.setState({serverErrorMessage:' Server error'})
               });
 
         } else {

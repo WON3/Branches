@@ -3,6 +3,7 @@ const contributionsRouter = express.Router();
 
 module.exports = contributionsRouter;
 
+
 contributionsRouter.get('/:story_id', (req, res) => {
     const db = req.app.get('db');
     const { story_id } = req.params
@@ -56,7 +57,6 @@ contributionsRouter.get(`/last_contribution/:id`, (req,res,next)=>{
         id: req.params.id
     })
     .then(contribution => {
-        console.log(res)
         res.status(200).send(contribution)
     }).catch(err=>{
         handleError(err);

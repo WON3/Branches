@@ -35,7 +35,8 @@ class Register extends Component {
       email: "",
       password: "",
       showPassword: false,
-      serverErrorMessage:''
+      serverErrorMessage:'',
+      formValidationCheck:''
     };
     this.cancel = this.cancel.bind(this);
     this.registerUser = this.registerUser.bind(this);
@@ -71,20 +72,29 @@ class Register extends Component {
 
   registerUser() {
     let { username, email, password } = this.state;
-  
-    
-    axios.post("/api/register", { username, email, password }).then(res => {
-
-      
-        alert("Registered. Now, login.");
-        this.setState({ open: false });
-        this.props.history.push("/");
+    if (password.length<8){
+      this.setState({formValidationCheck:<ErrorModal error=" Password too short." />})
+    } else if( !email.includes('@')){
+      this.setState({formValidationCheck:<ErrorModal error=" Invalid email address." />})
+    } else {
+      this.props.history.push("/");
+      axios.post("/api/register", { username, email, password })
+      .then(res => {
+        if (res.data) {
+          alert("Registered. Now, login.");
+          this.setState({ open: false });
+        } else {
+          alert("Email already exists in database.");
+          this.setState({ password: "" });
+          this.setState({errorMessage:''})
+        }
       })
-       .catch(err=>{
-      alert("Email already exists in database.");
-      this.setState({ password: "" });
+      .catch(err =>{
+        this.setState({formValidationCheck:<ErrorModal error=' Server error'/>})
+        
+      });
     }
-    );
+    
   }
 
   cancel() {
@@ -101,8 +111,11 @@ class Register extends Component {
     let errorMessage = this.state.serverErrorMessage && <ErrorModal error = {this.state.serverErrorMessage}/>       
     return (
       <div>
-        <RegisterButton onClick={this.handleOpen} />
+        <RegisterButton 
+          buttonName="REGISTER"
+          onClick={this.handleOpen} />
         <Modal
+          zIndex="1"
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
@@ -231,6 +244,7 @@ class Register extends Component {
           </div>
         </Modal>
         {errorMessage}
+        {this.state.formValidationCheck}
       </div>
     );
   }

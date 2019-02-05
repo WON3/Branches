@@ -1,5 +1,6 @@
 * {
     font-family: sans-serif;
+    user-select: none;
 }
 .body {
     height: 100vh;
@@ -8,6 +9,27 @@
     margin-right: 100px;
     color: #378674
 }
+.head {
+    margin-top: 35px;
+}
+.header {
+    background: #378674;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #EAFBF7;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+
+}
+.afterHeader{
+    margin: auto;
+    padding: 25px 0;
+}
 
 .read-view-title {
     background: #3A8674;
@@ -15,8 +37,21 @@
     border-radius: 4px;
     font-size: 20px;
     color: #EAFBF7;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 80px
+    
 }
+.read-view-title:hover .switch {
+    opacity: 1 !important;
+  }
+  
+
 .read-view-main{
+    padding: 0px 10px
+}
+.read-view-er{
     padding: 0px 10px
 }
 .read-view-container {
@@ -28,9 +63,18 @@
     background: white;
     padding: 5px;
     height: 560px;
-    min-width: 372px;
+    min-width: 437px;
     max-width: 437px;
 }
+.view-story-page:hover{
+    background-color: #378674;
+    opacity: 0.3;
+    padding: 5px;
+    height: 560px;
+    min-width: 437px;
+    max-width: 437px;
+}
+
 
 .one{
     border-radius: 0px 10px 10px 0px;
@@ -41,16 +85,7 @@
     border-radius: 10px 0px 0px 10px;
     margin: 17px 0px 0px 4px;
 }
-.head {
-    font-size: 2em;
-    width: 100%;
-    margin: auto;
-    margin-bottom: 25px;
-}
-h1 {
-    font-size: 150px;
-    color: #378674
-}
+
 h3 {
     text-align: center;
     color: #378674
@@ -94,3 +129,55 @@ h3 {
     padding: 5px
 }
 
+.hoverBug-1{
+    display: hidden;
+    color: transparent;
+    position: absolute;
+    height: 563px;
+    width: 437px;
+    text-align: center;
+    font-size: 100px;
+}
+
+
+.hoverBug-2{
+    display: hidden;
+    color: transparent;
+    position: absolute;
+    height: 563px;
+    width: 437px;
+    text-align: center;
+    font-size: 100px;
+}
+
+.hoverBug-1:hover{
+    color: black;
+    font-size: 100px;
+    position: absolute;
+    display: block;
+    padding-top: 209px;
+    max-width: 356px;
+    text-align: center;
+    max-width: 437px;
+}
+
+.hoverBug-2:hover{
+    color: black;
+    font-size: 100px;
+    position: absolute;
+    display: block;
+    padding-top: 209px;
+    height: 356px;
+    max-width: 437px;
+}
+
+.headerRight {
+    display: flex;
+    justify-content: space-between
+}
+
+
+
+/* .view-story-page-one:hover {
+    background-color: black
+} */

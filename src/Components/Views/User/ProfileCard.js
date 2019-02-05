@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import ButtonMode from './ButtonMode';
 import './userStyles.css';
 import { relative } from 'path';
+import StoryCard from './StoryCard'
 
 const styles = theme => ({
   root: {
@@ -115,7 +116,7 @@ render() {
       <div key={story.story_id}>
         <h4 className='contributionTitle'>{story.title}</h4>
           <li className='userLi'>{story.description}</li>
-          
+          <StoryCard storyId={story.story_id}/>
       </div>
     )
   });
@@ -143,10 +144,10 @@ render() {
             </div> 
               
             <div className={classes.titles}>
-               <h3>{this.props.userName}</h3>
+               <h3 style={{color:'black'}}>Name: {this.props.userName}</h3>
             </div>
             <div className={classes.titles}>
-            <h3>Bio</h3>
+            <h3 style={{color:'black'}}>Bio</h3>
             <div className={classes.background}>
               <div className='bioHolder'>
                 <div className={classes.bio} >
@@ -167,7 +168,7 @@ render() {
           </div>
           <div className='contributionBox'>
               <div className={classes.titles}>
-                  <h3>Your stories</h3>
+                  <h3 style={{color:'black'}}>Your stories</h3>
                </div>
               <div className='contributions'>
                 <ul className='userUl'>
