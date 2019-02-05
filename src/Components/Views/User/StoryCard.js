@@ -135,7 +135,7 @@ render(){
                             padding: "0 30px",
                             width: 300
                         }}
-                        onClick={this.cancel}
+                        onClick={this.handleClose}
                         >Deny
                     </Button>
                 </div>

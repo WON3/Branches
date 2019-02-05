@@ -24,27 +24,30 @@ class User extends Component {
 
     componentDidMount(){
         const {userName, userId} = this.props;
-        this.setState({proPic:`https://robohash.org/${userId}?set=set4`})
-        this.setState({userName:userName, userId:userId})
+        this.setState({
+            userName:userName, 
+            userId:userId, 
+            proPic:`https://robohash.org/${userId}?set=set4`
+        });
         axios.get(`/user/profile/${userId}`)
         .then(res=>{
             const {username, bio, stories } = res.data;
             this.setState({userName:username, bio:bio, stories:stories}) 
-            debugger
             return  axios.get(`/user/profilePic/${userId}`)
             .then(res => {
-                if(!res.data[0]){
-                   this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
+                console.log(res.data['0'])
+                debugger
+                if(res.data['0']){
+                   this.setState({proPic: res.data[0]['url']})    
                 }
-                this.setState({ proPic: res.data[0]['url'] })
             })
             .catch(err=>{
                 debugger
-                this.setState({serverErrorMessage:' Server error'}) 
+                this.setState({serverErrorMessage:err.message}) 
         })
         .catch(err=>{
             debugger
-            this.setState({serverErrorMessage:' Server error'})
+            this.setState({serverErrorMessage:err.message})
         })
     })
     }
