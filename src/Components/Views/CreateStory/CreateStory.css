@@ -112,6 +112,8 @@ input{
     margin: auto;
     padding: 10px;
     border-radius: 4px;
+    background-color: #378674ff; 
+    color: rgba(0, 0, 0, 0.87);
 }
 
 #stepThree{
