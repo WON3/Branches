@@ -55,7 +55,7 @@ class User extends Component {
         const {userId} = this.state;
         axios.put(`/user/profilePic/${userId}`, {url:val})
         .then(res => {  
-            debugger 
+             
         })
         .catch(err=>{
             this.setState({serverErrorMessage:err.message})
