@@ -93,9 +93,11 @@ h3 {
 
 .butt {
     text-align: center;
+
 }
 .butt Button {
-    margin: 5px
+    margin: 5px;
+    font-size: 12px
 }
 .contribution {
   display: flex;
@@ -135,23 +137,11 @@ h3 {
     position: absolute;
     height: 563px;
     width: 437px;
-text-align: center;
-font-size: 100px;
-
-   
-}
-
-.hoverBug-1:hover{
-    color: black;
-    font-size: 100px;
-    position: absolute;
-    display: block;
-    padding-top: 209px;
-    height: 563px;
-    max-width: 356px;
     text-align: center;
-   
+    font-size: 100px;
 }
+
+
 .hoverBug-2{
     display: hidden;
     color: transparent;
@@ -160,7 +150,17 @@ font-size: 100px;
     width: 437px;
     text-align: center;
     font-size: 100px;
+}
 
+.hoverBug-1:hover{
+    color: black;
+    font-size: 100px;
+    position: absolute;
+    display: block;
+    padding-top: 209px;
+    max-width: 356px;
+    text-align: center;
+    max-width: 437px;
 }
 
 .hoverBug-2:hover{
@@ -171,7 +171,6 @@ font-size: 100px;
     padding-top: 209px;
     height: 356px;
     max-width: 437px;
-   
 }
 
 .headerRight {
@@ -184,3 +183,5 @@ font-size: 100px;
 /* .view-story-page-one:hover {
     background-color: black
 } */
+
+

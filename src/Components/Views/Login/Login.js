@@ -68,11 +68,11 @@ class Login extends Component {
     return (
       <div>
         <div className="LoginBox">
-          <div className="header">Login</div>
+          <div>Login</div>
           <form className="LoginForm"
           onKeyPress={this.handleKeyPress}>
 
-            <TextField classname = 'inputBox'
+            <TextField className = 'inputBox'
               id="outlined-name"
               label="Username"
               name="username"
@@ -108,7 +108,7 @@ class Login extends Component {
               horizontal: "left"
             }}
             open={this.state.open}
-            autoHideDuration={5000}
+            autoHideDuration={3250}
             onClose={this.handleClose}
             message={<p>Welcome Story Teller</p>}
             action={[
