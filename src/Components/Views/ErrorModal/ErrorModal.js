@@ -15,7 +15,7 @@ export default class ErrorModal extends Component {
     }
     componentDidMount(){
         let {error} = this.props;
-        debugger
+        
         this.setState({
             open:true,
             error: error
