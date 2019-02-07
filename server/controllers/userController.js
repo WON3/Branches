@@ -37,12 +37,12 @@ module.exports = userRouter;
         const {userId} = req.params;
         const {bio} = req.query
         db.users.update({id:userId}, {bio:bio})
-        .then((res) => {
-            res.send('Update successful.')
-        })
-        .catch(( err )=>{
-            handleError(err);
-        });
+            .then((res) => {
+                res.send('Update successful.')
+            })
+            .catch(( err ) => {
+                handleError(err);
+            });
     })
 
     userRouter.put('/profilePic/:userId' , (req, res) => {
@@ -50,13 +50,13 @@ module.exports = userRouter;
         const handleError = req.app.get('handleError');
         const {userId} = req.params;
         const {url} = req.body;
-        db.profile_pic.update({user_id:userId},{url:url})
-        .then((res) => {
-            res.send('Successful update!')
-        })
-        .catch(( err )=>{
+        db.profile_pic.update({user_id:userId}, {url:url})
+            .then((res) => {
+                res.send('Update successful.')
+            })
+        .catch(( err ) => {
             handleError(err);
-        })
+            });
     })
 
     userRouter.get('/profilePic/:userId' , (req, res) => {

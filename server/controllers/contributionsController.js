@@ -61,3 +61,16 @@ contributionsRouter.get(`/last_contribution/:id`, (req,res,next)=>{
         handleError(err);
     })
 })
+contributionsRouter.post(`/threadApproval/:id`, (req,res,next)=>{
+    const db = req.app.get('db');
+    const handleError = req.app.get('handleError');
+    const {id}  =req.params;
+    const {approval} =req.body;
+    db.approveContribution(approval, id)
+        .then(()=>{
+            res.status(200)
+        })
+        .catch(err =>{
+            handleError(err);
+    })
+})

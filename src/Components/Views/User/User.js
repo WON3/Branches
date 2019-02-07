@@ -24,24 +24,29 @@ class User extends Component {
 
     componentDidMount(){
         const {userName, userId} = this.props;
-        this.setState({proPic:`https://robohash.org/${userId}?set=set4`})
-        this.setState({userName:userName, userId:userId})
+        this.setState({
+            userName:userName, 
+            userId:userId, 
+            proPic:`https://robohash.org/${userId}?set=set4`
+        });
         axios.get(`/user/profile/${userId}`)
         .then(res=>{
             const {username, bio, stories } = res.data;
             this.setState({userName:username, bio:bio, stories:stories}) 
-            return axios.get(`/user/profilePic/${userId}`)  
-        })
-        .then(res => {
-                if(!res.data[0]){
-                   this.setState({proPic:`https://robohash.org/${userId}?set=set4`})    
+            return  axios.get(`/user/profilePic/${userId}`)
+            .then(res => {
+                if(res.data['0']){
+                   this.setState({proPic: res.data[0]['url']})    
                 }
-                this.setState({ proPic: res.data[0]['url'] })
             })
+            .catch(err=>{
+                this.setState({serverErrorMessage:err.message}) 
+        })
         .catch(err=>{
-            this.setState({serverErrorMessage:' Server error'})
-        })}  
-
+            this.setState({serverErrorMessage:err.message})
+        })
+    })
+    }
 
 
     changePic(val) {
@@ -49,10 +54,11 @@ class User extends Component {
         this.props.updateProfilePic(val);
         const {userId} = this.state;
         axios.put(`/user/profilePic/${userId}`, {url:val})
-        .then(res => {   
+        .then(res => {  
+             
         })
         .catch(err=>{
-            this.setState({serverErrorMessage:' Server error'})
+            this.setState({serverErrorMessage:err.message})
         })
 
     };
@@ -64,7 +70,7 @@ class User extends Component {
         axios.put(`/user/bio/${userId}?bio=${val}`)
             .then(res=>{
         }).catch(err=>{
-            this.setState({serverErrorMessage:' Server error'})
+            this.setState({serverErrorMessage:err.message})
         })
     };
 
